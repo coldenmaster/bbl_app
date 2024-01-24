@@ -1,0 +1,175 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:mold_name",
+ "creation": "2024-01-18 11:31:16.651650",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "details_section",
+  "mold_name",
+  "mold_id",
+  "mold_product",
+  "mold_type",
+  "column_break_ygdm",
+  "mold_from",
+  "mold_material",
+  "mold_share",
+  "status_tab",
+  "mold_status",
+  "repair_times",
+  "total_output",
+  "batch_cycle",
+  "batch_output",
+  "mold_use_record_tab",
+  "mold_use_record_section",
+  "table_fsrf"
+ ],
+ "fields": [
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "mold_name",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "label": "Mold Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "mold_id",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Mold Id"
+  },
+  {
+   "fieldname": "mold_material",
+   "fieldtype": "Link",
+   "label": "Mold Material",
+   "options": "Raw Material Type"
+  },
+  {
+   "fieldname": "column_break_ygdm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "mold_type",
+   "fieldtype": "Link",
+   "label": "Mold Type",
+   "options": "Mold Type"
+  },
+  {
+   "fieldname": "repair_times",
+   "fieldtype": "Int",
+   "label": "Repair Times",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_output",
+   "fieldtype": "Int",
+   "label": "Total Output",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "fieldname": "mold_status",
+   "fieldtype": "Link",
+   "label": "Mold Status",
+   "options": "Mold Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "mold_from",
+   "fieldtype": "Data",
+   "label": "Mold From"
+  },
+  {
+   "fieldname": "mold_share",
+   "fieldtype": "Link",
+   "label": "Mold Share",
+   "options": "Mold"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "mold_product",
+   "fieldtype": "Link",
+   "label": "Mold Product",
+   "options": "Product Mold"
+  },
+  {
+   "fieldname": "mold_use_record_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "table_fsrf",
+   "fieldtype": "Table",
+   "options": "Mold Use Record"
+  },
+  {
+   "fieldname": "mold_use_record_tab",
+   "fieldtype": "Tab Break",
+   "label": "Record"
+  },
+  {
+   "fieldname": "batch_output",
+   "fieldtype": "Int",
+   "label": "Batch Output",
+   "read_only": 1
+  },
+  {
+   "fieldname": "status_tab",
+   "fieldtype": "Tab Break",
+   "label": "Status"
+  },
+  {
+   "fieldname": "batch_cycle",
+   "fieldtype": "Data",
+   "label": "Batch Cycle",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-01-22 15:36:27.819205",
+ "modified_by": "Administrator",
+ "module": "Mold Manage",
+ "name": "Mold",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Mold Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "show_name_in_global_search": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

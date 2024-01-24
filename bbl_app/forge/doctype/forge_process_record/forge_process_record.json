@@ -1,0 +1,203 @@
+{
+ "actions": [],
+ "autoname": "format:{product_name}/{date}/{##}",
+ "creation": "2024-01-19 14:58:08.117107",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "product_tab",
+  "product_name",
+  "date",
+  "production_line",
+  "batch_cycle",
+  "quantity",
+  "junk_quantity",
+  "description",
+  "employee",
+  "material_tab",
+  "material",
+  "diameter",
+  "material_ratio",
+  "material_weight",
+  "forge_weight",
+  "technology_tab",
+  "roll_para_section",
+  "roll_first",
+  "roll_second",
+  "roll_third",
+  "roll_fourth",
+  "column_break_wigm",
+  "feed_position",
+  "roll_force",
+  "note"
+ ],
+ "fields": [
+  {
+   "fieldname": "product_tab",
+   "fieldtype": "Tab Break",
+   "label": "Product"
+  },
+  {
+   "fieldname": "product_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Product Name",
+   "options": "Product Mold",
+   "reqd": 1
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "fieldname": "quantity",
+   "fieldtype": "Int",
+   "label": "Quantity"
+  },
+  {
+   "fieldname": "junk_quantity",
+   "fieldtype": "Int",
+   "label": "Junk Quantity"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Data",
+   "label": "Description"
+  },
+  {
+   "fieldname": "material_tab",
+   "fieldtype": "Tab Break",
+   "label": "Material"
+  },
+  {
+   "fieldname": "material",
+   "fieldtype": "Link",
+   "label": "Material",
+   "options": "Raw Material Type"
+  },
+  {
+   "fieldname": "diameter",
+   "fieldtype": "Link",
+   "label": "Diameter",
+   "options": "Material Diameter"
+  },
+  {
+   "fieldname": "material_ratio",
+   "fieldtype": "Int",
+   "label": "Material Ratio"
+  },
+  {
+   "fieldname": "technology_tab",
+   "fieldtype": "Tab Break",
+   "label": "Technology"
+  },
+  {
+   "fieldname": "roll_para_section",
+   "fieldtype": "Section Break",
+   "label": "Roll Para"
+  },
+  {
+   "fieldname": "roll_first",
+   "fieldtype": "Int",
+   "label": "Roll First"
+  },
+  {
+   "fieldname": "roll_second",
+   "fieldtype": "Int",
+   "label": "Roll Second"
+  },
+  {
+   "fieldname": "roll_third",
+   "fieldtype": "Int",
+   "label": "Roll Third"
+  },
+  {
+   "fieldname": "roll_fourth",
+   "fieldtype": "Int",
+   "label": "Roll Fourth"
+  },
+  {
+   "fieldname": "column_break_wigm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "feed_position",
+   "fieldtype": "Int",
+   "label": "Feed Position"
+  },
+  {
+   "fieldname": "roll_force",
+   "fieldtype": "Int",
+   "label": "Roll Force"
+  },
+  {
+   "fieldname": "note",
+   "fieldtype": "Small Text",
+   "label": "Note"
+  },
+  {
+   "fieldname": "batch_cycle",
+   "fieldtype": "Int",
+   "label": "Batch Cycle"
+  },
+  {
+   "fieldname": "forge_weight",
+   "fieldtype": "Int",
+   "label": "Forge Weight"
+  },
+  {
+   "fieldname": "material_weight",
+   "fieldtype": "Int",
+   "label": "Material Weight"
+  },
+  {
+   "fieldname": "production_line",
+   "fieldtype": "Link",
+   "label": "Production Line",
+   "options": "Production Line"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "employee",
+   "options": "Employee"
+  }
+ ],
+ "links": [],
+ "modified": "2024-01-24 16:02:34.082070",
+ "modified_by": "Administrator",
+ "module": "Forge",
+ "name": "Forge Process Record",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

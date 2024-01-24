@@ -1,0 +1,60 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-01-19 17:09:25.836083",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "mold_name_section",
+  "data_dafn",
+  "link",
+  "test_multi_link"
+ ],
+ "fields": [
+  {
+   "fieldname": "mold_name_section",
+   "fieldtype": "Section Break",
+   "label": "Test"
+  },
+  {
+   "fieldname": "data_dafn",
+   "fieldtype": "Data",
+   "label": "Mold Name"
+  },
+  {
+   "fieldname": "link",
+   "fieldtype": "Link",
+   "label": "Link",
+   "options": "Forge Process Record"
+  },
+  {
+   "fieldname": "test_multi_link",
+   "fieldtype": "Time",
+   "label": "Test Multi Link"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-01-19 17:42:49.971232",
+ "modified_by": "Administrator",
+ "module": "Mold Manage",
+ "name": "Mold Test",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
