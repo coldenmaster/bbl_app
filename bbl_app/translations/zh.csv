@@ -32,8 +32,8 @@ Exception Record,异常记录,
 
 Forge,锻造,
 Forge Shop,锻造车间,
-Forge Process,锻造工艺,
-Forge Process Record,锻造工艺记录,
+Forge Process,锻造过程,
+Forge Process Record,锻造生产记录,
 technology,工艺,
 Junk Quantity,废品数量,
 
@@ -58,6 +58,7 @@ Weight,重量,
 Forge Weight,锻件重量,
 Material Weight,原材料重量,
 
+Bbl Online Custom,百兰在线定制,
 
 
 

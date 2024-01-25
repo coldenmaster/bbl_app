@@ -159,13 +159,13 @@
   },
   {
    "fieldname": "employee",
-   "fieldtype": "Link",
-   "label": "employee",
+   "fieldtype": "Data",
+   "label": "Employee",
    "options": "Employee"
   }
  ],
  "links": [],
- "modified": "2024-01-24 16:02:34.082070",
+ "modified": "2024-01-25 08:19:43.930567",
  "modified_by": "Administrator",
  "module": "Forge",
  "name": "Forge Process Record",
