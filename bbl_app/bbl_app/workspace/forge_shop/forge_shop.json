@@ -2,7 +2,7 @@
     "name": "Forge Shop",
     "owner": "Administrator",
     "creation": "2024-01-19 16:29:50.777337",
-    "modified": "2024-02-03 11:46:55.999800",
+    "modified": "2024-02-04 14:45:39.856373",
     "modified_by": "Administrator",
     "docstatus": 0,
     "idx": 0,
@@ -17,7 +17,7 @@
     "hide_custom": 0,
     "public": 1,
     "is_hidden": 0,
-    "content": "[{\"id\":\"5RKDRJJG8R\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>模具管理</b></span>\",\"col\":12}},{\"id\":\"tLEVa9RCK8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"新建模具档案\",\"col\":3}},{\"id\":\"NxE8QoBdr8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"锻造模具列表\",\"col\":3}},{\"id\":\"ju81NaIx9n\",\"type\":\"spacer\",\"data\":{\"col\":5}},{\"id\":\"CpwdWL5wNQ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>生产数据</b></span>\",\"col\":12}},{\"id\":\"ejBNEMuq4Y\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"新建锻造记录\",\"col\":3}},{\"id\":\"j3R03XXMvV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"锻造记录列表\",\"col\":3}},{\"id\":\"1KWKuKZFKN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"31kYoHutCh\",\"type\":\"card\",\"data\":{\"card_name\":\"基础数据\",\"col\":4}},{\"id\":\"AebyyeTb-I\",\"type\":\"card\",\"data\":{\"card_name\":\"模具数据\",\"col\":4}},{\"id\":\"zLrtrFavD8\",\"type\":\"card\",\"data\":{\"card_name\":\"车间数据\",\"col\":4}}]",
+    "content": "[{\"id\":\"5RKDRJJG8R\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>模具管理</b></span>\",\"col\":12}},{\"id\":\"tLEVa9RCK8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"新建模具档案\",\"col\":3}},{\"id\":\"NxE8QoBdr8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"锻造模具列表\",\"col\":3}},{\"id\":\"ju81NaIx9n\",\"type\":\"spacer\",\"data\":{\"col\":5}},{\"id\":\"CpwdWL5wNQ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>生产数据</b></span>\",\"col\":12}},{\"id\":\"ejBNEMuq4Y\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"新建锻造记录\",\"col\":3}},{\"id\":\"j3R03XXMvV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"锻造记录列表\",\"col\":3}},{\"id\":\"LpfVPbSqgA\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>产品重量</b></span>\",\"col\":12}},{\"id\":\"CW0mu4956Z\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"新建重量记录\",\"col\":3}},{\"id\":\"1wL3rkVJGN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"产品重量记录\",\"col\":3}},{\"id\":\"1KWKuKZFKN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"31kYoHutCh\",\"type\":\"card\",\"data\":{\"card_name\":\"基础数据\",\"col\":4}},{\"id\":\"AebyyeTb-I\",\"type\":\"card\",\"data\":{\"card_name\":\"模具数据\",\"col\":4}},{\"id\":\"zLrtrFavD8\",\"type\":\"card\",\"data\":{\"card_name\":\"车间数据\",\"col\":4}}]",
     "doctype": "Workspace",
     "quick_lists": [],
     "custom_blocks": [],
@@ -26,7 +26,7 @@
             
             "owner": "Administrator",
             "creation": "2024-01-19 16:29:50.777337",
-            "modified": "2024-02-03 11:46:55.999800",
+            "modified": "2024-02-04 14:45:39.856373",
             "modified_by": "Administrator",
             "docstatus": 0,
             "idx": 5,
@@ -45,7 +45,7 @@
             
             "owner": "Administrator",
             "creation": "2024-01-19 16:29:50.777337",
-            "modified": "2024-02-03 11:46:55.999800",
+            "modified": "2024-02-04 14:45:39.856373",
             "modified_by": "Administrator",
             "docstatus": 0,
             "idx": 6,
@@ -66,7 +66,7 @@
             
             "owner": "Administrator",
             "creation": "2024-01-19 16:29:50.777337",
-            "modified": "2024-02-03 11:46:55.999800",
+            "modified": "2024-02-04 14:45:39.856373",
             "modified_by": "Administrator",
             "docstatus": 0,
             "idx": 7,
@@ -87,7 +87,7 @@
             
             "owner": "Administrator",
             "creation": "2024-01-19 16:29:50.777337",
-            "modified": "2024-02-03 11:46:55.999800",
+            "modified": "2024-02-04 14:45:39.856373",
             "modified_by": "Administrator",
             "docstatus": 0,
             "idx": 8,
@@ -106,7 +106,7 @@
             
             "owner": "Administrator",
             "creation": "2024-01-19 16:29:50.777337",
-            "modified": "2024-02-03 11:46:55.999800",
+            "modified": "2024-02-04 14:45:39.856373",
             "modified_by": "Administrator",
             "docstatus": 0,
             "idx": 9,
@@ -127,7 +127,7 @@
             
             "owner": "Administrator",
             "creation": "2024-01-19 16:29:50.777337",
-            "modified": "2024-02-03 11:46:55.999800",
+            "modified": "2024-02-04 14:45:39.856373",
             "modified_by": "Administrator",
             "docstatus": 0,
             "idx": 10,
@@ -148,7 +148,7 @@
             
             "owner": "Administrator",
             "creation": "2024-01-19 16:29:50.777337",
-            "modified": "2024-02-03 11:46:55.999800",
+            "modified": "2024-02-04 14:45:39.856373",
             "modified_by": "Administrator",
             "docstatus": 0,
             "idx": 11,
@@ -167,7 +167,7 @@
             
             "owner": "Administrator",
             "creation": "2024-01-19 16:29:50.777337",
-            "modified": "2024-02-03 11:46:55.999800",
+            "modified": "2024-02-04 14:45:39.856373",
             "modified_by": "Administrator",
             "docstatus": 0,
             "idx": 12,
@@ -188,7 +188,7 @@
             
             "owner": "Administrator",
             "creation": "2024-01-19 16:29:50.777337",
-            "modified": "2024-02-03 11:46:55.999800",
+            "modified": "2024-02-04 14:45:39.856373",
             "modified_by": "Administrator",
             "docstatus": 0,
             "idx": 13,
@@ -209,7 +209,7 @@
             
             "owner": "Administrator",
             "creation": "2024-01-19 16:29:50.777337",
-            "modified": "2024-02-03 11:46:55.999800",
+            "modified": "2024-02-04 14:45:39.856373",
             "modified_by": "Administrator",
             "docstatus": 0,
             "idx": 14,
@@ -230,7 +230,7 @@
             
             "owner": "Administrator",
             "creation": "2024-01-19 16:29:50.777337",
-            "modified": "2024-02-03 11:46:55.999800",
+            "modified": "2024-02-04 14:45:39.856373",
             "modified_by": "Administrator",
             "docstatus": 0,
             "idx": 15,
@@ -254,7 +254,46 @@
             
             "owner": "Administrator",
             "creation": "2024-01-19 16:29:50.777337",
-            "modified": "2024-02-03 11:46:55.999800",
+            "modified": "2024-02-04 14:45:39.856373",
+            "modified_by": "Administrator",
+            "docstatus": 0,
+            "idx": 1,
+            "type": "DocType",
+            "link_to": "Mold",
+            "doc_view": "List",
+            "label": "锻造模具列表",
+            "stats_filter": "[]",
+            "color": "Blue",
+            "format": "{}套模具",
+            "parent": "Forge Shop",
+            "parentfield": "shortcuts",
+            "parenttype": "Workspace",
+            "doctype": "Workspace Shortcut"
+        },
+        {
+            
+            "owner": "Administrator",
+            "creation": "2024-01-19 16:29:50.777337",
+            "modified": "2024-02-04 14:45:39.856373",
+            "modified_by": "Administrator",
+            "docstatus": 0,
+            "idx": 1,
+            "type": "DocType",
+            "link_to": "Product Weight Record",
+            "doc_view": "New",
+            "label": "新建重量记录",
+            "stats_filter": "[]",
+            "color": "Grey",
+            "parent": "Forge Shop",
+            "parentfield": "shortcuts",
+            "parenttype": "Workspace",
+            "doctype": "Workspace Shortcut"
+        },
+        {
+            
+            "owner": "Administrator",
+            "creation": "2024-01-19 16:29:50.777337",
+            "modified": "2024-02-04 14:45:39.856373",
             "modified_by": "Administrator",
             "docstatus": 0,
             "idx": 1,
@@ -273,26 +312,7 @@
             
             "owner": "Administrator",
             "creation": "2024-01-19 16:29:50.777337",
-            "modified": "2024-02-03 11:46:55.999800",
-            "modified_by": "Administrator",
-            "docstatus": 0,
-            "idx": 1,
-            "type": "DocType",
-            "link_to": "Mold",
-            "doc_view": "List",
-            "label": "锻造模具列表",
-            "stats_filter": "[]",
-            "color": "Blue",
-            "parent": "Forge Shop",
-            "parentfield": "shortcuts",
-            "parenttype": "Workspace",
-            "doctype": "Workspace Shortcut"
-        },
-        {
-            
-            "owner": "Administrator",
-            "creation": "2024-01-19 16:29:50.777337",
-            "modified": "2024-02-03 11:46:55.999800",
+            "modified": "2024-02-04 14:45:39.856373",
             "modified_by": "Administrator",
             "docstatus": 0,
             "idx": 2,
@@ -311,7 +331,26 @@
             
             "owner": "Administrator",
             "creation": "2024-01-19 16:29:50.777337",
-            "modified": "2024-02-03 11:46:55.999800",
+            "modified": "2024-02-04 14:45:39.856373",
+            "modified_by": "Administrator",
+            "docstatus": 0,
+            "idx": 2,
+            "type": "DocType",
+            "link_to": "Product Weight Record",
+            "doc_view": "List",
+            "label": "产品重量记录",
+            "stats_filter": "[]",
+            "color": "Grey",
+            "parent": "Forge Shop",
+            "parentfield": "shortcuts",
+            "parenttype": "Workspace",
+            "doctype": "Workspace Shortcut"
+        },
+        {
+            
+            "owner": "Administrator",
+            "creation": "2024-01-19 16:29:50.777337",
+            "modified": "2024-02-04 14:45:39.856373",
             "modified_by": "Administrator",
             "docstatus": 0,
             "idx": 3,
@@ -329,5 +368,5 @@
     ],
     "charts": [],
     "roles": [],
-    "__last_sync_on": "2024-02-04T05:53:44.982Z"
+    "__last_sync_on": "2024-02-04T06:45:52.890Z"
 }
