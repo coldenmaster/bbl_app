@@ -1,9 +1,10 @@
 Bbl App,百兰App,
 Bbl_App,百兰App,
+Update Hooks Resolution Order,更新app钩子解析顺序,
 
 Equipment Manage,设备管理,
 
-Mold,锻造模具,
+Mold,锻造模具档案,
 Mold Manage,模具管理,
 Mold Name,模具名称,
 Mold Id,模具id,
@@ -39,7 +40,7 @@ Junk Quantity,废品数量,
 
 Material,原材料,
 Technology,工艺,
-Linked Technology,关联工艺,
+Linked Technology,关联生产记录,
 Diameter,直径,
 Material Ratio,倍尺
 Roll Para,辊锻参数,
@@ -51,14 +52,32 @@ Feed Position,送料位置,
 Roll Force,压辊,
 
 Raw Material Type,原材料类型,
-Material Diameter,直径,
+Material Diameter,原材料直径,
+Diameter,直径,
 Mold Manager,模具管理员,
 Production Line,生产线,
 Weight,重量,
-Forge Weight,锻件重量,
-Material Weight,原材料重量,
+Forge Weight,锻件重量kg,
+Product Weight,产品重量kg,
+Material Weight,原材料重量kg,
+Standard Weight,标准重量,
+Standard Length,标准长度,
 
 Bbl Online Custom,百兰在线定制,
 
+Duration,时长,
 
 
+Semi Product Name,半成品名称,
+Semi Product,半成品,
+Semi Product Id,半成品Id,
+Product Type,产品类型,
+Drawing Id,图号,
+
+Product Weight Record,产品重量记录,
+
+created this,新建此记录,
+
+dev-admin,开发工作台,
+dev_wksp,服务器工作台,
+Iot,物联网,

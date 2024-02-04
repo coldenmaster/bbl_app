@@ -42,7 +42,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Product Name",
-   "options": "Product Mold",
+   "options": "Semi Product",
    "reqd": 1
   },
   {
@@ -53,12 +53,14 @@
   {
    "fieldname": "quantity",
    "fieldtype": "Int",
-   "label": "Quantity"
+   "label": "Quantity",
+   "non_negative": 1
   },
   {
    "fieldname": "junk_quantity",
    "fieldtype": "Int",
-   "label": "Junk Quantity"
+   "label": "Junk Quantity",
+   "non_negative": 1
   },
   {
    "fieldname": "description",
@@ -143,13 +145,18 @@
   },
   {
    "fieldname": "forge_weight",
-   "fieldtype": "Int",
-   "label": "Forge Weight"
+   "fieldtype": "Float",
+   "label": "Forge Weight",
+   "non_negative": 1,
+   "precision": "2"
   },
   {
+   "description": "(\u516c\u65a4)",
    "fieldname": "material_weight",
-   "fieldtype": "Int",
-   "label": "Material Weight"
+   "fieldtype": "Float",
+   "label": "Material Weight",
+   "non_negative": 1,
+   "precision": "2"
   },
   {
    "fieldname": "production_line",
@@ -165,7 +172,7 @@
   }
  ],
  "links": [],
- "modified": "2024-01-25 08:19:43.930567",
+ "modified": "2024-02-03 15:23:10.574270",
  "modified_by": "Administrator",
  "module": "Forge",
  "name": "Forge Process Record",

@@ -7,31 +7,33 @@
 // 	},
 // });
 
-
-frappe.ui.keys.on("enter", function (e) {
-    console.log("enter");
-    if (window.cur_dialog && cur_dialog.confirm_dialog) {
-        cur_dialog.get_primary_btn().trigger("click");
-    }
-});
+// 鼠标键盘监控
+// frappe.ui.keys.on("enter", function (e) {
+//     console.log("enter");
+//     if (window.cur_dialog && cur_dialog.confirm_dialog) {
+//         cur_dialog.get_primary_btn().trigger("click");
+//     }
+// });
 
 // $(document).on("mousemove", () => {
 //     console.log("mousemove");
 // });
-$(document).on("dblclick", () => {
-    console.log("doubleclick");
-});
+
+// $(document).on("dblclick", () => {
+//     console.log("doubleclick");
+// });
 
 
 
 frappe.ui.form.on('Mold', {
     refresh(frm) {
-        console.log("Mold refresh",frm);
+        // console.log("Mold refresh 2",frm);
         // 增加自定义按钮
 
         frm.add_custom_button('qrcode', () => {
 
             // frappe.msgprint(__('Document updated successfully'));
+            console.log(frappe.boot)
             new frappe.ui.Scanner({
                 dialog: true, // open camera scanner in a dialog
                 multiple: false, // stop after scanning one value
@@ -112,11 +114,11 @@ frappe.ui.form.on('Mold Use Record', {
     
     // 这里进行链接里数据提取
     linked_technology(frm, cdt, cdn) {
-        console.log("linked_technology change:", frm, cdt, cdn);
+        // console.log("linked_technology change:", frm, cdt, cdn);
         let row = frappe.get_doc(cdt, cdn);
         let link = row.linked_technology;
         frappe.db.get_doc("Forge Process Record", link).then((doc) => {
-            console.log("link_doc", doc);
+            // console.log("link_doc", doc);
             row.product_quantity = doc.quantity;
             row.record_cycle = doc.batch_cycle;
             row.product_line = doc.production_line;
@@ -126,9 +128,6 @@ frappe.ui.form.on('Mold Use Record', {
             frm.refresh_field('table_fsrf');
 
         });
-
-
-
     },
 
     

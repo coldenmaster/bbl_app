@@ -98,7 +98,7 @@
    "fieldname": "mold_product",
    "fieldtype": "Link",
    "label": "Mold Product",
-   "options": "Product Mold"
+   "options": "Semi Product"
   },
   {
    "fieldname": "mold_use_record_section",
@@ -134,7 +134,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-25 08:09:36.766811",
+ "modified": "2024-02-03 12:44:50.881237",
  "modified_by": "Administrator",
  "module": "Mold Manage",
  "name": "Mold",

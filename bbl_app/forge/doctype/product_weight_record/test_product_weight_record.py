@@ -4,7 +4,6 @@
 # import frappe
 from frappe.tests.utils import FrappeTestCase
 
-print("I'am test_mold_test.py")
 
-class TestMoldTest(FrappeTestCase):
+class TestProductWeightRecord(FrappeTestCase):
 	pass

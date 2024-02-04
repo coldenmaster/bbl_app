@@ -44,10 +44,38 @@ app_license = "mit"
 # application home page (will override Website Settings)
 # home_page = "login"
 
-# website user home page (by Role)
+# 不能使用，不能拿到最大权限的角色
+# website user home page (by Role) 
 # role_home_page = {
-#	"Role": "home_page"
+# 	"Guest": "guest_index"
 # }
+
+get_website_user_home_page = "bbl_app.func.get_home_page"
+
+standard_portal_menu_items = [
+    {"title": "Dash 2", "route": "/dashboard", "role": ""},
+    {"title": "Order 3", "route": "/orders", "role": "Customer"},
+    {"title": "填写温度", "route": "/rcl-temp/new", "role": ""},
+]
+
+
+on_login = "bbl_app.func.on_login"
+
+doc_events = {
+    "*": {
+        "after_insert": "bbl_app.func.after_insert_all",
+    }
+}
+
+
+fixtures = [
+    "Semi Product", # bench报错，不能使用此格式
+    # {
+    #     "doctype": "Semi Product",
+    #     "filters": [ [ "name", "!=", "" ] ],
+    # },
+
+]
 
 # Generators
 # ----------

@@ -1,6 +1,6 @@
 ## Bbl App
 
-bbl app costom in here
+bbl app custom dev in here
 
 #### License
 

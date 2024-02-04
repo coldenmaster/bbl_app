@@ -1,0 +1,101 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{semi_product_name}--{creation}",
+ "creation": "2024-02-03 14:39:53.803328",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "semi_product_name",
+  "material_ratio",
+  "material_weight",
+  "product_weight"
+ ],
+ "fields": [
+  {
+   "fieldname": "semi_product_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Semi Product Name",
+   "options": "Semi Product",
+   "reqd": 1
+  },
+  {
+   "description": "Standard Weight",
+   "fieldname": "material_weight",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Material Weight",
+   "non_negative": 1,
+   "precision": "2"
+  },
+  {
+   "description": "Standard Weight",
+   "fieldname": "product_weight",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Product Weight",
+   "non_negative": 1,
+   "precision": "2"
+  },
+  {
+   "description": "Standard Weight",
+   "fieldname": "material_ratio",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Material Ratio",
+   "non_negative": 1,
+   "precision": "2"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-02-03 15:55:34.612924",
+ "modified_by": "Administrator",
+ "module": "Forge",
+ "name": "Product Weight Record",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
