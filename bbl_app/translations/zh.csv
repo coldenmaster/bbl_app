@@ -33,6 +33,8 @@ Exception Record,异常记录,
 
 Forge,锻造,
 Forge Shop,锻造车间,
+Heat Treat Shop,热处理车间,
+Machine Shop,机加工车间,
 Forge Process,锻造过程,
 Forge Process Record,锻造生产记录,
 technology,工艺,
