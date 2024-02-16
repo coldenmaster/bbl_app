@@ -8,7 +8,8 @@
   "mold_name_section",
   "data_dafn",
   "link",
-  "test_multi_link"
+  "test_multi_link",
+  "test_custom_action"
  ],
  "fields": [
   {
@@ -17,25 +18,39 @@
    "label": "Test"
   },
   {
+   "default": "06240",
    "fieldname": "data_dafn",
-   "fieldtype": "Data",
-   "label": "Mold Name"
+   "fieldtype": "Autocomplete",
+   "label": "Mold Name",
+   "options": "\u534a\u6210\u54c1"
   },
   {
+   "default": "28",
    "fieldname": "link",
    "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
    "label": "Link",
-   "options": "Forge Process Record"
+   "options": "Semi Product"
   },
   {
    "fieldname": "test_multi_link",
-   "fieldtype": "Time",
-   "label": "Test Multi Link"
+   "fieldtype": "Autocomplete",
+   "label": "Test Multi Link",
+   "options": "link\nfill\noption\nadfasd\newr3ec"
+  },
+  {
+   "default": "06240",
+   "fieldname": "test_custom_action",
+   "fieldtype": "Link",
+   "label": "Test Custom Action",
+   "options": "Semi Product"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-19 17:42:49.971232",
+ "modified": "2024-02-05 17:37:38.361221",
  "modified_by": "Administrator",
  "module": "Mold Manage",
  "name": "Mold Test",

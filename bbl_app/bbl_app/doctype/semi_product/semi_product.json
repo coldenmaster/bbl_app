@@ -39,6 +39,7 @@
   {
    "fieldname": "product_type",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Product Type",
    "options": "Product Type"
   },
@@ -50,6 +51,7 @@
   {
    "fieldname": "raw_material_type",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Raw Material Type",
    "options": "Raw Material Type"
   },
@@ -60,6 +62,7 @@
   {
    "fieldname": "material_weight",
    "fieldtype": "Float",
+   "in_list_view": 1,
    "label": "Material Weight",
    "non_negative": 1,
    "precision": "2"
@@ -67,6 +70,7 @@
   {
    "fieldname": "forge_weight",
    "fieldtype": "Float",
+   "in_list_view": 1,
    "label": "Forge Weight",
    "non_negative": 1,
    "precision": "2"
@@ -74,18 +78,20 @@
   {
    "fieldname": "diameter",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Diameter",
    "options": "Material Diameter"
   },
   {
    "fieldname": "material_ratio",
    "fieldtype": "Int",
+   "in_list_view": 1,
    "label": "Material Ratio"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-03 15:25:07.395765",
+ "modified": "2024-02-04 16:44:10.005294",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Semi Product",

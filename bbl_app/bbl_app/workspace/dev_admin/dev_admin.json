@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"eIgmz6sWRs\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">\u6e29\u5ea6\u91c7\u96c6</span><b><span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"></span></b>\",\"col\":12}},{\"id\":\"WMb2s5oQaR\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Rcl Water Temp\",\"col\":3}},{\"id\":\"3EPlfcJmju\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Ip Info\",\"col\":3}},{\"id\":\"fF8DVZQTLl\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Iot Device\",\"col\":3}},{\"id\":\"byUKbLIFd7\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u4f01\u4e1a\u5fae\u4fe1\u96c6\u6210</b></span>\",\"col\":12}},{\"id\":\"D7wKmHGpgk\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Wechat Send Test\",\"col\":3}},{\"id\":\"WdnE1BoOKY\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Wechat Message Type\",\"col\":3}},{\"id\":\"fd4IKtrJFP\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Wechat Corp\",\"col\":3}},{\"id\":\"W5jRBFI7pd\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Wechat Agent\",\"col\":3}},{\"id\":\"nypOCKrvDe\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u7cfb\u7edf\u5de5\u5177</b></span>\",\"col\":12}},{\"id\":\"7dKj6l5B97\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"System Console\",\"col\":3}},{\"id\":\"Y04nwUJBE4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Log Settings\",\"col\":3}},{\"id\":\"oHZ60oYrrf\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Rq Worker\",\"col\":3}},{\"id\":\"qeZZmsKC6B\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recorder\",\"col\":3}},{\"id\":\"0WL8I5WDtq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Access Log\",\"col\":3}},{\"id\":\"MMmsHNjlB_\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Scheduled Job Log\",\"col\":3}},{\"id\":\"eIbQL4Lc_T\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Webhook Request Log\",\"col\":3}}]",
+ "content": "[{\"id\":\"eIgmz6sWRs\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">\u6e29\u5ea6\u91c7\u96c6</span><b><span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"></span></b>\",\"col\":12}},{\"id\":\"WMb2s5oQaR\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Rcl Water Temp\",\"col\":3}},{\"id\":\"3EPlfcJmju\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Ip Info\",\"col\":3}},{\"id\":\"fF8DVZQTLl\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Iot Device\",\"col\":3}},{\"id\":\"byUKbLIFd7\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u4f01\u4e1a\u5fae\u4fe1\u96c6\u6210</b></span>\",\"col\":12}},{\"id\":\"D7wKmHGpgk\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Wechat Send Test\",\"col\":3}},{\"id\":\"WdnE1BoOKY\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Wechat Message Type\",\"col\":3}},{\"id\":\"fd4IKtrJFP\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Wechat Corp\",\"col\":3}},{\"id\":\"W5jRBFI7pd\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Wechat Agent\",\"col\":3}},{\"id\":\"nypOCKrvDe\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u7cfb\u7edf\u5de5\u5177</b></span>\",\"col\":12}},{\"id\":\"7dKj6l5B97\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"System Console\",\"col\":3}},{\"id\":\"Y04nwUJBE4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Log Settings\",\"col\":3}},{\"id\":\"oHZ60oYrrf\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Rq Worker\",\"col\":3}},{\"id\":\"qeZZmsKC6B\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recorder\",\"col\":3}},{\"id\":\"0WL8I5WDtq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Access Log\",\"col\":3}},{\"id\":\"MMmsHNjlB_\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Scheduled Job Log\",\"col\":3}},{\"id\":\"eIbQL4Lc_T\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Webhook Request Log\",\"col\":3}},{\"id\":\"QD2FG-7rzS\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>E-mail</b></span>\",\"col\":12}},{\"id\":\"BKYs4PFJL7\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Email Queue\",\"col\":3}},{\"id\":\"Xl9MWN9KVd\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Email Template\",\"col\":3}},{\"id\":\"HDr7QWmrtV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Email Rule\",\"col\":3}},{\"id\":\"EVI4tE2K0p\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Email Domain\",\"col\":3}},{\"id\":\"QYGVLCcTtb\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Email Digest\",\"col\":3}},{\"id\":\"lGRSbAywFv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Auto Email Report\",\"col\":3}},{\"id\":\"RC5vhwT2TM\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Email Group\",\"col\":3}},{\"id\":\"bZFuI6vUNa\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Email Flag Queue\",\"col\":3}}]",
  "creation": "2024-01-18 17:22:40.222300",
  "custom_blocks": [],
  "docstatus": 0,
@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "dev-admin",
  "links": [],
- "modified": "2024-02-04 15:44:54.749414",
+ "modified": "2024-02-05 11:26:00.358260",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "dev-admin",
@@ -34,6 +34,22 @@
    "doc_view": "List",
    "label": "Recorder",
    "link_to": "Recorder",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Email Queue",
+   "link_to": "Email Queue",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Email Group",
+   "link_to": "Email Group",
    "stats_filter": "[]",
    "type": "DocType"
   },
@@ -102,8 +118,24 @@
   {
    "color": "Grey",
    "doc_view": "List",
+   "label": "Email Template",
+   "link_to": "Email Template",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
    "label": "Iot Device",
    "link_to": "Iot Device",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Email Flag Queue",
+   "link_to": "Email Flag Queue",
    "stats_filter": "[]",
    "type": "DocType"
   },
@@ -126,6 +158,14 @@
   {
    "color": "Grey",
    "doc_view": "List",
+   "label": "Email Rule",
+   "link_to": "Email Rule",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
    "label": "Wechat Corp",
    "link_to": "Wechat Corp",
    "stats_filter": "[]",
@@ -136,6 +176,30 @@
    "doc_view": "List",
    "label": "Wechat Agent",
    "link_to": "Wechat Agent",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Email Domain",
+   "link_to": "Email Domain",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Email Digest",
+   "link_to": "Email Digest",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Auto Email Report",
+   "link_to": "Auto Email Report",
    "stats_filter": "[]",
    "type": "DocType"
   }
