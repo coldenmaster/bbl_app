@@ -69,7 +69,8 @@ doc_events = {
 
 
 fixtures = [
-    "Semi Product", # bench报错，不能使用此格式
+    "Operation",
+    # "Semi Product", # 使用以后关掉，保证再次migrate不生成
     # {
     #     "doctype": "Semi Product",
     #     "filters": [ [ "name", "!=", "" ] ],

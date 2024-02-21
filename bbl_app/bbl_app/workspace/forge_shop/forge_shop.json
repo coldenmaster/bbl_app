@@ -118,7 +118,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-02-04 16:45:54.719789",
+ "modified": "2024-02-20 17:49:23.858168",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Forge Shop",
@@ -140,16 +140,9 @@
    "type": "DocType"
   },
   {
-   "color": "Grey",
+   "color": "Green",
    "doc_view": "New",
-   "label": "\u65b0\u5efa\u91cd\u91cf\u8bb0\u5f55",
-   "link_to": "Product Weight Record",
-   "stats_filter": "[]",
-   "type": "DocType"
-  },
-  {
-   "color": "Cyan",
-   "doc_view": "New",
+   "format": "new",
    "label": "\u65b0\u5efa\u6a21\u5177\u6863\u6848",
    "link_to": "Mold",
    "stats_filter": "[]",
@@ -165,8 +158,9 @@
    "type": "DocType"
   },
   {
-   "color": "Grey",
+   "color": "Green",
    "doc_view": "New",
+   "format": "new",
    "label": "\u65b0\u5efa\u953b\u9020\u8bb0\u5f55",
    "link_to": "Forge Process Record",
    "stats_filter": "[]",
@@ -176,6 +170,15 @@
    "color": "Grey",
    "doc_view": "List",
    "label": "\u4ea7\u54c1\u91cd\u91cf\u8bb0\u5f55",
+   "link_to": "Product Weight Record",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "New",
+   "format": "new",
+   "label": "\u65b0\u5efa\u91cd\u91cf\u8bb0\u5f55",
    "link_to": "Product Weight Record",
    "stats_filter": "[]",
    "type": "DocType"
