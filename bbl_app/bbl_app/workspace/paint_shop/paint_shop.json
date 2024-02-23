@@ -1,0 +1,143 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"CpwdWL5wNQ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u751f\u4ea7\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"qfzJrANF6C\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"LpfVPbSqgA\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u4ea7\u54c1\u91cd\u91cf</b></span>\",\"col\":12}},{\"id\":\"CW0mu4956Z\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u65b0\u5efa\u91cd\u91cf\u8bb0\u5f55\",\"col\":3}},{\"id\":\"1wL3rkVJGN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u4ea7\u54c1\u91cd\u91cf\u8bb0\u5f55\",\"col\":3}},{\"id\":\"1KWKuKZFKN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"3u1Ln1cQb3\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u5e38\u7528\u62a5\u8868</b></span>\",\"col\":12}},{\"id\":\"mjiwxPupHx\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Semi Product\",\"col\":3}},{\"id\":\"Tfc1FiPipl\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Product Name\",\"col\":3}},{\"id\":\"4uZTWXclY-\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"31kYoHutCh\",\"type\":\"card\",\"data\":{\"card_name\":\"\u57fa\u7840\u6570\u636e\",\"col\":4}},{\"id\":\"zLrtrFavD8\",\"type\":\"card\",\"data\":{\"card_name\":\"\u8f66\u95f4\u6570\u636e\",\"col\":4}}]",
+ "creation": "2024-02-23 13:04:51.009979",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "header-4",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Paint Shop",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "\u8f66\u95f4\u6570\u636e",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Production Line",
+   "link_count": 0,
+   "link_to": "Production Line",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Employee",
+   "link_count": 0,
+   "link_to": "Employee",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "\u57fa\u7840\u6570\u636e",
+   "link_count": 4,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "\u4ea7\u54c1\u540d\u79f0",
+   "link_count": 0,
+   "link_to": "Product Mold",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "\u539f\u6750\u6599\u7c7b\u578b",
+   "link_count": 0,
+   "link_to": "Raw Material Type",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "\u539f\u6750\u6599\u76f4\u5f84",
+   "link_count": 0,
+   "link_to": "Material Diameter",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Semi Product",
+   "link_count": 0,
+   "link_to": "Semi Product",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2024-02-23 13:08:12.549523",
+ "modified_by": "Administrator",
+ "module": "Bbl App",
+ "name": "Paint Shop",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "Bbl App",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 35.2,
+ "shortcuts": [
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "label": "Product Name",
+   "link_to": "Product Name",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "Report Builder",
+   "format": "{}\u79cd",
+   "label": "Semi Product",
+   "link_to": "Semi Product",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "\u4ea7\u54c1\u91cd\u91cf\u8bb0\u5f55",
+   "link_to": "Product Weight Record",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "New",
+   "format": "new",
+   "label": "\u65b0\u5efa\u91cd\u91cf\u8bb0\u5f55",
+   "link_to": "Product Weight Record",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "Paint Shop"
+}

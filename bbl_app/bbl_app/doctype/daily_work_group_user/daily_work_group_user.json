@@ -1,0 +1,87 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-02-23 11:10:53.922910",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "employee_name",
+  "leader",
+  "piece_quantity",
+  "man_hour",
+  "unit_price",
+  "wage",
+  "column_break_mtzq",
+  "work_note"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee Name",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "leader",
+   "fieldtype": "Check",
+   "label": "Leader"
+  },
+  {
+   "fieldname": "piece_quantity",
+   "fieldtype": "Float",
+   "label": "Piece Quantity",
+   "non_negative": 1,
+   "options": "Employee",
+   "precision": "1"
+  },
+  {
+   "fieldname": "man_hour",
+   "fieldtype": "Float",
+   "label": "Man Hour",
+   "non_negative": 1,
+   "options": "Employee",
+   "precision": "1"
+  },
+  {
+   "fieldname": "unit_price",
+   "fieldtype": "Float",
+   "label": "Unit Price",
+   "non_negative": 1,
+   "options": "Employee",
+   "precision": "2"
+  },
+  {
+   "fieldname": "wage",
+   "fieldtype": "Float",
+   "label": "Wage",
+   "non_negative": 1,
+   "options": "Employee",
+   "precision": "2"
+  },
+  {
+   "fieldname": "column_break_mtzq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "work_note",
+   "fieldtype": "Small Text",
+   "label": "Work Note"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-02-23 11:30:23.172243",
+ "modified_by": "Administrator",
+ "module": "Bbl App",
+ "name": "Daily Work Group User",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

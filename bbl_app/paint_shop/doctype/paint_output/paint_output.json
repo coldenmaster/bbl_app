@@ -1,0 +1,119 @@
+{
+ "actions": [],
+ "autoname": "format:{for_date}_{operation}",
+ "creation": "2024-02-22 17:50:01.502802",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "for_date",
+  "operation",
+  "column_break_gtyq",
+  "total_quantity",
+  "work_group",
+  "section_break_toyh",
+  "product_list",
+  "section_break_dqmc",
+  "note"
+ ],
+ "fields": [
+  {
+   "fieldname": "for_date",
+   "fieldtype": "Date",
+   "label": "For Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "operation",
+   "fieldtype": "Link",
+   "label": "Operation",
+   "options": "Operation",
+   "reqd": 1
+  },
+  {
+   "fieldname": "total_quantity",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Total Quantity",
+   "options": "Operation",
+   "read_only": 1
+  },
+  {
+   "fieldname": "work_group",
+   "fieldtype": "Data",
+   "label": "Work Group"
+  },
+  {
+   "fieldname": "note",
+   "fieldtype": "Small Text",
+   "label": "Note"
+  },
+  {
+   "fieldname": "section_break_dqmc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_gtyq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_toyh",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "product_list",
+   "fieldtype": "Table",
+   "label": "Product List",
+   "options": "Product Quantity",
+   "width": "100"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-02-23 11:48:47.397857",
+ "modified_by": "Administrator",
+ "module": "Paint Shop",
+ "name": "Paint Output",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

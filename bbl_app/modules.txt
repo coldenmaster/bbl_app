@@ -3,3 +3,4 @@ Mold Manage
 Equipment Manage
 Custom Dev
 Forge
+Paint Shop

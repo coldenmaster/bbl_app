@@ -67,9 +67,11 @@ doc_events = {
     }
 }
 
-
+# 通过以下命令导出数据库数据进行迁移
+# bench export-fixtures --app bbl_app
 fixtures = [
     "Operation",
+    "Product Name",
     # "Semi Product", # 使用以后关掉，保证再次migrate不生成
     # {
     #     "doctype": "Semi Product",

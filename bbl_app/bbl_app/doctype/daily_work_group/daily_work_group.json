@@ -1,0 +1,73 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{for_date}/{work_shift}",
+ "creation": "2024-02-23 10:55:51.855553",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "for_date",
+  "work_shift",
+  "column_break_dtnl",
+  "note",
+  "section_break_vflv",
+  "table_fbvw"
+ ],
+ "fields": [
+  {
+   "fieldname": "for_date",
+   "fieldtype": "Date",
+   "label": "For Date"
+  },
+  {
+   "fieldname": "work_shift",
+   "fieldtype": "Select",
+   "label": "Work Shift",
+   "options": "\n\u65e5\u73ed\n\u591c\u73ed\n\u4e2d\u73ed"
+  },
+  {
+   "fieldname": "column_break_dtnl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "note",
+   "fieldtype": "Small Text",
+   "label": "Note"
+  },
+  {
+   "fieldname": "section_break_vflv",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "table_fbvw",
+   "fieldtype": "Table",
+   "options": "Daily Work Group User"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-02-23 11:38:08.451828",
+ "modified_by": "Administrator",
+ "module": "Bbl App",
+ "name": "Daily Work Group",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

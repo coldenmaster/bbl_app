@@ -92,3 +92,44 @@ ClassA,A类,
 ClassB,B类,
 ClassC,C类,
 Process No,工序,
+Base Doc,基础档案,
+Drawing Date,图号日期,
+Retail Customer,零售客户,
+Short Name,简称,
+Host Customer,主机客户,
+Host Factory,主机厂,
+
+
+Proprietorship,投资方
+Partnership,合作伙伴
+Short Address,地址,
+Paint Shop,涂装车间,
+Paint Output,涂装产量,
+Work Group,作业组,
+Note,备注,
+Product List,产品列表,
+Product Note,产品备注,
+Daily Work Group,作业组,
+
+Work Shift,班次,
+Daily Shift,日班,
+Middle Shifts,中班,
+Night Shift,夜班,
+Group Leader,组长,
+
+
+客户,Customer,
+单价,Unit Price,
+金额,Amount,
+工资,
+工价,Man Hour Price,
+
+Man Hour,工时,
+Piece Quantity,件数,
+Wage,工资,
+Work Note,工作说明,
+Unit Price,单价,
+Leader,组长,
+already exists,已经存在,
+Duplicate Name,重复名称
+

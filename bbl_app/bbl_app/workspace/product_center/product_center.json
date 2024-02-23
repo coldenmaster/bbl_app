@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"asLJjudqv4\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Product Center</span>\",\"col\":12}},{\"id\":\"BXEepRrkhp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Operation\",\"col\":3}},{\"id\":\"qKC22TWFVw\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Report Output\",\"col\":3}}]",
+ "content": "[{\"id\":\"asLJjudqv4\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Product Center</span>\",\"col\":12}},{\"id\":\"BXEepRrkhp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Operation\",\"col\":3}},{\"id\":\"qKC22TWFVw\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Report Output\",\"col\":3}},{\"id\":\"S5UZInvH_Z\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"kSu784K9UX\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>Base Doc</b></span>\",\"col\":12}},{\"id\":\"8UOCKOjAlv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Semi Product\",\"col\":3}},{\"id\":\"N2iUvJ3ACF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Product Name\",\"col\":3}}]",
  "creation": "2024-02-20 17:49:09.709351",
  "custom_blocks": [],
  "docstatus": 0,
@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Product Center",
  "links": [],
- "modified": "2024-02-21 16:56:07.749646",
+ "modified": "2024-02-23 10:39:22.890242",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Product Center",
@@ -26,10 +26,26 @@
  "sequence_id": 31.0,
  "shortcuts": [
   {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Semi Product",
+   "link_to": "Semi Product",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
    "color": "Grey",
    "doc_view": "List",
    "label": "Operation",
    "link_to": "Operation",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Product Name",
+   "link_to": "Product Name",
    "stats_filter": "[]",
    "type": "DocType"
   },
