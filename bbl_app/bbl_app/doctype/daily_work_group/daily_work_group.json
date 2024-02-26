@@ -1,13 +1,15 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{for_date}/{work_shift}",
+ "autoname": "format:{for_date}/{operation}/{work_shift}/{team_no}",
  "creation": "2024-02-23 10:55:51.855553",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "for_date",
+  "operation",
   "work_shift",
+  "team_no",
   "column_break_dtnl",
   "note",
   "section_break_vflv",
@@ -17,7 +19,9 @@
   {
    "fieldname": "for_date",
    "fieldtype": "Date",
-   "label": "For Date"
+   "in_list_view": 1,
+   "label": "For Date",
+   "reqd": 1
   },
   {
    "fieldname": "work_shift",
@@ -42,11 +46,24 @@
    "fieldname": "table_fbvw",
    "fieldtype": "Table",
    "options": "Daily Work Group User"
+  },
+  {
+   "fieldname": "operation",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Operation",
+   "options": "Operation",
+   "reqd": 1
+  },
+  {
+   "fieldname": "team_no",
+   "fieldtype": "Data",
+   "label": "Team No"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-23 11:38:08.451828",
+ "modified": "2024-02-26 08:54:37.105160",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Daily Work Group",
@@ -62,6 +79,30 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing User",
    "share": 1,
    "write": 1
   }

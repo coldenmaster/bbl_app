@@ -19,28 +19,32 @@
   {
    "fieldname": "for_date",
    "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "For Date",
    "reqd": 1
   },
   {
    "fieldname": "operation",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Operation",
-   "options": "Operation",
+   "options": "Operation Tree",
    "reqd": 1
   },
   {
+   "bold": 1,
    "fieldname": "total_quantity",
    "fieldtype": "Int",
    "in_list_view": 1,
    "label": "Total Quantity",
-   "options": "Operation",
    "read_only": 1
   },
   {
    "fieldname": "work_group",
-   "fieldtype": "Data",
-   "label": "Work Group"
+   "fieldtype": "Link",
+   "label": "Work Group",
+   "options": "Daily Work Group"
   },
   {
    "fieldname": "note",
@@ -69,7 +73,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-23 11:48:47.397857",
+ "modified": "2024-02-25 10:50:38.439744",
  "modified_by": "Administrator",
  "module": "Paint Shop",
  "name": "Paint Output",

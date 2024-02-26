@@ -116,7 +116,9 @@ Daily Shift,日班,
 Middle Shifts,中班,
 Night Shift,夜班,
 Group Leader,组长,
-
+Team No,班组号，
+Education Grade,学历,
+Education Scholl,毕业学校,
 
 客户,Customer,
 单价,Unit Price,
@@ -133,3 +135,12 @@ Leader,组长,
 already exists,已经存在,
 Duplicate Name,重复名称
 
+
+Is Not Semi,成品
+Operation Tree,工序树,
+Operation Name,工序,
+WorkShop Group,隶属车间,
+Parent Workshop,上级车间,
+
+Product Weight Paint,油漆产品重量,
+Weigh Date,称重日期,

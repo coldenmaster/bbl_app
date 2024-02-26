@@ -1,0 +1,59 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:workshop",
+ "creation": "2024-02-23 17:18:43.290019",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "workshop",
+  "workshop_group",
+  "parent_workshop"
+ ],
+ "fields": [
+  {
+   "fieldname": "workshop",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Workshop",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "workshop_group",
+   "fieldtype": "Select",
+   "label": "Workshop Group",
+   "options": "\u953b\u9020\u8f66\u95f4\n\u70ed\u5904\u7406\u8f66\u95f4\n\u673a\u52a0\u5de5\u8f66\u95f4\n\u6cb9\u6f06\u8f66\u95f4"
+  },
+  {
+   "fieldname": "parent_workshop",
+   "fieldtype": "Data",
+   "label": "Parent Workshop"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-02-23 17:22:24.414041",
+ "modified_by": "Administrator",
+ "module": "Bbl App",
+ "name": "Workshop",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

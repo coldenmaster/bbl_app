@@ -1,68 +1,44 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{semi_product_name}/{weigh_date}",
- "creation": "2024-02-03 14:39:53.803328",
+ "autoname": "format:{product_name}/{weigh_date}",
+ "creation": "2024-02-26 15:31:41.571588",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "semi_product_name",
+  "product_name",
   "weigh_date",
-  "material_ratio",
-  "material_weight",
   "product_weight"
  ],
  "fields": [
   {
-   "fieldname": "semi_product_name",
+   "fieldname": "product_name",
    "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Semi Product Name",
-   "options": "Semi Product",
+   "label": "Product Name",
+   "options": "Product Name",
    "reqd": 1
-  },
-  {
-   "description": "Standard Weight",
-   "fieldname": "material_weight",
-   "fieldtype": "Float",
-   "in_list_view": 1,
-   "label": "Material Weight",
-   "non_negative": 1,
-   "precision": "2"
-  },
-  {
-   "description": "Standard Weight",
-   "fieldname": "product_weight",
-   "fieldtype": "Float",
-   "in_list_view": 1,
-   "label": "Product Weight",
-   "non_negative": 1,
-   "precision": "2"
-  },
-  {
-   "description": "Standard Weight",
-   "fieldname": "material_ratio",
-   "fieldtype": "Int",
-   "in_list_view": 1,
-   "label": "Material Ratio",
-   "non_negative": 1,
-   "precision": "2"
   },
   {
    "fieldname": "weigh_date",
    "fieldtype": "Date",
-   "in_list_view": 1,
    "label": "Weigh Date",
-   "options": "Semi Product",
+   "options": "Product Name"
+  },
+  {
+   "fieldname": "product_weight",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Product Weight",
+   "precision": "2",
    "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-26 15:41:48.928531",
+ "modified": "2024-02-26 15:41:05.660426",
  "modified_by": "Administrator",
- "module": "Forge",
- "name": "Product Weight Record",
+ "module": "Paint Shop",
+ "name": "Product Weight Paint",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
@@ -105,6 +81,5 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": [],
- "track_changes": 1
+ "states": []
 }

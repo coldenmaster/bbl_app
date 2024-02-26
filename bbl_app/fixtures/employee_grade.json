@@ -1,0 +1,56 @@
+[
+ {
+  "currency": "",
+  "default_base_pay": 0.0,
+  "default_salary_structure": "",
+  "docstatus": 0,
+  "doctype": "Employee Grade",
+  "modified": "2024-02-25 11:19:43.846306",
+  "name": "总经理"
+ },
+ {
+  "currency": "CNY",
+  "default_base_pay": 0.0,
+  "default_salary_structure": null,
+  "docstatus": 0,
+  "doctype": "Employee Grade",
+  "modified": "2024-02-25 11:20:32.060406",
+  "name": "副总经理"
+ },
+ {
+  "currency": "CNY",
+  "default_base_pay": 0.0,
+  "default_salary_structure": null,
+  "docstatus": 0,
+  "doctype": "Employee Grade",
+  "modified": "2024-02-25 11:20:41.209781",
+  "name": "部长"
+ },
+ {
+  "currency": "CNY",
+  "default_base_pay": 0.0,
+  "default_salary_structure": null,
+  "docstatus": 0,
+  "doctype": "Employee Grade",
+  "modified": "2024-02-25 11:20:55.210422",
+  "name": "副部长"
+ },
+ {
+  "currency": "CNY",
+  "default_base_pay": 0.0,
+  "default_salary_structure": null,
+  "docstatus": 0,
+  "doctype": "Employee Grade",
+  "modified": "2024-02-25 11:21:09.906836",
+  "name": "班组长"
+ },
+ {
+  "currency": "CNY",
+  "default_base_pay": 0.0,
+  "default_salary_structure": null,
+  "docstatus": 0,
+  "doctype": "Employee Grade",
+  "modified": "2024-02-25 11:21:17.549914",
+  "name": "工人"
+ }
+]
