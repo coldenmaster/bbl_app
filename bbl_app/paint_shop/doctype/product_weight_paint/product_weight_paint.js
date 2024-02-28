@@ -2,16 +2,13 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on("Product Weight Paint", {
-	refresh(frm) {
-        frappe.db.get_doc("Product Name", frm.doc.product_name).then((product_doc) => {
-            console.log("product_doc", product_doc);
-            frm.set_value("semi_product", product_doc.semi_product_name);
-            frm.set_value("product_type", product_doc.product_type);
-            // frappe.db.get_doc("Semi Product", product_doc.semi_product).then((semi_product_doc) => {
-            //     console.log("semi_product_doc", semi_product_doc);
-            // });
-            frm.save()
-        });
+	// refresh(frm) {
+    //     frappe.db.get_doc("Product Name", frm.doc.product_name).then((product_doc) => {
+    //         console.log("product_doc", product_doc);
+    //         frm.set_value("semi_product", product_doc.semi_product_name);
+    //         frm.set_value("product_type", product_doc.product_type);
+    //         frm.save()
+    //     });
 	},
     product_name(frm) {
         frappe.db.get_doc("Product Name", frm.doc.product_name).then((product_doc) => {

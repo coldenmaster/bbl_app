@@ -10,7 +10,10 @@
   "weigh_date",
   "material_ratio",
   "material_weight",
-  "product_weight"
+  "product_weight",
+  "column_break_iwfb",
+  "raw_material_type",
+  "diameter"
  ],
  "fields": [
   {
@@ -55,11 +58,27 @@
    "label": "Weigh Date",
    "options": "Semi Product",
    "reqd": 1
+  },
+  {
+   "fieldname": "column_break_iwfb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "raw_material_type",
+   "fieldtype": "Link",
+   "label": "Raw Material Type",
+   "options": "Raw Material Type"
+  },
+  {
+   "fieldname": "diameter",
+   "fieldtype": "Link",
+   "label": "Diameter",
+   "options": "Material Diameter"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-26 15:41:48.928531",
+ "modified": "2024-02-28 15:25:42.268025",
  "modified_by": "Administrator",
  "module": "Forge",
  "name": "Product Weight Record",

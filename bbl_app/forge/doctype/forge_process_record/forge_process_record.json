@@ -15,6 +15,7 @@
   "description",
   "employee",
   "material_tab",
+  "semi_product_weight",
   "material",
   "diameter",
   "material_ratio",
@@ -169,10 +170,16 @@
    "fieldtype": "Data",
    "label": "Employee",
    "options": "Employee"
+  },
+  {
+   "fieldname": "semi_product_weight",
+   "fieldtype": "Link",
+   "label": "Semi Product Weight",
+   "options": "Product Weight Record"
   }
  ],
  "links": [],
- "modified": "2024-02-03 15:23:10.574270",
+ "modified": "2024-02-28 14:19:01.306188",
  "modified_by": "Administrator",
  "module": "Forge",
  "name": "Forge Process Record",

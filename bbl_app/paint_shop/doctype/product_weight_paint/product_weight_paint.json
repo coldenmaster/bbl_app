@@ -17,6 +17,7 @@
   "weight_two",
   "weight_three",
   "section_break_lruy",
+  "semi_product_weight",
   "note"
  ],
  "fields": [
@@ -89,11 +90,19 @@
    "in_list_view": 1,
    "label": "Product Type",
    "read_only": 1
+  },
+  {
+   "fieldname": "semi_product_weight",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Semi Product Weight",
+   "options": "Product Weight Record",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-28 11:18:34.686593",
+ "modified": "2024-02-28 14:14:17.170101",
  "modified_by": "Administrator",
  "module": "Paint Shop",
  "name": "Product Weight Paint",
