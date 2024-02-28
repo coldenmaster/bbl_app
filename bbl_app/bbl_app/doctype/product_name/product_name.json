@@ -8,6 +8,7 @@
  "engine": "InnoDB",
  "field_order": [
   "product_name",
+  "short_name",
   "semi_product_name",
   "product_type",
   "employee",
@@ -23,6 +24,7 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Product Name",
+   "reqd": 1,
    "unique": 1
   },
   {
@@ -68,11 +70,18 @@
   {
    "fieldname": "column_break_srsj",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "short_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Short Name",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-22 14:47:51.687950",
+ "modified": "2024-02-28 08:51:59.767439",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Product Name",
@@ -128,7 +137,6 @@
    "write": 1
   }
  ],
- "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],

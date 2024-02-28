@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "format:{product_name}/{weigh_date}",
  "creation": "2024-02-26 15:31:41.571588",
@@ -8,12 +9,21 @@
  "field_order": [
   "product_name",
   "weigh_date",
-  "product_weight"
+  "product_weight",
+  "semi_product",
+  "product_type",
+  "column_break_pjii",
+  "weight_one",
+  "weight_two",
+  "weight_three",
+  "section_break_lruy",
+  "note"
  ],
  "fields": [
   {
    "fieldname": "product_name",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Product Name",
    "options": "Product Name",
    "reqd": 1
@@ -21,8 +31,9 @@
   {
    "fieldname": "weigh_date",
    "fieldtype": "Date",
+   "in_list_view": 1,
    "label": "Weigh Date",
-   "options": "Product Name"
+   "reqd": 1
   },
   {
    "fieldname": "product_weight",
@@ -30,12 +41,59 @@
    "in_list_view": 1,
    "label": "Product Weight",
    "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_pjii",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "weight_one",
+   "fieldtype": "Float",
+   "label": "Weight One",
+   "precision": "2",
    "reqd": 1
+  },
+  {
+   "fieldname": "weight_two",
+   "fieldtype": "Float",
+   "label": "Weight Two",
+   "precision": "2"
+  },
+  {
+   "fieldname": "weight_three",
+   "fieldtype": "Float",
+   "label": "Weight Three",
+   "precision": "2"
+  },
+  {
+   "fieldname": "section_break_lruy",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "note",
+   "fieldtype": "Small Text",
+   "label": "Note"
+  },
+  {
+   "default": "null",
+   "fieldname": "semi_product",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Semi Product",
+   "read_only": 1
+  },
+  {
+   "fieldname": "product_type",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Product Type",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-26 15:41:05.660426",
+ "modified": "2024-02-28 11:18:34.686593",
  "modified_by": "Administrator",
  "module": "Paint Shop",
  "name": "Product Weight Paint",
