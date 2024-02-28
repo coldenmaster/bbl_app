@@ -94,15 +94,13 @@
   {
    "fieldname": "semi_product_weight",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Semi Product Weight",
-   "options": "Product Weight Record",
-   "read_only": 1
+   "options": "Product Weight Record"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-28 14:14:17.170101",
+ "modified": "2024-02-28 16:31:19.307981",
  "modified_by": "Administrator",
  "module": "Paint Shop",
  "name": "Product Weight Paint",
