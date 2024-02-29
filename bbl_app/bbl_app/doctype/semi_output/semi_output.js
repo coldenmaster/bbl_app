@@ -1,25 +1,25 @@
 // Copyright (c) 2024, bbl and contributors
 // For license information, please see license.txt
 
-frappe.ui.form.on("Paint Output", {
+frappe.ui.form.on("Semi Output", {
 	// refresh(frm) {
-    //     console.log("operation_tree 刷新");
-	// },
 
+	// },
     onload: function (frm) {
         frm.set_query("operation", function() {
             console.log("operation");
             return {
                 "filters": {
-                    "parent_operation_tree": "油漆",
+                    // "parent_operation_tree": ["!=", "油漆"],
+                    "name": ["not like", "%油漆%"],
                 }
             };
         });
     },
-
 });
 
-frappe.ui.form.on('Product Quantity', {
+
+frappe.ui.form.on('Semi Quantity', {
     quantity(frm, cdt, cdn) {
         // console.log("Product Quantity change:", frm, cdt, cdn);
         li = frm.doc.product_list;

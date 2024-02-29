@@ -6,6 +6,7 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "\u6ca1\u6709\u4f7f\u7528_section",
   "for_date",
   "product_name",
   "process_no",
@@ -102,12 +103,17 @@
    "fieldtype": "Link",
    "label": "Employee",
    "options": "Employee"
+  },
+  {
+   "fieldname": "\u6ca1\u6709\u4f7f\u7528_section",
+   "fieldtype": "Section Break",
+   "label": "\u6ca1\u6709\u4f7f\u7528"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-02-21 17:14:29.851863",
+ "modified": "2024-02-29 15:13:36.174843",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Report Output",

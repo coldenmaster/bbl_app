@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"5RKDRJJG8R\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>\u953b\u9020\u8f66\u95f4</b></span>\",\"col\":12}},{\"id\":\"KLOoBH_KGo\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Product Weight Record\",\"col\":3}},{\"id\":\"NxE8QoBdr8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Forge Process Record\",\"col\":3}},{\"id\":\"tLEVa9RCK8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u65b0\u5efa\u6a21\u5177\u6863\u6848\",\"col\":3}},{\"id\":\"CPQbdkCgFA\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"CpwdWL5wNQ\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>\u70ed\u5904\u7406\u8f66\u95f4</b></span>\",\"col\":12}},{\"id\":\"ejBNEMuq4Y\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Product Weight Record\",\"col\":3}},{\"id\":\"j3R03XXMvV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u953b\u9020\u8bb0\u5f55\u5217\u8868\",\"col\":3}},{\"id\":\"1KWKuKZFKN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ltbjNRRH1O\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u673a\u52a0\u5de5\u8f66\u95f4</b></span>\",\"col\":12}}]",
+ "content": "[{\"id\":\"_J13jF3jiU\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u8bf7\u4f7f\u7528\u5b50\u83dc\u5355</b></span>\",\"col\":12}}]",
  "creation": "2024-01-19 16:29:50.777337",
  "custom_blocks": [],
  "docstatus": 0,
@@ -12,37 +12,8 @@
  "indicator_color": "green",
  "is_hidden": 0,
  "label": "Bbl App",
- "links": [
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "\u6a21\u5177\u6570\u636e",
-   "link_count": 2,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "\u6a21\u5177\u7c7b\u578b",
-   "link_count": 0,
-   "link_to": "Mold Type",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "\u6a21\u5177\u72b6\u6001",
-   "link_count": 0,
-   "link_to": "Mold Status",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  }
- ],
- "modified": "2024-02-23 10:39:22.811580",
+ "links": [],
+ "modified": "2024-02-29 15:15:36.912224",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Bbl App",
@@ -53,39 +24,6 @@
  "quick_lists": [],
  "roles": [],
  "sequence_id": 30.0,
- "shortcuts": [
-  {
-   "color": "Cyan",
-   "doc_view": "New",
-   "label": "\u65b0\u5efa\u6a21\u5177\u6863\u6848",
-   "link_to": "Mold",
-   "stats_filter": "[]",
-   "type": "DocType"
-  },
-  {
-   "color": "Blue",
-   "doc_view": "New",
-   "label": "Forge Process Record",
-   "link_to": "Forge Process Record",
-   "stats_filter": "[]",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "Report Builder",
-   "label": "Product Weight Record",
-   "link_to": "Product Weight Record",
-   "stats_filter": "[]",
-   "type": "DocType"
-  },
-  {
-   "color": "Green",
-   "doc_view": "Report Builder",
-   "label": "\u953b\u9020\u8bb0\u5f55\u5217\u8868",
-   "link_to": "Forge Process Record",
-   "stats_filter": "[]",
-   "type": "DocType"
-  }
- ],
+ "shortcuts": [],
  "title": "Bbl App"
 }

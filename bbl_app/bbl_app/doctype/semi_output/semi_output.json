@@ -1,0 +1,115 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{for_date}_{operation}",
+ "creation": "2024-02-29 14:16:38.952688",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "for_date",
+  "operation",
+  "column_break_uwik",
+  "total_quantity",
+  "work_group",
+  "section_break_bbof",
+  "product_list",
+  "note"
+ ],
+ "fields": [
+  {
+   "fieldname": "for_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "For Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "operation",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Operation",
+   "options": "Operation Tree",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_uwik",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_quantity",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Total Quantity",
+   "read_only": 1
+  },
+  {
+   "fieldname": "work_group",
+   "fieldtype": "Link",
+   "label": "Work Group",
+   "options": "Daily Work Group"
+  },
+  {
+   "fieldname": "section_break_bbof",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "product_list",
+   "fieldtype": "Table",
+   "label": "Product List",
+   "options": "Semi Quantity"
+  },
+  {
+   "fieldname": "note",
+   "fieldtype": "Small Text",
+   "label": "Note"
+  }
+ ],
+ "links": [],
+ "modified": "2024-02-29 14:45:19.005798",
+ "modified_by": "Administrator",
+ "module": "Bbl App",
+ "name": "Semi Output",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
