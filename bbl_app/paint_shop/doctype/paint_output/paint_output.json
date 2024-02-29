@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "autoname": "format:{for_date}_{operation}",
  "creation": "2024-02-22 17:50:01.502802",
  "doctype": "DocType",
@@ -73,7 +74,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-25 10:50:38.439744",
+ "modified": "2024-02-28 16:56:01.518066",
  "modified_by": "Administrator",
  "module": "Paint Shop",
  "name": "Paint Output",
