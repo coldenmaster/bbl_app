@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"5RKDRJJG8R\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>sb\u7ba1\u740623f</b></span>\",\"col\":12}},{\"id\":\"tLEVa9RCK8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u65b0\u5efa\u6a21\u5177\u6863\u6848\",\"col\":3}},{\"id\":\"NxE8QoBdr8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u953b\u9020\u6a21\u5177\u5217\u8868\",\"col\":3}},{\"id\":\"ahTbntEqI8\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"CpwdWL5wNQ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u751f\u4ea7\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"ejBNEMuq4Y\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u65b0\u5efa\u953b\u9020\u8bb0\u5f55\",\"col\":3}},{\"id\":\"j3R03XXMvV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u953b\u9020\u8bb0\u5f55\u5217\u8868\",\"col\":3}},{\"id\":\"qfzJrANF6C\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"1KWKuKZFKN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"31kYoHutCh\",\"type\":\"card\",\"data\":{\"card_name\":\"\u57fa\u7840\u6570\u636e\",\"col\":4}},{\"id\":\"AebyyeTb-I\",\"type\":\"card\",\"data\":{\"card_name\":\"\u6a21\u5177\u6570\u636e\",\"col\":4}},{\"id\":\"zLrtrFavD8\",\"type\":\"card\",\"data\":{\"card_name\":\"\u8f66\u95f4\u6570\u636e\",\"col\":4}}]",
+ "content": "[{\"id\":\"5RKDRJJG8R\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>sb\u7ba1\u740623f</b></span>\",\"col\":12}},{\"id\":\"tLEVa9RCK8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u65b0\u5efa\u6a21\u5177\u6863\u6848\",\"col\":3}},{\"id\":\"NxE8QoBdr8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u953b\u9020\u6a21\u5177\u5217\u8868\",\"col\":3}},{\"id\":\"ahTbntEqI8\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"CpwdWL5wNQ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u751f\u4ea7\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"ejBNEMuq4Y\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u65b0\u5efa\u953b\u9020\u8bb0\u5f55\",\"col\":3}},{\"id\":\"j3R03XXMvV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u953b\u9020\u8bb0\u5f55\u5217\u8868\",\"col\":3}},{\"id\":\"qfzJrANF6C\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"1KWKuKZFKN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"zLrtrFavD8\",\"type\":\"card\",\"data\":{\"card_name\":\"\u8f66\u95f4\u6570\u636e\",\"col\":4}}]",
  "creation": "2024-02-04 15:23:12.913424",
  "custom_blocks": [],
  "docstatus": 0,
@@ -13,35 +13,6 @@
  "is_hidden": 0,
  "label": "Machine Shop",
  "links": [
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "\u6a21\u5177\u6570\u636e",
-   "link_count": 2,
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "\u6a21\u5177\u7c7b\u578b",
-   "link_count": 0,
-   "link_to": "Mold Type",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "\u6a21\u5177\u72b6\u6001",
-   "link_count": 0,
-   "link_to": "Mold Status",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
   {
    "hidden": 0,
    "is_query_report": 0,
@@ -70,58 +41,9 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "\u57fa\u7840\u6570\u636e",
-   "link_count": 4,
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "\u4ea7\u54c1\u540d\u79f0",
-   "link_count": 0,
-   "link_to": "Product Mold",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "\u539f\u6750\u6599\u7c7b\u578b",
-   "link_count": 0,
-   "link_to": "Raw Material Type",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "\u539f\u6750\u6599\u76f4\u5f84",
-   "link_count": 0,
-   "link_to": "Material Diameter",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Semi Product",
-   "link_count": 0,
-   "link_to": "Semi Product",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
   }
  ],
- "modified": "2024-02-23 10:39:23.202550",
+ "modified": "2024-03-01 14:49:41.906471",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Machine Shop",

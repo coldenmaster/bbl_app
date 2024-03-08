@@ -12,6 +12,7 @@ app_license = "mit"
 # include js, css files in header of desk.html
 # app_include_css = "/assets/bbl_app/css/bbl_app.css"
 # app_include_js = "/assets/bbl_app/js/bbl_app.js"
+app_include_js = "/assets/bbl_app/js/map_defaults.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/bbl_app/css/bbl_app.css"
@@ -70,6 +71,9 @@ doc_events = {
 # 通过以下命令导出数据库数据进行迁移
 # bench export-fixtures --app bbl_app
 fixtures = [
+    "Device Type",
+    "Iot Device",
+    "Report Period"
     # "Product Weight Paint",
     # "Customer",
     # "Product Name",

@@ -1,0 +1,23 @@
+[
+ {
+  "device_type": "热处理水温",
+  "docstatus": 0,
+  "doctype": "Device Type",
+  "modified": "2024-03-07 08:52:55.337407",
+  "name": "热处理水温"
+ },
+ {
+  "device_type": "温度检测",
+  "docstatus": 0,
+  "doctype": "Device Type",
+  "modified": "2024-03-07 08:57:34.973197",
+  "name": "温度检测"
+ },
+ {
+  "device_type": "智能电表",
+  "docstatus": 0,
+  "doctype": "Device Type",
+  "modified": "2024-03-07 08:53:12.339411",
+  "name": "智能电表"
+ }
+]
