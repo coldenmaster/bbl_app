@@ -71,9 +71,9 @@ doc_events = {
 # 通过以下命令导出数据库数据进行迁移
 # bench export-fixtures --app bbl_app
 fixtures = [
-    "Device Type",
-    "Iot Device",
-    "Report Period"
+    # "Device Type",
+    # "Iot Device",
+    # "Report Period"
     # "Product Weight Paint",
     # "Customer",
     # "Product Name",
