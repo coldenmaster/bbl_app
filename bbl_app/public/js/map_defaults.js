@@ -5,9 +5,10 @@ const map_settings = frappe.provide("frappe.utils.map_defaults");
 // the map view at openstreetmap.org.
 
 // New default location (middle of bbl_bgs).
+// [纬度，经度]
 map_settings.center = [32.10899,112.729214];
 // new zoomlevel: see the whole country, not just a single city
-map_settings.zoom = 6;
+map_settings.zoom = 17;
 
 // Use a different map: satellite instead of streets
 // Examples can be found at https://leaflet-extras.github.io/leaflet-providers/preview/
