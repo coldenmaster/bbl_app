@@ -9,6 +9,8 @@
   "product_name",
   "quantity",
   "for_date",
+  "production_line",
+  "employee",
   "product_note"
  ],
  "fields": [
@@ -40,12 +42,28 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Product Note"
+  },
+  {
+   "columns": 3,
+   "fieldname": "production_line",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Production Line",
+   "options": "Production Line"
+  },
+  {
+   "columns": 3,
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee",
+   "options": "Employee"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-02-23 10:31:01.771223",
+ "modified": "2024-03-14 12:18:10.092921",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Product Quantity",
