@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"CpwdWL5wNQ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u751f\u4ea7\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"88n2n09bpN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"jlUSK7OY6o\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"1KWKuKZFKN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"3u1Ln1cQb3\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u5e38\u7528\u62a5\u8868</b></span>\",\"col\":12}},{\"id\":\"mjiwxPupHx\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Semi Product\",\"col\":3}},{\"id\":\"Tfc1FiPipl\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u4ea7\u6210\u54c1\u5217\u8868\",\"col\":3}},{\"id\":\"4uZTWXclY-\",\"type\":\"spacer\",\"data\":{\"col\":12}}]",
+ "content": "[{\"id\":\"CpwdWL5wNQ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u751f\u4ea7\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"1KWKuKZFKN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"B4EWL-ftws\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Mold\",\"col\":3}},{\"id\":\"EPcDmJdRrW\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Mold Status\",\"col\":3}},{\"id\":\"cCsNAAW5Dv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Mold Type\",\"col\":3}},{\"id\":\"3u1Ln1cQb3\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u5e38\u7528\u62a5\u8868</b></span>\",\"col\":12}},{\"id\":\"mjiwxPupHx\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Semi Product\",\"col\":3}},{\"id\":\"Tfc1FiPipl\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u4ea7\u6210\u54c1\u5217\u8868\",\"col\":3}},{\"id\":\"4uZTWXclY-\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"F4CB_0UODL\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Mold Type\",\"col\":3}}]",
  "creation": "2024-03-09 11:27:12.151630",
  "custom_blocks": [],
  "docstatus": 0,
@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Mold Workshop",
  "links": [],
- "modified": "2024-03-09 11:28:38.045875",
+ "modified": "2024-03-14 12:09:45.354010",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Mold Workshop",
@@ -42,11 +42,35 @@
    "type": "DocType"
   },
   {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Mold Type",
+   "link_to": "Mold Type",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
    "color": "Blue",
    "doc_view": "Report Builder",
    "format": "{}\u79cd",
    "label": "Semi Product",
    "link_to": "Semi Product",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Mold",
+   "link_to": "Mold",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Mold Status",
+   "link_to": "Mold Status",
    "stats_filter": "[]",
    "type": "DocType"
   }

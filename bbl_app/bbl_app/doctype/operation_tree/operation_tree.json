@@ -10,6 +10,7 @@
   "operation_name",
   "is_not_semi",
   "workshop",
+  "production_class",
   "lft",
   "rgt",
   "is_group",
@@ -76,12 +77,19 @@
    "in_list_view": 1,
    "label": "Workshop",
    "options": "Workshop"
+  },
+  {
+   "fieldname": "production_class",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Production Class",
+   "options": "Semi Product\nProduct"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_tree": 1,
  "links": [],
- "modified": "2024-02-25 10:13:51.919523",
+ "modified": "2024-03-14 11:42:41.443311",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Operation Tree",

@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"5RKDRJJG8R\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>sb\u7ba1\u740623f</b></span>\",\"col\":12}},{\"id\":\"tLEVa9RCK8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u65b0\u5efa\u6a21\u5177\u6863\u6848\",\"col\":3}},{\"id\":\"NxE8QoBdr8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u953b\u9020\u6a21\u5177\u5217\u8868\",\"col\":3}},{\"id\":\"ahTbntEqI8\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"CpwdWL5wNQ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u751f\u4ea7\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"ejBNEMuq4Y\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u65b0\u5efa\u953b\u9020\u8bb0\u5f55\",\"col\":3}},{\"id\":\"j3R03XXMvV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u953b\u9020\u8bb0\u5f55\u5217\u8868\",\"col\":3}},{\"id\":\"qfzJrANF6C\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"1KWKuKZFKN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"zLrtrFavD8\",\"type\":\"card\",\"data\":{\"card_name\":\"\u8f66\u95f4\u6570\u636e\",\"col\":4}}]",
+ "content": "[{\"id\":\"5RKDRJJG8R\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>\u751f\u4ea7\u7ba1\u7406</b></span>\",\"col\":12}},{\"id\":\"tLEVa9RCK8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u6210\u54c1\u62a5\u4ea7\",\"col\":3}},{\"id\":\"NxE8QoBdr8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u6210\u54c1\u4ea7\u91cf\u5217\u8868\",\"col\":3}},{\"id\":\"ahTbntEqI8\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"CpwdWL5wNQ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u751f\u4ea7\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"qfzJrANF6C\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"1KWKuKZFKN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"zLrtrFavD8\",\"type\":\"card\",\"data\":{\"card_name\":\"\u8f66\u95f4\u6570\u636e\",\"col\":4}}]",
  "creation": "2024-02-04 15:23:12.913424",
  "custom_blocks": [],
  "docstatus": 0,
@@ -43,7 +43,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-03-01 14:49:41.906471",
+ "modified": "2024-03-14 12:03:09.097139",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Machine Shop",
@@ -56,35 +56,20 @@
  "sequence_id": 34.0,
  "shortcuts": [
   {
+   "color": "Green",
+   "doc_view": "New",
+   "format": "new",
+   "label": "\u6210\u54c1\u62a5\u4ea7",
+   "link_to": "Paint Output",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
    "color": "Blue",
    "doc_view": "List",
-   "format": "{}\u5957\u6a21\u5177",
-   "label": "\u953b\u9020\u6a21\u5177\u5217\u8868",
-   "link_to": "Mold",
-   "stats_filter": "[]",
-   "type": "DocType"
-  },
-  {
-   "color": "Cyan",
-   "doc_view": "New",
-   "label": "\u65b0\u5efa\u6a21\u5177\u6863\u6848",
-   "link_to": "Mold",
-   "stats_filter": "[]",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "New",
-   "label": "\u65b0\u5efa\u953b\u9020\u8bb0\u5f55",
-   "link_to": "Forge Process Record",
-   "stats_filter": "[]",
-   "type": "DocType"
-  },
-  {
-   "color": "Green",
-   "doc_view": "Report Builder",
-   "label": "\u953b\u9020\u8bb0\u5f55\u5217\u8868",
-   "link_to": "Forge Process Record",
+   "format": "{}",
+   "label": "\u6210\u54c1\u4ea7\u91cf\u5217\u8868",
+   "link_to": "Paint Output",
    "stats_filter": "[]",
    "type": "DocType"
   }

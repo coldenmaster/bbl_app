@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"asLJjudqv4\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Product Center</span>\",\"col\":12}},{\"id\":\"BXEepRrkhp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u4e0a\u62a5\u4ea7\u91cf\",\"col\":3}},{\"id\":\"qKC22TWFVw\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u4ea7\u91cf\u5217\u8868\",\"col\":3}},{\"id\":\"S5UZInvH_Z\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"kSu784K9UX\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>Base Doc</b></span>\",\"col\":12}},{\"id\":\"8UOCKOjAlv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Semi Product\",\"col\":3}},{\"id\":\"N2iUvJ3ACF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Product Name\",\"col\":3}},{\"id\":\"3RGdNYT68N\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"sb-cndH8rG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Workshop\",\"col\":3}},{\"id\":\"anFuUGs518\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Operation Tree\",\"col\":3}}]",
+ "content": "[{\"id\":\"asLJjudqv4\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">\u751f\u4ea7\u52a8\u529b\u90e8</span>\",\"col\":12}},{\"id\":\"BXEepRrkhp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u4e0a\u62a5\u534a\u6210\u54c1\u4ea7\u91cf\",\"col\":3}},{\"id\":\"qKC22TWFVw\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u534a\u6210\u54c1\u4ea7\u91cf\u5217\u8868\",\"col\":3}},{\"id\":\"S5UZInvH_Z\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"QxhN1Bvowk\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u4e0a\u62a5\u6210\u54c1\u4ea7\u91cf\",\"col\":3}},{\"id\":\"2snodndvwj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u6210\u54c1\u4ea7\u91cf\u5217\u8868\",\"col\":3}},{\"id\":\"7lHyH6s4OY\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"kSu784K9UX\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>\u57fa\u7840\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"8UOCKOjAlv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u534a\u6210\u54c1\",\"col\":3}},{\"id\":\"N2iUvJ3ACF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u4ea7\u54c1\u540d\u79f0\",\"col\":3}},{\"id\":\"3RGdNYT68N\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"sb-cndH8rG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Workshop\",\"col\":3}},{\"id\":\"anFuUGs518\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Operation Tree\",\"col\":3}}]",
  "creation": "2024-02-20 17:49:09.709351",
  "custom_blocks": [],
  "docstatus": 0,
@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Product Center",
  "links": [],
- "modified": "2024-02-29 15:18:10.748610",
+ "modified": "2024-03-14 12:04:01.551203",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Product Center",
@@ -27,25 +27,9 @@
  "shortcuts": [
   {
    "color": "Green",
-   "doc_view": "List",
-   "label": "Semi Product",
-   "link_to": "Semi Product",
-   "stats_filter": "[]",
-   "type": "DocType"
-  },
-  {
-   "color": "Green",
-   "doc_view": "List",
-   "label": "Product Name",
-   "link_to": "Product Name",
-   "stats_filter": "[]",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
+   "doc_view": "New",
    "format": "new",
-   "label": "\u4e0a\u62a5\u4ea7\u91cf",
+   "label": "\u4e0a\u62a5\u534a\u6210\u54c1\u4ea7\u91cf",
    "link_to": "Semi Output",
    "stats_filter": "[]",
    "type": "DocType"
@@ -55,6 +39,15 @@
    "doc_view": "List",
    "label": "Workshop",
    "link_to": "Workshop",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "format": "{}\u79cd",
+   "label": "\u534a\u6210\u54c1",
+   "link_to": "Semi Product",
    "stats_filter": "[]",
    "type": "DocType"
   },
@@ -69,8 +62,34 @@
   {
    "color": "Blue",
    "doc_view": "List",
-   "label": "\u4ea7\u91cf\u5217\u8868",
+   "label": "\u534a\u6210\u54c1\u4ea7\u91cf\u5217\u8868",
    "link_to": "Semi Output",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "format": "{}\u79cd",
+   "label": "\u4ea7\u54c1\u540d\u79f0",
+   "link_to": "Product Name",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "New",
+   "format": "new",
+   "label": "\u4e0a\u62a5\u6210\u54c1\u4ea7\u91cf",
+   "link_to": "Paint Output",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Cyan",
+   "doc_view": "List",
+   "label": "\u6210\u54c1\u4ea7\u91cf\u5217\u8868",
+   "link_to": "Paint Output",
    "stats_filter": "[]",
    "type": "DocType"
   }

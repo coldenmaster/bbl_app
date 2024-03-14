@@ -11,7 +11,8 @@ frappe.ui.form.on("Paint Output", {
             console.log("operation");
             return {
                 "filters": {
-                    "parent_operation_tree": "油漆",
+                    // "parent_operation_tree": "油漆",
+                    "is_not_semi": 1,
                 }
             };
         });

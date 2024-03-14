@@ -2,6 +2,8 @@ Bbl App,百兰App,
 Bbl_App,百兰App,
 Update Hooks Resolution Order,更新app钩子解析顺序,
 
+Workshop,车间,
+
 Equipment Manage,设备管理,
 
 Mold,锻造模具档案,
@@ -72,8 +74,11 @@ Duration,时长,
 Semi Product Name,半成品名称,
 Semi Product,半成品,
 Semi Product Id,半成品Id,
+Product,成品,
+Production Class,生产类型,
 Product Type,产品类型,
 Drawing Id,图号,
+Parent Operation Tree,父工序,
 
 Product Weight Record,产品重量记录,
 
@@ -103,7 +108,7 @@ Proprietorship,投资方
 Partnership,合作伙伴
 Short Address,地址,
 Paint Shop,涂装车间,
-Paint Output,涂装产量,
+Paint Output,成品产量,
 Work Group,作业组,
 Note,备注,
 Product List,产品列表,

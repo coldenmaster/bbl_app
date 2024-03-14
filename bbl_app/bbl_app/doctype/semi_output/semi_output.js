@@ -11,7 +11,8 @@ frappe.ui.form.on("Semi Output", {
             return {
                 "filters": {
                     // "parent_operation_tree": ["!=", "油漆"],
-                    "name": ["not like", "%油漆%"],
+                    // "name": ["not like", "%油漆%"],
+                    "is_not_semi": 0,
                 }
             };
         });
