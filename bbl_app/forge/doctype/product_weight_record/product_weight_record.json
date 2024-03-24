@@ -13,7 +13,13 @@
   "product_weight",
   "column_break_iwfb",
   "raw_material_type",
-  "diameter"
+  "diameter",
+  "std_material_ratio",
+  "std_product_weight",
+  "ori_material_weight",
+  "material_ratio_diff",
+  "material_weight_diff",
+  "product_weight_diff"
  ],
  "fields": [
   {
@@ -43,7 +49,7 @@
    "precision": "2"
   },
   {
-   "description": "Standard Weight",
+   "description": "Std Material Ratio",
    "fieldname": "material_ratio",
    "fieldtype": "Int",
    "in_list_view": 1,
@@ -70,15 +76,66 @@
    "options": "Raw Material Type"
   },
   {
+   "fetch_from": "semi_product_name.diameter",
+   "fetch_if_empty": 1,
    "fieldname": "diameter",
    "fieldtype": "Link",
    "label": "Diameter",
    "options": "Material Diameter"
+  },
+  {
+   "fetch_from": "semi_product_name.material_ratio",
+   "fieldname": "std_material_ratio",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Std Material Ratio",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "semi_product_name.forge_weight",
+   "fieldname": "std_product_weight",
+   "fieldtype": "Float",
+   "label": "Std Product Weight",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "product_weight_diff",
+   "fieldtype": "Int",
+   "is_virtual": 1,
+   "label": "Product Weight Diff",
+   "options": "doc.product_weight -doc.std_product_weight",
+   "precision": "2"
+  },
+  {
+   "fetch_from": "semi_product_name.material_weight",
+   "fieldname": "ori_material_weight",
+   "fieldtype": "Float",
+   "label": "Ori Material Weight",
+   "precision": "2"
+  },
+  {
+   "fieldname": "material_ratio_diff",
+   "fieldtype": "Int",
+   "is_virtual": 1,
+   "label": "Material Ratio Diff",
+   "options": "doc.material_ratio -doc.std_material_ratio",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "material_weight_diff",
+   "fieldtype": "Int",
+   "is_virtual": 1,
+   "label": "Material Weight Diff",
+   "options": "doc.material_weight -doc.ori_material_weight",
+   "precision": "2"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-28 15:25:42.268025",
+ "modified": "2024-03-22 17:38:08.750993",
  "modified_by": "Administrator",
  "module": "Forge",
  "name": "Product Weight Record",

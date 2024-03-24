@@ -3,16 +3,19 @@
 
 frappe.ui.form.on("Product Weight Record", {
 	refresh(frm) {
-        // setDesc(frm)
+        frm.trigger("setDesc")
+        console.log('wtt113, refresh')
 	},
 
     // 字段改变event
     semi_product_name(frm) {
         // setDesc(frm);
-        frm.trigger("setDesc");
+        frm.trigger("setDesc")
     },
 
     setDesc(frm) {
+        console.log('wtt333, refresh')
+
         semi_product_name = frm.doc.semi_product_name;
         if (!semi_product_name)
             return

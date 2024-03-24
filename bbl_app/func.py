@@ -24,15 +24,17 @@ def after_insert_all(doc, method=None):
         doctype = doc  # assuming doctype name was passed directly
     else:
         doctype = doc.doctype
+    # print(f"after_insert_all {doctype}")
     user = get_fullname()
     if doctype == "Mold":
         frappe.enqueue(wechat_work.utils.send_str_to_admin, queue='short', msg = f'{user}:新建模具成功')
-        print(f"after_insert_all {doctype}")
     if doctype == "Product Weight Record":
         frappe.enqueue(wechat_work.utils.send_str_to_admin, queue='short', msg = f'{user}:新建下料重量成功')
     if doctype == "Forge Process Record":
         frappe.enqueue(wechat_work.utils.send_str_to_admin, queue='short', msg = f'{user}:新建锻造生产记录成功')
     if doctype == "Paint Output":
         frappe.enqueue(wechat_work.utils.send_str_to_admin, queue='short', msg = f'{user}:新建油漆产量')
+    if doctype == "Semi Output":
+        frappe.enqueue(wechat_work.utils.send_str_to_admin, queue='short', msg = f'{user}:新建半成品产量')
     if doctype == "Product Weight Paint":
         frappe.enqueue(wechat_work.utils.send_str_to_admin, queue='short', now=True, msg = f'{user}:新建成品重量')
