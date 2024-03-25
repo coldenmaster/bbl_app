@@ -11,30 +11,30 @@ class Mold(Document):
 	
     ''' 以下是回调执行顺序 '''
     # 新建才有此回调
-    def before_insert(self):
-        print_green('Mold before insert')
+    # def before_insert(self):
+    #     print_green('Mold before insert')
 
     def before_validate(self):
-        print_green('Mold before validate')
+        # print_green('Mold before validate')
         self.calc_status_from_children()
         # return True
 
-    def validate(self):
-        print_green('validate')
+    # def validate(self):
+    #     print_green('validate')
 
-    def before_save(self):
-        print_green('Mold before before_save')
+    # def before_save(self):
+    #     print_green('Mold before before_save')
                 
 
     def db_update(self):
-        print_green('custom db_update')
+        # print_green('custom db_update')
         super().db_update()
 
-    def on_update(self):
-        print_green('on update')
+    # def on_update(self):
+    #     print_green('on update')
 
-    def on_change(self):
-        print_green('on change')
+    # def on_change(self):
+    #     print_green('on change')
 
 
     def calc_status_from_children(self):
@@ -63,7 +63,7 @@ class Mold(Document):
             if item.record_cycle == cycle
         ]
         self.batch_output = sum(batch_quantity)
-        print_blue(self.as_dict())
+        # print_blue(self.as_dict())
 
     # def fetch_from_linked_technology(self):        
     #     pass

@@ -16,8 +16,8 @@
   "raw_material_type",
   "diameter",
   "std_material_ratio",
-  "std_product_weight",
   "std_material_weight",
+  "std_product_weight",
   "material_ratio_diff",
   "material_weight_diff",
   "product_weight_diff"
@@ -26,7 +26,10 @@
   {
    "fieldname": "semi_product_name",
    "fieldtype": "Link",
+   "in_filter": 1,
+   "in_global_search": 1,
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Semi Product Name",
    "options": "Semi Product",
    "reqd": 1
@@ -137,6 +140,9 @@
   {
    "fieldname": "product_type",
    "fieldtype": "Link",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Product Type",
    "options": "Product Type"
   },
@@ -153,7 +159,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-03-25 09:12:29.811994",
+ "modified": "2024-03-25 14:52:41.888755",
  "modified_by": "Administrator",
  "module": "Forge",
  "name": "Product Weight Record",
