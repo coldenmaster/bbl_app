@@ -12,11 +12,12 @@
   "material_weight",
   "product_weight",
   "column_break_iwfb",
+  "product_type",
   "raw_material_type",
   "diameter",
   "std_material_ratio",
   "std_product_weight",
-  "ori_material_weight",
+  "std_material_weight",
   "material_ratio_diff",
   "material_weight_diff",
   "product_weight_diff"
@@ -62,7 +63,6 @@
    "fieldtype": "Date",
    "in_list_view": 1,
    "label": "Weigh Date",
-   "options": "Semi Product",
    "reqd": 1
   },
   {
@@ -96,46 +96,64 @@
    "fetch_from": "semi_product_name.forge_weight",
    "fieldname": "std_product_weight",
    "fieldtype": "Float",
+   "hidden": 1,
+   "in_list_view": 1,
    "label": "Std Product Weight",
    "precision": "2",
    "read_only": 1
   },
   {
+   "bold": 1,
+   "default": "0",
    "fieldname": "product_weight_diff",
    "fieldtype": "Int",
-   "is_virtual": 1,
+   "hidden": 1,
+   "in_list_view": 1,
    "label": "Product Weight Diff",
-   "options": "doc.product_weight -doc.std_product_weight",
-   "precision": "2"
-  },
-  {
-   "fetch_from": "semi_product_name.material_weight",
-   "fieldname": "ori_material_weight",
-   "fieldtype": "Float",
-   "label": "Ori Material Weight",
-   "precision": "2"
-  },
-  {
-   "fieldname": "material_ratio_diff",
-   "fieldtype": "Int",
-   "is_virtual": 1,
-   "label": "Material Ratio Diff",
-   "options": "doc.material_ratio -doc.std_material_ratio",
    "precision": "2",
    "read_only": 1
   },
   {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "material_ratio_diff",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Material Ratio Diff",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "default": "0",
    "fieldname": "material_weight_diff",
    "fieldtype": "Int",
-   "is_virtual": 1,
+   "hidden": 1,
+   "in_list_view": 1,
    "label": "Material Weight Diff",
-   "options": "doc.material_weight -doc.ori_material_weight",
-   "precision": "2"
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "product_type",
+   "fieldtype": "Link",
+   "label": "Product Type",
+   "options": "Product Type"
+  },
+  {
+   "fetch_from": "semi_product_name.material_weight",
+   "fieldname": "std_material_weight",
+   "fieldtype": "Float",
+   "hidden": 1,
+   "in_list_view": 1,
+   "label": "Std Material Weight",
+   "precision": "2",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-03-22 17:38:08.750993",
+ "modified": "2024-03-25 09:12:29.811994",
  "modified_by": "Administrator",
  "module": "Forge",
  "name": "Product Weight Record",
