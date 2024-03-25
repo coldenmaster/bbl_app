@@ -65,14 +65,14 @@ frappe.ui.form.on("Product Weight Record", {
     },
 
     set_material_weight_prop(frm) {
-        let val = frm.doc.std_material_weight | ''
-        let diff = frm.doc.material_weight_diff | ''
+        let val = frappe.format(frm.doc.std_material_weight , {fieldtype: 'Float', precision: 2}, { inline: true })
+        let diff = frappe.format(frm.doc.material_weight_diff , {fieldtype: 'Float', precision: 2}, { inline: true })
         let color = calc_coler(diff)
         frm.set_df_property("material_weight", "description", "标准重量：<b>" + val + 'kg</b>, 误差：' + color + diff + "kg</b>");
     },
     set_product_weight_prop(frm) {
-        let val = frm.doc.std_product_weight | ''
-        let diff = frm.doc.product_weight_diff | ''
+        let val = frappe.format(frm.doc.std_product_weight , {fieldtype: 'Float', precision: 2}, { inline: true })
+        let diff = frappe.format(frm.doc.product_weight_diff , {fieldtype: 'Float', precision: 2}, { inline: true })
         let color = calc_coler(diff)
         frm.set_df_property("product_weight", "description", "标准重量：<b>" + val + 'kg</b>, 误差：' + color + diff + "kg</b>");
     },
@@ -83,14 +83,27 @@ frappe.ui.form.on("Product Weight Record", {
     },
 
     cacl_material_ratio_diff(frm) {
-        frm.set_value("material_ratio_diff", frm.doc.material_ratio - frm.doc.std_material_ratio);
+        diff = 0;
+        if (frm.doc.material_ratio && frm.doc.std_material_ratio) 
+            diff = frm.doc.material_ratio - frm.doc.std_material_ratio;
+        frm.set_value("material_ratio_diff", diff);
+        frm.trigger("set_meterial_ratio_prop")
     },
     cacl_material_weight_diff(frm) {
-        frm.set_value("material_weight_diff", frm.doc.material_weight - frm.doc.std_material_weight);
+        diff = 0;
+        if (frm.doc.material_weight && frm.doc.std_material_weight) 
+            diff = frm.doc.material_weight - frm.doc.std_material_weight;
+        frm.set_value("material_weight_diff", diff);
+        // frm.set_value("material_weight_diff", frm.doc.material_weight - frm.doc.std_material_weight);
+        frm.trigger("set_material_weight_prop")
     },
     cacl_product_weight_diff(frm) {
-        frm.set_value("product_weight_diff", frm.doc.product_weight - frm.doc.std_product_weight);
-        // frm.refresh_field('product_weight_diff');
+        diff = 0;
+        if (frm.doc.product_weight && frm.doc.std_product_weight) 
+            diff = frm.doc.product_weight - frm.doc.std_product_weight;
+        frm.set_value("product_weight_diff", diff);
+        // frm.set_value("product_weight_diff", frm.doc.product_weight - frm.doc.std_product_weight);
+        frm.trigger("set_product_weight_prop")
     },
 
     setDesc(frm) {
