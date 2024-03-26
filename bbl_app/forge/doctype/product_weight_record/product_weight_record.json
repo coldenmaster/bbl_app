@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "format:{semi_product_name}/{weigh_date}",
  "creation": "2024-02-03 14:39:53.803328",
@@ -87,19 +88,20 @@
    "options": "Material Diameter"
   },
   {
+   "depends_on": "False",
    "fetch_from": "semi_product_name.material_ratio",
    "fieldname": "std_material_ratio",
    "fieldtype": "Int",
-   "hidden": 1,
+   "in_list_view": 1,
    "label": "Std Material Ratio",
    "precision": "2",
    "read_only": 1
   },
   {
+   "depends_on": "False",
    "fetch_from": "semi_product_name.forge_weight",
    "fieldname": "std_product_weight",
    "fieldtype": "Float",
-   "hidden": 1,
    "in_list_view": 1,
    "label": "Std Product Weight",
    "precision": "2",
@@ -108,6 +110,7 @@
   {
    "bold": 1,
    "default": "0",
+   "depends_on": "False",
    "fieldname": "product_weight_diff",
    "fieldtype": "Float",
    "in_list_view": 1,
@@ -118,6 +121,7 @@
   {
    "bold": 1,
    "default": "0",
+   "depends_on": "False",
    "fieldname": "material_ratio_diff",
    "fieldtype": "Float",
    "in_list_view": 1,
@@ -128,6 +132,7 @@
   {
    "bold": 1,
    "default": "0",
+   "depends_on": "False",
    "fieldname": "material_weight_diff",
    "fieldtype": "Float",
    "in_list_view": 1,
@@ -145,10 +150,10 @@
    "options": "Product Type"
   },
   {
+   "depends_on": "False",
    "fetch_from": "semi_product_name.material_weight",
    "fieldname": "std_material_weight",
    "fieldtype": "Float",
-   "hidden": 1,
    "in_list_view": 1,
    "label": "Std Material Weight",
    "precision": "2",
@@ -157,7 +162,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-03-25 15:40:17.766559",
+ "modified": "2024-03-26 07:50:03.618030",
  "modified_by": "Administrator",
  "module": "Forge",
  "name": "Product Weight Record",
@@ -201,8 +206,9 @@
    "write": 1
   }
  ],
- "sort_field": "modified",
+ "sort_field": "weigh_date",
  "sort_order": "DESC",
  "states": [],
+ "title_field": "semi_product_name",
  "track_changes": 1
 }

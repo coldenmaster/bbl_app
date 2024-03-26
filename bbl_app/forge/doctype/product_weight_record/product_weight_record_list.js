@@ -9,10 +9,10 @@ frappe.listview_settings["Product Weight Record"] = {
 	// 		return [__("Private"), "gray", "public,=,No"];
 	// 	}
 	// },
-    // onload(listview) {
-    //     console.log("list onload")
-    //     // triggers once before the list is loaded
-    // },
+    onload(listview) {
+        console.log("list onload")
+        // triggers once before the list is loaded
+    },
     // before_render() {
     //     console.log("list before_render")
     //     // triggers before every render of list records

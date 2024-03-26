@@ -3,11 +3,11 @@
 
 bold_brown = '<b style="color:brown">'
 bold_green = '<b style="color:green">'
-calc_coler = (val) => {
+calc_coler = (val, diff) => {
     c = '<b>'
-    if (val > 2) 
+    if (val > diff) 
         c = bold_brown
-    else if (val < -2)
+    else if (val < -diff)
         c = bold_green
     return c
 }
@@ -60,20 +60,20 @@ frappe.ui.form.on("Product Weight Record", {
     set_meterial_ratio_prop(frm) {
         let val = frm.doc.std_material_ratio | ''
         let diff = frm.doc.material_ratio_diff | ''
-        let color = calc_coler(diff)
+        let color = calc_coler(diff, 10)
         frm.set_df_property("material_ratio", "description", '标准倍尺：<b>' + val + 'mm</b>, 误差：' + color + diff + "mm</b>");
     },
 
     set_material_weight_prop(frm) {
         let val = frappe.format(frm.doc.std_material_weight , {fieldtype: 'Float', precision: 2}, { inline: true })
         let diff = frappe.format(frm.doc.material_weight_diff , {fieldtype: 'Float', precision: 2}, { inline: true })
-        let color = calc_coler(diff)
+        let color = calc_coler(diff, 2)
         frm.set_df_property("material_weight", "description", "标准重量：<b>" + val + 'kg</b>, 误差：' + color + diff + "kg</b>");
     },
     set_product_weight_prop(frm) {
         let val = frappe.format(frm.doc.std_product_weight , {fieldtype: 'Float', precision: 2}, { inline: true })
         let diff = frappe.format(frm.doc.product_weight_diff , {fieldtype: 'Float', precision: 2}, { inline: true })
-        let color = calc_coler(diff)
+        let color = calc_coler(diff, 2)
         frm.set_df_property("product_weight", "description", "标准重量：<b>" + val + 'kg</b>, 误差：' + color + diff + "kg</b>");
     },
     trig_disp_prop(frm) {
