@@ -100,7 +100,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-28 16:31:19.307981",
+ "modified": "2024-03-28 10:07:19.898345",
  "modified_by": "Administrator",
  "module": "Paint Shop",
  "name": "Product Weight Paint",
@@ -144,7 +144,7 @@
    "write": 1
   }
  ],
- "sort_field": "modified",
+ "sort_field": "weigh_date",
  "sort_order": "DESC",
  "states": []
 }
