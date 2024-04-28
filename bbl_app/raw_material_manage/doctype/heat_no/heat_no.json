@@ -1,0 +1,109 @@
+{
+ "actions": [],
+ "autoname": "field:heat_no",
+ "creation": "2024-04-19 12:55:34",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "heat_no",
+  "product_company",
+  "raw_name",
+  "steel_grade",
+  "diameter",
+  "contract_no",
+  "standard"
+ ],
+ "fields": [
+  {
+   "fieldname": "heat_no",
+   "fieldtype": "Data",
+   "label": "Heat No",
+   "unique": 1
+  },
+  {
+   "fieldname": "product_company",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Product Company"
+  },
+  {
+   "fieldname": "raw_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Raw Name"
+  },
+  {
+   "fieldname": "steel_grade",
+   "fieldtype": "Data",
+   "label": "Steel Grade"
+  },
+  {
+   "fieldname": "diameter",
+   "fieldtype": "Int",
+   "label": "Diameter"
+  },
+  {
+   "fieldname": "contract_no",
+   "fieldtype": "Data",
+   "label": "Contract No"
+  },
+  {
+   "fieldname": "standard",
+   "fieldtype": "Data",
+   "label": "Standard"
+  }
+ ],
+ "hide_toolbar": 1,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-04-19 16:20:40",
+ "modified_by": "Administrator",
+ "module": "Raw Material Manage",
+ "name": "Heat No",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Stock User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

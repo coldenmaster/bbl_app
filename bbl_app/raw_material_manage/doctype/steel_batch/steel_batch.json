@@ -1,0 +1,257 @@
+{
+ "actions": [],
+ "autoname": "field:batch_no",
+ "creation": "2024-04-17 14:34:07",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "scan_barcode",
+  "column_break_wase",
+  "raw_code",
+  "section_break_pvin",
+  "batch_no",
+  "heat_no",
+  "raw_name",
+  "steel_grade",
+  "diameter",
+  "length",
+  "weight",
+  "steel_piece",
+  "length2",
+  "weight2",
+  "length3",
+  "weight3",
+  "column_break_musm",
+  "supplier",
+  "product_company",
+  "product_name",
+  "bundle_total",
+  "bundle_index",
+  "for_date",
+  "contract_no",
+  "standard",
+  "status"
+ ],
+ "fields": [
+  {
+   "fieldname": "batch_no",
+   "fieldtype": "Data",
+   "label": "Batch No",
+   "reqd": 1,
+   "set_only_once": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "heat_no",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Heat No",
+   "options": "Heat No",
+   "set_only_once": 1
+  },
+  {
+   "fetch_from": "heat_no.steel_grade",
+   "fetch_if_empty": 1,
+   "fieldname": "steel_grade",
+   "fieldtype": "Data",
+   "label": "Steel Grade"
+  },
+  {
+   "fetch_from": "heat_no.diameter",
+   "fetch_if_empty": 1,
+   "fieldname": "diameter",
+   "fieldtype": "Int",
+   "label": "Diameter",
+   "options": "Material Diameter"
+  },
+  {
+   "description": "\u6beb\u7c73",
+   "fieldname": "length",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Length",
+   "reqd": 1
+  },
+  {
+   "description": "\u5343\u514b",
+   "fieldname": "weight",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Weight",
+   "precision": "0",
+   "reqd": 1
+  },
+  {
+   "description": "\u6839",
+   "fieldname": "steel_piece",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Steel Piece",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_musm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "product_name",
+   "fieldtype": "Data",
+   "label": "Product Name"
+  },
+  {
+   "fieldname": "bundle_total",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Bundle Total"
+  },
+  {
+   "fieldname": "bundle_index",
+   "fieldtype": "Int",
+   "label": "Bundle Index"
+  },
+  {
+   "fieldname": "for_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "For Date"
+  },
+  {
+   "fetch_from": "heat_no.contract_no",
+   "fieldname": "contract_no",
+   "fieldtype": "Data",
+   "label": "Contract No"
+  },
+  {
+   "fetch_from": "heat_no.standard",
+   "fieldname": "standard",
+   "fieldtype": "Data",
+   "label": "Standard"
+  },
+  {
+   "fieldname": "section_break_pvin",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "heat_no.raw_name",
+   "fetch_if_empty": 1,
+   "fieldname": "raw_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Raw Name"
+  },
+  {
+   "fieldname": "scan_barcode",
+   "fieldtype": "Small Text",
+   "label": "Scan Barcode",
+   "options": "Barcode"
+  },
+  {
+   "fieldname": "raw_code",
+   "fieldtype": "Small Text",
+   "label": "Raw Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Data",
+   "label": "Supplier",
+   "options": "Supplier"
+  },
+  {
+   "fetch_from": "heat_no.product_company",
+   "fetch_if_empty": 1,
+   "fieldname": "product_company",
+   "fieldtype": "Data",
+   "label": "Product Company"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "\u5728\u5e93\n\u7528\u5b8c"
+  },
+  {
+   "fieldname": "column_break_wase",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "length2",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Length2"
+  },
+  {
+   "fieldname": "weight2",
+   "fieldtype": "Float",
+   "hidden": 1,
+   "label": "Weight2",
+   "precision": "0"
+  },
+  {
+   "fieldname": "length3",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Length3"
+  },
+  {
+   "fieldname": "weight3",
+   "fieldtype": "Float",
+   "hidden": 1,
+   "label": "Weight3",
+   "precision": "0"
+  }
+ ],
+ "hide_toolbar": 1,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-04-23 11:50:29",
+ "modified_by": "Administrator",
+ "module": "Raw Material Manage",
+ "name": "Steel Batch",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Stock Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

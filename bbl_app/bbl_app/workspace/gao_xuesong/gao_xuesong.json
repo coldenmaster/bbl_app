@@ -1,0 +1,94 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"RQx-i2dPp8\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>\u539f\u6750\u6599\u7ba1\u7406</b></span>\",\"col\":12}},{\"id\":\"_Id1kT7V_F\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Receipt\",\"col\":3}},{\"id\":\"bWP8vaucm5\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u6d4b\u8bd5</b></span>\",\"col\":12}},{\"id\":\"quplz0T9aR\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Steel Batch\",\"col\":3}},{\"id\":\"Eet8EMiazS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u65b0\u5efa\u94a2\u6750\u6279\u6b21\",\"col\":3}},{\"id\":\"z7-z2I9hUp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Heat No\",\"col\":3}},{\"id\":\"YIANqLdBZ_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u57fa\u7840\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"HUvPwSnDXp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"afXbNpFUHz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Batch\",\"col\":3}},{\"id\":\"oSjMRCkb3g\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Serial No\",\"col\":3}},{\"id\":\"nxg3EzDRis\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u5e8f\u5217\u53f7\u4e0e\u6279\u53f7\u7ec4\",\"col\":3}}]",
+ "creation": "2024-04-17 15:14:18",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "customer",
+ "idx": 0,
+ "indicator_color": "",
+ "is_hidden": 0,
+ "label": "Gao Xuesong",
+ "links": [],
+ "modified": "2024-04-23 10:26:13",
+ "modified_by": "Administrator",
+ "module": "Bbl App",
+ "name": "Gao Xuesong",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "Personal Workspace",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 38.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Steel Batch",
+   "link_to": "Steel Batch",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Batch",
+   "link_to": "Batch",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Purchase Receipt",
+   "link_to": "Purchase Receipt",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "\u5e8f\u5217\u53f7\u4e0e\u6279\u53f7\u7ec4",
+   "link_to": "Serial and Batch Bundle",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "New",
+   "format": "new",
+   "label": "\u65b0\u5efa\u94a2\u6750\u6279\u6b21",
+   "link_to": "Steel Batch",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Serial No",
+   "link_to": "Serial No",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Item",
+   "link_to": "Item",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Heat No",
+   "link_to": "Heat No",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "Gao Xuesong"
+}

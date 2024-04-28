@@ -1,0 +1,134 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:name1",
+ "creation": "2024-04-18 00:52:56",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "name1",
+  "latitude",
+  "longitude",
+  "altitude",
+  "accuracy",
+  "altitude_accuracy",
+  "heading",
+  "speed",
+  "timestamp",
+  "column_break_adon",
+  "new_location",
+  "latitude_sub",
+  "longitude_sub",
+  "distance"
+ ],
+ "fields": [
+  {
+   "fieldname": "latitude",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Latitude",
+   "precision": "8"
+  },
+  {
+   "fieldname": "longitude",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Longitude",
+   "precision": "8"
+  },
+  {
+   "fieldname": "accuracy",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Accuracy",
+   "precision": "6"
+  },
+  {
+   "fieldname": "altitude",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Altitude",
+   "precision": "6"
+  },
+  {
+   "fieldname": "altitude_accuracy",
+   "fieldtype": "Float",
+   "label": "Altitude Accuracy",
+   "precision": "6"
+  },
+  {
+   "fieldname": "heading",
+   "fieldtype": "Float",
+   "label": "Heading"
+  },
+  {
+   "fieldname": "speed",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Speed"
+  },
+  {
+   "fieldname": "timestamp",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Timestamp"
+  },
+  {
+   "fieldname": "column_break_adon",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "name1",
+   "fieldtype": "Data",
+   "label": "Name",
+   "unique": 1
+  },
+  {
+   "fieldname": "latitude_sub",
+   "fieldtype": "Float",
+   "label": "Latitude Sub",
+   "precision": "8"
+  },
+  {
+   "fieldname": "longitude_sub",
+   "fieldtype": "Float",
+   "label": "Longitude Sub",
+   "precision": "8"
+  },
+  {
+   "fieldname": "distance",
+   "fieldtype": "Float",
+   "label": "Distance"
+  },
+  {
+   "fieldname": "new_location",
+   "fieldtype": "Float",
+   "label": "New Location"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-04-18 02:11:10",
+ "modified_by": "Administrator",
+ "module": "Dev Test",
+ "name": "Bbl Location Point",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

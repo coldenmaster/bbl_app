@@ -4,3 +4,5 @@ Equipment Manage
 Custom Dev
 Forge
 Paint Shop
+Raw Material Manage
+Dev Test

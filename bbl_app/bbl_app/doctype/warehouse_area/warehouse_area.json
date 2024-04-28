@@ -1,0 +1,169 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "creation": "2024-04-23 13:22:02",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "disabled",
+  "area_name",
+  "section_break_xkwg",
+  "is_group",
+  "parent_warehouse",
+  "parent_warehouse_area",
+  "tree_detail_section",
+  "lft",
+  "rgt",
+  "old_parent"
+ ],
+ "fields": [
+  {
+   "default": "0",
+   "fieldname": "disabled",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "Disabled"
+  },
+  {
+   "fieldname": "area_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Area Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_xkwg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_group",
+   "fieldtype": "Check",
+   "label": "Is Group"
+  },
+  {
+   "bold": 1,
+   "fieldname": "parent_warehouse",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Parent Warehouse",
+   "options": "Warehouse",
+   "search_index": 1
+  },
+  {
+   "fieldname": "lft",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Left",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "rgt",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Right",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_group",
+   "fieldtype": "Check",
+   "label": "Is Group"
+  },
+  {
+   "fieldname": "old_parent",
+   "fieldtype": "Link",
+   "label": "Old Parent",
+   "options": "Warehouse Area"
+  },
+  {
+   "fieldname": "parent_warehouse_area",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Parent Warehouse Area",
+   "options": "Warehouse Area"
+  },
+  {
+   "fieldname": "tree_detail_section",
+   "fieldtype": "Section Break",
+   "label": "Tree Detail"
+  }
+ ],
+ "is_tree": 1,
+ "links": [],
+ "modified": "2024-04-23 14:07:49",
+ "modified_by": "Administrator",
+ "module": "Bbl App",
+ "name": "Warehouse Area",
+ "nsm_parent_field": "area_name",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Stock User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "show_name_in_global_search": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "area_name"
+}

@@ -167,3 +167,63 @@ Bbl Location,百兰定位,
 Location Name,位置名称,
 Coordinate,坐标,
 Mold Workshop,模具车间,
+
+Piece,件数,
+For Product,生产产品,
+Split,分割,
+
+Raw Material Manage,原材料管理,
+Steel Batch,钢材批次,
+Batch No,批次号,
+Steel Grade,钢材种类,
+Steel Piece,根数,
+Heat No,炉号,
+Bundle Total,捆总数,
+Bundle Index,捆序号,
+Contract No,合同号,
+Standard,标准,
+Scan Code,扫描码,
+Raw Name,原材料种类,
+Raw Code,原始码,
+Product Company,生产公司,
+
+Personal Workspace,个人工作区,
+Gao Xuesong,高雪松,
+
+Accuracy,位置精度,
+Altitude,海拔,
+Altitude Accuracy,海拔精度,
+Latitude Sub,纬度差,
+Longitude Sub,经度差,
+Bbl Location Point,百兰定位点,
+
+already exists,已经存在,
+Value missing for,缺少值在,
+Cannot find Item with this Barcode,不能找到此条码,
+Row #{0}: Qty increased by {1},行 #{0}: 数量 +{1},
+Row #{0}: Item added,行 #{0}: 新增物料,
+Row #{0}: Received Qty must be equal to Accepted + Rejected Qty for Item {1},行{0}: 物料 {1} 的收货数量必须 = 接受数量 + 拒绝数量,
+Mismatch,数据不符,
+No accounting entries for the following warehouses,此仓库无账户(或者无需记账),
+
+
+Length2,长度2,
+Length3,长度3,
+Weight2,重量2,
+Weight3,重量3,
+
+Tree Detail,树结构详情,
+Area Name,区域名称,
+Area Type,区域类型,
+Warehouse Area,库区,
+Parent Warehouse Area,父库区,
+
+Batch Nos,批次组号,
+Edit Full Form,全屏编辑,
+Scan Batch No,扫描批次码,
+Download CSV Template,下载CSV模板,
+Attach CSV File,上传CSV数据,
+via CSV File,通过CSV文件,
+
+
+
