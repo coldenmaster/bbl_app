@@ -20,4 +20,138 @@
 <script>
     var a = 1;
     var b = 2;
+    console.log(a + b);
+    console.log('-----------------');
+
+
+    setTimeout(function() {
+        console.log('setTimeout');
+    })
+     
+    new Promise(function(resolve) {
+        console.log('promise');
+        resolve(true)
+    }).then(function() {
+        console.log('then');
+    })
+     
+    console.log('console');
+     
+    // promise
+    // console
+    // then
+    // setTimeout
+
+
+    console.log('1');
+ 
+setTimeout(function() {
+    console.log('2');
+
+    new Promise(function(resolve) {
+        console.log('4');
+        resolve();
+    }).then(function() {
+        console.log('5')
+    })
+})
+
+new Promise(function(resolve) {
+    console.log('7');
+    resolve();
+}).then(function() {
+    console.log('8')
+})
+ 
+setTimeout(function() {
+    console.log('9');
+
+    new Promise(function(resolve) {
+        console.log('11');
+        resolve();
+    }).then(function() {
+        console.log('12')
+    })
+})
+
+function fn(str){
+    var p=new Promise(function(resolve,reject){
+        //处理异步任务
+        var flag=true;
+        setTimeout(function(){
+            if(flag){
+                resolve(str)
+            }
+            else{
+                reject('操作失败')
+            }
+        })
+    })
+    return p;
+}
+
+fn('武林要以和为贵')
+.then((data)=>{
+    console.log(data);
+    return fn('要讲武德');
+})
+.then((data)=>{
+    console.log(data);
+    return fn('不要搞窝里斗')
+})
+.then((data)=>{
+    console.log(data);
+})
+.catch((data)=>{
+    console.log(data);
+})
+
+ 
+async function fn2() {
+    var flag = true;
+    console.log("2b fn2 data");
+    if (flag) {
+        return '2b 不讲武德';
+    }
+    else{
+        throw '2b 处理失败'
+    }
+}
+fn2()
+.then(data=>{
+    console.log(data);
+})
+.catch(data=>{
+    console.log(data);
+})
+
+console.log('先执行我，表明async声明的函数是异步的');
+
+        //封装一个返回promise的异步任务
+        function fn(str) {
+            var p = new Promise(function (resolve, reject) {
+                var flag = true;
+                setTimeout(function () {
+                    if (flag) {
+                        resolve(str)
+                    } else {
+                        reject('处理失败')
+                    }
+                })
+            })
+            return p;
+        }
+
+        //封装一个执行上述异步任务的async函数
+        async function test(){
+            console.log("test 1234")
+            var res1=await fn('武林要以和为贵');  //await直接拿到fn()返回的promise的数据，并且赋值给res
+            var res2=await fn('要讲武德');
+            var res3=await fn('不要搞窝里斗');
+            console.log(res1,res2,res3);
+        }
+        //执行函数
+        test();
+
+// 1,7,6,8,2,4,3,5,9,11,10,12
 </script>

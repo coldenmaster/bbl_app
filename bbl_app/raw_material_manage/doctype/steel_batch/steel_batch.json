@@ -17,11 +17,17 @@
   "length",
   "weight",
   "steel_piece",
+  "remaining_piece",
   "length2",
+  "piece2",
   "weight2",
   "length3",
+  "piece3",
   "weight3",
   "column_break_musm",
+  "warehouse",
+  "warehouse_area",
+  "status",
   "supplier",
   "product_company",
   "product_name",
@@ -29,8 +35,7 @@
   "bundle_index",
   "for_date",
   "contract_no",
-  "standard",
-  "status"
+  "standard"
  ],
  "fields": [
   {
@@ -55,6 +60,7 @@
    "fetch_if_empty": 1,
    "fieldname": "steel_grade",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Steel Grade"
   },
   {
@@ -62,8 +68,8 @@
    "fetch_if_empty": 1,
    "fieldname": "diameter",
    "fieldtype": "Int",
-   "label": "Diameter",
-   "options": "Material Diameter"
+   "hidden": 1,
+   "label": "Diameter"
   },
   {
    "description": "\u6beb\u7c73",
@@ -121,12 +127,14 @@
    "fetch_from": "heat_no.contract_no",
    "fieldname": "contract_no",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Contract No"
   },
   {
    "fetch_from": "heat_no.standard",
    "fieldname": "standard",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Standard"
   },
   {
@@ -143,12 +151,14 @@
    "label": "Raw Name"
   },
   {
+   "depends_on": "eval:!!doc.__islocal",
    "fieldname": "scan_barcode",
    "fieldtype": "Small Text",
    "label": "Scan Barcode",
    "options": "Barcode"
   },
   {
+   "depends_on": "eval:!!doc.__islocal",
    "fieldname": "raw_code",
    "fieldtype": "Small Text",
    "label": "Raw Code",
@@ -157,8 +167,8 @@
   {
    "fieldname": "supplier",
    "fieldtype": "Data",
-   "label": "Supplier",
-   "options": "Supplier"
+   "hidden": 1,
+   "label": "Supplier"
   },
   {
    "fetch_from": "heat_no.product_company",
@@ -171,7 +181,7 @@
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "\u5728\u5e93\n\u7528\u5b8c"
+   "options": "\u672a\u5165\u5e93\n\u5df2\u5165\u5e93\n\u534a\u4f7f\u7528\n\u7528\u5b8c"
   },
   {
    "fieldname": "column_break_wase",
@@ -202,12 +212,46 @@
    "hidden": 1,
    "label": "Weight3",
    "precision": "0"
+  },
+  {
+   "fieldname": "warehouse_area",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Warehouse Area",
+   "options": "Warehouse Area",
+   "reqd": 1
+  },
+  {
+   "fieldname": "piece2",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Piece2"
+  },
+  {
+   "fieldname": "piece3",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Piece3"
+  },
+  {
+   "fieldname": "remaining_piece",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Remaining Piece",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "warehouse",
+   "fieldtype": "Link",
+   "label": "Warehouse",
+   "options": "Warehouse",
+   "reqd": 1
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-04-23 11:50:29",
+ "modified": "2024-05-03 17:28:49.211940",
  "modified_by": "Administrator",
  "module": "Raw Material Manage",
  "name": "Steel Batch",

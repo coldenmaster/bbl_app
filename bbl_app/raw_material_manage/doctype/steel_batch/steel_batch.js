@@ -7,7 +7,7 @@ frappe.ui.form.on("Steel Batch", {
         frm.add_custom_button(__('Length2'), () => {
             // frm.trigger("clearForm"); // 占位，手机段第一个显示不出来
             frappe.show_alert("占位，没有功能2")
-            frm.toggle_display(['length2', 'weight2', 'length3', 'weight3'], true);
+            frm.toggle_display(['length2', 'piece2', 'weight2', 'length3', 'piece3',  'weight3'], true);
             // frappe.new_doc("Steel Batch");
             
         })
@@ -62,26 +62,20 @@ frappe.ui.form.on("Steel Batch", {
         frappe.show_alert("保存成功,新建扫描表单")
     },
 
-    // field onChange
     scan_barcode(frm) {
         frm.trigger("parse_gangbang_code");
-        // parse_gangbang_code(frm);
 	},
 
-    heat_no(frm, a, b, c) {
+    heat_no(frm, a) {
         let hn = frm.doc.heat_no;
     },
 
-
-     
-    // length(frm) {
-    //     frappe.msgprint("长度: " + frm.doc.length);
-    // }
+    steel_piece(frm) {
+      frm.set_value("remaining_piece", frm.doc.steel_piece);
+    },
 
 
     parse_gangbang_code(frm) {
-        // console.log(frm)
-        // frm.trigger("clearForm");
         _clear_doc(frm);
         if (!frm.is_new()) {
             frappe.msgprint({
@@ -133,15 +127,20 @@ frappe.ui.form.on("Steel Batch", {
         frm.doc.raw_name = gangbang_info.steelGrade + "-" + frm.doc.diameter;
         frm.doc.length = parseInt(gangbang_info.length);
         frm.doc.weight = parseInt(gangbang_info.weight);
-        frm.doc.steel_piece = gangbang_info.bundleNum;
+        // frm.doc.steel_piece = gangbang_info.bundleNum;
+        frm.set_value("steel_piece", gangbang_info.bundleNum);
         frm.doc.for_date = gangbang_info.productDate;
         frm.doc.bundle_total = 0;
-        frm.doc.bundle_index = parseInt(gangbang_info.bundleIdx);
+        frm.doc.bundle_index = parseInt(gangbang_info.bundleIdx) || undefined;
         frm.doc.contract_no = gangbang_info.contractNo;
         frm.doc.standard = gangbang_info.standardNo;
+
     
         if (!(frm.doc.length > 0)) {
             frm.doc.length = undefined;
+        }
+        if (!(frm.doc.steel_piece > 0)) {
+            frm.doc.steel_piece = undefined;
         }
         frm.refresh();
 
