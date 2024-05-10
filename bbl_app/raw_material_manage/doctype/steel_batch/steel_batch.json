@@ -1,5 +1,7 @@
 {
  "actions": [],
+ "allow_events_in_timeline": 1,
+ "allow_import": 1,
  "autoname": "field:batch_no",
  "creation": "2024-04-17 14:34:07",
  "doctype": "DocType",
@@ -18,6 +20,7 @@
   "weight",
   "steel_piece",
   "remaining_piece",
+  "remaining_weight",
   "length2",
   "piece2",
   "weight2",
@@ -178,10 +181,14 @@
    "label": "Product Company"
   },
   {
+   "bold": 1,
    "fieldname": "status",
    "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Status",
-   "options": "\u672a\u5165\u5e93\n\u5df2\u5165\u5e93\n\u534a\u4f7f\u7528\n\u7528\u5b8c"
+   "no_copy": 1,
+   "options": "\u672a\u5165\u5e93\n\u5df2\u5165\u5e93\n\u534a\u51fa\u5e93\n\u51fa\u5b8c"
   },
   {
    "fieldname": "column_break_wase",
@@ -246,12 +253,18 @@
    "label": "Warehouse",
    "options": "Warehouse",
    "reqd": 1
+  },
+  {
+   "fieldname": "remaining_weight",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Remaining Weight",
+   "non_negative": 1
   }
  ],
- "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-03 17:28:49.211940",
+ "modified": "2024-05-10 09:26:00",
  "modified_by": "Administrator",
  "module": "Raw Material Manage",
  "name": "Steel Batch",
@@ -297,5 +310,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "track_changes": 1
 }

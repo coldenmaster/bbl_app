@@ -5,6 +5,8 @@ import wechat_work.utils
 from frappe import _
 from frappe.utils import get_fullname
 
+from bbl_api.utils import print_cyan, print_green
+
 
 def get_home_page(user):
     # print_green(f"get_home_page user: {user} role: {frappe.get_roles()}")
@@ -24,7 +26,7 @@ def after_insert_all(doc, method=None):
         doctype = doc  # assuming doctype name was passed directly
     else:
         doctype = doc.doctype
-    # print(f"after_insert_all {doctype}")
+    print_cyan(f"after_insert_all {doctype}")
     user = get_fullname()
     if doctype == "Mold":
         frappe.enqueue(wechat_work.utils.send_str_to_admin, queue='short', msg = f'{user}:新建模具成功')
@@ -32,9 +34,12 @@ def after_insert_all(doc, method=None):
         frappe.enqueue(wechat_work.utils.send_str_to_admin, queue='short', msg = f'{user}:新建下料重量成功')
     if doctype == "Forge Process Record":
         frappe.enqueue(wechat_work.utils.send_str_to_admin, queue='short', msg = f'{user}:新建锻造生产记录成功')
-    if doctype == "Paint Output":
-        frappe.enqueue(wechat_work.utils.send_str_to_admin, queue='short', msg = f'{user}:新建油漆产量')
-    if doctype == "Semi Output":
-        frappe.enqueue(wechat_work.utils.send_str_to_admin, queue='short', msg = f'{user}:新建半成品产量')
     if doctype == "Product Weight Paint":
         frappe.enqueue(wechat_work.utils.send_str_to_admin, queue='short', now=True, msg = f'{user}:新建成品重量')
+    # if doctype == "Paint Output":
+    #     frappe.enqueue(wechat_work.utils.send_str_to_admin, queue='short', msg = f'{user}:新建油漆产量')
+    if doctype == "Purchase Receipt":
+        print_cyan(f"查找采购收货单的submit {doctype}")
+
+def on_submit_purchase_receipt(doc, method=None):
+    print_cyan(f"hook 采购收货on_submit{ doc= }")

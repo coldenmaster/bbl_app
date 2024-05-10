@@ -50,10 +50,13 @@ frappe.ui.form.on("Steel Batch", {
                 }
             });
             d.show();
-        })
+        });
+        frm.add_custom_button('转库', () => {
+            trans_area(frm.doc);
+        });
 
         if (frm.is_new()) {
-        }
+        };
 
 	},
 
@@ -70,9 +73,9 @@ frappe.ui.form.on("Steel Batch", {
         let hn = frm.doc.heat_no;
     },
 
-    steel_piece(frm) {
-      frm.set_value("remaining_piece", frm.doc.steel_piece);
-    },
+    // steel_piece(frm) {
+    //   frm.set_value("remaining_piece", frm.doc.steel_piece);
+    // },
 
 
     parse_gangbang_code(frm) {
@@ -431,3 +434,60 @@ var GangbangParse = {
 String.prototype.replaceAll = function(s1,s2){
     return this.replace(new RegExp(s1,"gm"),s2);
 }
+
+
+function trans_area(doc) {
+    console.log("trans_area arg1:", doc);
+    let d = new frappe.ui.Dialog({
+        title: '原钢转库',
+        fields: [
+            {
+                "fieldname": "name",
+                "label": "捆号",
+                "fieldtype": "Data",
+                "default": doc.name,
+                "read_only": 1,
+            },
+            {
+                "fieldname": "warehouse_area",
+                "label": "转出库区",
+                "fieldtype": "Link",
+                "options": "Warehouse Area",
+                "default": doc.warehouse_area,
+                "read_only": 1,
+            },
+            {
+                "fieldname": "warehouse_area",
+                "label": "转入库区",
+                "fieldtype": "Link",
+                "options": "Warehouse Area",
+                "reqd": 1
+            }
+        ],
+        size: 'small',
+        primary_action_label: '确定',
+        primary_action(values) {
+            d.hide();
+            if (doc.warehouse_area === values.warehouse_area) {
+                frappe.msgprint({ "title": "提示", message: "转入库区错误", "indicator": "red" });
+            } else {
+                frappe.show_progress('Loading..', 0, 100, '转库...');
+                into_area(doc, values.warehouse_area);
+            }
+        }
+    })
+    d.show();
+};
+
+function into_area(doc, new_area) {
+    frappe.db.set_value("Steel Batch", doc.name, "warehouse_area", new_area,
+        (res) => {
+            doc.warehouse_area = new_area;
+            cur_frm.refresh_field("warehouse_area");
+            console.log(cur_frm);
+            frappe.show_progress('Loading..', 100, 100, '转库中...', true);
+        }
+    );
+
+};
+

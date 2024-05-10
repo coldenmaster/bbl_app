@@ -65,6 +65,10 @@ on_login = "bbl_app.func.on_login"
 doc_events = {
     "*": {
         "after_insert": "bbl_app.func.after_insert_all",
+    },
+    "Purchase Receipt": {
+        # 没有此hook，只能针对于  CRUD events 
+        "on_submit": "bbl_app.func.on_submit_purchase_receipt",
     }
 }
 

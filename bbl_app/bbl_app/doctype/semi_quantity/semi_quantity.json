@@ -8,8 +8,9 @@
   "semi_product_name",
   "quantity",
   "junk_quantity",
-  "employee",
   "production_line",
+  "raw_heat_no",
+  "employee",
   "product_note"
  ],
  "fields": [
@@ -50,12 +51,18 @@
    "fieldtype": "Link",
    "label": "Production Line",
    "options": "Production Line"
+  },
+  {
+   "fieldname": "raw_heat_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Raw Heat No"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-02-29 15:23:04.565736",
+ "modified": "2024-05-10 10:52:44",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Semi Quantity",
