@@ -127,9 +127,9 @@ frappe.ui.form.on("Steel Batch", {
         frm.doc.product_company = gangbang_info.company;
         frm.doc.batch_no = gangbang_info.bundleNo;
         frm.doc.heat_no = gangbang_info.heatNo;
-        frm.doc.steel_grade = gangbang_info.steelGrade;
+        frm.doc.steel_grade = gangbang_info.steelGrade.trim();
         frm.doc.diameter = parseInt(gangbang_info.diaSize);
-        frm.doc.raw_name = gangbang_info.steelGrade + "-" + frm.doc.diameter;
+        frm.doc.raw_name = frm.doc.steel_grade + "-" + frm.doc.diameter;
         frm.doc.length = parseInt(gangbang_info.length);
         frm.doc.weight = parseInt(gangbang_info.weight);
         // frm.doc.steel_piece = gangbang_info.bundleNum;
@@ -350,6 +350,8 @@ var GangbangParse = {
             return false;
         }
         qrcodeStr = qrcodeStr.replaceAll("\\(L\\)", "");
+        qrcodeStr = qrcodeStr.replaceAll("，", " ");
+
         let matchKeys = ["湖南华菱", "产品名称", "牌号", "技术标准", "材料号", "规格(Φ)", "定尺长度", "支数", "重量",
             "炉号", "许可证", "合同号", "制造厂", "生产日期"];
         let keys = ["company", "productName", "steelGrade", "standardNo", "bundleNo", "diaSize", "length", "bundleNum", "weight",

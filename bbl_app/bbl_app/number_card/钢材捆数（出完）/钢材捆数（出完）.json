@@ -1,0 +1,23 @@
+{
+ "aggregate_function_based_on": "weight",
+ "color": "#7d7d7d",
+ "creation": "2024-05-11 16:01:07",
+ "docstatus": 0,
+ "doctype": "Number Card",
+ "document_type": "Steel Batch",
+ "filters_json": "[[\"Steel Batch\",\"status\",\"=\",\"\u51fa\u5b8c\",false]]",
+ "function": "Count",
+ "idx": 0,
+ "is_public": 1,
+ "is_standard": 1,
+ "label": "\u94a2\u6750\u6346\u6570\uff08\u51fa\u5b8c\uff09",
+ "modified": "2024-05-11 18:33:31",
+ "modified_by": "Administrator",
+ "module": "Bbl App",
+ "name": "\u94a2\u6750\u6346\u6570\uff08\u51fa\u5b8c\uff09",
+ "owner": "Administrator",
+ "report_function": "Sum",
+ "show_percentage_stats": 1,
+ "stats_time_interval": "Daily",
+ "type": "Document Type"
+}
