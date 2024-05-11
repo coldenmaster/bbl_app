@@ -4,31 +4,33 @@
 frappe.ui.form.on("Steel Batch", {
 	refresh(frm) {
 
+        frm.doc.show2 = 0;
         frm.add_custom_button(__('Length2'), () => {
             // frm.trigger("clearForm"); // 占位，手机段第一个显示不出来
-            frappe.show_alert("占位，没有功能2")
-            frm.toggle_display(['length2', 'piece2', 'weight2', 'length3', 'piece3',  'weight3'], true);
+            frappe.show_alert("显示 长度3 ...")
+            frm.doc.show2 = 1;
+            frm.toggle_display(['length2', 'piece2', 'length3', 'piece3'], true);
             // frappe.new_doc("Steel Batch");
             
         })
 
-        frm.add_custom_button('扫码', () => {
-            new frappe.ui.Scanner({
-                dialog: true, // open camera scanner in a dialog
-                multiple: false, // stop after scanning one value
-                on_scan(data) {
-                //   parse_gangbang_code(frm, data);
-                    frm.doc.scan_barcode = data.decodedText;
-                    frm.trigger("scan_barcode");
-                    frm.refresh();
-                }
-              });
-        })
-        frm.add_custom_button('清除', () => {
-            // frm.trigger("clearForm");
-            _clear_doc(frm);
-            frm.refresh();
-        })
+        // frm.add_custom_button('扫码', () => {
+        //     new frappe.ui.Scanner({
+        //         dialog: true, // open camera scanner in a dialog
+        //         multiple: false, // stop after scanning one value
+        //         on_scan(data) {
+        //         //   parse_gangbang_code(frm, data);
+        //             frm.doc.scan_barcode = data.decodedText;
+        //             frm.trigger("scan_barcode");
+        //             frm.refresh();
+        //         }
+        //       });
+        // })
+        // frm.add_custom_button('清除', () => {
+        //     // frm.trigger("clearForm");
+        //     _clear_doc(frm);
+        //     frm.refresh();
+        // })
 
         frm.add_custom_button('设置炉号', () => {
             let d = new frappe.ui.Dialog({
@@ -132,7 +134,8 @@ frappe.ui.form.on("Steel Batch", {
         frm.doc.weight = parseInt(gangbang_info.weight);
         // frm.doc.steel_piece = gangbang_info.bundleNum;
         frm.set_value("steel_piece", gangbang_info.bundleNum);
-        frm.doc.for_date = gangbang_info.productDate;
+        frm.doc.batch_date = gangbang_info.productDate;
+        frm.doc.for_date = frappe.datetime.now_date();
         frm.doc.bundle_total = 0;
         frm.doc.bundle_index = parseInt(gangbang_info.bundleIdx) || undefined;
         frm.doc.contract_no = gangbang_info.contractNo;

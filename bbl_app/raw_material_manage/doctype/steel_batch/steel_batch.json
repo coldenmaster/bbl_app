@@ -31,12 +31,15 @@
   "warehouse",
   "warehouse_area",
   "status",
+  "semi_product",
+  "material_ratio",
   "supplier",
   "product_company",
   "product_name",
   "bundle_total",
   "bundle_index",
   "for_date",
+  "batch_date",
   "contract_no",
   "standard"
  ],
@@ -107,15 +110,17 @@
   {
    "fieldname": "product_name",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Product Name"
   },
   {
+   "depends_on": "bundle_total",
    "fieldname": "bundle_total",
    "fieldtype": "Int",
-   "hidden": 1,
    "label": "Bundle Total"
   },
   {
+   "depends_on": "bundle_Index",
    "fieldname": "bundle_index",
    "fieldtype": "Int",
    "label": "Bundle Index"
@@ -195,12 +200,13 @@
    "fieldtype": "Column Break"
   },
   {
+   "depends_on": "eval: doc.length2 || doc.show2;",
    "fieldname": "length2",
    "fieldtype": "Int",
-   "hidden": 1,
    "label": "Length2"
   },
   {
+   "depends_on": "eval:doc.weight2 || doc.show2;",
    "fieldname": "weight2",
    "fieldtype": "Float",
    "hidden": 1,
@@ -208,12 +214,13 @@
    "precision": "0"
   },
   {
+   "depends_on": "eval:doc.length3 || doc.show2;",
    "fieldname": "length3",
    "fieldtype": "Int",
-   "hidden": 1,
    "label": "Length3"
   },
   {
+   "depends_on": "eval:doc.weight3 || doc.show2;",
    "fieldname": "weight3",
    "fieldtype": "Float",
    "hidden": 1,
@@ -229,18 +236,19 @@
    "reqd": 1
   },
   {
+   "depends_on": "eval:doc.piece2 || doc.show2;",
    "fieldname": "piece2",
    "fieldtype": "Int",
-   "hidden": 1,
    "label": "Piece2"
   },
   {
+   "depends_on": "eval:doc.piece3 || doc.show2;",
    "fieldname": "piece3",
    "fieldtype": "Int",
-   "hidden": 1,
    "label": "Piece3"
   },
   {
+   "depends_on": "remaining_piece",
    "fieldname": "remaining_piece",
    "fieldtype": "Int",
    "in_list_view": 1,
@@ -255,16 +263,35 @@
    "reqd": 1
   },
   {
+   "depends_on": "remaining_weight",
    "fieldname": "remaining_weight",
    "fieldtype": "Int",
    "in_list_view": 1,
    "label": "Remaining Weight",
    "non_negative": 1
+  },
+  {
+   "fieldname": "batch_date",
+   "fieldtype": "Date",
+   "hidden": 1,
+   "label": "Batch Date"
+  },
+  {
+   "fieldname": "semi_product",
+   "fieldtype": "Link",
+   "label": "Semi Product",
+   "options": "Semi Product"
+  },
+  {
+   "fetch_from": "semi_product.material_ratio",
+   "fieldname": "material_ratio",
+   "fieldtype": "Data",
+   "label": "Material Ratio"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-10 09:26:00",
+ "modified": "2024-05-11 09:43:42",
  "modified_by": "Administrator",
  "module": "Raw Material Manage",
  "name": "Steel Batch",
