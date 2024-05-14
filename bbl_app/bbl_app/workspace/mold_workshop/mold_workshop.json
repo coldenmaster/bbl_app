@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Mold Workshop",
  "links": [],
- "modified": "2024-03-14 12:09:45.354010",
+ "modified": "2024-05-14 11:09:34",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Mold Workshop",
@@ -30,7 +30,7 @@
    "role": "Manufacturing Manager"
   }
  ],
- "sequence_id": 35.3,
+ "sequence_id": 39.0,
  "shortcuts": [
   {
    "color": "Blue",

@@ -20,8 +20,6 @@ class SteelBatch(Document):
         self.create_sabb()
         
     
-    
-    
     """
         这个自动创建功能现在是测试，
         关系太多，可能应该使用时手动建立
@@ -30,7 +28,6 @@ class SteelBatch(Document):
     def create_sabb(self):
         # print_green('steel create_sabb')
         sabb_no = 'YGRK-' + self.batch_no
-        # 1.检查是否有此炉号，没有则新建
         if (not frappe.db.exists('Serial and Batch Bundle', sabb_no)):
             print("新建SABB")
             sabb_doc = frappe.get_doc({

@@ -1,0 +1,30 @@
+{
+ "add_total_row": 1,
+ "columns": [
+  {
+   "fieldname": "col_1",
+   "fieldtype": "Float",
+   "label": "\u52171",
+   "options": "abc",
+   "width": 30
+  }
+ ],
+ "creation": "2024-05-13 18:34:40",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letterhead": null,
+ "modified": "2024-05-13 18:36:51",
+ "modified_by": "Administrator",
+ "module": "Bbl App",
+ "name": "\u539f\u6750\u6599_\u6570\u5b57\u677f_\u88681",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Steel Batch",
+ "report_name": "\u539f\u6750\u6599_\u6570\u5b57\u677f_\u88681",
+ "report_type": "Script Report",
+ "roles": []
+}

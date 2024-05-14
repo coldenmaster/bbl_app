@@ -1,0 +1,33 @@
+{
+ "add_total_row": 1,
+ "columns": [],
+ "creation": "2024-05-14 08:47:10",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "json": "{\"filters\":[[\"Steel Batch\",\"status\",\"!=\",\"\u51fa\u5b8c\",false]],\"fields\":[[\"warehouse_area\",\"Steel Batch\"],[\"_aggregate_column\",\"Steel Batch\"]],\"order_by\":\"`tabSteel Batch`.`warehouse_area` desc\",\"add_totals_row\":true,\"page_length\":100,\"column_widths\":{\"warehouse_area\":79,\"_aggregate_column\":103},\"group_by\":{\"group_by\":\"`tabSteel Batch`.`warehouse_area`\",\"aggregate_function\":\"count\",\"aggregate_on\":\"`tabnull`.`null`\"}}",
+ "letterhead": null,
+ "modified": "2024-05-14 11:12:24",
+ "modified_by": "Administrator",
+ "module": "Bbl App",
+ "name": "\u5e93\u533a\u6346\u6570\u8868",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Steel Batch",
+ "report_name": "\u5e93\u533a\u6346\u6570\u8868",
+ "report_type": "Report Builder",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Manufacturing User"
+  },
+  {
+   "role": "Stock Manager"
+  }
+ ]
+}

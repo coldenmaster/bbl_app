@@ -1,0 +1,49 @@
+{
+ "charts": [
+  {
+   "chart_name": "\u5e93\u533a\u6346\u6570",
+   "label": "\u5e93\u533a/\u6346\u6570"
+  },
+  {
+   "chart_name": "\u539f\u6750\u6599\u7089\u53f7",
+   "label": "\u7089\u53f7/\u6839\u6570"
+  }
+ ],
+ "content": "[{\"id\":\"RQx-i2dPp8\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>\u539f\u6750\u6599\u56fe\u8868</b></span>\",\"col\":12}},{\"id\":\"UDf4S7JYzI\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Steel Batch\",\"col\":4}},{\"id\":\"hThrBw3PQz\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"\u91c7\u8d2d\u5165\u5e93\",\"col\":4}},{\"id\":\"WXOy7cjhzm\",\"type\":\"chart\",\"data\":{\"chart_name\":\"\u5e93\u533a/\u6346\u6570\",\"col\":12}},{\"id\":\"yfz2W0wYhi\",\"type\":\"chart\",\"data\":{\"chart_name\":\"\u7089\u53f7/\u6839\u6570\",\"col\":12}}]",
+ "creation": "2024-05-14 11:08:57",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "customer",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "\u539f\u6750\u6599\u56fe\u8868",
+ "links": [],
+ "modified": "2024-05-14 11:31:32",
+ "modified_by": "Administrator",
+ "module": "Bbl App",
+ "name": "\u539f\u6750\u6599\u56fe\u8868",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "Personal Workspace",
+ "public": 1,
+ "quick_lists": [
+  {
+   "document_type": "Steel Batch",
+   "label": "Steel Batch",
+   "quick_list_filter": "[[\"Steel Batch\",\"status\",\"!=\",\"\u51fa\u5b8c\",false]]"
+  },
+  {
+   "document_type": "Purchase Receipt",
+   "label": "\u91c7\u8d2d\u5165\u5e93",
+   "quick_list_filter": "[]"
+  }
+ ],
+ "roles": [],
+ "sequence_id": 43.0,
+ "shortcuts": [],
+ "title": "\u539f\u6750\u6599\u56fe\u8868"
+}

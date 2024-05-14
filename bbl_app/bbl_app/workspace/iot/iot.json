@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Iot",
  "links": [],
- "modified": "2024-04-18 02:24:46",
+ "modified": "2024-05-14 11:09:34",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Iot",
@@ -30,7 +30,7 @@
    "role": "Desk User"
   }
  ],
- "sequence_id": 36.0,
+ "sequence_id": 40.0,
  "shortcuts": [
   {
    "color": "Green",

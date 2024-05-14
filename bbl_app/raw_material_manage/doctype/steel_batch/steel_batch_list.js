@@ -38,10 +38,9 @@ frappe.listview_settings["Steel Batch"] = {
                 console.log(items);
                 trans_area(items[0]);
             } else if (items.length === 0) {
-                frappe.msgprint("请选择要转库的批次");
-                
+                frappe.msgprint( { "title": "提示", message: "请选择要转库的批次", "indicator": "red" });
             } else {
-                frappe.msgprint("只能选择一个批次");
+                frappe.msgprint( { "title": "提示", message: "只能选择一个批次", "indicator": "red" });
             }
             
         });
@@ -52,30 +51,56 @@ frappe.listview_settings["Steel Batch"] = {
 		// });
 
         page.add_inner_button('采购入库', () => {
-            listview.page.set_indicator('指示2', 'orange');
             let items2 = listview.get_checked_items();
+            items2 = items2.filter(item => item.status === "未入库");
+            if (items2.length === 0) {
+                frappe.msgprint( { "title": "提示", message: "请选择'未入库'批次", "indicator": "red" });
+                return
+            }
+            listview.page.set_indicator('采购入库', 'green');
             frappe.new_doc("Purchase Receipt", null).then(() => {
                 doc2 = cur_frm.doc;
                 cur_frm.clear_table("items");
                 for (let i in items2){
-                    if (items2[i].status === "未入库") {
                         child = frappe.model.add_child(doc2, "items");
                         child.item_group = "原材料";
                         // frappe.model.set_value(child.doctype, child.name, "item_code", items2[i].raw_name);
                         frappe.model.set_value(child.doctype, child.name, "serial_and_batch_bundle",  "YGRK-" + items2[i].name);
-                    }
                 }
+            });
+        });
+        page.change_inner_button_type('采购入库', null, 'warning');
+
+
+        page.add_inner_button('调拨出库', () => {
+            let items2 = listview.get_checked_items();
+            items2 = items2.filter(item => item.status === "已入库" || item.status === "半出库");
+            // console.log(items2)
+            if (items2.length === 0) {
+                frappe.msgprint( { "title": "提示", message: "请选择'在库'批次", "indicator": "red" });
+                return
+            } else if (items2.length !== 1) {
+                frappe.msgprint( { "title": "提示", message: "暂时只支持单批次调拨", "indicator": "red" });
+                return
+            }
+            listview.page.set_indicator('调拨出库', 'blue');
+            // todo 这里根据items信息，做出库批次相关的准备单据
+            frappe.new_doc("Stock Entry", null).then(() => {
+                parent_doc = cur_frm.doc;
+                // frappe.model.set_value(parent_doc.doctype, parent_doc.name, "purpose", "销售");
+                cur_frm.set_value("stock_entry_type", "原钢调拨出库");
+                cur_frm.set_value("to_warehouse", "原钢平仓库 - 百兰");
+                cur_frm.clear_table("items");
+                child = frappe.model.add_child(parent_doc, "items");
+                child.item_group = "原材料";
+                frappe.model.set_value(child.doctype, child.name, "item_code", items2[0].raw_name);
+                // setTimeout(() => {
+                // }, 1500)
 
             });
 
         });
-
-        page.change_inner_button_type('采购入库', null, 'warning');
-        page.add_inner_button('出库', () => {
-            me.func1();
-            listview.page.set_indicator('指示3', 'green')
-        });
-        page.change_inner_button_type('出库', null, 'success');
+        page.change_inner_button_type('调拨出库', null, 'success');
   
 
         // let field = page.add_field({
@@ -121,6 +146,7 @@ frappe.listview_settings["Steel Batch"] = {
     // has_indicator_for_draft: false,
 
     // add a custom button for each row
+    
     button: {
         show(doc) {
             return doc.status === "已入库" || doc.status === "半出库" || doc.status === "未入库";
@@ -146,6 +172,7 @@ frappe.listview_settings["Steel Batch"] = {
             }
         }
     },
+   
     // format how a field value is shown
     // formatters: {
     //     title(val) {
@@ -156,6 +183,11 @@ frappe.listview_settings["Steel Batch"] = {
     //     }
     // }
 };
+
+
+function one_batch_out(doc) {
+    /* todo 单捆补充所需的单据直接进行‘物料移动’ */
+}
 
 function trans_area(doc) {
     console.log("trans_area arg1:", doc);
