@@ -103,6 +103,44 @@ frappe.listview_settings["Steel Batch"] = {
         page.change_inner_button_type('调拨出库', null, 'success');
   
 
+        page.add_inner_button('出库2', () => {
+            let items2 = listview.get_checked_items();
+            items2 = items2.filter(item => item.status === "已入库" || item.status === "半出库");
+            // console.log(items2)
+            if (items2.length === 0) {
+                frappe.msgprint( { "title": "提示", message: "请选择'在库'批次", "indicator": "red" });
+                return
+            } else if (items2.length !== 1) {
+                frappe.msgprint( { "title": "提示", message: "只支持单批出库", "indicator": "red" });
+                return
+            }
+            listview.page.set_indicator('出库2', 'blue');
+            // todo 这里根据items信息，做dialog，收集出库相关的信息：
+            
+            /*
+                1.批次号
+                2.出库长度1，2，3，根数1，2，3
+                3.出库总重量（辅助计算） 
+             */
+            out_2(items2[0]);
+            // frappe.new_doc("Stock Entry", null).then(() => {
+            //     parent_doc = cur_frm.doc;
+            //     // frappe.model.set_value(parent_doc.doctype, parent_doc.name, "purpose", "销售");
+            //     cur_frm.set_value("stock_entry_type", "原钢调拨出库");
+            //     cur_frm.set_value("to_warehouse", "原钢平仓库 - 百兰");
+            //     cur_frm.clear_table("items");
+            //     child = frappe.model.add_child(parent_doc, "items");
+            //     child.item_group = "原材料";
+            //     frappe.model.set_value(child.doctype, child.name, "item_code", items2[0].raw_name);
+            //     // setTimeout(() => {
+            //     // }, 1500)
+
+            // });
+
+        });
+        // page.change_inner_button_type('出库2', null, 'warning');
+  
+
         // let field = page.add_field({
         //     label: '甜甜',
         //     fieldtype: 'Select',
@@ -226,6 +264,60 @@ function trans_area(doc) {
             } else {
                 frappe.show_progress('Loading..', 0, 100, '转库...');
                 into_area(doc, values.warehouse_area);
+            }
+        }
+    })
+    d.show();
+};
+
+function out_2(doc) {
+    frappe.db.get_doc("Steel Batch", doc.name).then(d => {
+        console.log("d", d);
+        out_3(d);
+    })
+}
+
+function out_3(doc) {
+    console.log("out_2 arg1:", doc);
+    let d = new frappe.ui.Dialog({
+        title: '出库:' + doc.name.bold(),
+        fields: [
+            {
+                "fieldname": "weight",
+                // "label": "出库重量" + String(doc.remaining_weight).bold() + "kg",
+                "label": "出库重量(kg):" + String(doc.weight).bold(),
+                "fieldtype": "Float",
+                "default": doc.weight,
+                "reqd": 1
+            },
+            {
+                "fieldname": "steel_piece",
+                "label": "长度1(根)：" + String(doc.length).bold() + "mm",
+                "fieldtype": "Int",
+                "default": doc.steel_piece,
+            },
+            {
+                "fieldname": "piece2",
+                "label": "长度2(根)：" + String(doc.length2).bold() + "mm",
+                "fieldtype": "Int",
+                "default": doc.piece2,
+            },
+            {
+                "fieldname": "piece3",
+                "label": "长度3(根)：" + String(doc.length3).bold() + "mm",
+                "fieldtype": "Int",
+                "default": doc.piece3,
+            },
+        ],
+        size: 'small',
+        primary_action_label: '确定',
+        primary_action(values) {
+            d.hide();
+            if (doc.warehouse_area === values.warehouse_area) {
+                frappe.msgprint({ "title": "提示", message: "错误", "indicator": "red" });
+            } else {
+                frappe.show_progress('Loading..', 0, 100, '出库...');
+                // into_area(doc, values.warehouse_area);
             }
         }
     })

@@ -41,7 +41,8 @@
   "for_date",
   "batch_date",
   "contract_no",
-  "standard"
+  "standard",
+  "hand_in"
  ],
  "fields": [
   {
@@ -167,7 +168,7 @@
    "options": "Barcode"
   },
   {
-   "depends_on": "eval:!!doc.__islocal",
+   "depends_on": "eval:!!doc.__islocal || doc.show3;",
    "fieldname": "raw_code",
    "fieldtype": "Small Text",
    "label": "Raw Code",
@@ -289,11 +290,18 @@
    "fieldname": "material_ratio",
    "fieldtype": "Data",
    "label": "Material Ratio"
+  },
+  {
+   "default": "0",
+   "fieldname": "hand_in",
+   "fieldtype": "Check",
+   "label": "Hand In",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-16 07:50:31",
+ "modified": "2024-05-16 15:08:14",
  "modified_by": "Administrator",
  "module": "Raw Material Manage",
  "name": "Steel Batch",

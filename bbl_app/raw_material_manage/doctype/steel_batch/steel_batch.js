@@ -2,9 +2,16 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on("Steel Batch", {
+    before_submit: function (frm) {
+        console.log("SB before_submit");
+    },
+    on_submit: function (frm) {
+        console.log("SB on_submit");
+    },
 	refresh(frm) {
 
         frm.doc.show2 = 0;
+        frm.doc.show3 = 0;
         frm.add_custom_button(__('Length2'), () => {
             // frm.trigger("clearForm"); // 占位，手机段第一个显示不出来
             frappe.show_alert("显示 长度3 ...")
@@ -56,6 +63,10 @@ frappe.ui.form.on("Steel Batch", {
         frm.add_custom_button('转库', () => {
             trans_area(frm.doc);
         });
+        frm.add_custom_button("显示条码", () => {
+            frm.doc.show3 = 1;
+            frm.toggle_display(['raw_code',], true);
+        });
 
         if (frm.is_new()) {
         };
@@ -67,7 +78,14 @@ frappe.ui.form.on("Steel Batch", {
         frappe.show_alert("保存成功,新建扫描表单")
     },
 
+    batch_no(frm) {
+        if (!frm.doc.raw_code) {
+            frm.set_value("hand_in", true);
+        }
+    },
+
     scan_barcode(frm) {
+        frm.set_value("hand_in", false);
         frm.trigger("parse_gangbang_code");
 	},
 
@@ -120,6 +138,9 @@ frappe.ui.form.on("Steel Batch", {
             }, 5);
             frm.focus_on_first_input();
             frappe.utils.play_sound('error');
+            setTimeout(() => {
+                frm.doc.raw_code = "";
+            }, 2000);
             return;
         }
     
