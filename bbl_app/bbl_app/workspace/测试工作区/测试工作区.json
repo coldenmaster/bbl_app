@@ -1,11 +1,6 @@
 {
- "charts": [
-  {
-   "chart_name": "\u539f\u6750\u6599\u7089\u53f7",
-   "label": "\u6e29\u5ea6\u66f2\u7ebf"
-  }
- ],
- "content": "[{\"id\":\"oNs5CbT9H7\",\"type\":\"chart\",\"data\":{\"chart_name\":\"\u6e29\u5ea6\u66f2\u7ebf\",\"col\":6}},{\"id\":\"UDf4S7JYzI\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Steel Batch\",\"col\":4}},{\"id\":\"RQx-i2dPp8\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>\u539f\u6750\u6599\u7ba1\u7406</b></span>\",\"col\":12}},{\"id\":\"_Id1kT7V_F\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Receipt\",\"col\":3}},{\"id\":\"v6S_dfvR7K\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Entry\",\"col\":3}},{\"id\":\"bWP8vaucm5\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u6d4b\u8bd5</b></span>\",\"col\":12}},{\"id\":\"quplz0T9aR\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u539f\u6750\u6599\u4ed3\u5e93\u7ba1\u7406\",\"col\":3}},{\"id\":\"Eet8EMiazS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u65b0\u5efa\u94a2\u6750\u6279\u6b21\",\"col\":3}},{\"id\":\"z7-z2I9hUp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Heat No\",\"col\":3}},{\"id\":\"XB727UTqvX\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Warehouse Area\",\"col\":3}},{\"id\":\"YIANqLdBZ_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u57fa\u7840\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"HUvPwSnDXp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"afXbNpFUHz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Batch\",\"col\":3}},{\"id\":\"oSjMRCkb3g\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Serial No\",\"col\":3}},{\"id\":\"nxg3EzDRis\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u5e8f\u5217\u53f7\u4e0e\u6279\u53f7\u7ec4\",\"col\":3}}]",
+ "charts": [],
+ "content": "[{\"id\":\"RQx-i2dPp8\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>\u539f\u6750\u6599\u7ba1\u7406</b></span>\",\"col\":12}},{\"id\":\"_Id1kT7V_F\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Receipt\",\"col\":3}},{\"id\":\"v6S_dfvR7K\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Entry\",\"col\":3}},{\"id\":\"bWP8vaucm5\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u6d4b\u8bd5</b></span>\",\"col\":12}},{\"id\":\"quplz0T9aR\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u539f\u6750\u6599\u4ed3\u5e93\u7ba1\u7406\",\"col\":3}},{\"id\":\"Eet8EMiazS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u65b0\u5efa\u94a2\u6750\u6279\u6b21\",\"col\":3}},{\"id\":\"z7-z2I9hUp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Heat No\",\"col\":3}},{\"id\":\"XB727UTqvX\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Warehouse Area\",\"col\":3}},{\"id\":\"YIANqLdBZ_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u57fa\u7840\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"HUvPwSnDXp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"afXbNpFUHz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Batch\",\"col\":3}},{\"id\":\"oSjMRCkb3g\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Serial No\",\"col\":3}},{\"id\":\"nxg3EzDRis\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u5e8f\u5217\u53f7\u4e0e\u6279\u53f7\u7ec4\",\"col\":3}}]",
  "creation": "2024-05-11 16:23:03",
  "custom_blocks": [],
  "docstatus": 0,
@@ -18,7 +13,7 @@
  "is_hidden": 0,
  "label": "\u6d4b\u8bd5\u5de5\u4f5c\u533a",
  "links": [],
- "modified": "2024-05-15 14:20:03",
+ "modified": "2024-05-16 14:26:53",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "\u6d4b\u8bd5\u5de5\u4f5c\u533a",
@@ -26,13 +21,7 @@
  "owner": "Administrator",
  "parent_page": "Personal Workspace",
  "public": 1,
- "quick_lists": [
-  {
-   "document_type": "Steel Batch",
-   "label": "Steel Batch",
-   "quick_list_filter": "[[\"Steel Batch\",\"status\",\"!=\",\"\u51fa\u5b8c\",false]]"
-  }
- ],
+ "quick_lists": [],
  "roles": [],
  "sequence_id": 4.0,
  "shortcuts": [

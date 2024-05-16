@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"9H0V6R2rFF\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"\u94a2\u6750\u603b\u5428\u6570\uff08\u5728\u5e93\uff09\",\"col\":3}},{\"id\":\"iZFvBNJqrm\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"\u94a2\u6750\u6346\u6570\uff08\u672a\u5165\u5e93\uff09\",\"col\":3}},{\"id\":\"b_KqpVzVxj\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"\u94a2\u6750\u6346\u6570\uff08\u5728\u5e93\uff09\",\"col\":3}},{\"id\":\"1s08kC2EAL\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"\u94a2\u6750\u6346\u6570\uff08\u51fa\u5b8c\uff09\",\"col\":3}},{\"id\":\"RQx-i2dPp8\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>\u539f\u6750\u6599\u7ba1\u7406</b></span>\",\"col\":12}},{\"id\":\"Eet8EMiazS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u65b0\u5efa\u94a2\u6750\u6279\u6b21\",\"col\":3}},{\"id\":\"quplz0T9aR\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u539f\u6750\u6599\u4ed3\u5e93\u7ba1\u7406\",\"col\":3}},{\"id\":\"_Id1kT7V_F\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Receipt\",\"col\":3}},{\"id\":\"v6S_dfvR7K\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u76f4\u63a5\u51fa\u5e93\",\"col\":3}},{\"id\":\"YIANqLdBZ_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u57fa\u7840\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"HUvPwSnDXp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"XB727UTqvX\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Warehouse Area\",\"col\":3}},{\"id\":\"Hn6c3o_-Z-\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Heat No\",\"col\":3}},{\"id\":\"Orwm-_--kn\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u6279\u6b21\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"oSjMRCkb3g\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Serial No\",\"col\":3}},{\"id\":\"afXbNpFUHz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Batch\",\"col\":3}},{\"id\":\"nxg3EzDRis\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u5e8f\u5217\u53f7\u4e0e\u6279\u53f7\u7ec4\",\"col\":3}},{\"id\":\"rEnMLbj14h\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"EVhU47mU0J\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u603b\u62a5\u8868\",\"col\":3}},{\"id\":\"R-j-Ju3cuN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u5e93\u533a\u6346\u6570\",\"col\":3}},{\"id\":\"HjYZ6VkjiD\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u7089\u53f7\u6839\u6570\",\"col\":3}},{\"id\":\"V1rTiI8Kgo\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"3hu-YydJqh\",\"type\":\"card\",\"data\":{\"card_name\":\"\u62a5\u8868\",\"col\":3}}]",
+ "content": "[{\"id\":\"c7kM_QUVsO\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"\u94a2\u6750\u603b\u5428\u6570\uff08\u5728\u5e93\uff09\",\"col\":3}},{\"id\":\"TQnCURWglR\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"\u94a2\u6750\u6346\u6570\uff08\u672a\u5165\u5e93\uff09\",\"col\":3}},{\"id\":\"dzXuALBJvO\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"\u94a2\u6750\u6346\u6570\uff08\u5728\u5e93\uff09\",\"col\":3}},{\"id\":\"nm-a264xXH\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"\u94a2\u6750\u6346\u6570\uff08\u51fa\u5b8c\uff09\",\"col\":3}},{\"id\":\"RQx-i2dPp8\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>\u539f\u6750\u6599\u7ba1\u7406</b></span>\",\"col\":12}},{\"id\":\"Eet8EMiazS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u65b0\u5efa\u94a2\u6750\u6279\u6b21\",\"col\":3}},{\"id\":\"quplz0T9aR\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u539f\u6750\u6599\u4ed3\u5e93\u7ba1\u7406\",\"col\":3}},{\"id\":\"_Id1kT7V_F\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Receipt\",\"col\":3}},{\"id\":\"v6S_dfvR7K\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u76f4\u63a5\u51fa\u5e93\",\"col\":3}},{\"id\":\"YIANqLdBZ_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u57fa\u7840\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"HUvPwSnDXp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"XB727UTqvX\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Warehouse Area\",\"col\":3}},{\"id\":\"Hn6c3o_-Z-\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Heat No\",\"col\":3}},{\"id\":\"Orwm-_--kn\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u6279\u6b21\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"oSjMRCkb3g\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Serial No\",\"col\":3}},{\"id\":\"afXbNpFUHz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Batch\",\"col\":3}},{\"id\":\"nxg3EzDRis\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u5e8f\u5217\u53f7\u4e0e\u6279\u53f7\u7ec4\",\"col\":3}},{\"id\":\"rEnMLbj14h\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"EVhU47mU0J\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u603b\u62a5\u8868\",\"col\":3}},{\"id\":\"R-j-Ju3cuN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u5e93\u533a\u6346\u6570\",\"col\":3}},{\"id\":\"HjYZ6VkjiD\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u7089\u53f7\u6839\u6570\",\"col\":3}},{\"id\":\"V1rTiI8Kgo\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"3hu-YydJqh\",\"type\":\"card\",\"data\":{\"card_name\":\"\u62a5\u8868\",\"col\":3}}]",
  "creation": "2024-04-17 15:14:18",
  "custom_blocks": [],
  "docstatus": 0,
@@ -53,11 +53,15 @@
    "type": "Link"
   }
  ],
- "modified": "2024-05-15 14:20:03",
+ "modified": "2024-05-16 14:26:28",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Gao Xuesong",
  "number_cards": [
+  {
+   "label": "\u94a2\u6750\u6346\u6570\uff08\u672a\u5165\u5e93\uff09",
+   "number_card_name": "\u94a2\u6750\u6346\u6570\uff08\u672a\u5165\u5e93\uff09"
+  },
   {
    "label": "\u94a2\u6750\u603b\u5428\u6570\uff08\u5728\u5e93\uff09",
    "number_card_name": "\u94a2\u6750\u603b\u5428\u6570\uff08\u5728\u5e93\uff09"
@@ -65,10 +69,6 @@
   {
    "label": "\u94a2\u6750\u6346\u6570\uff08\u5728\u5e93\uff09",
    "number_card_name": "\u94a2\u6750\u6346\u6570\uff08\u5728\u5e93\uff09"
-  },
-  {
-   "label": "\u94a2\u6750\u6346\u6570\uff08\u672a\u5165\u5e93\uff09",
-   "number_card_name": "\u94a2\u6750\u6346\u6570\uff08\u672a\u5165\u5e93\uff09"
   },
   {
    "label": "\u94a2\u6750\u6346\u6570\uff08\u51fa\u5b8c\uff09",
