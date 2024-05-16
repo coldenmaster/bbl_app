@@ -114,7 +114,16 @@ class SteelBatch(Document):
     
     # def before_save(self):
     #     print_green('steel before_save')
-                            
+
+# http://dev2.localhost:8000/api/method/bbl_app.raw_material_manage.doctype.steel_batch.steel_batch.make_out_entry?scan_barcode=123
+@frappe.whitelist()
+def make_out_entry(**kwargs):
+    print_red(kwargs)
+    kwargs["doctype"] = "Steel Batch"
+    # new_doc = frappe.get_doc(kwargs)
+    # new_doc.insert()
+    # frappe.db.commit()
+    return "ok"
         
         
     

@@ -286,9 +286,9 @@ function out_3(doc) {
                 "fieldname": "weight",
                 // "label": "出库重量" + String(doc.remaining_weight).bold() + "kg",
                 "label": "出库重量(kg):" + String(doc.weight).bold(),
-                "fieldtype": "Float",
+                "fieldtype": "Int",
                 "default": doc.weight,
-                "reqd": 1
+                "reqd": 1,
             },
             {
                 "fieldname": "steel_piece",
@@ -308,21 +308,51 @@ function out_3(doc) {
                 "fieldtype": "Int",
                 "default": doc.piece3,
             },
+            {
+                "fieldname": "to_length",
+                "label": "剩余长度mm",
+                "fieldtype": "Int",
+            },
+            {
+                "fieldname": "to_weight",
+                "label": "剩余重量kg",
+                "fieldtype": "Int",
+            },
         ],
         size: 'small',
-        primary_action_label: '确定',
+        primary_action_label: '出库',
         primary_action(values) {
             d.hide();
             if (doc.warehouse_area === values.warehouse_area) {
                 frappe.msgprint({ "title": "提示", message: "错误", "indicator": "red" });
             } else {
                 frappe.show_progress('Loading..', 0, 100, '出库...');
+                values.batch_on = doc.batch_on;
+                send_out_values(values, doc);
                 // into_area(doc, values.warehouse_area);
             }
         }
     })
     d.show();
 };
+
+function send_out_values(values, doc) {
+    console.log("send_out_values values:", values, doc);
+    frappe.call({
+        method: "bbl_app.raw_material_manage.doctype.steel_batch.steel_batch.make_out_entry",
+        args: values
+    }).then(r => {
+        console.log("make_out_entry:", r)
+        if (r.message) {
+            frappe.show_alert({
+                message: __("出库成功"),
+                indicator: "green"
+            });
+            // frappe.set_route("Form", "Temp Barcode", r.message);
+        }
+    })
+
+}
 
 function into_area(doc, new_area) {
     frappe.db.set_value("Steel Batch", doc.name, "warehouse_area", new_area,
