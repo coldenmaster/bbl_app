@@ -1,0 +1,60 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-05-15 17:02:49",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "scan_barcode",
+  "for_date",
+  "message_type"
+ ],
+ "fields": [
+  {
+   "default": "Now",
+   "fieldname": "for_date",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "For Date"
+  },
+  {
+   "default": "\u6d4b\u8bd5\u4e8c\u7ef4\u7801",
+   "fieldname": "message_type",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Message Type"
+  },
+  {
+   "fieldname": "scan_barcode",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Scan Barcode",
+   "options": "Barcode",
+   "reqd": 1,
+   "set_only_once": 1
+  }
+ ],
+ "links": [],
+ "modified": "2024-05-15 17:28:15",
+ "modified_by": "Administrator",
+ "module": "Bbl App",
+ "name": "Temp Barcode",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

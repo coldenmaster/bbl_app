@@ -153,10 +153,11 @@
    "fetch_from": "heat_no.raw_name",
    "fetch_if_empty": 1,
    "fieldname": "raw_name",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Raw Name"
+   "label": "Raw Name",
+   "options": "Item"
   },
   {
    "depends_on": "eval:!!doc.__islocal",
@@ -231,6 +232,7 @@
    "fieldname": "warehouse_area",
    "fieldtype": "Link",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Warehouse Area",
    "options": "Warehouse Area",
    "reqd": 1
@@ -291,7 +293,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-11 09:43:42",
+ "modified": "2024-05-16 07:50:31",
  "modified_by": "Administrator",
  "module": "Raw Material Manage",
  "name": "Steel Batch",

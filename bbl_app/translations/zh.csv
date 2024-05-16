@@ -229,6 +229,18 @@ Outward,发出,"Serial And Batch Bundle"
 Inward,收入,Serial And Batch Bundle
 Outward,向外(出),
 Inward,向内(入),
+K,千,Number system
+M,百万,Number system
+B,十亿,Number system
+T,万亿,Number system
+P,千万亿,Number system
+"Search or type a command (Ctrl + G)",搜索或输入命令(Ctrl + G)
+Build,管理后台
+Settings,设置
+ERPNext Integrations,外部集成
+Browse Apps,可安装应用
+
+
 
 
 Length2,长度2,
@@ -253,5 +265,7 @@ Download CSV Template,下载CSV模板,
 Attach CSV File,上传CSV数据,
 via CSV File,通过CSV文件,
 
-
+Scan QR,扫描二维码
+Message Type,消息类型,
+Temp Barcode,临时二维码记录
 

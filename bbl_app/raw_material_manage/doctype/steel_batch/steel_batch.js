@@ -378,6 +378,9 @@ var GangbangParse = {
         this.uploadBean[keys[keys.length - 1]] = qrcodeStr.slice(indx[keys.length -1] + matchKeys[keys.length - 1].length + 1);
 
         this.uploadBean.bundleIdx = this.uploadBean.bundleNo.split("/")[1];
+        if (!isNaN(Number(this.uploadBean.steelGrade))) {
+            this.uploadBean.steelGrade = this.uploadBean.steelGrade.trim() + "H";
+        }
         return this.uploadBean;
     },
     
