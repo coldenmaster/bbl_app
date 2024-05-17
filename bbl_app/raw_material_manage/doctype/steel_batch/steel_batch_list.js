@@ -116,26 +116,12 @@ frappe.listview_settings["Steel Batch"] = {
             }
             listview.page.set_indicator('出库2', 'blue');
             // todo 这里根据items信息，做dialog，收集出库相关的信息：
-            
             /*
                 1.批次号
                 2.出库长度1，2，3，根数1，2，3
                 3.出库总重量（辅助计算） 
              */
             out_2(items2[0]);
-            // frappe.new_doc("Stock Entry", null).then(() => {
-            //     parent_doc = cur_frm.doc;
-            //     // frappe.model.set_value(parent_doc.doctype, parent_doc.name, "purpose", "销售");
-            //     cur_frm.set_value("stock_entry_type", "原钢调拨出库");
-            //     cur_frm.set_value("to_warehouse", "原钢平仓库 - 百兰");
-            //     cur_frm.clear_table("items");
-            //     child = frappe.model.add_child(parent_doc, "items");
-            //     child.item_group = "原材料";
-            //     frappe.model.set_value(child.doctype, child.name, "item_code", items2[0].raw_name);
-            //     // setTimeout(() => {
-            //     // }, 1500)
-
-            // });
 
         });
         // page.change_inner_button_type('出库2', null, 'warning');
@@ -272,13 +258,12 @@ function trans_area(doc) {
 
 function out_2(doc) {
     frappe.db.get_doc("Steel Batch", doc.name).then(d => {
-        console.log("d", d);
         out_3(d);
     })
 }
 
 function out_3(doc) {
-    console.log("out_2 arg1:", doc);
+    // console.log("out_3:", doc);
     let d = new frappe.ui.Dialog({
         title: '出库:' + doc.name.bold(),
         fields: [
@@ -301,6 +286,7 @@ function out_3(doc) {
                 "label": "长度2(根)：" + String(doc.length2).bold() + "mm",
                 "fieldtype": "Int",
                 "default": doc.piece2,
+                // "default": 0,
             },
             {
                 "fieldname": "piece3",
@@ -323,13 +309,17 @@ function out_3(doc) {
         primary_action_label: '出库',
         primary_action(values) {
             d.hide();
+            // 校验是不是全部根数和，全部重量
+            in_piece = (values.steel_piece||0)  +( values.piece2||0) +( values.piece3||0 );
+            console.log("四个数字:", in_piece, doc.remaining_piece, values.weight, doc.weight)
+            // if (in_piece !== doc.remaining_piece || values.eight !== doc.weight)
+            //     frappe.show_alert({ "title": "提示", message: "不上全部出库？", "indicator": "red" });
             if (doc.warehouse_area === values.warehouse_area) {
                 frappe.msgprint({ "title": "提示", message: "错误", "indicator": "red" });
             } else {
                 frappe.show_progress('Loading..', 0, 100, '出库...');
-                values.batch_on = doc.batch_on;
+                values.batch_on = doc.name;
                 send_out_values(values, doc);
-                // into_area(doc, values.warehouse_area);
             }
         }
     })
@@ -337,12 +327,13 @@ function out_3(doc) {
 };
 
 function send_out_values(values, doc) {
-    console.log("send_out_values values:", values, doc);
+    // console.log("send_out_values values:", values, doc);
     frappe.call({
         method: "bbl_app.raw_material_manage.doctype.steel_batch.steel_batch.make_out_entry",
         args: values
     }).then(r => {
-        console.log("make_out_entry:", r)
+        // console.log("make_out_entry:", r)
+        frappe.show_progress('Loading..', 100, 100, '出库成功', true);
         if (r.message) {
             frappe.show_alert({
                 message: __("出库成功"),

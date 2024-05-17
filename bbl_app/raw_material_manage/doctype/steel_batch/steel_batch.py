@@ -120,11 +120,17 @@ class SteelBatch(Document):
 def make_out_entry(**kwargs):
     print_red(kwargs)
     kwargs["doctype"] = "Steel Batch"
+    # todo 
+    # 1.新建SABB for 物料转移（这个过程可能很困难，后台的数据变化，手动如何能完全进行）
+    # （进行一步步的手动模拟，操作物料转移）
+    # 2.建立物料转移
+    # 3.是否根据剩余数量，新建材料入库。（或者，修改长度和，根数。使用同一个批次号）
+    # 4.设值批次状态，和新数值。
+    
     # new_doc = frappe.get_doc(kwargs)
     # new_doc.insert()
     # frappe.db.commit()
     return "ok"
-        
-        
-    
+
+
 

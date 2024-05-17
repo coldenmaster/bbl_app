@@ -270,3 +270,9 @@ Scan QR,扫描二维码
 Message Type,消息类型,
 Temp Barcode,临时二维码记录
 
+Floor Name,名称
+Idle,空闲
+Asia/Chongqing,亚洲/重庆
+Workstations,工作站
+Off Status,关机状态
+Off,离线(关机)

@@ -235,7 +235,8 @@ var GangbangParse = {
         if (this.yegangParse(qrcodeStr) 
                 || this.jigangParse(qrcodeStr) 
                 || this.xianggangParse(qrcodeStr)
-                || this.xinxingParse(qrcodeStr))
+                || this.xinxingParse(qrcodeStr)
+                || this.dongteParse(qrcodeStr))
             return this.uploadBean;
         return false;
     },
@@ -424,9 +425,6 @@ var GangbangParse = {
             ["w", "weight"],
             ["a", "company"],
             ["sp", "sp"],
-            // ["合同号", "contractNo"],
-            // ["标准", "standardNo"],
-            // ["日期", "productDate"],
         ];
 
         let kvStringArray = qrcodeStr.split("&");
@@ -456,6 +454,50 @@ var GangbangParse = {
             this.uploadBean.steelGrade = "C" + this.uploadBean.steelGrade;
         this.uploadBean.diaSize = this.uploadBean.diaSize.slice(1);
         this.uploadBean.company = company;
+        return this.uploadBean;
+    },
+
+    dongteParse: function (qrcodeStr){
+        let company = "东方特钢";
+        // let identifier = "代码:0104030071"
+        let identifier = "代码:0104"
+        if (!qrcodeStr.startsWith(identifier)) {
+            return false;
+        }
+        
+        let matchKeys = [
+            ["名称", "steelGrade"],
+            ["规格", "diaSizeLength"],
+            ["重量", "weight"],
+            ["炉号", "heatNo"],
+            ["轧制批号", "bundleNo"],
+            ["二维码", "qrcode"],
+            ["代码", "companyCode"],
+        ];
+
+        let kvStringArray = qrcodeStr.split(";");
+        let kv;
+        let kvString;
+
+        lbl1:
+            for (let j = 0; j < kvStringArray.length; j++) {
+                kvString = kvStringArray[j];
+                kv = kvString.split(":");
+                for (let i = 0; i < matchKeys.length; i++) {
+                    if (kv[0] == matchKeys[i][0]) {
+                        this.uploadBean[matchKeys[i][1]] = kv[1];
+                        continue lbl1;
+                    }
+                }
+            }
+        this.uploadBean.bundleNo = this.uploadBean.bundleNo + "-" + this.uploadBean.qrcode;
+        let dia_length = this.uploadBean.diaSizeLength.split("*");
+        this.uploadBean.diaSize = dia_length[0].slice(1);
+        this.uploadBean.length = dia_length[1] || "";
+        this.uploadBean.steelGrade = this.uploadBean.steelGrade.replaceAll("圆钢", "").trim();
+        // this.uploadBean.steelGrade = "C" + this.uploadBean.steelGrade;
+        this.uploadBean.company = company;
+        console.log("bean", this.uploadBean)
         return this.uploadBean;
     },
 };
