@@ -4,6 +4,7 @@
 # import frappe
 import frappe
 from frappe.model.document import Document
+from frappe.utils.data import cint
 
 from bbl_api.utils import print_blue, print_green, print_red
 
@@ -11,13 +12,18 @@ from bbl_api.utils import print_blue, print_green, print_red
 class SteelBatch(Document):
     
     def save(self):
-        print_red('steel save')
-        print_blue(self)
-        print_blue(vars(self))
-        self.create_heat_no()
+        if self.is_new():
+            print_red('steel save() is new')
+            print_blue('steel save()')
+            print_blue(self)
+            print_blue(vars(self))
+            self.create_heat_no()
+            self.create_batch_no()
+            self.create_sabb()
+            self.set_remaining()
+        else:
+            self.clear_remaining()
         super().save()
-        self.create_batch_no()
-        self.create_sabb()
         
     
     """
@@ -100,6 +106,20 @@ class SteelBatch(Document):
             new_item_doc.insert(ignore_permissions=True)
             frappe.db.commit()
             frappe.msgprint(f"新建原材料 {self.raw_name}", indicator="green", alert=True)
+    
+    def clear_remaining(self):
+        if self.is_new():
+            return
+        # old_doc = self.get_latest()
+        if (self.status == '出完'):
+            self.remaining_piece =  0
+            self.remaining_weight = 0
+            
+    def set_remaining(self, hard = False):
+        if self.is_new() or hard:
+            self.remaining_piece =  cint(self.steel_piece) + cint(self.piece2) + cint(self.piece3)
+            self.remaining_weight = cint(self.weight)
+
             
             
         
@@ -133,4 +153,23 @@ def make_out_entry(**kwargs):
     return "ok"
 
 
+# http://dev2.localhost:8000/api/method/bbl_app.raw_material_manage.doctype.steel_batch.steel_batch.init_all_remaining
+@frappe.whitelist()
+def init_all_remaining():
+    # docs = frappe.get_all("Steel Batch", fields=["name", "status"], filters=[["status", "!=", "出完"],])
+    docs = frappe.get_all("Steel Batch", fields=["name", "status"])
+    print("init_all_remaining", len(docs))
+    for doc in docs:
+        print_blue(doc)
+        init_remaining(doc.name, doc.status)
+    frappe.db.commit()
+    print_red("process over")
 
+def init_remaining(name, status):
+    doc = frappe.get_doc("Steel Batch", name)
+    if status != '出完':
+        doc.set_remaining(hard=True)
+    else:
+        doc.clear_remaining()
+    doc.save()
+    

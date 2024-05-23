@@ -1,7 +1,7 @@
 frappe.listview_settings["Steel Batch"] = {
 
     // hide_name_column: true, // hide the last column which shows the `name`
-    hide_name_filter: true, // hide the default filter field for the name column
+    // hide_name_filter: true, // hide the default filter field for the name column
   
 	add_fields: [
 		"status",
@@ -171,31 +171,31 @@ frappe.listview_settings["Steel Batch"] = {
 
     // add a custom button for each row
     
-    button: {
-        show(doc) {
-            return doc.status === "已入库" || doc.status === "半出库" || doc.status === "未入库";
-        },
-        get_label(doc) {
-            if (doc.status === "已入库" || doc.status === "半出库") 
-                return "转库区";
-            if (doc.status === "未入库") 
-                return "入库";
-        },
-        get_description(doc) {
-            return __("View {0}", [` ${doc.name}`])
-        },
-        action(doc, b2) {
-            // frappe.set_route("Form", doc.status, doc.name);
-            let lv =  frappe.get_list_view("Steel Batch");
-            if (doc.status === "已入库" || doc.status === "半出库") {
-                trans_area(doc);
-            }
-            if (doc.status === "未入库") {
-                console.log("入库 doc", doc, this, b2, lv);
-                frappe.msgprint({ "title": "提示", message: "功能暂未实现", "indicator": "red" });
-            }
-        }
-    },
+    // button: {
+    //     show(doc) {
+    //         return doc.status === "已入库" || doc.status === "半出库" || doc.status === "未入库";
+    //     },
+    //     get_label(doc) {
+    //         if (doc.status === "已入库" || doc.status === "半出库") 
+    //             return "转库区";
+    //         if (doc.status === "未入库") 
+    //             return "入库";
+    //     },
+    //     get_description(doc) {
+    //         return __("View {0}", [` ${doc.name}`])
+    //     },
+    //     action(doc, b2) {
+    //         // frappe.set_route("Form", doc.status, doc.name);
+    //         let lv =  frappe.get_list_view("Steel Batch");
+    //         if (doc.status === "已入库" || doc.status === "半出库") {
+    //             trans_area(doc);
+    //         }
+    //         if (doc.status === "未入库") {
+    //             console.log("入库 doc", doc, this, b2, lv);
+    //             frappe.msgprint({ "title": "提示", message: "功能暂未实现", "indicator": "red" });
+    //         }
+    //     }
+    // },
    
     // format how a field value is shown
     // formatters: {

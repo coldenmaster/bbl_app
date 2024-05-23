@@ -1,6 +1,3 @@
-// Copyright (c) 2024, bbl and contributors
-// For license information, please see license.txt
-
 frappe.ui.form.on("Steel Batch", {
     before_submit: function (frm) {
         console.log("SB before_submit");
@@ -38,6 +35,102 @@ frappe.ui.form.on("Steel Batch", {
         //     _clear_doc(frm);
         //     frm.refresh();
         // })
+        frm.add_custom_button('SABB', () => {
+            console.log("start SABB button");
+            item = {
+                qty: 30,
+                has_serial_no: 1,
+                // serial_and_batch_bundle: 'dddd23',
+                title: 'SABB title',
+                fields: [
+                    {
+                        fieldtype: "Section Break",
+                        label: __("{0} {1} Manually", ["Section", "2"]),
+                    },				
+                    {
+                        fieldtype: "Small Text",
+                        label: __("Enter Serial Nos"),
+                        fieldname: "upload_serial_nos",
+                        description: __("Enter each serial no in a new line"),
+                    },
+                    {
+                        fieldtype: "Column Break",
+                        depends_on: "eval:true",
+                    },
+
+
+                    {
+                        fieldtype: "Button",
+                        fieldname: "make_serial_nos",
+                        label: __("Create Serial Nos"),
+                        click: () => {
+                            console.log("bt click");
+                        },
+                    },
+
+                    {
+                        fieldtype: "Section Break",
+                        label: __("{0} {1} Manually", ["Section", "2"]),
+                    },	
+                    {
+                        fieldtype: "Link",
+                        fieldname: "warehouse",
+                        label: __("Warehouse"),
+                        options: "Warehouse",
+                        default: "get_warehouse",
+                        onchange: (v) => {
+                            console.log("onchange:", v, this);
+                        },
+                        get_query: () => {
+                            return {
+                                filters: {
+                                    is_group: 0,
+                                    // company: this.frm.doc.company,
+                                },
+                            };
+                        },
+                    },
+                    {
+                        fieldtype: "Column Break",
+                    },
+                    {
+                        fieldtype: "Data",
+                        options: "Barcode",
+                        fieldname: "scan_serial_no",
+                        label: __("Scan Serial No"),
+                        get_query: () => {
+                            return {
+                                // filters: this.get_serial_no_filters(),
+                            };
+                        },
+                        onchange: (v) => {
+                            console.log("onchange:", v, this);
+                        },
+                    },
+                    {
+                        fieldtype: "Section Break",
+                    },
+                    {
+                        fieldname: "entries",
+                        fieldtype: "Table",
+                        allow_bulk_edit: true,
+                        data: [],
+                        fields: [],
+                    },
+
+
+                ]
+
+
+            }
+            // new erpnext.SerialBatchPackageSelector(frm,item, r => {
+            //     console.log(r);
+            // });
+            new bbl.BaseDialog(frm,item, r => {
+                    console.log(r);
+                });
+            console.log("SABB end button");
+        })
 
         frm.add_custom_button('设置炉号', () => {
             let d = new frappe.ui.Dialog({
@@ -74,6 +167,9 @@ frappe.ui.form.on("Steel Batch", {
 	},
 
     after_save(frm) {
+        console.log("after_save", frm.doc)
+        if (frm.doc.creation != frm.doc.modified)
+            return;
         frappe.new_doc("Steel Batch");
         frappe.show_alert("保存成功,新建扫描表单")
     },
@@ -161,6 +257,7 @@ frappe.ui.form.on("Steel Batch", {
         frm.doc.bundle_index = parseInt(gangbang_info.bundleIdx) || undefined;
         frm.doc.contract_no = gangbang_info.contractNo;
         frm.doc.standard = gangbang_info.standardNo;
+        frm.doc.product_name = gangbang_info.productName;
 
     
         if (!(frm.doc.length > 0)) {

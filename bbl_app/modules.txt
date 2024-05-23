@@ -6,3 +6,4 @@ Forge
 Paint Shop
 Raw Material Manage
 Dev Test
+Semi Product

@@ -1,0 +1,231 @@
+{
+ "actions": [],
+ "allow_events_in_timeline": 1,
+ "allow_import": 1,
+ "autoname": "field:batch_no",
+ "creation": "2024-05-23 10:10:35",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "batch_no",
+  "raw_bar_name",
+  "heat_no",
+  "raw_name",
+  "steel_grade",
+  "diameter",
+  "length",
+  "weight",
+  "steel_piece",
+  "remaining_piece",
+  "column_break_musm",
+  "warehouse",
+  "warehouse_area",
+  "status",
+  "semi_product",
+  "material_ratio",
+  "product_name",
+  "for_date",
+  "use_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "batch_no",
+   "fieldtype": "Data",
+   "label": "Batch No",
+   "reqd": 1,
+   "set_only_once": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "heat_no",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Heat No",
+   "options": "Heat No",
+   "reqd": 1,
+   "set_only_once": 1
+  },
+  {
+   "fetch_from": "heat_no.raw_name",
+   "fetch_if_empty": 1,
+   "fieldname": "raw_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Raw Name",
+   "link_filters": "[[\"Item\",\"item_group\",\"=\",\"\u539f\u6750\u6599\"]]",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "heat_no.steel_grade",
+   "fetch_if_empty": 1,
+   "fieldname": "steel_grade",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Steel Grade"
+  },
+  {
+   "fetch_from": "heat_no.diameter",
+   "fetch_if_empty": 1,
+   "fieldname": "diameter",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Diameter"
+  },
+  {
+   "description": "\u6beb\u7c73",
+   "fieldname": "length",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Length",
+   "reqd": 1
+  },
+  {
+   "description": "\u5343\u514b",
+   "fieldname": "weight",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Weight",
+   "precision": "0",
+   "reqd": 1
+  },
+  {
+   "fieldname": "steel_piece",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Steel Piece",
+   "reqd": 1
+  },
+  {
+   "depends_on": "remaining_piece",
+   "fieldname": "remaining_piece",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Remaining Piece",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "column_break_musm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "warehouse",
+   "fieldtype": "Link",
+   "label": "Warehouse",
+   "options": "Warehouse",
+   "reqd": 1
+  },
+  {
+   "fieldname": "warehouse_area",
+   "fieldtype": "Link",
+   "label": "Warehouse Area",
+   "options": "Warehouse Area"
+  },
+  {
+   "bold": 1,
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "no_copy": 1,
+   "options": "\u672a\u4f7f\u7528\n\u534a\u4f7f\u7528\n\u4f59\u6599\n\u7528\u5b8c"
+  },
+  {
+   "fieldname": "semi_product",
+   "fieldtype": "Link",
+   "label": "Semi Product",
+   "options": "Semi Product"
+  },
+  {
+   "fetch_from": "semi_product.material_ratio",
+   "fieldname": "material_ratio",
+   "fieldtype": "Data",
+   "label": "Material Ratio"
+  },
+  {
+   "fieldname": "product_name",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Product Name"
+  },
+  {
+   "default": "Now",
+   "fieldname": "for_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "For Date"
+  },
+  {
+   "fieldname": "use_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Use Date"
+  },
+  {
+   "fetch_from": "heat_no.raw_name",
+   "fetch_if_empty": 1,
+   "fieldname": "raw_bar_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Raw Bar Name",
+   "link_filters": "[[\"Item\",\"item_group\",\"=\",\"\u77ed\u68d2\u6599\"]]",
+   "options": "Item",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-05-23 10:49:20",
+ "modified_by": "Administrator",
+ "module": "Semi Product",
+ "name": "Short Raw Bar",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Stock Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

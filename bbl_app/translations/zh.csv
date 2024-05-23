@@ -216,7 +216,7 @@ Total quantity {0} in the Serial and Batch Bundle {1} does not match with the qu
 The Item {0} does not have Serial No or Batch No,物料 {0} 缺失 ‘序列批次号组’,
 Serial No {0} does not belong to Batch No {1},序列号 {0} 不属于 批次号 {1},
 Batch {0} is not available in the selected warehouse {1},出库 {1} 中 没有批次 {0} ,
-The {0} {1} is in submitted state, please cancel it first,单据{0} {1} 是提交状态，请先取消单据,
+"The {0} {1} is in submitted state, please cancel it first",单据{0} {1} 是提交状态，请先取消单据,
 Serial No {0} is already present in the warehouse {1},仓库 {1} 中，已存在序列号{0},
 Batch Nos {0} does not belong to Item {1}",批次号{0} 不属于物料 {1},
 Batch Nos {0} are not part of the original document,批次号{0} 不是原始文档的一部分,
@@ -239,8 +239,24 @@ Build,管理后台
 Settings,设置
 ERPNext Integrations,外部集成
 Browse Apps,可安装应用
+{0} has been submitted successfully,{0} 提交成功
 
+d,天,Days (Field: Duration)
+h,小时,Hours (Field: Duration)
+m,分,Minutes (Field: Duration)
+s,秒,Seconds (Field: Duration)
+List Settings,列表设置,
 
+Import Using CSV file,通过CSV文件导入,
+Create Serial Nos,创建序列号,
+Enter Serial Nos,输入序列号,
+Enter each serial no in a new line,每一行输入一个序列号
+Please enter Serial Nos,序列号不能为空
+
+Events,事件,
+What's New,新业务,
+Nothing New,没有新业务,
+There is nothing new to show you right now.,暂时没有新业务需要处理,
 
 
 Length2,长度2,
@@ -276,3 +292,8 @@ Asia/Chongqing,亚洲/重庆
 Workstations,工作站
 Off Status,关机状态
 Off,离线(关机)
+
+Raw Material Price,原材料价格,
+Short Raw Bar,短棒料,
+Use Date,使用日期,
+Raw Bar Name,棒料名称,
