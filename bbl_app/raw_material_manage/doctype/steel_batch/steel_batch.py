@@ -154,6 +154,7 @@ def make_out_entry(**kwargs):
 
 
 # http://dev2.localhost:8000/api/method/bbl_app.raw_material_manage.doctype.steel_batch.steel_batch.init_all_remaining
+# /api/method/bbl_app.raw_material_manage.doctype.steel_batch.steel_batch.init_all_remaining
 @frappe.whitelist()
 def init_all_remaining():
     # docs = frappe.get_all("Steel Batch", fields=["name", "status"], filters=[["status", "!=", "出完"],])
@@ -164,6 +165,7 @@ def init_all_remaining():
         init_remaining(doc.name, doc.status)
     frappe.db.commit()
     print_red("process over")
+    return "process ok"
 
 def init_remaining(name, status):
     doc = frappe.get_doc("Steel Batch", name)
