@@ -257,6 +257,9 @@ Events,事件,
 What's New,新业务,
 Nothing New,没有新业务,
 There is nothing new to show you right now.,暂时没有新业务需要处理,
+Invalid Serial and Batch Bundle,无效序列批次号包,
+The Serial and Batch Bundle {0} is not valid for this transaction. The 'Type of Transaction' should be 'Outward' instead of 'Inward' in Serial and Batch Bundle {0},批次包{0}，类型应该是'发出'而不是'收入',
+
 
 
 Length2,长度2,
@@ -265,6 +268,7 @@ Weight2,重量2,
 Weight3,重量3,
 Piece2,根数2,
 Piece3,根数3,
+Origin Piece,原始根数,
 Remaining Piece,剩余根数,
 Remaining Weight,剩余重量,
 Hand In,是手动录入

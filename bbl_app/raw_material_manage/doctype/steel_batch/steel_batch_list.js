@@ -12,11 +12,6 @@ frappe.listview_settings["Steel Batch"] = {
     ],
     list_view: "", 
     _this: this,
-    trans_area2: function () {
-        console.log("this", this);
-        console.log("trans_area2", this.list_view);
-        this.list_view.page.set_indicator('示', 'dark green')
-    },
     func1: function (me) {
         console.log("func1");
     },
@@ -125,8 +120,14 @@ frappe.listview_settings["Steel Batch"] = {
 
         });
         // page.change_inner_button_type('出库2', null, 'warning');
-  
 
+        page.add_inner_button('生产出库', () => {
+            let items = listview.get_checked_items();
+            items = items.filter(item => item.status === "已入库" || item.status === "半出库");
+            product_out(items);
+        });
+        page.change_inner_button_type('生产出库', null, 'danger');
+  
         // let field = page.add_field({
         //     label: '甜甜',
         //     fieldtype: 'Select',
@@ -255,6 +256,167 @@ function trans_area(doc) {
     })
     d.show();
 };
+
+function product_out(items) {
+    // console.log("product_out items:", items);
+    // 需要是相同热处理号的
+    let heat_nos = new Set(items.map(i => i.heat_no));
+    let raw_name = new Set(items.map(i => i.raw_name));
+    console.log("product_out raw_name:", raw_name);
+
+    if (heat_nos.size != 1 || raw_name.size != 1) {
+        frappe.msgprint({ "title": "提示", message: "请正确选择钢材批次", "indicator": "red" });
+        return;
+    }
+    // 从后端获取items的全部信息
+    let batch_nos = items.map(i => i.name);
+    console.log("product_out batch_nos:", batch_nos);
+    frappe.db.get_list("Steel Batch", {
+        "filters": {
+            "name": ["in", batch_nos]
+        },
+        fields: "*",
+        limit: 100,
+    }).then(rt_items => {
+        console.log("then, items_back:", rt_items);
+        // 收集总数量
+        let total = {};
+        total.name = rt_items[0].raw_name;
+        total.bundle_cnt = rt_items.length;
+        total.weight = rt_items.reduce((p, c) => p + c.remaining_weight, 0);
+        total.piece = rt_items.reduce((p, c) => p + c.remaining_piece, 0);
+        total.length = rt_items.reduce((p, c) => p + calc_total_length(c), 0);
+        // total.items = rt_items;
+        total.ratio = rt_items[0].material_ratio
+        console.log("product_out total.length :", total.length, total.ratio + 5 );
+        total.bar_piece = total.ratio ? parseInt(total.length / (parseInt(total.ratio) + 5)) : undefined;
+        total.batchs = [];
+        rt_items.forEach(i => {
+            total.batchs.push({
+                "batch_no": i.name,
+                "weight": i.remaining_weight,
+            })
+        })
+        console.log("product_out total:", total);
+        product_out_dialog(total);
+
+    })
+}
+
+function calc_total_length(item) {
+    // console.log("calc_total_length item:", item);
+    return cint(item.length) * cint(item.steel_piece)
+        + cint(item.length2) * cint(item.piece2) 
+        + cint(item.length3) * cint(item.piece3);
+}
+
+function product_out_dialog(total) {
+    // 调用钱获取短棒料，半成品的名称
+    let d = new frappe.ui.Dialog({
+        title: '生产出库',
+        fields: [
+            {
+                "fieldname": "d0",
+                "label": "出库产品: \t" + total.name.bold(),
+                "fieldtype": "Heading",
+            },            
+            {
+                "fieldname": "d1",
+                "label": "出库数量: \t" + String(total.bundle_cnt).bold() + "捆 / " + String(total.piece).bold() + "根",
+                "fieldtype": "Heading",
+            },
+            {
+                "fieldname": "d2",
+                "label": "总长度: \t" + String(total.length).bold()+ " 毫米",
+                "fieldtype": "Heading",
+            },
+            {
+                "fieldname": "d3",
+                "label": "总重量: \t" + String(total.weight).bold() + " 公斤",
+                "fieldtype": "Heading",
+            },
+            {
+                "fieldname": "d4",
+                "fieldtype": "Section Break",
+            },
+
+            {
+                "fieldname": "raw_bar_name",
+                // "label": __("Short Raw Bar"),
+                "label": "下料名称",
+                "fieldtype": "Link",
+                "options": "Item",
+                "reqd": 1,
+                "default": total.name + "_短棒料",
+                // 这里增加过滤器，default使用半成品转短棒料
+            },
+            {
+                "fieldname": "bar_radio",
+                "label": "倍尺",
+                "fieldtype": "Int",
+                "reqd": 1,
+                "default": total.ratio,
+            },
+            {
+                "fieldname": "bar_piece",
+                "label": "下料数量(根)",
+                "fieldtype": "Int",
+                "reqd": 1,
+                "default": total.bar_piece,
+            },
+            {
+                "fieldname": "bar_weight",
+                "label": "出库总重量",
+                "fieldtype": "Int",
+                "reqd": 1,
+                "default": total.weight,
+            },
+            // 如果是单捆，开启剩余长度，数量，公斤数输入
+            // 如何打开综合下料功能
+            // 记录剩余料头数量？
+        ],
+        size: 'small',
+        primary_action_label: '生产出库',
+        primary_action(values) {
+            d.hide();
+            values.total = total;
+            values.raw_name = total.name;
+            values.raw_weight = total.weight;
+            values.batchs = total.batchs;
+            // 校验
+            // 进行后台出库操作
+            product_out_send_values(values)
+            // if (doc.warehouse_area === values.warehouse_area) {
+            //     frappe.msgprint({ "title": "提示", message: "错误", "indicator": "red" });
+            // } else {
+            //     frappe.show_progress('Loading..', 0, 100, '出库...');
+            //     values.batch_on = doc.name;
+            //     send_out_values(values, doc);
+            // }
+        }
+    })
+    d.show();
+}
+
+
+function product_out_send_values(values) {
+    console.log("product_out_send_values values:", values);
+    frappe.call({
+        method: "bbl_app.raw_material_manage.doctype.steel_batch.steel_batch.make_out_entry",
+        args: values
+    }).then(r => {
+        console.log("make_out_entry:", r)
+        frappe.show_progress('Loading..', 100, 100, '出库成功', true);
+        if (r.message) {
+            frappe.show_alert({
+                message: __("出库成功"),
+                indicator: "green"
+            });
+            frappe.set_route("Form", "Stock Entry", r.message);
+        }
+    })
+
+}
 
 function out_2(doc) {
     frappe.db.get_doc("Steel Batch", doc.name).then(d => {

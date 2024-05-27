@@ -2,11 +2,13 @@
 # For license information, please see license.txt
 
 # import frappe
+import json
+from erpnext.setup.demo import clear_demo_data
 import frappe
 from frappe.model.document import Document
 from frappe.utils.data import cint
 
-from bbl_api.utils import print_blue, print_green, print_red
+from bbl_api.utils import clear_db_for_dev, print_blue, print_blue_pp, print_green, print_green_pp, print_red, timer
 
 
 class SteelBatch(Document):
@@ -135,23 +137,121 @@ class SteelBatch(Document):
     # def before_save(self):
     #     print_green('steel before_save')
 
+kwargs = '''
+{'raw_bar_name': '50H-150_短棒料', 'bar_radio': '720', 'bar_piece': '62', 'bar_weight': '6345', 'total': '{"name":"50H-150","bundle_cnt":2,"weight":6345,"piece":6,"length":45360,"ratio":"720","bar_piece":62,"batchs":[{"batch_no":"B22421204/0211","weight":3172},{"batch_no":"B22421204/0212","weight":3173}]}', 'raw_name': '50H-150', 'raw_weight': '6345', 'batchs': '[{"batch_no":"B22421204/0211","weight":3172},{"batch_no":"B22421204/0212","weight":3173}]', 'cmd': 'bbl_app.raw_material_manage.doctype.steel_batch.steel_batch.make_out_entry'}
+'''
+
+k3 = eval(kwargs) # 不能解析'''的换行缩进
+
+
 # http://dev2.localhost:8000/api/method/bbl_app.raw_material_manage.doctype.steel_batch.steel_batch.make_out_entry?scan_barcode=123
 @frappe.whitelist()
 def make_out_entry(**kwargs):
-    print_red(kwargs)
-    kwargs["doctype"] = "Steel Batch"
+    """ test info
+    import bbl_app.raw_material_manage.doctype.steel_batch.steel_batch as sb
+    sb.make_out_entry(**sb.k3)
+    docs = frappe.get_all("Steel Batch")
+    """
+    # print_blue_pp(kwargs)
+    print(kwargs)
+
+    raw_name = kwargs["raw_name"]
+    raw_weight = cint(kwargs["raw_weight"])
+    out_weight = cint(kwargs["bar_weight"])
+    raw_bar_name = kwargs["raw_bar_name"]
+    bar_piece = kwargs["bar_piece"]
+    if raw_weight < out_weight:
+        frappe.throw("出库重量不能大于剩余重量")
+
+    sabb_opts = frappe._dict({
+        "raw_name": raw_name,
+        "weight": out_weight,
+        "batchs": json.loads(kwargs["batchs"]),
+    })
+    
+    sabb_name = create_sabb(sabb_opts)
+    _create_item(raw_bar_name, '短棒料')
+    
+    new_kw = {
+        "doctype": "Stock Entry",
+        "stock_entry_type": "Manufacture",
+        "from_warehouse": "原钢堆场 - 百兰",
+        "to_warehouse": "短棒料仓 - 百兰",
+        "items": [
+            {
+                "item_code": raw_name,
+                "qty": out_weight,
+                "s_warehouse": "原钢堆场 - 百兰",
+                # "t_warehouse": "",
+                # "conversion_factor": 1,
+                "uom": "KG",
+                "serial_and_batch_bundle": sabb_name,
+            },
+            {
+                "item_code": raw_bar_name,
+                "qty":  bar_piece,
+                # "s_warehouse": "",
+                "t_warehouse": "短棒料仓 - 百兰",
+                # "conversion_factor": 1,
+                "is_finished_item": 1,
+                "uom": "根",
+            }
+        ]
+    }
+    manufacture_out_doc = frappe.get_doc(new_kw)
+    manufacture_out_doc.insert()
+    frappe.db.commit()
+    print_red(manufacture_out_doc)
+    return manufacture_out_doc.name
+    
     # todo 
     # 1.新建SABB for 物料转移（这个过程可能很困难，后台的数据变化，手动如何能完全进行）
     # （进行一步步的手动模拟，操作物料转移）
     # 2.建立物料转移
     # 3.是否根据剩余数量，新建材料入库。（或者，修改长度和，根数。使用同一个批次号）
     # 4.设值批次状态，和新数值。
-    
-    # new_doc = frappe.get_doc(kwargs)
-    # new_doc.insert()
-    # frappe.db.commit()
-    return "ok"
 
+
+def create_sabb(opts):
+
+    print("新建SABB", opts.raw_name, opts.weight, opts.batchs)
+    sabb_doc = frappe.get_doc({
+        'doctype': 'Serial and Batch Bundle',
+        'company': '百兰车轴',
+        'item_code': opts.raw_name,
+        'has_batch_no': 1,
+        'warehouse': '原钢堆场 - 百兰',
+        'type_of_transaction': 'Outward',
+        'total_qty': opts.weight, 
+        'voucher_type': 'Stock Entry',
+    })
+    for bw in opts.batchs:
+        batch_no = bw["batch_no"]
+        weight = bw["weight"]
+        sabb_doc.append('entries', {
+            'batch_no': batch_no,
+            'qty': weight,
+        })
+    sabb_doc.insert(ignore_permissions=True)
+    frappe.db.commit()
+    frappe.msgprint(f"新建 SABB: {sabb_doc.name}", indicator="green", alert=True)
+    return sabb_doc.name
+
+def _create_item(item_name, item_type = '原材料', uom = '根', has_batch_no = 1):
+    if (not frappe.db.exists('Item', item_name)):
+        # print("此原材料不存在，新建")
+        new_doc = frappe.get_doc({
+            'doctype': 'Item',
+            'item_code': item_name,
+            'item_group': item_type,
+            'stock_uom': uom,
+            'has_batch_no': has_batch_no,
+            'create_new_batch': 1,
+            'batch_number_series': 'DBL-.########',
+        })
+        new_doc.insert(ignore_permissions=True)
+        frappe.db.commit()
+        frappe.msgprint(f"新建原材料 {item_name}", indicator="green", alert=True)
 
 # http://dev2.localhost:8000/api/method/bbl_app.raw_material_manage.doctype.steel_batch.steel_batch.init_all_remaining
 # /api/method/bbl_app.raw_material_manage.doctype.steel_batch.steel_batch.init_all_remaining
@@ -159,12 +259,12 @@ def make_out_entry(**kwargs):
 def init_all_remaining():
     # docs = frappe.get_all("Steel Batch", fields=["name", "status"], filters=[["status", "!=", "出完"],])
     docs = frappe.get_all("Steel Batch", fields=["name", "status"])
-    print("init_all_remaining", len(docs))
+    # print("init_all_remaining", len(docs))
     for doc in docs:
-        print_blue(doc)
+        # print_blue(doc)
         init_remaining(doc.name, doc.status)
     frappe.db.commit()
-    print_red("process over")
+    # print_red("process over")
     return "process ok"
 
 def init_remaining(name, status):
@@ -175,3 +275,9 @@ def init_remaining(name, status):
         doc.clear_remaining()
     doc.save()
     
+
+# todo 清除数据库中数据，进行干净清楚的测试
+@timer
+def clear_db():
+    print('clear_db')
+    clear_db_for_dev()

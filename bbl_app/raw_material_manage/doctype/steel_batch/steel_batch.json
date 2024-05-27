@@ -27,6 +27,7 @@
   "length3",
   "piece3",
   "weight3",
+  "origin_piece",
   "column_break_musm",
   "warehouse",
   "warehouse_area",
@@ -250,7 +251,7 @@
    "label": "Piece3"
   },
   {
-   "depends_on": "remaining_piece",
+   "depends_on": "eval:doc.remaining_piece || doc.show2;",
    "fieldname": "remaining_piece",
    "fieldtype": "Int",
    "in_list_view": 1,
@@ -265,7 +266,7 @@
    "reqd": 1
   },
   {
-   "depends_on": "remaining_weight",
+   "depends_on": "eval: doc.remaining_weight || doc.show2;",
    "fieldname": "remaining_weight",
    "fieldtype": "Int",
    "in_list_view": 1,
@@ -296,11 +297,17 @@
    "fieldtype": "Check",
    "label": "Hand In",
    "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.show2;",
+   "fieldname": "origin_piece",
+   "fieldtype": "Int",
+   "label": "Origin Piece"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-23 09:04:44",
+ "modified": "2024-05-27 17:16:31",
  "modified_by": "Administrator",
  "module": "Raw Material Manage",
  "name": "Steel Batch",
