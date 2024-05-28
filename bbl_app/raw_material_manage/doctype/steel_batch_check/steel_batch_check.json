@@ -1,0 +1,206 @@
+{
+ "actions": [],
+ "allow_events_in_timeline": 1,
+ "allow_import": 1,
+ "autoname": "field:batch_no",
+ "creation": "2024-05-27 17:40:34",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "scan_barcode",
+  "column_break_wase",
+  "raw_code",
+  "section_break_pvin",
+  "batch_no",
+  "heat_no",
+  "raw_name",
+  "length",
+  "weight",
+  "steel_piece",
+  "column_break_musm",
+  "warehouse_area",
+  "status",
+  "product_name",
+  "bundle_total",
+  "bundle_index",
+  "for_date",
+  "batch_date",
+  "hand_in"
+ ],
+ "fields": [
+  {
+   "depends_on": "eval:!!doc.__islocal",
+   "fieldname": "scan_barcode",
+   "fieldtype": "Small Text",
+   "label": "Scan Barcode",
+   "options": "Barcode"
+  },
+  {
+   "fieldname": "column_break_wase",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:!!doc.__islocal || doc.show3;",
+   "fieldname": "raw_code",
+   "fieldtype": "Small Text",
+   "label": "Raw Code",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_pvin",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "batch_no",
+   "fieldtype": "Data",
+   "label": "Batch No",
+   "reqd": 1,
+   "set_only_once": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "heat_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Heat No",
+   "options": "Heat No",
+   "set_only_once": 1
+  },
+  {
+   "fetch_from": "heat_no.raw_name",
+   "fieldname": "raw_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Raw Name"
+  },
+  {
+   "description": "\u6beb\u7c73",
+   "fieldname": "length",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Length"
+  },
+  {
+   "description": "\u5343\u514b",
+   "fieldname": "weight",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Weight",
+   "precision": "0"
+  },
+  {
+   "fieldname": "steel_piece",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Steel Piece"
+  },
+  {
+   "fieldname": "column_break_musm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "warehouse_area",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Warehouse Area",
+   "options": "Warehouse Area",
+   "reqd": 1
+  },
+  {
+   "bold": 1,
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Status",
+   "no_copy": 1,
+   "options": "\n\u5728\u5e93\n\u4e0d\u5728\u5e93\n\u5df2\u51fa\u5e93\n\u4e0d\u5728\u6b64\u5e93\u533a\n\u6bd4\u5bf9\u6210\u529f"
+  },
+  {
+   "fieldname": "product_name",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Product Name"
+  },
+  {
+   "depends_on": "bundle_total",
+   "fieldname": "bundle_total",
+   "fieldtype": "Int",
+   "label": "Bundle Total"
+  },
+  {
+   "depends_on": "bundle_Index",
+   "fieldname": "bundle_index",
+   "fieldtype": "Int",
+   "label": "Bundle Index"
+  },
+  {
+   "fieldname": "for_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "For Date"
+  },
+  {
+   "fieldname": "batch_date",
+   "fieldtype": "Date",
+   "label": "Batch Date"
+  },
+  {
+   "default": "0",
+   "fieldname": "hand_in",
+   "fieldtype": "Check",
+   "label": "Hand In",
+   "read_only": 1
+  }
+ ],
+ "links": [],
+ "modified": "2024-05-28 16:15:57",
+ "modified_by": "Administrator",
+ "module": "Raw Material Manage",
+ "name": "Steel Batch Check",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Stock Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

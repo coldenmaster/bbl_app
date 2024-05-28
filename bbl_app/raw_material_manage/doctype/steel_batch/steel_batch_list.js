@@ -16,7 +16,6 @@ frappe.listview_settings["Steel Batch"] = {
         console.log("func1");
     },
     onload: function (listview) {
-        console.log("onload");
         this.list_view = listview;
         let page = listview.page;
         let me = this;

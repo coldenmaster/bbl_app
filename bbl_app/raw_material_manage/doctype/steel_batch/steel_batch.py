@@ -15,10 +15,10 @@ class SteelBatch(Document):
     
     def save(self):
         if self.is_new():
-            print_red('steel save() is new')
-            print_blue('steel save()')
-            print_blue(self)
-            print_blue(vars(self))
+            # print_red('steel save() is new')
+            # print_blue('steel save()')
+            # print_blue(self)
+            # print_blue(vars(self))
             self.create_heat_no()
             self.create_batch_no()
             self.create_sabb()
@@ -153,7 +153,7 @@ def make_out_entry(**kwargs):
     docs = frappe.get_all("Steel Batch")
     """
     # print_blue_pp(kwargs)
-    print(kwargs)
+    # print(kwargs)
 
     raw_name = kwargs["raw_name"]
     raw_weight = cint(kwargs["raw_weight"])
@@ -201,7 +201,7 @@ def make_out_entry(**kwargs):
     manufacture_out_doc = frappe.get_doc(new_kw)
     manufacture_out_doc.insert()
     frappe.db.commit()
-    print_red(manufacture_out_doc)
+    # print_red(manufacture_out_doc)
     return manufacture_out_doc.name
     
     # todo 
@@ -214,7 +214,7 @@ def make_out_entry(**kwargs):
 
 def create_sabb(opts):
 
-    print("新建SABB", opts.raw_name, opts.weight, opts.batchs)
+    # print("新建SABB", opts.raw_name, opts.weight, opts.batchs)
     sabb_doc = frappe.get_doc({
         'doctype': 'Serial and Batch Bundle',
         'company': '百兰车轴',
