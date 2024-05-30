@@ -1,0 +1,33 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2024-05-30 14:28:53",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "json": "{\"filters\":[],\"fields\":[[\"heat_no\",\"Steel Batch Check\"],[\"_aggregate_column\",\"Steel Batch Check\"]],\"order_by\":\"`tabSteel Batch Check`.`modified` desc\",\"add_totals_row\":0,\"page_length\":20,\"column_widths\":{\"heat_no\":120,\"_aggregate_column\":200},\"group_by\":{\"group_by\":\"`tabSteel Batch Check`.`heat_no`\",\"aggregate_function\":\"sum\",\"aggregate_on\":\"`tabSteel Batch Check`.`steel_piece`\"}}",
+ "letterhead": null,
+ "modified": "2024-05-30 14:35:05",
+ "modified_by": "Administrator",
+ "module": "Bbl App",
+ "name": "\u76d8\u70b9\u8868\u7089\u53f7\u6839\u6570",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Steel Batch Check",
+ "report_name": "\u76d8\u70b9\u8868\u7089\u53f7\u6839\u6570",
+ "report_type": "Report Builder",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Manufacturing User"
+  },
+  {
+   "role": "Stock Manager"
+  }
+ ]
+}

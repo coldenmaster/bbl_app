@@ -19,7 +19,7 @@ frappe.listview_settings["Steel Batch Check"] = {
 		var colors = {
 			在库: "green",
 			无此批号: "red",
-			出完: "yellow",
+			已出完: "yellow",
 			Working: "orange",
 			"Pending Review": "orange",
 			Cancelled: "dark grey",
@@ -41,7 +41,6 @@ function check_area_select_dialog() {
                 "fieldtype": "Link",
                 "options": "Warehouse Area",
                 "reqd": 1,
-                "default": "南1区",
             }
         ],
         primary_action: function (values) {
@@ -68,18 +67,23 @@ function check_process(values) {
 }
 
 function show_check_result(msg) {
+    console.log("sbc", msg);
     let sbc_fields = [];
     for (let i = 0; i < msg.only_in_sbc.length; i++) {
         sbc_fields.push({
             "index": i + 1,
-            "batch_no": msg.only_in_sbc[i],
+            "batch_no": msg.only_in_sbc[i].name,
+            "status": msg.only_in_sbc[i].status,
+            "piece": msg.only_in_sbc[i].steel_piece,
         })
     }
     let sb_fields = [];
     for (let i = 0; i < msg.only_in_sb.length; i++) {
         sb_fields.push({
             "index": i + 1,
-            "batch_no": msg.only_in_sb[i],
+            "batch_no": msg.only_in_sb[i].name,
+            "status": msg.only_in_sb[i].warehouse_area,
+            "piece": msg.only_in_sb[i].steel_piece,
         })
     }
     const dialog = new frappe.ui.Dialog({
@@ -131,6 +135,21 @@ function show_check_result(msg) {
                         reqd: 1,
                         in_list_view: 1,
                     },
+                    {
+                        fieldname: "status",
+                        label: __("Status"),
+                        fieldtype: "Data",
+                        read_only: 1,
+                        in_list_view: 1,
+                    },
+                    {
+                        fieldname: "piece",
+                        label: "根数",
+                        fieldtype: "Int",
+                        read_only: 1,
+                        in_list_view: 1,
+                        columns: 1,
+                    },
                 ],
 
                 on_add_row: (idx) => {
@@ -162,6 +181,21 @@ function show_check_result(msg) {
                         options: "Steel Batch",
                         reqd: 1,
                         read_only: 1,
+                        in_list_view: 1,
+                    },
+                    {
+                        fieldname: "status",
+                        label: "库区",
+                        fieldtype: "Data",
+                        read_only: 1,
+                        in_list_view: 1,
+                    },
+                    {
+                        fieldname: "piece",
+                        label: "根数",
+                        fieldtype: "Int",
+                        read_only: 1,
+                        columns: 1,
                         in_list_view: 1,
                     },
                 ],
