@@ -2,7 +2,7 @@
 // For license information, please see license.txt
 
 frappe.require("/assets/bbl_app/js/steel_batch_parse.js", () => {
-    console.log("parse.js is loaded");
+    // console.log("parse.js is loaded");
 });
 
 frappe.ui.form.on("Steel Batch Check", {
@@ -44,19 +44,6 @@ function _clear_doc(frm) {
 
 
 function parse_gangbang_code(frm) {
-    // _clear_doc(frm);
-    // if (!frm.is_new()) {
-    //     frappe.msgprint({
-    //         title: __('Warning'),
-    //         message: "请新建空白表单，然后扫码",
-    //         indicator: 'red'
-    //     });
-    //     frm.doc.scan_barcode = ""
-    //     frm.refresh();
-    //     frm.focus_on_first_input();
-    //     console.log("focus_on_first_input");
-    //     return;
-    // }
 
     let qrcodeStr = frm.doc.scan_barcode    
     gangbang_info = GangbangParse.parse(qrcodeStr);
@@ -78,9 +65,6 @@ function parse_gangbang_code(frm) {
         }, 2000);
         return;
     }
-
-    // frm.doc.supplier = gangbang_info.company;
-    // frm.doc.product_company = gangbang_info.company;
     frm.doc.batch_no = gangbang_info.bundleNo;
     frm.doc.heat_no = gangbang_info.heatNo;
     frm.doc.steel_grade = gangbang_info.steelGrade.trim();
@@ -105,12 +89,6 @@ function parse_gangbang_code(frm) {
     if (!(frm.doc.steel_piece > 0)) {
         frm.doc.steel_piece = undefined;
     }
-    // frm.refresh();
-
-    // frappe.show_alert({
-    //     message:"扫码成功",
-    //     indicator:'green'
-    // }, 5);
 
     frappe.db.exists("Steel Batch Check", frm.doc.batch_no).then(exists => {
         if (exists) {

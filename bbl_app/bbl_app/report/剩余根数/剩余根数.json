@@ -8,7 +8,7 @@
  "filters": [],
  "idx": 0,
  "is_standard": "Yes",
- "json": "{\"filters\":[[\"Steel Batch\",\"status\",\"!=\",\"\u51fa\u5b8c\",false]],\"fields\":[[\"heat_no\",\"Steel Batch\"],[\"_aggregate_column\",\"Steel Batch\"]],\"order_by\":\"`tabSteel Batch`.`modified` desc\",\"add_totals_row\":true,\"page_length\":20,\"column_widths\":{\"heat_no\":120,\"_aggregate_column\":134},\"group_by\":{\"group_by\":\"`tabSteel Batch`.`heat_no`\",\"aggregate_function\":\"sum\",\"aggregate_on\":\"`tabSteel Batch`.`remaining_piece`\"}}",
+ "json": "{\"filters\":[[\"Steel Batch\",\"status\",\"!=\",\"\u51fa\u5b8c\",false]],\"fields\":[[\"heat_no\",\"Steel Batch\"],[\"_aggregate_column\",\"Steel Batch\"]],\"order_by\":\"`tabSteel Batch`.`modified` desc\",\"add_totals_row\":true,\"page_length\":100,\"column_widths\":{\"heat_no\":120,\"_aggregate_column\":134},\"group_by\":{\"group_by\":\"`tabSteel Batch`.`heat_no`\",\"aggregate_function\":\"sum\",\"aggregate_on\":\"`tabSteel Batch`.`remaining_piece`\"}}",
  "letterhead": null,
  "modified": "2024-05-23 15:36:58",
  "modified_by": "Administrator",

@@ -1,0 +1,31 @@
+{
+ "add_total_row": 1,
+ "columns": [],
+ "creation": "2024-05-30 17:57:55",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "json": "{\"columns\":[{\"label\":\"\u65e5\u671f\",\"fieldname\":\"date\",\"fieldtype\":\"Datetime\",\"width\":180,\"id\":\"date\",\"name\":\"\u65e5\u671f\",\"editable\":false,\"compareValue\":null},{\"label\":\"\u7269\u6599\",\"fieldname\":\"item_code\",\"fieldtype\":\"Link\",\"options\":\"Item\",\"width\":130,\"id\":\"item_code\",\"name\":\"\u7269\u6599\",\"editable\":false,\"compareValue\":null},{\"label\":\"\u6536\u5230\u6570\u91cf\",\"fieldname\":\"in_qty\",\"fieldtype\":\"Int\",\"width\":80,\"convertible\":\"qty\",\"id\":\"in_qty\",\"name\":\"\u6536\u5230\u6570\u91cf\",\"editable\":false,\"compareValue\":null},{\"label\":\"\u53d1\u51fa\u6570\u91cf\",\"fieldname\":\"out_qty\",\"fieldtype\":\"Float\",\"width\":80,\"convertible\":\"qty\",\"id\":\"out_qty\",\"name\":\"\u53d1\u51fa\u6570\u91cf\",\"editable\":false,\"compareValue\":null},{\"label\":\"\u7ed3\u4f59\u6570\u91cf\",\"fieldname\":\"qty_after_transaction\",\"fieldtype\":\"Float\",\"width\":100,\"convertible\":\"qty\",\"id\":\"qty_after_transaction\",\"name\":\"\u7ed3\u4f59\u6570\u91cf\",\"editable\":false,\"compareValue\":null},{\"label\":\"\u4ed3\u5e93\",\"fieldname\":\"warehouse\",\"fieldtype\":\"Link\",\"options\":\"Warehouse\",\"width\":150,\"id\":\"warehouse\",\"name\":\"\u4ed3\u5e93\",\"editable\":false,\"compareValue\":null},{\"label\":\"\u7269\u6599\u7ec4\",\"fieldname\":\"item_group\",\"fieldtype\":\"Link\",\"options\":\"Item Group\",\"width\":100,\"id\":\"item_group\",\"name\":\"\u7269\u6599\u7ec4\",\"editable\":false,\"compareValue\":null},{\"label\":\"\u5165\u5e93\u6210\u672c\u4ef7\",\"fieldname\":\"incoming_rate\",\"fieldtype\":\"Currency\",\"width\":110,\"options\":\"Company:company:default_currency\",\"convertible\":\"rate\",\"id\":\"incoming_rate\",\"name\":\"\u5165\u5e93\u6210\u672c\u4ef7\",\"editable\":false,\"compareValue\":null},{\"label\":\"\u5e73\u5747\u6210\u672c\u4ef7(\u5e93\u5b58\u4f59\u989d)\",\"fieldname\":\"valuation_rate\",\"fieldtype\":\"Currency\",\"width\":180,\"options\":\"Company:company:default_currency\",\"convertible\":\"rate\",\"id\":\"valuation_rate\",\"name\":\"\u5e73\u5747\u6210\u672c\u4ef7(\u5e93\u5b58\u4f59\u989d)\",\"editable\":false,\"compareValue\":null},{\"label\":\"\u6210\u672c\u4ef7\",\"fieldname\":\"in_out_rate\",\"fieldtype\":\"Currency\",\"width\":140,\"options\":\"Company:company:default_currency\",\"convertible\":\"rate\",\"id\":\"in_out_rate\",\"name\":\"\u6210\u672c\u4ef7\",\"editable\":false,\"compareValue\":null},{\"label\":\"\u7ed3\u4f59\u91d1\u989d\",\"fieldname\":\"stock_value\",\"fieldtype\":\"Currency\",\"width\":110,\"options\":\"Company:company:default_currency\",\"id\":\"stock_value\",\"name\":\"\u7ed3\u4f59\u91d1\u989d\",\"editable\":false,\"compareValue\":null},{\"label\":\"\u503c\u53d8\u66f4\",\"fieldname\":\"stock_value_difference\",\"fieldtype\":\"Currency\",\"width\":110,\"options\":\"Company:company:default_currency\",\"id\":\"stock_value_difference\",\"name\":\"\u503c\u53d8\u66f4\",\"editable\":false,\"compareValue\":null},{\"label\":\"\u51ed\u8bc1\u7c7b\u578b\",\"fieldname\":\"voucher_type\",\"width\":110,\"id\":\"voucher_type\",\"name\":\"\u51ed\u8bc1\u7c7b\u578b\",\"editable\":false,\"compareValue\":null},{\"label\":\"\u51ed\u8bc1\u53f7\",\"fieldname\":\"voucher_no\",\"fieldtype\":\"Dynamic Link\",\"options\":\"voucher_type\",\"width\":100,\"id\":\"voucher_no\",\"name\":\"\u51ed\u8bc1\u53f7\",\"editable\":false,\"compareValue\":null},{\"label\":\"\u6279\u53f7\",\"fieldname\":\"batch_no\",\"fieldtype\":\"Link\",\"options\":\"Batch\",\"width\":100,\"id\":\"batch_no\",\"name\":\"\u6279\u53f7\",\"editable\":false,\"compareValue\":null},{\"label\":\"\u5e8f\u5217\u53f7\u4e0e\u6279\u53f7\",\"fieldname\":\"serial_and_batch_bundle\",\"fieldtype\":\"Link\",\"options\":\"Serial and Batch Bundle\",\"width\":100,\"id\":\"serial_and_batch_bundle\",\"name\":\"\u5e8f\u5217\u53f7\u4e0e\u6279\u53f7\",\"editable\":false,\"compareValue\":null}],\"filters\":{\"company\":\"\u767e\u5170\u8f66\u8f74\",\"from_date\":\"2024-04-30\",\"to_date\":\"2024-05-30\",\"valuation_field_type\":\"Currency\",\"segregate_serial_batch_bundle\":0}}",
+ "letterhead": null,
+ "modified": "2024-05-31 10:00:47",
+ "modified_by": "Administrator",
+ "module": "Bbl App",
+ "name": "\u539f\u6750\u6599\u6d41\u6c34\u8d26",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Stock Ledger Entry",
+ "reference_report": "Stock Ledger",
+ "report_name": "\u539f\u6750\u6599\u6d41\u6c34\u8d26",
+ "report_type": "Custom Report",
+ "roles": [
+  {
+   "role": "Stock User"
+  },
+  {
+   "role": "Accounts Manager"
+  }
+ ]
+}

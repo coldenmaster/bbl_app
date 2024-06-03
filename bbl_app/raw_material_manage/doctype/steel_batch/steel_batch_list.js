@@ -44,14 +44,14 @@ frappe.listview_settings["Steel Batch"] = {
 		// 	erpnext.bulk_transaction_processing.create(listview, "Purchase Receipt", "Purchase Invoice");
 		// });
 
-        page.add_inner_button('采购入库', () => {
+        page.add_inner_button('入库0', () => {
             let items2 = listview.get_checked_items();
             items2 = items2.filter(item => item.status === "未入库");
             if (items2.length === 0) {
                 frappe.msgprint( { "title": "提示", message: "请选择'未入库'批次", "indicator": "red" });
                 return
             }
-            listview.page.set_indicator('采购入库', 'green');
+            // listview.page.set_indicator('采购入库', 'green');
             frappe.new_doc("Purchase Receipt", null).then(() => {
                 doc2 = cur_frm.doc;
                 cur_frm.clear_table("items");
@@ -63,8 +63,17 @@ frappe.listview_settings["Steel Batch"] = {
                 }
             });
         });
-        page.change_inner_button_type('采购入库', null, 'warning');
 
+        page.add_inner_button('采购入库', () => {
+            let items = listview.get_checked_items();
+            items = items.filter(item => item.status === "未入库");
+            if (items.length === 0) {
+                frappe.msgprint( { "title": "提示", message: "请选择'未入库'批次", "indicator": "red" });
+                return
+            }
+            purchase_receipt(items);
+        });
+        page.change_inner_button_type('采购入库', null, 'warning');
 
         page.add_inner_button('调拨出库', () => {
             let items2 = listview.get_checked_items();
@@ -96,29 +105,6 @@ frappe.listview_settings["Steel Batch"] = {
         });
         page.change_inner_button_type('调拨出库', null, 'success');
   
-
-        page.add_inner_button('出库2', () => {
-            let items2 = listview.get_checked_items();
-            items2 = items2.filter(item => item.status === "已入库" || item.status === "半出库");
-            // console.log(items2)
-            if (items2.length === 0) {
-                frappe.msgprint( { "title": "提示", message: "请选择'在库'批次", "indicator": "red" });
-                return
-            } else if (items2.length !== 1) {
-                frappe.msgprint( { "title": "提示", message: "只支持单批出库", "indicator": "red" });
-                return
-            }
-            listview.page.set_indicator('出库2', 'blue');
-            // todo 这里根据items信息，做dialog，收集出库相关的信息：
-            /*
-                1.批次号
-                2.出库长度1，2，3，根数1，2，3
-                3.出库总重量（辅助计算） 
-             */
-            out_2(items2[0]);
-
-        });
-        // page.change_inner_button_type('出库2', null, 'warning');
 
         page.add_inner_button('生产出库', () => {
             let items = listview.get_checked_items();
@@ -163,40 +149,13 @@ frappe.listview_settings["Steel Batch"] = {
         this.list_view.make_new_doc();
         // triggers when the primary action is clicked
     },
+
     // get_form_link(doc) {
         // console.log("get_form_link", doc)
         // override the form route for this doc
     // },
     // has_indicator_for_draft: false,
 
-    // add a custom button for each row
-    
-    // button: {
-    //     show(doc) {
-    //         return doc.status === "已入库" || doc.status === "半出库" || doc.status === "未入库";
-    //     },
-    //     get_label(doc) {
-    //         if (doc.status === "已入库" || doc.status === "半出库") 
-    //             return "转库区";
-    //         if (doc.status === "未入库") 
-    //             return "入库";
-    //     },
-    //     get_description(doc) {
-    //         return __("View {0}", [` ${doc.name}`])
-    //     },
-    //     action(doc, b2) {
-    //         // frappe.set_route("Form", doc.status, doc.name);
-    //         let lv =  frappe.get_list_view("Steel Batch");
-    //         if (doc.status === "已入库" || doc.status === "半出库") {
-    //             trans_area(doc);
-    //         }
-    //         if (doc.status === "未入库") {
-    //             console.log("入库 doc", doc, this, b2, lv);
-    //             frappe.msgprint({ "title": "提示", message: "功能暂未实现", "indicator": "red" });
-    //         }
-    //     }
-    // },
-   
     // format how a field value is shown
     // formatters: {
     //     title(val) {
@@ -255,6 +214,13 @@ function trans_area(doc) {
     })
     d.show();
 };
+
+function purchase_receipt(items) {
+    console.log("purchase_receipt items:", items);
+    pr_send_items(items);
+
+
+}
 
 function product_out(items) {
     // console.log("product_out items:", items);
@@ -397,7 +363,6 @@ function product_out_dialog(total) {
     d.show();
 }
 
-
 function product_out_send_values(values) {
     console.log("product_out_send_values values:", values);
     frappe.call({
@@ -405,13 +370,35 @@ function product_out_send_values(values) {
         args: values
     }).then(r => {
         console.log("make_out_entry:", r)
-        frappe.show_progress('Loading..', 100, 100, '出库成功', true);
+        frappe.show_progress('Loading..', 20, 100, '正在处理...', true);
         if (r.message) {
             frappe.show_alert({
                 message: __("出库成功"),
                 indicator: "green"
             });
+            frappe.show_progress('Loading..', 100, 100, '出库成功', true);
             frappe.set_route("Form", "Stock Entry", r.message);
+        }
+    })
+
+}
+
+function pr_send_items(items) {
+    frappe.show_progress('Loading..', 20, 100, '正在处理...', true);
+    frappe.call({
+        method: "bbl_app.raw_material_manage.doctype.steel_batch.steel_batch.pr_send_items",
+        args: {
+            items
+        }
+    }).then(r => {
+        console.log("pr_send_items rt:", r)
+        if (r.message) {
+            frappe.show_alert({
+                message: __("建立入库草稿成功"),
+                indicator: "green"
+            });
+            frappe.set_route("Form", "Purchase Receipt", r.message);
+            frappe.show_progress('Loading..', 100, 100, '处理完成', true);
         }
     })
 

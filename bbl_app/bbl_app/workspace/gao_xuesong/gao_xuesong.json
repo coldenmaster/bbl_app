@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"c7kM_QUVsO\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"\u94a2\u6750\u603b\u5428\u6570\uff08\u5728\u5e93\uff09\",\"col\":3}},{\"id\":\"TQnCURWglR\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"\u603b\u6839\u6570\",\"col\":3}},{\"id\":\"dzXuALBJvO\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"\u94a2\u6750\u6346\u6570\uff08\u5728\u5e93\uff09\",\"col\":3}},{\"id\":\"nm-a264xXH\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"\u94a2\u6750\u6346\u6570\uff08\u51fa\u5b8c\uff09\",\"col\":3}},{\"id\":\"RQx-i2dPp8\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>\u539f\u6750\u6599\u7ba1\u7406</b></span>\",\"col\":12}},{\"id\":\"Eet8EMiazS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u65b0\u5efa\u94a2\u6750\u6279\u6b21\",\"col\":3}},{\"id\":\"quplz0T9aR\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u539f\u6750\u6599\u4ed3\u5e93\u7ba1\u7406\",\"col\":3}},{\"id\":\"_Id1kT7V_F\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u91c7\u8d2d\u5165\u5e93\",\"col\":3}},{\"id\":\"v6S_dfvR7K\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u76f4\u63a5\u51fa\u5e93\",\"col\":3}},{\"id\":\"_Y3wAp_qd6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Short Raw Bar\",\"col\":3}},{\"id\":\"iqOfQ7AE7s\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Steel Batch Check\",\"col\":3}},{\"id\":\"naAnc8Jl2e\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u5e38\u7528\u62a5\u8868</b></span>\",\"col\":12}},{\"id\":\"EVhU47mU0J\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u603b\u62a5\u8868\",\"col\":3}},{\"id\":\"R-j-Ju3cuN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u5e93\u533a\u6346\u6570\",\"col\":3}},{\"id\":\"0iOxv2tLI-\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u7089\u53f7/\u5269\u4f59\u6839\u6570\",\"col\":3}},{\"id\":\"ybgdLSu04V\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u76d8\u70b9\u8868/\u7089\u53f7/\u6839\u6570\",\"col\":3}},{\"id\":\"vn7H8HLy62\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"3hu-YydJqh\",\"type\":\"card\",\"data\":{\"card_name\":\"\u62a5\u8868\",\"col\":3}},{\"id\":\"8BR_eeLi59\",\"type\":\"card\",\"data\":{\"card_name\":\"\u57fa\u7840\u6570\u636e\",\"col\":4}}]",
+ "content": "[{\"id\":\"c7kM_QUVsO\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"\u94a2\u6750\u603b\u5428\u6570\uff08\u5728\u5e93\uff09\",\"col\":3}},{\"id\":\"TQnCURWglR\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"\u603b\u6839\u6570\",\"col\":3}},{\"id\":\"dzXuALBJvO\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"\u94a2\u6750\u6346\u6570\uff08\u5728\u5e93\uff09\",\"col\":3}},{\"id\":\"nm-a264xXH\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"\u94a2\u6750\u6346\u6570\uff08\u51fa\u5b8c\uff09\",\"col\":3}},{\"id\":\"RQx-i2dPp8\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>\u539f\u6750\u6599\u7ba1\u7406</b></span>\",\"col\":12}},{\"id\":\"Eet8EMiazS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u65b0\u5efa\u94a2\u6750\u6279\u6b21\",\"col\":3}},{\"id\":\"quplz0T9aR\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u539f\u6750\u6599\u4ed3\u5e93\u7ba1\u7406\",\"col\":3}},{\"id\":\"_Id1kT7V_F\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u91c7\u8d2d\u5165\u5e93\",\"col\":3}},{\"id\":\"v6S_dfvR7K\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u539f\u6750\u6599\u51fa\u5e93\",\"col\":3}},{\"id\":\"BLOxXv6yOS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Raw Material Price\",\"col\":3}},{\"id\":\"_Y3wAp_qd6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Short Raw Bar\",\"col\":3}},{\"id\":\"iqOfQ7AE7s\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Steel Batch Check\",\"col\":3}},{\"id\":\"naAnc8Jl2e\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u5e38\u7528\u62a5\u8868</b></span>\",\"col\":12}},{\"id\":\"EVhU47mU0J\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u603b\u62a5\u8868\",\"col\":3}},{\"id\":\"R-j-Ju3cuN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u5e93\u533a\u6346\u6570\",\"col\":3}},{\"id\":\"0iOxv2tLI-\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u7089\u53f7/\u5269\u4f59\u6839\u6570\",\"col\":3}},{\"id\":\"ybgdLSu04V\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u76d8\u70b9\u8868/\u7089\u53f7/\u6839\u6570\",\"col\":3}},{\"id\":\"vn7H8HLy62\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"3hu-YydJqh\",\"type\":\"card\",\"data\":{\"card_name\":\"\u62a5\u8868\",\"col\":3}},{\"id\":\"8BR_eeLi59\",\"type\":\"card\",\"data\":{\"card_name\":\"\u57fa\u7840\u6570\u636e\",\"col\":3}},{\"id\":\"TO4OEG17xY\",\"type\":\"card\",\"data\":{\"card_name\":\"ERP \u529f\u80fd\",\"col\":3}}]",
  "creation": "2024-04-17 15:14:18",
  "custom_blocks": [],
  "docstatus": 0,
@@ -110,9 +110,40 @@
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "description": "\u5185\u7f6eerp\u529f\u80fd",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "ERP \u529f\u80fd",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "Item",
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "\u51fa\u5165\u5e93 \u6d41\u6c34\u8d26",
+   "link_count": 0,
+   "link_to": "\u539f\u6750\u6599\u6d41\u6c34\u8d26",
+   "link_type": "Report",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "\u51ed\u8bc1\u6e05\u5355",
+   "link_count": 0,
+   "link_to": "Stock Ledger Entry",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2024-05-30 14:49:29",
+ "modified": "2024-05-31 17:30:54",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Gao Xuesong",
@@ -170,7 +201,7 @@
    "color": "Grey",
    "doc_view": "List",
    "label": "\u76d8\u70b9\u8868/\u7089\u53f7/\u6839\u6570",
-   "link_to": "\u76d8\u70b9\u8868\u7089\u53f7\u6839\u6570",
+   "link_to": "\u76d8\u70b9\u8868\u7089\u53f7\u6839\u65702",
    "type": "Report"
   },
   {
@@ -189,20 +220,28 @@
    "type": "Report"
   },
   {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "\u539f\u6750\u6599\u51fa\u5e93",
+   "link_to": "Stock Entry",
+   "stats_filter": "[[\"Stock Entry\",\"owner\",\"=\",\"gaoxuesong@hbbbl.top\",false]]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Raw Material Price",
+   "link_to": "Raw Material Price",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
    "color": "Red",
    "doc_view": "List",
    "format": "{}",
    "label": "\u91c7\u8d2d\u5165\u5e93",
    "link_to": "Purchase Receipt",
    "stats_filter": "[[\"Purchase Receipt\",\"status\",\"!=\",\"Cancelled\",false]]",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "\u76f4\u63a5\u51fa\u5e93",
-   "link_to": "Stock Entry",
-   "stats_filter": "[[\"Stock Entry\",\"stock_entry_type\",\"=\",\"\u539f\u94a2\u8c03\u62e8\u51fa\u5e93\",false]]",
    "type": "DocType"
   },
   {

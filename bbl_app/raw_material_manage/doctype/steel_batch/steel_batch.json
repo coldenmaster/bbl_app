@@ -154,10 +154,12 @@
    "fetch_from": "heat_no.raw_name",
    "fetch_if_empty": 1,
    "fieldname": "raw_name",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Raw Name"
+   "label": "Raw Name",
+   "link_filters": "[[\"Item\",\"item_group\",\"=\",\"\u539f\u6750\u6599\"]]",
+   "options": "Item"
   },
   {
    "depends_on": "eval:!!doc.__islocal",
@@ -287,6 +289,7 @@
   },
   {
    "fetch_from": "semi_product.material_ratio",
+   "fetch_if_empty": 1,
    "fieldname": "material_ratio",
    "fieldtype": "Data",
    "label": "Material Ratio"
@@ -307,7 +310,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-27 17:16:31",
+ "modified": "2024-06-01 09:44:53",
  "modified_by": "Administrator",
  "module": "Raw Material Manage",
  "name": "Steel Batch",

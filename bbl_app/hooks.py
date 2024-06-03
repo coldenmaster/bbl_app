@@ -11,8 +11,7 @@ app_license = "mit"
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/bbl_app/css/bbl_app.css"
-# app_include_js = "/assets/bbl_app/js/bbl_app.js"
-app_include_js = "/assets/bbl_app/js/map_defaults.js"
+app_include_js = "bbl_app.bundle.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/bbl_app/css/bbl_app.css"

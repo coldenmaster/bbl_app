@@ -76,6 +76,7 @@ def check_process(**args):
     }
     return rt
 
+
 def list_diff(list1, list2):
     # 获取list1中不在list2中的元素
     set1 = set(list1)
