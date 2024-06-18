@@ -270,11 +270,12 @@ def make_out_entry(**kwargs):
 
     if raw_weight < out_weight:
         frappe.throw("出库重量不能大于剩余重量")
-    if len(raw_batchs) > 1 and (raw_weight > out_weight or is_zhxl) :
-        frappe.throw("只能进行单捆的部分出库和综合下料")
+    if len(raw_batchs) > 1 and (raw_weight > out_weight) :
+        frappe.throw("只能进行单捆的部分出库")
         
     # todo 部分下料:
     part_remaining_weight = raw_weight - out_weight
+    is_bfxl = bool(part_remaining_weight > 0)
     zh_part1_weight =  out_weight - zh_part2_weight - scrap_weight
     # target_out1_weight = out_weight if not is_zhxl else zh_part1_weight
 
@@ -318,6 +319,7 @@ def make_out_entry(**kwargs):
     # todo 综合下料处理部分
     if kwargs.check_zhxl == '1':
     # 短棒料2/综合下料sabb
+        create_bar_item(kwargs.zh_raw_bar_name)
         create_bar_batch(kwargs.zh_bar_batch, kwargs.zh_raw_bar_name)
         sabb_bar_opts_zh = frappe._dict({
             "name": kwargs.zh_raw_bar_name,
@@ -336,6 +338,31 @@ def make_out_entry(**kwargs):
             }
         items = [*items, item]
     # 综合下料时计算：
+
+    is_cbl = sbool(kwargs.check_cbl)
+    if is_cbl:
+        cbl_bar_name = kwargs.cbl_bar_name
+        create_bar_item(cbl_bar_name, '长棒料')
+        li = bar_batch.split('-')[1:-1]
+        cbl_bar_batch = '-'.join(["CBL", *li, kwargs.cbl_bar_length])
+        cbl_bar_piece = cint(kwargs.cbl_bar_piece)
+        create_bar_batch(cbl_bar_batch, cbl_bar_name)
+        sabb_bar_opts_cbl = frappe._dict({
+            "name": cbl_bar_name,
+            "piece": cbl_bar_piece,
+            "batchs": [(cbl_bar_batch, cbl_bar_piece),],        
+        })
+        sabb_bar_name_cbl = create_bar_sabb(sabb_bar_opts_cbl)
+        item = {
+                "item_code": cbl_bar_name,
+                "qty":  cbl_bar_piece,
+                "t_warehouse": "短棒料仓 - 百兰",
+                "uom": "根",
+                "is_finished_item": 0,
+                "serial_and_batch_bundle": sabb_bar_name_cbl,
+                "allow_zero_valuation_rate": 1,
+            }
+        items = [*items, item]
 
     if scrap_weight:
         item = {
@@ -381,9 +408,12 @@ def make_out_entry(**kwargs):
         item = childern_docs[i]
         if item.item_group == "原材料":
             raw_item = item
+            # print_green(f'{raw_item.as_dict() = }')
             bar1_item = childern_docs[i+1]
             if not is_zhxl:
                 sum = raw_item.qty * raw_item.basic_rate
+                # if is_bfxl:
+                #     sum = sum * raw_item.qty / raw_weight   
                 bar1_item.basic_rate = sum / bar1_item.qty
                 print_red(f'计算短棒料价格1:  {raw_item.basic_rate} x {raw_item.qty } / {bar1_item.qty} = {bar1_item.basic_rate}')
             else:    
@@ -395,36 +425,8 @@ def make_out_entry(**kwargs):
                 bar2_item.basic_rate = (sum - part1_price) / bar2_item.qty
                 print_red(f'计算短棒料价格2 综合:  {raw_item.basic_rate} x {raw_item.qty }  = {sum}')
             break # 只进行最后一个原材料组的计算
-                
-            
+                            
     
-    # # 计算短棒料价格
-    # zh_bar_piece = 0
-    # zh_part1_weight = 0
-           
-            
-    # raw_item = frappe._dict()
-    # bar1_item = frappe._dict()
-    # for item in childern_docs:
-    #     # if item.item_group == "短棒料" and not item.basic_rate \
-    #     if item.item_group == "短棒料" and bar1_item.item_group != '短棒料' and raw_item.item_group == '原材料':
-    #         sum = raw_item.qty * raw_item.basic_rate
-    #         item.basic_rate = sum / item.qty
-    #         print_red(f'计算短棒料价格1:  {raw_item.basic_rate} x {raw_item.qty } / {item.qty} = {item.basic_rate}')
-    #         bar1_item = item
-    #     elif item.item_group == '原材料' and bar1_item.item_group == '短棒料' and raw_item.item_group == '原材料':
-    #         # 计算综合下料时两种棒料的价格
-    #         sum = raw_item.qty * raw_item.basic_rate
-    #         total_weight = zh_part1_weight + zh_part2_weight
-    #         part1_price = sum * zh_part1_weight / total_weight
-    #         part1_rate = part1_price / item.qty
-    #         part2_rate = (sum - part1_price) / zh_bar_piece
-    #         print_red(f'计算短棒料价格2 综合:  {raw_item.basic_rate} x {raw_item.qty } / {item.qty} = {item.basic_rate}')
-    #         raw_item = frappe._dict()
-    #     if item.item_group == '原材料':
-    #         raw_item = item
-    #         bar1_item = frappe._dict()
-
     # 原材料标注为‘草稿’
     for batch_no in raw_batchs:
         frappe.db.set_value("Steel Batch", batch_no, "status", "草稿")
@@ -450,12 +452,12 @@ def make_out_entry(**kwargs):
 
   
 
-    # todo 
-    # 1.新建SABB for 物料转移（这个过程可能很困难，后台的数据变化，手动如何能完全进行）
-    # （进行一步步的手动模拟，操作物料转移）
-    # 2.建立物料转移
-    # 3.是否根据剩余数量，新建材料入库。（或者，修改长度和，根数。使用同一个批次号）
-    # 4.设值批次状态，和新数值。
+# todo 
+# 1.新建SABB for 物料转移（这个过程可能很困难，后台的数据变化，手动如何能完全进行）
+# （进行一步步的手动模拟，操作物料转移）
+# 2.建立物料转移
+# 3.是否根据剩余数量，新建材料入库。（或者，修改长度和，根数。使用同一个批次号）
+# 4.设值批次状态，和新数值。
 def create_sabb(opts):
     # print("新建SABB", opts.raw_name, opts.weight, opts.batchs)
     sabb_doc = frappe.get_doc({
@@ -471,10 +473,14 @@ def create_sabb(opts):
     for bw in opts.batchs:
         batch_no = bw["batch_no"]
         weight = bw["weight"]
+        if weight > opts.weight:
+            weight = opts.weight
         sabb_doc.append('entries', {
             'batch_no': batch_no,
             'qty': weight,
         })
+        # if weight > opts.weight:
+        #     break
     sabb_doc.insert(ignore_permissions=True)
     frappe.db.commit()
     # frappe.msgprint(f"新建 SABB: {sabb_doc.name}", indicator="green", alert=True)
@@ -539,13 +545,13 @@ def _create_item(item_name, item_type = '原材料', uom = 'kg', has_batch_no = 
     else: 
         return False
 
-def create_bar_item(item_name):
+def create_bar_item(item_name, item_type = '短棒料'):
     if (not frappe.db.exists('Item', item_name)):
         # print("此原材料不存在，新建")
         new_doc = frappe.get_doc({
             'doctype': 'Item',
             'item_code': item_name,
-            "item_group": "短棒料",
+            "item_group": item_type,
             "stock_uom": "根",
             'has_batch_no': 1,
             # 'create_new_batch': 1,

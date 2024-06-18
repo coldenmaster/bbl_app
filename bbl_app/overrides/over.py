@@ -147,7 +147,7 @@ def process_steel_batch(self):
             # 从SABB中找到 Steel Batch_No/weight, 
             for entry in sabb_doc.entries:
                 print_cyan(f'batch_no: {entry.batch_no=}')
-                steel_doc = frappe.get_doc("Steel Batch", entry.batch_no)
+                steel_doc = frappe.get_cached_doc("Steel Batch", entry.batch_no)
                 status = ''
                 remaining_weight = 0
                 remaining_piece = 0
@@ -156,7 +156,7 @@ def process_steel_batch(self):
                     status = '出完'
                 else:
                     status = '半出库'
-                    remaining_weight = remaining_weight - out_weight
+                    remaining_weight = steel_doc.remaining_weight - out_weight
                     # todo 未进行剩余根数的处理
                     remaining_piece = 0
                 steel_doc.update({
@@ -210,8 +210,8 @@ def create_raw_bar(self):
     for item in items:
         if item.get('item_group') == '原材料':
             last_raw_item = item
-        elif item.get('item_group') == '短棒料':
-            print_green_pp(f'{item= }')
+        elif item.get('item_group') in ['短棒料', '长棒料']:
+            # print_green_pp(f'{item= }')
             sabb_no = item.get('serial_and_batch_bundle')
             batch_no = frappe.db.get_value('Serial and Batch Entry',
                             {'parent': sabb_no},
@@ -252,7 +252,7 @@ def create_raw_bar(self):
                                         'batch_no')
                 print_red(f'{raw_sabb_no=}')
                 print_red(f'{raw_batch_no=}')
-                sb_doc = frappe.get_doc('Steel Batch', raw_batch_no)
+                sb_doc = frappe.get_cached_doc('Steel Batch', raw_batch_no)
                 temp_dict.heat_no = sb_doc.heat_no
                 temp_dict.raw_name = sb_doc.raw_name
                 temp_dict.diameter = sb_doc.diameter

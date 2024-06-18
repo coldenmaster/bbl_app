@@ -419,6 +419,19 @@ class Raw2BarDialog2 {
                 "fieldtype": "Int",
                 "reqd": 1,
                 "default": this.raw_weight,
+                onchange: (e) => {
+                    let d = this.dialog;
+                    let v = d.get_value("bar_weight") || 0;
+                    let show = v != this.raw_weight;
+                    d.get_field("out_piece").toggle(show);
+                }
+            },
+            {
+                "fieldname": "out_piece",
+                "label": "原材料使用根数",
+                "fieldtype": "Int",
+                "hidden": 1,
+                "default": this.calc_raw_cnt,
             },
             {
                 "fieldname": "scrap_length",
@@ -476,6 +489,56 @@ class Raw2BarDialog2 {
                     }
                 },
             },
+            // 剩余长棒料部分
+            
+            {
+                "fieldname": "check_cbl",
+                "label": "录入剩余长棒料",
+                "fieldtype": "Check",
+                onchange: (e) => {
+                    if (e.target.checked) {
+                        this.dialog.get_field("show_cbl").show();
+                        // this.dialog.get_field("out_piece").toggle(1);
+                    }
+                    else {
+                        this.dialog.get_field("show_cbl").hide();
+                        // this.dialog.get_field("out_piece").toggle(0);
+                    }
+                }
+            },
+
+            {
+                "fieldtype": "Section Break",
+                "fieldname": "show_cbl",
+                "hidden": 1,
+            },
+            {
+                "fieldname": "cbl_bar_length",
+                "label": "长棒料-长度",
+                "fieldtype": "Int",
+                onchange: (e) => {
+                    let d = this.dialog;
+                    let v = e?.target?.value || "xxx";
+                    this.cbl_bar_name = "长棒料_" + Math.floor(v/10) + "x"
+                    d.set_df_property("cbl_bar_length", "description", "物料名称：" + this.cbl_bar_name);
+                    d.set_value("cbl_bar_weight", this.calc_scrap_weight(v))
+                }
+            },
+            {
+                "fieldname": "cbl_bar_piece",
+                "label": "长棒料-根数",
+                "fieldtype": "Int",
+            },
+            
+            {
+                "fieldname": "cbl_bar_weight",
+                "label": "长棒料-重量kg",
+                "fieldtype": "Int",
+            },
+            {
+                "fieldtype": "Section Break",
+            },
+            // 综合下料部分
             {
                 "fieldname": "check_zhxl",
                 "label": "显示综合下料",
@@ -490,15 +553,15 @@ class Raw2BarDialog2 {
                         this.dialog.get_field("show_zhxl").hide();
                         setTimeout(() => { this.set_zh_reqd(0); }, 100)    
                     }
-
                 }
             },
+
+            // 扩展综合下料部分
             {
                 "fieldtype": "Section Break",
                 "fieldname": "show_zhxl",
                 "hidden": 1,
             },
-            // 扩展综合下料部分
             {
                 "fieldname": "zh_semi_product",
                 "label": "综合-半成品",
@@ -580,6 +643,7 @@ class Raw2BarDialog2 {
                 values.batchs = this.batchs;
                 values.diameter =this.diameter
                 values.crap_weight = this.calc_scrap_weight(values.scrap_length);
+                values.cbl_bar_name = this.cbl_bar_name
                 this.send_back_data(values);
             },
             secondary_action_label: __("关闭"),
