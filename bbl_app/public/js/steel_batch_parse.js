@@ -140,7 +140,7 @@ var GangbangParse = {
                     }
                 }
 
-            console.log('uploadBean', this.uploadBean);
+            // console.log('uploadBean', this.uploadBean);
 
             if (this.uploadBean.diaSize) {
                 let dia_length = this.uploadBean.diaSize.split("*");

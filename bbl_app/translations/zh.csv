@@ -234,7 +234,8 @@ M,百万,Number system
 B,十亿,Number system
 T,万亿,Number system
 P,千万亿,Number system
-"Search or type a command (Ctrl + G)",搜索或输入命令(Ctrl + G)
+"del Search or type a command (Ctrl + G)",搜索或输入命令(Ctrl + G),
+Search or type a command ({0}),搜索或输入命令({0}),
 Build,管理后台
 Settings,设置
 ERPNext Integrations,外部集成
@@ -310,3 +311,6 @@ USD,$,
 CNY,￥,
 EUR,€,
 JPY,¥,
+
+Bbl Not Op,百兰生产转序,
+

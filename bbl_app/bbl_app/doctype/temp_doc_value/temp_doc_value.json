@@ -1,0 +1,103 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-06-13 14:51:01",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "doc_type",
+  "doc_name",
+  "doc_status",
+  "data_1",
+  "data_2",
+  "data_3",
+  "data_4",
+  "data_5",
+  "data_json",
+  "note"
+ ],
+ "fields": [
+  {
+   "fieldname": "doc_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Doc Type",
+   "options": "DocType"
+  },
+  {
+   "fieldname": "doc_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Doc Name"
+  },
+  {
+   "fieldname": "doc_status",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Doc Status"
+  },
+  {
+   "fieldname": "data_1",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Data 1"
+  },
+  {
+   "fieldname": "data_2",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Data 2"
+  },
+  {
+   "fieldname": "data_3",
+   "fieldtype": "Data",
+   "label": "Data 3"
+  },
+  {
+   "fieldname": "data_4",
+   "fieldtype": "Data",
+   "label": "Data 4"
+  },
+  {
+   "fieldname": "data_5",
+   "fieldtype": "Data",
+   "label": "Data 5"
+  },
+  {
+   "fieldname": "data_json",
+   "fieldtype": "Long Text",
+   "in_list_view": 1,
+   "label": "Data Json"
+  },
+  {
+   "fieldname": "note",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Note"
+  }
+ ],
+ "links": [],
+ "modified": "2024-06-13 15:02:13",
+ "modified_by": "Administrator",
+ "module": "Bbl App",
+ "name": "Temp Doc Value",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "doc_type"
+}

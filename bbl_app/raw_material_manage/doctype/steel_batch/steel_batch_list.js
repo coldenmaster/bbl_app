@@ -1,29 +1,33 @@
+frappe.require("/assets/bbl_app/js/dialog/raw2bar_dialog.js", () => {
+    console.log("raw2bar_dialog.js 加载完成");
+});
+// frappe.require("/assets/bbl_app/js/dialog/bbl_dialog.js", () => {
+//     console.log("加载完成");
+// });
+
 frappe.listview_settings["Steel Batch"] = {
 
     // hide_name_column: true, // hide the last column which shows the `name`
     // hide_name_filter: true, // hide the default filter field for the name column
-  
-	add_fields: [
-		"status",
-		"warehouse_area",
-	],
+
+    add_fields: [
+        "status",
+        "warehouse_area",
+    ],
     filters: [
         ["status", "!=", "出完"]
     ],
-    list_view: "", 
+    list_view: "",
     _this: this,
     func1: function (me) {
         console.log("func1");
     },
     onload: function (listview) {
+        console.log("onload");
         this.list_view = listview;
         let page = listview.page;
         let me = this;
-		var method = "erpnext.projects.doctype.task.task.set_multiple_status";
-
-		// listview.page.add_menu_item(__("采购入库b"), function () {
-		// 	listview.call_for_selected_items(method, { status: "Open" });
-		// });
+        var method = "erpnext.projects.doctype.task.task.set_multiple_status";
 
         listview.page.add_menu_item("转库区", function () {
             console.log("转库区");
@@ -32,43 +36,24 @@ frappe.listview_settings["Steel Batch"] = {
                 console.log(items);
                 trans_area(items[0]);
             } else if (items.length === 0) {
-                frappe.msgprint( { "title": "提示", message: "请选择要转库的批次", "indicator": "red" });
+                frappe.msgprint({ "title": "提示", message: "请选择要转库的批次", "indicator": "red" });
             } else {
-                frappe.msgprint( { "title": "提示", message: "只能选择一个批次", "indicator": "red" });
+                frappe.msgprint({ "title": "提示", message: "只能选择一个批次", "indicator": "red" });
             }
-            
+
         });
 
         // listview.page.add_action_item(__("Purchase Receipt"), () => {
         //     console.log("选择条目后才会显示")
-		// 	erpnext.bulk_transaction_processing.create(listview, "Purchase Receipt", "Purchase Invoice");
-		// });
-
-        page.add_inner_button('入库0', () => {
-            let items2 = listview.get_checked_items();
-            items2 = items2.filter(item => item.status === "未入库");
-            if (items2.length === 0) {
-                frappe.msgprint( { "title": "提示", message: "请选择'未入库'批次", "indicator": "red" });
-                return
-            }
-            // listview.page.set_indicator('采购入库', 'green');
-            frappe.new_doc("Purchase Receipt", null).then(() => {
-                doc2 = cur_frm.doc;
-                cur_frm.clear_table("items");
-                for (let i in items2){
-                        child = frappe.model.add_child(doc2, "items");
-                        child.item_group = "原材料";
-                        // frappe.model.set_value(child.doctype, child.name, "item_code", items2[i].raw_name);
-                        frappe.model.set_value(child.doctype, child.name, "serial_and_batch_bundle",  "YGRK-" + items2[i].name);
-                }
-            });
-        });
+        // 	erpnext.bulk_transaction_processing.create(listview, "Purchase Receipt", "Purchase Invoice");
+        // });
 
         page.add_inner_button('采购入库', () => {
             let items = listview.get_checked_items();
             items = items.filter(item => item.status === "未入库");
+            // console.log("items", items);
             if (items.length === 0) {
-                frappe.msgprint( { "title": "提示", message: "请选择'未入库'批次", "indicator": "red" });
+                frappe.msgprint({ "title": "提示", message: "请选择'未入库'批次", "indicator": "red" });
                 return
             }
             purchase_receipt(items);
@@ -78,41 +63,31 @@ frappe.listview_settings["Steel Batch"] = {
         page.add_inner_button('调拨出库', () => {
             let items2 = listview.get_checked_items();
             items2 = items2.filter(item => item.status === "已入库" || item.status === "半出库");
-            // console.log(items2)
             if (items2.length === 0) {
-                frappe.msgprint( { "title": "提示", message: "请选择'在库'批次", "indicator": "red" });
+                frappe.msgprint({ "title": "提示", message: "请选择'在库'批次", "indicator": "red" });
                 return
             } else if (items2.length !== 1) {
-                frappe.msgprint( { "title": "提示", message: "暂时只支持单批次调拨", "indicator": "red" });
+                frappe.msgprint({ "title": "提示", message: "暂时只支持单批次调拨", "indicator": "red" });
                 return
             }
-            listview.page.set_indicator('调拨出库', 'blue');
-            // todo 这里根据items信息，做出库批次相关的准备单据
             frappe.new_doc("Stock Entry", null).then(() => {
                 parent_doc = cur_frm.doc;
-                // frappe.model.set_value(parent_doc.doctype, parent_doc.name, "purpose", "销售");
                 cur_frm.set_value("stock_entry_type", "原钢调拨出库");
                 cur_frm.set_value("to_warehouse", "原钢平仓库 - 百兰");
                 cur_frm.clear_table("items");
                 child = frappe.model.add_child(parent_doc, "items");
                 child.item_group = "原材料";
                 frappe.model.set_value(child.doctype, child.name, "item_code", items2[0].raw_name);
-                // setTimeout(() => {
-                // }, 1500)
-
             });
-
         });
-        page.change_inner_button_type('调拨出库', null, 'success');
-  
 
         page.add_inner_button('生产出库', () => {
             let items = listview.get_checked_items();
             items = items.filter(item => item.status === "已入库" || item.status === "半出库");
             product_out(items);
         });
-        page.change_inner_button_type('生产出库', null, 'danger');
-  
+        page.change_inner_button_type('生产出库', null, 'info');
+
         // let field = page.add_field({
         //     label: '甜甜',
         //     fieldtype: 'Select',
@@ -128,43 +103,32 @@ frappe.listview_settings["Steel Batch"] = {
         //     }
         // });
 
-	},
-    before_render(a) {
-        console.log("before_render", a)
+
     },
+    before_render(n) {
+        console.log("before_render", n)
+        // test_out(this.list_view);
+    },
+
     get_indicator: function (doc) {
-		var colors = {
-			未入库: "orange",
-			已入库: "green",
-			半出库: "blue",
-			出完: "gray",
-			Working: "orange",
-			"Pending Review": "orange",
-			Cancelled: "dark grey",
-		};
-		return [doc.status, colors[doc.status], "status,=," + doc.status];
-	},
+        var colors = {
+            未入库: "orange",
+            已入库: "green",
+            草稿: "purple",
+            半出库: "blue",
+            出完: "gray",
+            Working: "orange",
+            "Pending Review": "orange",
+            Cancelled: "dark grey",
+        };
+        return [doc.status, colors[doc.status], "status,=," + doc.status];
+    },
+
     primary_action(listview) {
         console.log("primary_action", this);
         this.list_view.make_new_doc();
-        // triggers when the primary action is clicked
     },
 
-    // get_form_link(doc) {
-        // console.log("get_form_link", doc)
-        // override the form route for this doc
-    // },
-    // has_indicator_for_draft: false,
-
-    // format how a field value is shown
-    // formatters: {
-    //     title(val) {
-    //         return val.bold();
-    //     },
-    //     public(val) {
-    //         return val ? "Yes" : "No";
-    //     }
-    // }
 };
 
 
@@ -207,7 +171,7 @@ function trans_area(doc) {
             if (doc.warehouse_area === values.warehouse_area) {
                 frappe.msgprint({ "title": "提示", message: "转入库区错误", "indicator": "red" });
             } else {
-                frappe.show_progress('Loading..', 0, 100, '转库...');
+                // frappe.show_progress('Loading..', 0, 100, '转库...');
                 into_area(doc, values.warehouse_area);
             }
         }
@@ -216,26 +180,39 @@ function trans_area(doc) {
 };
 
 function purchase_receipt(items) {
-    console.log("purchase_receipt items:", items);
     pr_send_items(items);
+}
+
+// function test_out2(listview) {
+//     console.log("测试 utils:");
+//     let el =  $($("a").get(0));
+//     let v1 = Object.keys(el);
+//     log("v1", v1)
+
+// }
 
 
+function test_out(listview) {
+    let items = [listview.data[0]];
+    console.log("测试 test_out items:", listview, items);
+    product_out(items);
 }
 
 function product_out(items) {
     // console.log("product_out items:", items);
-    // 需要是相同热处理号的
+    if (items.length == 0) {
+        frappe.msgprint({ "title": "提示", message: "请选择要出库的条目", "indicator": "red" });
+        return;
+    }
     let heat_nos = new Set(items.map(i => i.heat_no));
     let raw_name = new Set(items.map(i => i.raw_name));
-    console.log("product_out raw_name:", raw_name);
-
     if (heat_nos.size != 1 || raw_name.size != 1) {
-        frappe.msgprint({ "title": "提示", message: "请正确选择钢材批次", "indicator": "red" });
+        frappe.msgprint({ "title": "提示", message: "必须是：相同产品 + 相同炉号", "indicator": "red" });
         return;
     }
     // 从后端获取items的全部信息
     let batch_nos = items.map(i => i.name);
-    console.log("product_out batch_nos:", batch_nos);
+    // console.log("product_out batch_nos:", batch_nos);
     frappe.db.get_list("Steel Batch", {
         "filters": {
             "name": ["in", batch_nos]
@@ -243,27 +220,9 @@ function product_out(items) {
         fields: "*",
         limit: 100,
     }).then(rt_items => {
-        console.log("then, items_back:", rt_items);
-        // 收集总数量
-        let total = {};
-        total.name = rt_items[0].raw_name;
-        total.bundle_cnt = rt_items.length;
-        total.weight = rt_items.reduce((p, c) => p + c.remaining_weight, 0);
-        total.piece = rt_items.reduce((p, c) => p + c.remaining_piece, 0);
-        total.length = rt_items.reduce((p, c) => p + calc_total_length(c), 0);
-        // total.items = rt_items;
-        total.ratio = rt_items[0].material_ratio
-        console.log("product_out total.length :", total.length, total.ratio + 5 );
-        total.bar_piece = total.ratio ? parseInt(total.length / (parseInt(total.ratio) + 5)) : undefined;
-        total.batchs = [];
-        rt_items.forEach(i => {
-            total.batchs.push({
-                "batch_no": i.name,
-                "weight": i.remaining_weight,
-            })
-        })
-        console.log("product_out total:", total);
-        product_out_dialog(total);
+        // console.log("then, items_back:", rt_items);
+        // product_out_dialog(total);
+        product_out_dialog2(rt_items);
 
     })
 }
@@ -271,120 +230,454 @@ function product_out(items) {
 function calc_total_length(item) {
     // console.log("calc_total_length item:", item);
     return cint(item.length) * cint(item.steel_piece)
-        + cint(item.length2) * cint(item.piece2) 
+        + cint(item.length2) * cint(item.piece2)
         + cint(item.length3) * cint(item.piece3);
 }
 
-function product_out_dialog(total) {
-    // 调用钱获取短棒料，半成品的名称
-    let d = new frappe.ui.Dialog({
-        title: '生产出库',
-        fields: [
+
+function product_out_dialog2(rt_items) {
+    let d = new Raw2BarDialog2(rt_items, r => {
+        console.log("dialog return:", r);
+    });
+}
+
+
+
+class Raw2BarDialog2 {
+    constructor(opts, callback) {
+        // console.log("Raw2BarDialog opts:", opts);
+        this.dialog = null;
+        // this.frm = frm;
+        this.callback = callback;
+        this.items = opts;
+        this.sb_item_0 = this.items[0];
+        this.calc_raw_cnt = this.items.reduce((p, c) => p + c.remaining_piece, 0);
+        this.calc_total_length = this.items.reduce((p, c) => p + calc_total_length(c), 0);
+        this.raw_weight = this.items.reduce((p, c) => p + c.remaining_weight, 0);
+        this.raw_name = this.sb_item_0.raw_name;
+        this.bundle_cnt = this.items.length;
+        this.batchs = [];
+        this.items.forEach(i => {
+            this.batchs.push({
+                "batch_no": i.name,
+                "weight": i.remaining_weight,
+            })
+        })
+        this.raw_length = this.sb_item_0.length;
+        this.diameter = this.sb_item_0.diameter;
+        this.ratio = this.sb_item_0.material_ratio;
+        this.semi_product = this.sb_item_0.semi_product;
+        this.raw_bar_name = this.semi_product+ "_短棒料";
+        this.make();
+        // console.log("Raw2BarDialog constructor this:", this);
+    }
+
+    default_bar_batch(serial, prod) {
+        let heat_no = serial || this.sb_item_0.heat_no;
+        let prod_name = prod || this.sb_item_0.semi_product;
+        // log("default_bar_batch heat_no:", heat_no, this.semi_product);
+        return "DBL-" + frappe.datetime.now_date().replaceAll("-", "") + "-"
+            + heat_no.substring(heat_no.length - 4) + "-" + prod_name.substring(prod_name.length - 3);
+    }
+
+    ratio_desc() {
+        let piece_cnt = cint(this.raw_length / (cint(this.ratio) + 3));
+        return  "" + this.raw_length + " / (" + this.ratio + " +3) = " + piece_cnt + " x " + this.calc_raw_cnt 
+                + " = " + cstr(this.calc_bar_cnt()).bold() + "根 / 余: " + cstr(this.calc_scrap_length()).bold() + "mm / " 
+                + this.calc_scrap_weight_cstr(this.calc_scrap_length());
+    }
+
+    calc_bar_cnt() {
+        return cint(this.raw_length / (cint(this.ratio) + 3)) * this.calc_raw_cnt;
+    }
+
+    calc_scrap_length() {
+        return cint(this.calc_total_length - (cint(this.ratio) + 3) * this.calc_bar_cnt());
+    }
+    calc_scrap_weight(l) {
+        // log("calc_scrap_weight",this.diameter, l, wt);
+        return flt(bbl.utils.raw_leng_to_weight(this.diameter, l), 1);
+    }
+    calc_scrap_weight_cstr(l) {
+        return cstr(this.calc_scrap_weight(l)).bold() + "kg";
+    }
+
+    set_zh_reqd(on) {
+        this.fields.forEach(f => {
+            if (f?.fieldname?.startsWith("zh_")) {
+                let df = this.dialog.get_field(f.fieldname);
+                df.df["reqd"] = on;
+                df.set_required();
+            }
+        })
+    }
+
+    calc_zh_weight() {
+        let length = this.dialog.get_value("zh_bar_ratio") + 5;
+        let nos = this.dialog.get_value("zh_bar_piece");
+        let weight = cint(bbl.utils.raw_leng_to_weight(this.diameter, length * nos), 1);
+        this.dialog.set_value("zh_bar_weight", weight);
+    }
+
+    make() {
+        let title = "原材料/生产投料";
+        let primary_label = __("Submit");
+        this.fields = [
             {
-                "fieldname": "d0",
-                "label": "出库产品: \t" + total.name.bold(),
+                // "fieldname": "d0",
+                "label": "出库产品:&emsp;" + this.sb_item_0.raw_name.bold(),
                 "fieldtype": "Heading",
-            },            
+            },
             {
-                "fieldname": "d1",
-                "label": "出库数量: \t" + String(total.bundle_cnt).bold() + "捆 / " + String(total.piece).bold() + "根",
+                // "fieldname": "d1",
+                "label": "炉号:&emsp;&emsp;&emsp;" + cstr(this.sb_item_0.heat_no).bold(),
                 "fieldtype": "Heading",
             },
             {
                 "fieldname": "d2",
-                "label": "总长度: \t" + String(total.length).bold()+ " 毫米",
+                "label": "长度:&#x2003;&emsp;&emsp;" + cstr(this.raw_length).bold() + " 毫米 x " + String(this.calc_raw_cnt).bold() + "根",
                 "fieldtype": "Heading",
             },
             {
                 "fieldname": "d3",
-                "label": "总重量: \t" + String(total.weight).bold() + " 公斤",
+                "label": "总重量:&emsp;&emsp;" +  String(this.items.length).bold() + "捆 / " + String(this.raw_weight).bold() + " 千克",
                 "fieldtype": "Heading",
             },
+            // section break 1
+            { "fieldtype": "Section Break", },
             {
-                "fieldname": "d4",
-                "fieldtype": "Section Break",
+                "fieldname": "semi_product",
+                "label": "半成品",
+                "fieldtype": "Link",
+                "options": "Semi Product",
+                "default": this.semi_product,
+                onchange: (e) => {
+                    let d = this.dialog;
+                    let v = this.semi_product = d.get_value("semi_product")
+                    // d.set_value("raw_bar_name", v +"_短棒料");
+                    d.set_input("raw_bar_name", v +"_短棒料");
+                    frappe.db.get_value("Semi Product", v, "material_ratio").then(r => {
+                        d.set_value("bar_ratio", r.message.material_ratio);
+                    })
+                },
             },
-
             {
                 "fieldname": "raw_bar_name",
-                // "label": __("Short Raw Bar"),
                 "label": "下料名称",
                 "fieldtype": "Link",
                 "options": "Item",
                 "reqd": 1,
-                "default": total.name + "_短棒料",
-                // 这里增加过滤器，default使用半成品转短棒料
+                "default": this.raw_bar_name,
+                "get_query": () => {
+                    return {
+                        "filters": {
+                            "item_group": "短棒料",
+                        }
+                    }
+                },
+                onchange: (e) => {
+                    // console.log("raw_bar_name: Link 的 e 值被 set_value后清除了，看不到", e);
+                    this.raw_bar_name = this.dialog.get_value("raw_bar_name");
+                    // this.semi_product = this.raw_bar_name.split("_")[0];
+                    this.dialog.set_value("bar_batch", this.default_bar_batch(null, this.semi_product));
+                },
             },
             {
-                "fieldname": "bar_radio",
+                "fieldname": "bar_ratio",
                 "label": "倍尺",
                 "fieldtype": "Int",
                 "reqd": 1,
-                "default": total.ratio,
+                "description": this.ratio_desc(),
+                "default": this.ratio,
+                onchange: (e) => {
+                    let d = this.dialog;
+                    this.ratio = e?.target?.value || d.get_value("bar_ratio");
+                    d.set_df_property("bar_ratio", "description", this.ratio_desc());
+                    d.set_value("bar_piece", this.calc_bar_cnt());
+                    d.set_value("scrap_length", this.calc_scrap_length());
+                    d.set_df_property("scrap_length", "description", this.calc_scrap_weight_cstr(this.calc_scrap_length()));
+                },
+                on_make: (e) => {
+                    // console.log("on_make e:", e, this);
+                    // window.ra = e;
+                    // e.$input.on("keyup", (e) => {
+                    //     console.log("key up e 2:", e.which);
+                    // })
+                },
             },
             {
                 "fieldname": "bar_piece",
                 "label": "下料数量(根)",
                 "fieldtype": "Int",
                 "reqd": 1,
-                "default": total.bar_piece,
+                "default": this.calc_bar_cnt(),
+    
             },
             {
                 "fieldname": "bar_weight",
                 "label": "出库总重量",
                 "fieldtype": "Int",
                 "reqd": 1,
-                "default": total.weight,
+                "default": this.raw_weight,
+            },
+            {
+                "fieldname": "scrap_length",
+                "label": "料头长度mm",
+                "fieldtype": "Int",
+                "default": this.calc_scrap_length(),
+                "description": this.calc_scrap_weight_cstr(this.calc_scrap_length()),
+                onchange: (e) => {
+                    let d = this.dialog;
+                    let v = e?.target?.value || d.get_value("scrap_length") || 0;
+                    d.set_df_property("scrap_length", "description", this.calc_scrap_weight_cstr(v));
+                    d.set_value("scrap_weight", this.calc_scrap_weight(v))
+                }
+            },
+            {
+                "fieldname": "scrap_weight",
+                "label": "料头重量kg",
+                "fieldtype": "Int",
+                "hidden": 1,
+                "default": this.calc_scrap_weight(this.calc_scrap_length()),
+            },
+    
+            { "fieldtype": "Section Break", },
+            {
+                "fieldname": "stock_entry",
+                "label": "生产出库单据",
+                "fieldtype": "Link",
+                "options": "Stock Entry",
+                "default": "",
+                "get_query": () => {
+                    return {
+                        "filters": {
+                            // "stock_entry_type": "Manufacture",
+                            "stock_entry_type": "原材料下料出库",
+                            "modified": [">", frappe.datetime.add_days(frappe.datetime.nowdate(), -3)],
+                            "docstatus": 0,
+                        },
+                    }
+                },
+                "sort_options": 1,
+            },
+            {
+                "fieldname": "bar_batch",
+                "label": "产品批次",
+                "fieldtype": "Link",
+                "options": "Batch",
+                "reqd": 1,
+                "default": this.default_bar_batch(),
+                "get_query": () => {
+                    return {
+                        "filters": {
+                            "item": this.raw_bar_name,
+                            "modified": [">", frappe.datetime.add_days(frappe.datetime.nowdate(), -10)],
+                        },
+                    }
+                },
+            },
+            {
+                "fieldname": "check_zhxl",
+                "label": "显示综合下料",
+                "fieldtype": "Check",
+                onchange: (e) => {
+                    // log("显示综合下料 e", e.target.checked)
+                    if (e.target.checked) {
+                        this.dialog.get_field("show_zhxl").show();
+                        setTimeout(() => { this.set_zh_reqd(1); }, 100)
+                    }
+                    else {
+                        this.dialog.get_field("show_zhxl").hide();
+                        setTimeout(() => { this.set_zh_reqd(0); }, 100)    
+                    }
+
+                }
+            },
+            {
+                "fieldtype": "Section Break",
+                "fieldname": "show_zhxl",
+                "hidden": 1,
+            },
+            // 扩展综合下料部分
+            {
+                "fieldname": "zh_semi_product",
+                "label": "综合-半成品",
+                "fieldtype": "Link",
+                "options": "Semi Product",
+                onchange: (e) => {
+                    let d = this.dialog;
+                    let v = this.zh_semi_product = d.get_value("zh_semi_product")
+                    d.set_value("zh_raw_bar_name", v +"_短棒料");
+                    frappe.db.get_value("Semi Product", v, "material_ratio").then(r => {
+                        d.set_value("zh_bar_ratio", r.message.material_ratio);
+                    })
+                },
+            },
+            {
+                "fieldname": "zh_raw_bar_name",
+                "label": "综合-下料名称",
+                "fieldtype": "Link",
+                "options": "Item",
+                "get_query": () => {
+                    return {
+                        "filters": {
+                            "item_group": "短棒料",
+                        }
+                    }
+                },
+                onchange: (e) => {
+                    this.zh_raw_bar_name = this.dialog.get_value("zh_raw_bar_name");
+                    this.dialog.set_value("zh_bar_batch", this.default_bar_batch(null, this.zh_semi_product));
+                },
+            },
+            {
+                "fieldname": "zh_bar_ratio",
+                "label": "综合-倍尺",
+                "fieldtype": "Int",
+                onchange: (e) => {
+                    this.calc_zh_weight();
+                }
+            },
+            {
+                "fieldname": "zh_bar_piece",
+                "label": "综合-下料数量(根)",
+                "fieldtype": "Int",
+                onchange: (e) => {
+                    this.calc_zh_weight();
+                }
+            },
+            {
+                "fieldname": "zh_bar_weight",
+                "label": "综合-下料重量(kg)",
+                "fieldtype": "Int",
+                "description": "自动计算: (倍尺 + 5mm) x 数量",
+            },
+            {
+                "fieldname": "zh_bar_batch",
+                "label": "综合-产品批次",
+                "fieldtype": "Link",
+                "options": "Batch",
+                "get_query": () => {
+                    return {
+                        "filters": {
+                            "item": this.zh_raw_bar_name,
+                            "modified": [">", frappe.datetime.add_days(frappe.datetime.nowdate(), -10)],
+                        }
+                    }
+                },
             },
             // 如果是单捆，开启剩余长度，数量，公斤数输入
             // 如何打开综合下料功能
-            // 记录剩余料头数量？
-        ],
-        size: 'small',
-        primary_action_label: '生产出库',
-        primary_action(values) {
-            d.hide();
-            values.total = total;
-            values.raw_name = total.name;
-            values.raw_weight = total.weight;
-            values.batchs = total.batchs;
-            // 校验
-            // 进行后台出库操作
-            product_out_send_values(values)
-            // if (doc.warehouse_area === values.warehouse_area) {
-            //     frappe.msgprint({ "title": "提示", message: "错误", "indicator": "red" });
-            // } else {
-            //     frappe.show_progress('Loading..', 0, 100, '出库...');
-            //     values.batch_on = doc.name;
-            //     send_out_values(values, doc);
-            // }
-        }
-    })
-    d.show();
+        ]
+        this.dialog = new frappe.ui.Dialog({
+            title,
+            fields: this.fields,
+            // size: "small",
+            primary_action_label: primary_label,
+            primary_action: (values) => {
+                values.raw_name = this.raw_name;
+                values.raw_weight = this.raw_weight;
+                values.batchs = this.batchs;
+                values.diameter =this.diameter
+                values.crap_weight = this.calc_scrap_weight(values.scrap_length);
+                this.send_back_data(values);
+            },
+            secondary_action_label: __("关闭"),
+            secondary_action: () => this.dialog.hide(),
+        })
+
+        this.dialog.show()
+
+        // bbl.d2 = this;
+        // window.d2 = this.dialog;
+        
+        window.dfc = this.dialog.get_field("stock_entry");
+        // console.log("bbl.d2", bbl.d2);
+    }
+
+
+    send_back_data(values) {
+        // console.log("product_out_send_values values:", values);
+        frappe.call({
+            method: "bbl_app.raw_material_manage.doctype.steel_batch.steel_batch.make_out_entry",
+            args: values
+        }).then(r => {
+            // console.log("make_out_entry:", r)
+            // frappe.show_progress('Loading..', 20, 100, '正在处理...', true);
+            if (r.message) {
+                frappe.show_alert({
+                    message: __("新建出库草稿成功"),
+                    indicator: "green"
+                });
+                // frappe.show_progress('Loading..', 100, 100, '新建出库草稿成功', true);
+                frappe.set_route("Form", "Stock Entry", r.message);
+                setTimeout(() => {
+                    // frappe.set_route("Form", "Stock Entry", r.message);
+                    // frappe.cur_frm.refresh();
+                    frappe.cur_frm.reload_doc();
+                }, 2000);
+            }
+        })
+    
+    }
+    
+
+
+
 }
 
-function product_out_send_values(values) {
-    console.log("product_out_send_values values:", values);
-    frappe.call({
-        method: "bbl_app.raw_material_manage.doctype.steel_batch.steel_batch.make_out_entry",
-        args: values
-    }).then(r => {
-        console.log("make_out_entry:", r)
-        frappe.show_progress('Loading..', 20, 100, '正在处理...', true);
-        if (r.message) {
-            frappe.show_alert({
-                message: __("出库成功"),
-                indicator: "green"
-            });
-            frappe.show_progress('Loading..', 100, 100, '出库成功', true);
-            frappe.set_route("Form", "Stock Entry", r.message);
-        }
-    })
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function product_out_dialog(total) {
+    // 调用前获取短棒料，半成品的名称
+    console.log("product_out total:", total);
+
+    let d = new bbl.Raw2BarDialog(total, r => {
+        console.log("dialog return:", r);
+        product_out_send_values(values);
+    });
+
+
+
+    // let d = new frappe.ui.Dialog({
+    //     title: '生产出库',
+    //     fields: [
+
+    //     ],
+    //     size: 'small',
+    //     primary_action_label: '生产出库',
+    //     primary_action(values) {
+    //         d.hide();
+    //         values.total = total;
+    //         values.raw_name = total.name;
+    //         values.raw_weight = total.weight;
+    //         values.batchs = total.batchs;
+    //         // 校验
+    //         // 进行后台出库操作
+    //         product_out_send_values(values)
+    //     }
+    // })
+    // d.show();
 }
+
 
 function pr_send_items(items) {
-    frappe.show_progress('Loading..', 20, 100, '正在处理...', true);
+    // frappe.show_progress('Loading..', 20, 100, '正在处理...', true);
     frappe.call({
         method: "bbl_app.raw_material_manage.doctype.steel_batch.steel_batch.pr_send_items",
         args: {
@@ -393,12 +686,40 @@ function pr_send_items(items) {
     }).then(r => {
         console.log("pr_send_items rt:", r)
         if (r.message) {
-            frappe.show_alert({
-                message: __("建立入库草稿成功"),
-                indicator: "green"
+            // frappe.show_alert({
+            //     message: __("建立入库草稿成功"),
+            //     indicator: "green"
+            // });
+            // frappe.show_progress('Loading..', 100, 100, '处理完成', true);
+            // frappe.new_doc("Purchase Receipt", r.message);
+            let doctype = "Purchase Receipt";
+            let new_pr_doc;
+            frappe.model.with_doctype(doctype, () => {
+                new_pr_doc = frappe.model.get_new_doc(doctype)
+                children = r.message.items;
+                children.forEach(item => {
+                    c = frappe.model.add_child(new_pr_doc, "items");
+                    item.item_name = item.item_code;
+                    item.rejected_warehouse = "";
+                    // item.rate = undefined;
+                    Object.assign(c, item);
+                    // console.log("c:", c);
+                })
+                delete r.message.items;
+                Object.assign(new_pr_doc, r.message);
+                new_pr_doc.buying_price_list = "原材料价格表";
+                // new_pr_doc.price_list_rate = 1;
+                console.log("new_pr_doc:", new_pr_doc);
+                frappe.ui.form.make_quick_entry(doctype, null, null, new_pr_doc)
+                    .then((r) => {
+                        frm1 = cur_frm;
+                        console.log("frm_r:", r);
+                        console.log("frm1", frm1);
+                        // resolve();
+                    })
+                // frappe.set_route("Form", doctype, new_pr_doc.name);
             });
-            frappe.set_route("Form", "Purchase Receipt", r.message);
-            frappe.show_progress('Loading..', 100, 100, '处理完成', true);
+
         }
     })
 
@@ -458,14 +779,14 @@ function out_3(doc) {
         primary_action(values) {
             d.hide();
             // 校验是不是全部根数和，全部重量
-            in_piece = (values.steel_piece||0)  +( values.piece2||0) +( values.piece3||0 );
+            in_piece = (values.steel_piece || 0) + (values.piece2 || 0) + (values.piece3 || 0);
             console.log("四个数字:", in_piece, doc.remaining_piece, values.weight, doc.weight)
             // if (in_piece !== doc.remaining_piece || values.eight !== doc.weight)
             //     frappe.show_alert({ "title": "提示", message: "不上全部出库？", "indicator": "red" });
             if (doc.warehouse_area === values.warehouse_area) {
                 frappe.msgprint({ "title": "提示", message: "错误", "indicator": "red" });
             } else {
-                frappe.show_progress('Loading..', 0, 100, '出库...');
+                // frappe.show_progress('Loading..', 0, 100, '出库...');
                 values.batch_on = doc.name;
                 send_out_values(values, doc);
             }
@@ -481,7 +802,7 @@ function send_out_values(values, doc) {
         args: values
     }).then(r => {
         // console.log("make_out_entry:", r)
-        frappe.show_progress('Loading..', 100, 100, '出库成功', true);
+        // frappe.show_progress('Loading..', 100, 100, '出库成功', true);
         if (r.message) {
             frappe.show_alert({
                 message: __("出库成功"),

@@ -1,0 +1,45 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"G53F6xVn_H\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Frappe Insights</span>\",\"col\":12}},{\"id\":\"oH3EvoN3bj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"DataEasy\",\"col\":3}},{\"id\":\"fGIEQQmJnk\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u5546\u52a1\u5206\u6790\",\"col\":3}}]",
+ "creation": "2024-05-30 18:10:28",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "unhide",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Frappe Insights",
+ "links": [],
+ "modified": "2024-06-03 13:56:57",
+ "modified_by": "Administrator",
+ "module": "Bbl App",
+ "name": "Frappe Insights",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 43.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "DataEasy",
+   "type": "URL",
+   "url": "http://de.hbbbl.top:82/link/pqLhWi1u"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "\u5546\u52a1\u5206\u6790",
+   "link_to": "insights",
+   "type": "Page",
+   "url": "http://localhost:8000/app/Insights"
+  }
+ ],
+ "title": "Frappe Insights"
+}

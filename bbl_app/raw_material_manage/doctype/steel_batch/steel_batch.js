@@ -13,6 +13,7 @@ frappe.ui.form.on("Steel Batch", {
 
         frm.doc.show2 = 0;
         frm.doc.show3 = 0;
+
         frm.add_custom_button(__('Length2'), () => {
             // frm.trigger("clearForm"); // 占位，手机段第一个显示不出来
             frappe.show_alert("显示 长度3 ...")
@@ -21,6 +22,38 @@ frappe.ui.form.on("Steel Batch", {
             // frappe.new_doc("Steel Batch");
             
         })
+
+
+        frm.add_custom_button('设置炉号', () => {
+            let d = new frappe.ui.Dialog({
+                title: '设置炉号',
+                fields: [
+                    {
+                        label: '炉号',
+                        fieldname: 'heat_no',
+                        fieldtype: 'Data'
+                    },
+                ],
+                size: 'small', // small, large, extra-large 
+                primary_action_label: '填入',
+                primary_action(values) {
+                    // console.log(values);
+                    frm.doc.heat_no = values.heat_no;
+                    frm.refresh_field('heat_no');
+                    d.hide();
+                }
+            });
+            d.show();
+        });
+
+        frm.add_custom_button('转库', () => {
+            trans_area(frm.doc);
+        });
+
+        frm.add_custom_button("显示条码", () => {
+            frm.doc.show3 = 1;
+            frm.toggle_display(['raw_code',], true);
+        }, "develop");
 
         frm.add_custom_button('SABB', () => {
             console.log("start SABB button");
@@ -117,39 +150,87 @@ frappe.ui.form.on("Steel Batch", {
                     console.log(r);
                 });
             console.log("SABB end button");
-        })
-
-        frm.add_custom_button('设置炉号', () => {
-            let d = new frappe.ui.Dialog({
-                title: '设置炉号',
-                fields: [
-                    {
-                        label: '炉号',
-                        fieldname: 'heat_no',
-                        fieldtype: 'Data'
-                    },
-                ],
-                size: 'small', // small, large, extra-large 
-                primary_action_label: '填入',
-                primary_action(values) {
-                    // console.log(values);
-                    frm.doc.heat_no = values.heat_no;
-                    frm.refresh_field('heat_no');
-                    d.hide();
-                }
-            });
-            d.show();
-        });
-        frm.add_custom_button('转库', () => {
-            trans_area(frm.doc);
-        });
-        frm.add_custom_button("显示条码", () => {
-            frm.doc.show3 = 1;
-            frm.toggle_display(['raw_code',], true);
-        });
+        }, "develop")
 
         if (frm.is_new()) {
         };
+
+        frm.add_custom_button("add sb", function () {
+            const base_info = {
+                warehouse: "原钢堆场 - 百兰",
+                warehouse_area: "南1区",
+                status: "未入库",
+                semi_product: "06240",
+            }
+            const sbs = `
+            湖南华菱湘潭钢铁有限公司（XISC） 产品名称：保淬透性用钢 牌号:40CrH 技术标准:XYXB2020-021 材料号:B22420506E021/0211 规格(Φ):145mm 定尺长度(L):6925mm 支数:3，重量:2714Kg 炉号:24701313 许可证: 合同号: 制造厂:棒材厂 生产日期:2024-02-09
+            湖南华菱湘潭钢铁有限公司（XISC） 产品名称：保淬透性用钢 牌号:40CrH 技术标准:XYXB2020-021 材料号:B22420506E021/0212 规格(Φ):145mm 定尺长度(L):6925mm 支数:3，重量:2714Kg 炉号:24701313 许可证: 合同号: 制造厂:棒材厂 生产日期:2024-02-09
+            湖南华菱湘潭钢铁有限公司（XISC） 产品名称：保淬透性用钢 牌号:40CrH 技术标准:XYXB2020-021 材料号:B22420506E023/0233 规格(Φ):145mm 定尺长度(L):6925mm 支数:3，重量:2720Kg 炉号:24701313 许可证: 合同号: 制造厂:棒材厂 生产日期:2024-02-09
+            湖南华菱湘潭钢铁有限公司（XISC） 产品名称：合金结构钢 牌号:25Mn2CrVS 技术标准:XYXB2022-096 材料号:B22421657D004/0044 规格(Φ):150mm 定尺长度(L):7620mm 支数:3，重量:3188Kg 炉号:23812592 许可证: 合同号: 制造厂:棒材厂 生产日期:2024-02-26
+            湖南华菱湘潭钢铁有限公司（XISC） 产品名称：合金结构钢 牌号:25Mn2CrVS 技术标准:XYXB2022-096 材料号:B22421657D005/0055 规格(Φ):150mm 定尺长度(L):7620mm 支数:3，重量:3188Kg 炉号:23812592 许可证: 合同号: 制造厂:棒材厂 生产日期:2024-02-26
+            湖南华菱湘潭钢铁有限公司（XISC） 产品名称：合金结构钢 牌号:25Mn2CrVS 技术标准:XYXB2022-096 材料号:B22430773E001/0016 规格(Φ):140mm 定尺长度(L):6855mm 支数:5，重量:4198Kg 炉号:24802673 许可证: 合同号: 制造厂:棒材厂 生产日期:2024-03-14
+            湖南华菱湘潭钢铁有限公司（XISC） 产品名称：合金结构钢 牌号:25Mn2CrVS 技术标准:XYXB2022-096 材料号:B22430773E001/0007 规格(Φ):140mm 定尺长度(L):6855mm 支数:5，重量:4198Kg 炉号:24802673 许可证: 合同号: 制造厂:棒材厂 生产日期:2024-03-14
+            湖南华菱湘潭钢铁有限公司（XISC） 产品名称：合金结构钢 牌号:25Mn2CrVS 技术标准:XYXB2022-096 材料号:B22430773E002/0028 规格(Φ):140mm 定尺长度(L):6855mm 支数:5，重量:4196Kg 炉号:24802673 许可证: 合同号: 制造厂:棒材厂 生产日期:2024-03-14
+            公司:济源钢铁 钢种:BL42CrMoA-1 规格:Φ150mm*6960mm 标准:Q/JG.03.094-2020 A/0 炉号:V12400736 捆号:D12400736008 支数:3 重量:2920kg 生产日期:20240124
+            公司:济源钢铁 钢种:BL42CrMoA-1 规格:Φ150mm*6960mm 标准:Q/JG.03.094-2020 A/0 炉号:V12400736 捆号:D12400736009 支数:3 重量:2920kg 生产日期:20240124
+            公司:济源钢铁 钢种:BL42CrMoA-1 规格:Φ150mm*6960mm 标准:Q/JG.03.094-2020 A/0 炉号:V12400736 捆号:D12400736010 支数:3 重量:2920kg 生产日期:20240124
+            公司:济源钢铁 钢种:BL42CrMoA-1 规格:Φ150mm*6960mm 标准:Q/JG.03.094-2020 A/0 炉号:V12400736 捆号:D12400736011 支数:3 重量:2922kg 生产日期:20240124
+            公司:济源钢铁 钢种:BL42CrMoA-1 规格:Φ150mm*6960mm 标准:Q/JG.03.094-2020 A/0 炉号:V12400736 捆号:D12400736012 支数:3 重量:2922kg 生产日期:20240124
+            公司:济源钢铁 钢种:BL42CrMoA-1 规格:Φ150mm*6960mm 标准:Q/JG.03.094-2020 A/0 炉号:V12400736 捆号:D12400736013 支数:3 重量:2922kg 生产日期:20240124
+            公司:济源钢铁 钢种:50-1 规格:Φ130mm*7120mm 标准:Q/JG.03.109-2023 A/0 炉号:V12403619 捆号:D12403619009 支数:5 重量:3742kg 生产日期:20240415
+            公司:济源钢铁 钢种:50-1 规格:Φ130mm*7120mm 标准:Q/JG.03.109-2023 A/0 炉号:V12403619 捆号:D12403619010 支数:5 重量:3744kg 生产日期:20240415
+            公司:济源钢铁 钢种:50-1 规格:Φ130mm*7120mm 标准:Q/JG.03.109-2023 A/0 炉号:V12403619 捆号:D12403619011 支数:5 重量:3744kg 生产日期:20240415
+            公司:济源钢铁 钢种:50-1 规格:Φ130mm*7120mm 标准:Q/JG.03.109-2023 A/0 炉号:V12403619 捆号:D12403619012 支数:5 重量:3740kg 生产日期:20240415
+            公司:济源钢铁 钢种:50-1 规格:Φ130mm*7120mm 标准:Q/JG.03.109-2023 A/0 炉号:V12403619 捆号:D12403619013 支数:5 重量:3746kg 生产日期:20240415
+            公司:济源钢铁 钢种:50-1 规格:Φ130mm*7120mm 标准:Q/JG.03.109-2023 A/0 炉号:V12403619 捆号:D12403619014 支数:5 重量:3748kg 生产日期:20240415
+            公司:济源钢铁 钢种:50-1 规格:Φ130mm*7120mm 标准:Q/JG.03.109-2023 A/0 炉号:V12403619 捆号:D12403619015 支数:5 重量:3740kg 生产日期:20240415
+            公司:济源钢铁 钢种:50-1 规格:Φ130mm*7120mm 标准:Q/JG.03.109-2023 A/0 炉号:V12403619 捆号:D12403619016 支数:5 重量:3744kg 生产日期:20240415
+            公司:济源钢铁 钢种:50-1 规格:Φ130mm*7120mm 标准:Q/JG.03.109-2023 A/0 炉号:V12403619 捆号:D12403619017 支数:5 重量:3750kg 生产日期:20240415
+            公司:济源钢铁 钢种:50-1 规格:Φ130mm*7120mm 标准:Q/JG.03.109-2023 A/0 炉号:V12403619 捆号:D12403619018 支数:5 重量:3744kg 生产日期:20240415
+            公司:济源钢铁 钢种:50-1 规格:Φ130mm*7120mm 标准:Q/JG.03.109-2023 A/0 炉号:V12403619 捆号:D12403619020 支数:5 重量:3750kg 生产日期:20240415
+            公司:济源钢铁 钢种:50-1 规格:Φ130mm*7120mm 标准:Q/JG.03.109-2023 A/0 炉号:V12403619 捆号:D12403619021 支数:5 重量:3746kg 生产日期:20240415
+            公司:济源钢铁 钢种:50-1 规格:Φ130mm*7120mm 标准:Q/JG.03.109-2023 A/0 炉号:V12403619 捆号:D12403619022 支数:5 重量:3740kg 生产日期:20240415
+            公司:济源钢铁 钢种:50-1 规格:Φ130mm*7120mm 标准:Q/JG.03.109-2023 A/0 炉号:V12403619 捆号:D12403619023 支数:5 重量:3740kg 生产日期:20240415
+            公司:济源钢铁 钢种:50-1 规格:Φ130mm*7120mm 标准:Q/JG.03.109-2023 A/0 炉号:V12403619 捆号:D12403619024 支数:5 重量:3742kg 生产日期:20240415
+            公司:济源钢铁 钢种:50-1 规格:Φ130mm*7120mm 标准:Q/JG.03.109-2023 A/0 炉号:V12403619 捆号:D12403619025 支数:5 重量:3750kg 生产日期:20240415
+            公司:济源钢铁 钢种:50-1 规格:Φ130mm*7120mm 标准:Q/JG.03.109-2023 A/0 炉号:V12403619 捆号:D12403619026 支数:5 重量:3740kg 生产日期:20240415
+            公司:济源钢铁 钢种:50-1 规格:Φ130mm*7120mm 标准:Q/JG.03.109-2023 A/0 炉号:V12403619 捆号:D12403619027 支数:5 重量:3748kg 生产日期:20240415
+            公司:济源钢铁 钢种:50-1 规格:Φ130mm*7120mm 标准:Q/JG.03.109-2023 A/0 炉号:V12403619 捆号:D12403619028 支数:5 重量:3744kg 生产日期:20240415
+            公司:济源钢铁 钢种:50-1 规格:Φ130mm*7120mm 标准:Q/JG.03.109-2023 A/0 炉号:V12403619 捆号:D12403619029 支数:5 重量:3746kg 生产日期:20240415
+            公司:济源钢铁 钢种:50-1 规格:Φ130mm*7120mm 标准:Q/JG.03.109-2023 A/0 炉号:V12403619 捆号:D12403619030 支数:5 重量:3744kg 生产日期:20240415
+            公司:济源钢铁 钢种:50-1 规格:Φ130mm*7120mm 标准:Q/JG.03.109-2023 A/0 炉号:V12403619 捆号:D12403619031 支数:5 重量:3750kg 生产日期:20240415
+            公司:济源钢铁 钢种:50-1 规格:Φ130mm*mm 标准:Q/JG.03.109-2023 A/0 炉号:V12403619 捆号:D12403619032 支数:5 重量:3300kg 生产日期:20240415
+            公司:济源钢铁 钢种:50-1 规格:Φ130mm*mm 标准:Q/JG.03.109-2023 A/0 炉号:V12403619 捆号:D12403619033 支数:2 重量:1322kg 生产日期:20240415
+            公司:济源钢铁 钢种:50-1 规格:Φ130mm*mm 标准:Q/JG.03.109-2023 A/0 炉号:V12403619 捆号:D12403619034 支数:4 重量:2314kg 生产日期:20240415
+            公司:济源钢铁 钢种:BL42CrMoA-1 规格:Φ140mm*7740mm 标准:Q/JG.03.094-2020 A/0 炉号:V22401504 捆号:D22401504016 支数:3 重量:2826kg 生产日期:20240321
+            公司:济源钢铁 钢种:BL42CrMoA-1 规格:Φ140mm*7740mm 标准:Q/JG.03.094-2020 A/0 炉号:V22401504 捆号:D22401504017 支数:3 重量:2822kg 生产日期:20240321
+            公司:济源钢铁 钢种:BL42CrMoA-1 规格:Φ140mm*7740mm 标准:Q/JG.03.094-2020 A/0 炉号:V22401504 捆号:D22401504018 支数:3 重量:2824kg 生产日期:20240321
+            公司:济源钢铁 钢种:BL42CrMoA-1 规格:Φ140mm*7740mm 标准:Q/JG.03.094-2020 A/0 炉号:V22401504 捆号:D22401504020 支数:3 重量:2814kg 生产日期:20240321
+            合同号:G241R71006(1708293),牌号:42CrMoA,规格:Φ150mm×6900mm,标准:XYGN3202-2020-02,卡片号:H724028840,炉号:24011462Z,捆号:1,支数:3,重量:2882kg,日期:2024-02-04,公司:大冶特殊钢有限公司
+            合同号:G241R71006(1708293),牌号:42CrMoA,规格:Φ150mm×6900mm,标准:XYGN3202-2020-02,卡片号:H724028840,炉号:24011462Z,捆号:10,支数:3,重量:2882kg,日期:2024-02-04,公司:大冶特殊钢有限公司
+            合同号:G241R71006(1708293),牌号:42CrMoA,规格:Φ150mm×6900mm,标准:XYGN3202-2020-02,卡片号:H724028840,炉号:24011462Z,捆号:13,支数:3,重量:2880kg,日期:2024-02-04,公司:大冶特殊钢有限公司
+                 
+
+            `
+            let sbl = sbs.trim().split("\n");
+            for (let i = 0; i < sbl.length; i++) {
+                let sb = sbl[i].trim();
+                // console.log("sb", sb)
+                if (!sb)
+                    continue;
+                let gb_info = GangbangParse.parse(sb)
+                let doc = dev_map2doc(gb_info);
+                let fr_doc = frappe.model.get_new_doc("Steel Batch");
+                Object.assign(fr_doc, doc);
+                fr_doc.create_item = true;
+                console.log("fr_doc s", fr_doc);
+                frappe.db.exists("Steel Batch", fr_doc.batch_no).then(exists => {
+                    if (!exists) {
+                        frappe.db.insert(fr_doc);
+                    }
+                })
+            }
+        }, "develop");
 
 	},
 
@@ -222,14 +303,14 @@ frappe.ui.form.on("Steel Batch", {
 
         let qrcodeStr = frm.doc.scan_barcode    
         qrcodeStr = qrcodeStr.trim();
-        qrcodeStr = qrcodeStr.replaceAll("<br />", " ");
-        qrcodeStr = qrcodeStr.replaceAll("\n", " ");
-        qrcodeStr = qrcodeStr.replaceAll("smq750_", "");  //去除PDA扫描枪前缀
+        // qrcodeStr = qrcodeStr.replaceAll("<br />", " ");
+        // qrcodeStr = qrcodeStr.replaceAll("\n", " ");
+        // qrcodeStr = qrcodeStr.replaceAll("smq750_", "");  //去除PDA扫描枪前缀
+        // qrcodeStr = qrcodeStr.replaceAll("\"", "");
+        // qrcodeStr = qrcodeStr.replaceAll("\'", "");
         frm.doc.scan_barcode = ""
         frm.doc.raw_code = qrcodeStr;
     
-        qrcodeStr = qrcodeStr.replaceAll("\"", "");
-        qrcodeStr = qrcodeStr.replaceAll("\'", "");
         gangbang_info = GangbangParse.parse(qrcodeStr);
         // console.log(gangbang_info)
         if (!gangbang_info) {
@@ -305,6 +386,31 @@ frappe.ui.form.on("Steel Batch", {
 });
 
 
+function dev_map2doc(map) {
+    let doc = {};
+    doc.supplier = map.company;
+    doc.product_company = map.company;
+    doc.batch_no = map.bundleNo;
+    doc.heat_no = map.heatNo;
+    doc.steel_grade = map.steelGrade.trim();
+    doc.diameter = parseInt(map.diaSize) || undefined;
+    doc.raw_name = doc.steel_grade + (doc.diameter ?  "-" + doc.diameter : "");
+    doc.length = parseInt(map.length);
+    doc.weight = parseInt(map.weight);
+    doc.steel_piece = map.bundleNum;
+    doc.batch_date = map.productDate;
+    doc.for_date = frappe.datetime.now_date();
+    doc.bundle_total = 0;
+    doc.bundle_index = parseInt(map.bundleIdx) || undefined;
+    doc.contract_no = map.contractNo;
+    doc.standard = map.standardNo;
+    doc.product_name = map.productName;
+    doc.remaining_piece = doc.steel_piece;
+    doc.remaining_weight = doc.weight;
+    return doc;
+}
+
+
 function trans_area(doc) {
     console.log("trans_area arg1:", doc);
     let d = new frappe.ui.Dialog({
@@ -340,7 +446,7 @@ function trans_area(doc) {
             if (doc.warehouse_area === values.warehouse_area) {
                 frappe.msgprint({ "title": "提示", message: "转入库区错误", "indicator": "red" });
             } else {
-                frappe.show_progress('Loading..', 0, 100, '转库...');
+                // frappe.show_progress('Loading..', 0, 100, '转库...');
                 into_area(doc, values.warehouse_area);
             }
         }
@@ -354,7 +460,7 @@ function into_area(doc, new_area) {
             doc.warehouse_area = new_area;
             cur_frm.refresh_field("warehouse_area");
             console.log(cur_frm);
-            frappe.show_progress('Loading..', 100, 100, '转库中...', true);
+            // frappe.show_progress('Loading..', 100, 100, '转库中...', true);
         }
     );
 

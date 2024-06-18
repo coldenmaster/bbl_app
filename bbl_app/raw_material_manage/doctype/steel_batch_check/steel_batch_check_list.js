@@ -136,19 +136,19 @@ function show_check_result(msg) {
                         in_list_view: 1,
                     },
                     {
-                        fieldname: "status",
-                        label: __("Status"),
-                        fieldtype: "Data",
-                        read_only: 1,
-                        in_list_view: 1,
-                    },
-                    {
                         fieldname: "piece",
                         label: "根数",
                         fieldtype: "Int",
                         read_only: 1,
                         in_list_view: 1,
                         columns: 1,
+                    },
+                    {
+                        fieldname: "status",
+                        label: __("Status"),
+                        fieldtype: "Data",
+                        read_only: 1,
+                        in_list_view: 1,
                     },
                 ],
 

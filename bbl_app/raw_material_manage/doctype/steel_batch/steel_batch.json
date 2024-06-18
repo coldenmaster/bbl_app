@@ -197,7 +197,7 @@
    "in_standard_filter": 1,
    "label": "Status",
    "no_copy": 1,
-   "options": "\u672a\u5165\u5e93\n\u5df2\u5165\u5e93\n\u534a\u51fa\u5e93\n\u51fa\u5b8c"
+   "options": "\u672a\u5165\u5e93\n\u5df2\u5165\u5e93\n\u534a\u51fa\u5e93\n\u8349\u7a3f\n\u51fa\u5b8c"
   },
   {
    "fieldname": "column_break_wase",
@@ -310,7 +310,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-06-01 09:44:53",
+ "modified": "2024-06-14 14:27:14",
  "modified_by": "Administrator",
  "module": "Raw Material Manage",
  "name": "Steel Batch",

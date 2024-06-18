@@ -60,16 +60,65 @@ standard_portal_menu_items = [
 
 
 on_login = "bbl_app.func.on_login"
+on_session_creation = "bbl_app.func.on_session_creation"
+# on_logout = "app.overrides.clear_user_cache"
 
 doc_events = {
     "*": {
-        "after_insert": "bbl_app.func.after_insert_all",
+        
+        # "after_delete": "bbl_app.func.doc_event_hook", #ok 1
+        # "before_save": "bbl_app.func.doc_event_hook", #ok 2
+        # "after_insert": "bbl_app.func.doc_event_hook",  #ok 3
+        # "on_update": "bbl_app.func.doc_event_hook", #ok 4
+        "on_change": "bbl_app.func.doc_event_hook",  #ok 5
+        # "before_submit": "bbl_app.func.doc_event_hook",  #ok 6
+        # "on_submit": "bbl_app.func.doc_event_hook",  #ok 7
+        # "before_cancel": "bbl_app.func.doc_event_hook",  #ok 8
+        # "on_cancel": "bbl_app.func.doc_event_hook", # ok 9
+        # "on_trash": "bbl_app.func.doc_event_hook", # ok 10
+        # "before_update_after_submit": "bbl_app.func.doc_event_hook", # ok 11
+        # "on_update_after_submit": "bbl_app.func.doc_event_hook", # ok 12
+        # "validate": "bbl_app.func.doc_event_hook", # ok 13
+        # 以下的hook未验证到
+        "before_insert": "bbl_app.func.before_insert_all",
+        "db_insert": "bbl_app.func.doc_event_hook",
+        "db_update": "bbl_app.func.doc_event_hook",
+        
     },
     "Purchase Receipt": {
         # 没有此hook，只能针对于  CRUD events 
         "on_submit": "bbl_app.func.on_submit_purchase_receipt",
+        "after_insert": "bbl_app.func.after_insert_purchase_receipt",
+    },
+    "Steel Batch Check": {
+        
+    },
+    "Stock Entry": {
+        "after_insert": "bbl_app.func.after_insert_stock_entry",
+        
     }
 }
+
+
+override_doctype_class = {
+	"ToDo": "bbl_app.overrides.over.CustomToDo",
+    "Stock Entry": "bbl_app.overrides.over.CustomStockEntry",
+}
+
+doctype_js = {"Stock Entry" : "public/js/doc_ext/stock_entry.js"}
+
+
+override_whitelisted_methods = {
+    "frappe.ping": "bbl_app.func.ping"
+}
+
+notification_config = "bbl_app.func.get_config"
+
+
+permission_query_conditions = {
+	"Steel Batch": "bbl_app.func.get_permission_query_conditions_sb",
+ }
+
 
 # 通过以下命令导出数据库数据进行迁移
 # bench export-fixtures --app bbl_app

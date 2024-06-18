@@ -13,10 +13,12 @@
   "raw_name",
   "steel_grade",
   "diameter",
+  "cost",
   "length",
   "weight",
-  "steel_piece",
+  "piece",
   "remaining_piece",
+  "total_piece",
   "column_break_musm",
   "warehouse",
   "warehouse_area",
@@ -67,11 +69,8 @@
    "label": "Steel Grade"
   },
   {
-   "fetch_from": "heat_no.diameter",
-   "fetch_if_empty": 1,
    "fieldname": "diameter",
    "fieldtype": "Int",
-   "hidden": 1,
    "label": "Diameter"
   },
   {
@@ -84,26 +83,15 @@
    "reqd": 1
   },
   {
-   "description": "\u5343\u514b",
    "fieldname": "weight",
    "fieldtype": "Float",
-   "in_list_view": 1,
    "label": "Weight",
-   "precision": "0",
-   "reqd": 1
-  },
-  {
-   "fieldname": "steel_piece",
-   "fieldtype": "Int",
-   "in_list_view": 1,
-   "label": "Steel Piece",
-   "reqd": 1
+   "precision": "0"
   },
   {
    "depends_on": "remaining_piece",
    "fieldname": "remaining_piece",
    "fieldtype": "Int",
-   "in_list_view": 1,
    "label": "Remaining Piece",
    "non_negative": 1
   },
@@ -176,11 +164,31 @@
    "link_filters": "[[\"Item\",\"item_group\",\"=\",\"\u77ed\u68d2\u6599\"]]",
    "options": "Item",
    "reqd": 1
+  },
+  {
+   "fieldname": "cost",
+   "fieldtype": "Int",
+   "label": "Cost"
+  },
+  {
+   "fieldname": "piece",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Piece"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_piece",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Total Piece",
+   "non_negative": 1,
+   "reqd": 1
   }
  ],
- "index_web_pages_for_search": 1,
+ "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-05-23 10:49:20",
+ "modified": "2024-06-13 14:39:19",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Short Raw Bar",
