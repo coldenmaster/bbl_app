@@ -3,7 +3,7 @@ from erpnext.stock.doctype.stock_entry.stock_entry import StockEntry
 import frappe
 from frappe import _, _dict
 from frappe.desk.doctype.todo.todo import ToDo
-from frappe.utils.data import comma_or, flt, now
+from frappe.utils.data import cint, comma_or, flt, now
 from bbl_api.utils import _print_blue_pp, _print_green_pp, print_blue, print_cyan, print_green, print_green_pp, print_red
 from bbl_api.wt_test.t1 import T1_BOS
 
@@ -158,7 +158,13 @@ def process_steel_batch(self):
                     status = '半出库'
                     remaining_weight = steel_doc.remaining_weight - out_weight
                     # todo 未进行剩余根数的处理
-                    remaining_piece = 0
+                    out_piece = frappe.db.get_value('Temp Doc Value', 
+                                                            {
+                                                                'doc_type': 'Stock Entry',
+                                                                'doc_name': self.get('name'),
+                                                            },
+                                                            "data_3")
+                    remaining_piece = steel_doc.remaining_piece - cint(out_piece)
                 steel_doc.update({
                     "status": status,
                     "remaining_piece": remaining_piece,
@@ -250,8 +256,8 @@ def create_raw_bar(self):
                 raw_batch_no = frappe.db.get_value('Serial and Batch Entry',
                                         {'parent': raw_sabb_no},
                                         'batch_no')
-                print_red(f'{raw_sabb_no=}')
-                print_red(f'{raw_batch_no=}')
+                # print_red(f'{raw_sabb_no=}')
+                # print_red(f'{raw_batch_no=}')
                 sb_doc = frappe.get_cached_doc('Steel Batch', raw_batch_no)
                 temp_dict.heat_no = sb_doc.heat_no
                 temp_dict.raw_name = sb_doc.raw_name
@@ -264,7 +270,7 @@ def create_raw_bar(self):
                                                                              'doc_name': self.get('name'),
                                                                          },
                                                                          ["data_1", "data_2"])
-                _print_blue_pp(f'{temp_dict=}')
+                # _print_blue_pp(f'{temp_dict=}')
                 
                 bar_doc = frappe.new_doc(**temp_dict)
                 bar_doc.insert(ignore_permissions=True)

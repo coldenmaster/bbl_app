@@ -675,11 +675,11 @@ class Raw2BarDialog2 {
                 });
                 // frappe.show_progress('Loading..', 100, 100, '新建出库草稿成功', true);
                 frappe.set_route("Form", "Stock Entry", r.message);
-                setTimeout(() => {
-                    // frappe.set_route("Form", "Stock Entry", r.message);
-                    // frappe.cur_frm.refresh();
-                    frappe.cur_frm.reload_doc();
-                }, 2000);
+                // setTimeout(() => {
+                //     // frappe.set_route("Form", "Stock Entry", r.message);
+                //     // frappe.cur_frm.refresh();
+                //     frappe.cur_frm.reload_doc();
+                // }, 2000);
             }
         })
     

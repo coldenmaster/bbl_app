@@ -441,6 +441,7 @@ def make_out_entry(**kwargs):
         'doc_status': manufacture_out_doc.docstatus,
         'data_1': bar_ratio, # 记录实际下料长度
         'data_2': flt(raw_leng_to_weight(diameter, bar_ratio), 2), # 记录实际下料重量
+        'data_3': cint(kwargs.get('out_piece')), # 记录实际下料长度
     })
     temp_doc.data_json = json.dumps(kwargs)
     temp_doc.insert(ignore_permissions=True)
