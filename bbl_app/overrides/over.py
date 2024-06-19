@@ -216,7 +216,7 @@ def create_raw_bar(self):
     for item in items:
         if item.get('item_group') == '原材料':
             last_raw_item = item
-        elif item.get('item_group') in ['短棒料', '长棒料']:
+        elif item.get('item_group') in ['短棒料', '长料头']:
             # print_green_pp(f'{item= }')
             sabb_no = item.get('serial_and_batch_bundle')
             batch_no = frappe.db.get_value('Serial and Batch Entry',

@@ -342,7 +342,7 @@ def make_out_entry(**kwargs):
     is_cbl = sbool(kwargs.check_cbl)
     if is_cbl:
         cbl_bar_name = kwargs.cbl_bar_name
-        create_bar_item(cbl_bar_name, '长棒料')
+        create_bar_item(cbl_bar_name, '长料头')
         li = bar_batch.split('-')[1:-1]
         cbl_bar_batch = '-'.join(["CBL", *li, kwargs.cbl_bar_length])
         cbl_bar_piece = cint(kwargs.cbl_bar_piece)

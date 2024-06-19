@@ -267,14 +267,14 @@ class Raw2BarDialog2 {
         this.diameter = this.sb_item_0.diameter;
         this.ratio = this.sb_item_0.material_ratio;
         this.semi_product = this.sb_item_0.semi_product;
-        this.raw_bar_name = this.semi_product+ "_短棒料";
+        this.raw_bar_name = this.semi_product ? this.semi_product + "_短棒料" : "";
         this.make();
         // console.log("Raw2BarDialog constructor this:", this);
     }
 
     default_bar_batch(serial, prod) {
         let heat_no = serial || this.sb_item_0.heat_no;
-        let prod_name = prod || this.sb_item_0.semi_product;
+        let prod_name = prod || this.sb_item_0.semi_product || "";
         // log("default_bar_batch heat_no:", heat_no, this.semi_product);
         return "DBL-" + frappe.datetime.now_date().replaceAll("-", "") + "-"
             + heat_no.substring(heat_no.length - 4) + "-" + prod_name.substring(prod_name.length - 3);
@@ -350,6 +350,7 @@ class Raw2BarDialog2 {
                 "label": "半成品",
                 "fieldtype": "Link",
                 "options": "Semi Product",
+                "reqd": 1,
                 "default": this.semi_product,
                 onchange: (e) => {
                     let d = this.dialog;
@@ -424,6 +425,7 @@ class Raw2BarDialog2 {
                     let v = d.get_value("bar_weight") || 0;
                     let show = v != this.raw_weight;
                     d.get_field("out_piece").toggle(show);
+                    d.get_field("out_piece").set_value("");
                 }
             },
             {
@@ -431,6 +433,7 @@ class Raw2BarDialog2 {
                 "label": "原材料使用根数",
                 "fieldtype": "Int",
                 "hidden": 1,
+                "reqd": 1,
                 "default": this.calc_raw_cnt,
             },
             {
@@ -489,11 +492,11 @@ class Raw2BarDialog2 {
                     }
                 },
             },
-            // 剩余长棒料部分
+            // 剩余长料头部分
             
             {
                 "fieldname": "check_cbl",
-                "label": "录入剩余长棒料",
+                "label": "录入剩余长料头",
                 "fieldtype": "Check",
                 onchange: (e) => {
                     if (e.target.checked) {
@@ -514,25 +517,25 @@ class Raw2BarDialog2 {
             },
             {
                 "fieldname": "cbl_bar_length",
-                "label": "长棒料-长度",
+                "label": "长料头-长度",
                 "fieldtype": "Int",
                 onchange: (e) => {
                     let d = this.dialog;
                     let v = e?.target?.value || "xxx";
-                    this.cbl_bar_name = "长棒料_" + Math.floor(v/10) + "x"
+                    this.cbl_bar_name = "长料头_" + Math.floor(v/10) + "x"
                     d.set_df_property("cbl_bar_length", "description", "物料名称：" + this.cbl_bar_name);
                     d.set_value("cbl_bar_weight", this.calc_scrap_weight(v))
                 }
             },
             {
                 "fieldname": "cbl_bar_piece",
-                "label": "长棒料-根数",
+                "label": "长料头-根数",
                 "fieldtype": "Int",
             },
             
             {
                 "fieldname": "cbl_bar_weight",
-                "label": "长棒料-重量kg",
+                "label": "长料头-重量kg",
                 "fieldtype": "Int",
             },
             {
