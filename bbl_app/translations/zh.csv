@@ -255,7 +255,7 @@ Enter each serial no in a new line,每一行输入一个序列号
 Please enter Serial Nos,序列号不能为空
 
 Events,事件,
-What's New,新业务,
+What's New,新功能,
 Nothing New,没有新业务,
 There is nothing new to show you right now.,暂时没有新业务需要处理,
 Invalid Serial and Batch Bundle,无效序列批次号包,
@@ -316,3 +316,6 @@ Bbl Not Op,百兰生产转序,
 Total Piece,总数量,
 Updates,系统更新,
 
+Deleted all documents successfully,删除所有文档成功,
+Bulk Operation Successful,批量操作成功,
+Segregate Serial / Batch Bundle,显示序列号与批号明细,

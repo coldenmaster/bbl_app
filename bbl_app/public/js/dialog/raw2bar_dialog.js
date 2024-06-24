@@ -3,6 +3,7 @@
 // });
 
 frappe.provide("bbl");
+console.log("读取2:raw2bar_dialog.js ");
 
 bbl.Raw2BarDialog = class Raw2BarDialog extends frappe.ui.Dialog {
     constructor(opts, callback) {

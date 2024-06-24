@@ -344,7 +344,7 @@ def make_out_entry(**kwargs):
         cbl_bar_name = kwargs.cbl_bar_name
         create_bar_item(cbl_bar_name, '长料头')
         li = bar_batch.split('-')[1:-1]
-        cbl_bar_batch = '-'.join(["CBL", *li, kwargs.cbl_bar_length])
+        cbl_bar_batch = '-'.join(["CLT", *li, kwargs.cbl_bar_length])
         cbl_bar_piece = cint(kwargs.cbl_bar_piece)
         create_bar_batch(cbl_bar_batch, cbl_bar_name)
         sabb_bar_opts_cbl = frappe._dict({
@@ -621,6 +621,33 @@ def clear_db():
     print('clear_db')
     clear_db_for_dev()
 
+
+# li = ['24701313', 'V12400736']
+# li = ['24701313']
+def pad_semi_name(li, semi_product):
+    filters = [
+        ["heat_no", "in", li],
+    ]
+    doc_t = frappe.get_all("Steel Batch", filters=filters, fields=["name", "heat_no"])
+    print(f"查询数量是：{len(doc_t)}")
+    for t in doc_t:
+        print_yellow(type(t))
+        doc = frappe.get_doc("Steel Batch", t.get("name"))
+        print_blue(doc)
+        print_blue(doc.semi_product)
+        if (doc.semi_product):
+            continue
+
+        doc.semi_product = semi_product
+        doc.save()
+
+    frappe.db.commit()
+    print_red("process over")
+
+    # sb.pad_semi_name(sb.li, "ZA01T")
+
+
+
 # kwargs = '''
 # {'raw_bar_name': '50H-150_短棒料', 'bar_radio': '720', 'bar_piece': '62', 'bar_weight': '6345', 'total': '{"name":"50H-150","bundle_cnt":2,"weight":6345,"piece":6,"length":45360,"ratio":"720","bar_piece":62,"batchs":[{"batch_no":"B22421204/0211","weight":3172},{"batch_no":"B22421204/0212","weight":3173}]}', 'raw_name': '50H-150', 'raw_weight': '6345', 'batchs': '[{"batch_no":"B22421204/0211","weight":3172},{"batch_no":"B22421204/0212","weight":3173}]', 'cmd': 'bbl_app.raw_material_manage.doctype.steel_batch.steel_batch.make_out_entry'}
 # '''
@@ -633,3 +660,4 @@ docs = frappe.get_all("Steel Batch")
 sb.raw_name(item_name = 'sb-150', item_group = "原材料", uom='kg')
 sb.clear_db()
 """
+

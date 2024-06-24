@@ -15,5 +15,27 @@ frappe.ui.form.on("Heat No", {
         this.dfc = frm.get_field("standard");
         this.sc = frm.fields[0];
         this.sc2 = frm.get_field("section_break_vpqb");
+        socketio();
+
+        frm.add_custom_button("add sb", function () {
+            log("进入调试")
+            frappe.realtime.emit("wtt", "dasb");
+
+            
+        }, "develop");
+
 	},
+
+
 });
+
+function socketio() {
+    frappe.realtime
+        .on("wtt", (data) => {
+            log("Heat No, socketio", data);
+            frappe.show_alert("socketio"  + data);
+        }
+    );
+}
+
+rt = frappe.realtime;

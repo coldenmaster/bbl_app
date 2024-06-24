@@ -65,7 +65,7 @@ def doc_event_hook(doc, method=None):
     if frappe.conf.wt_dev:
         print_cyan(f"doc_event_hook for {doctype}, {method=}")
 
-@frappe.whitelist()
+@frappe.whitelist(allow_guest=True)
 def ping():
     # your custom implementation of the standard get_count method provided by frappe
     # The method should have the same signature as the original method.
