@@ -206,12 +206,14 @@
    "fieldtype": "Column Break"
   },
   {
+   "default": "0",
    "depends_on": "eval: doc.length2 || doc.show2;",
    "fieldname": "length2",
    "fieldtype": "Int",
    "label": "Length2"
   },
   {
+   "default": "0",
    "depends_on": "eval:doc.weight2 || doc.show2;",
    "fieldname": "weight2",
    "fieldtype": "Float",
@@ -220,6 +222,7 @@
    "precision": "0"
   },
   {
+   "default": "0",
    "depends_on": "eval:doc.length3 || doc.show2;",
    "fieldname": "length3",
    "fieldtype": "Int",
@@ -243,12 +246,14 @@
    "reqd": 1
   },
   {
+   "default": "0",
    "depends_on": "eval:doc.piece2 || doc.show2;",
    "fieldname": "piece2",
    "fieldtype": "Int",
    "label": "Piece2"
   },
   {
+   "default": "0",
    "depends_on": "eval:doc.piece3 || doc.show2;",
    "fieldname": "piece3",
    "fieldtype": "Int",
@@ -303,6 +308,7 @@
    "read_only": 1
   },
   {
+   "default": "0",
    "depends_on": "eval:doc.show2;",
    "fieldname": "origin_piece",
    "fieldtype": "Int",
@@ -323,7 +329,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-06-25 16:23:25",
+ "modified": "2024-06-25 18:03:29",
  "modified_by": "Administrator",
  "module": "Raw Material Manage",
  "name": "Steel Batch",

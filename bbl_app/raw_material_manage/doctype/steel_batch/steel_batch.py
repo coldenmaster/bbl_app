@@ -88,6 +88,8 @@ class SteelBatch(Document):
         # piece1 = self.get("steel_piece", 0)
         piece2 = self.get("piece2", 0)
         piece3 = self.get("piece3", 0)
+        length2 = cint(self.length2)
+        length3 = cint(self.length3)
         piece_add = self.steel_piece + piece2 + piece3
         ratio = self.material_ratio + 3
         if ((not (piece2 or piece3)) or self.remaining_piece != piece_add):
@@ -100,13 +102,13 @@ class SteelBatch(Document):
             self.expected_quantity = bar_1 * self.steel_piece
             self.expected_scrap = (self.length - ratio * bar_1) * self.steel_piece
             if piece2:
-                bar_1 = cint(self.length2 / ratio)
+                bar_1 = cint(length2 / ratio)
                 self.expected_quantity += bar_1 * piece2
-                self.expected_scrap += (self.length2 - ratio * bar_1) * piece2
+                self.expected_scrap += (length2 - ratio * bar_1) * piece2
             if piece3:
-                bar_1 = cint(self.length3 / ratio)
+                bar_1 = cint(length3 / ratio)
                 self.expected_quantity += bar_1 * piece3
-                self.expected_scrap += (self.length3 - ratio * bar_1) * piece3
+                self.expected_scrap += (length3 - ratio * bar_1) * piece3
 
             
 
