@@ -85,9 +85,12 @@ class SteelBatch(Document):
     def set_expected(self):
         if (not self.material_ratio):
             return
-        piece_add = self.steel_piece + self.piece2 + self.piece3
+        # piece1 = self.get("steel_piece", 0)
+        piece2 = self.get("piece2", 0)
+        piece3 = self.get("piece3", 0)
+        piece_add = self.steel_piece + piece2 + piece3
         ratio = self.material_ratio + 3
-        if ((not (self.piece2 or self.piece3)) or self.remaining_piece != piece_add):
+        if ((not (piece2 or piece3)) or self.remaining_piece != piece_add):
             # 不能知道具体根数和匹配长度，只有以一号长度估算
             bar_1 = cint(self.length / ratio)
             self.expected_quantity = bar_1 * self.remaining_piece
@@ -96,14 +99,14 @@ class SteelBatch(Document):
             bar_1 = cint(self.length / ratio)
             self.expected_quantity = bar_1 * self.steel_piece
             self.expected_scrap = (self.length - ratio * bar_1) * self.steel_piece
-            if self.piece2:
+            if piece2:
                 bar_1 = cint(self.length2 / ratio)
-                self.expected_quantity += bar_1 * self.piece2
-                self.expected_scrap += (self.length2 - ratio * bar_1) * self.piece2
-            if self.piece3:
+                self.expected_quantity += bar_1 * piece2
+                self.expected_scrap += (self.length2 - ratio * bar_1) * piece2
+            if piece3:
                 bar_1 = cint(self.length3 / ratio)
-                self.expected_quantity += bar_1 * self.piece3
-                self.expected_scrap += (self.length3 - ratio * bar_1) * self.piece3
+                self.expected_quantity += bar_1 * piece3
+                self.expected_scrap += (self.length3 - ratio * bar_1) * piece3
 
             
 
@@ -638,6 +641,20 @@ def init_remaining(name, status):
     else:
         doc.clear_remaining()
     doc.save()
+
+
+@frappe.whitelist()
+def set_semi_product(**kwargs):
+    opts = frappe._dict(kwargs)
+    filters = [["heat_no", "=", opts.heat_no], ]
+    if (opts.length):
+        filters.append(["length", "=", opts.length])
+    doc_t = frappe.get_all("Steel Batch", filters=filters)
+    for t in doc_t:
+        doc = frappe.get_doc("Steel Batch", t.get("name"))
+        doc.semi_product = opts.semi_product
+        doc.save()
+    frappe.db.commit()
     
 
 # todo 清除数据库中数据，进行干净清楚的测试
@@ -646,32 +663,13 @@ def clear_db():
     print('clear_db')
     clear_db_for_dev()
 
-#  需要删除
-# filters = [
-#         ["heat_no", "=", "V12400736"],
-#         # ["raw_name", "=", "40CrH-145"],
-#         # ["length", "=", "length"],
-#     ]
-# def pad_semi_name(filters, semi_product):
-#     filters = filters
-#     doc_t = frappe.get_all("Steel Batch", filters=filters, fields=["name", "heat_no"])
-#     print(f"查询数量是：{len(doc_t)}")
-#     for t in doc_t:
-#         print_yellow(type(t))
-#         doc = frappe.get_doc("Steel Batch", t.get("name"))
-#         print_blue(doc)
-#         print_blue(doc.semi_product)
-#         doc.semi_product = semi_product
-#         doc.save()
-#     frappe.db.commit()
-#     print_red("process over")
 
 
 """  可用 系统控制台 执行代码 (用来根据炉号和长度，更改sb_doc上的半成品名称及倍尺)
 filters = [
     ["heat_no", "=", "V12400736"],
     # ["raw_name", "=", "40CrH-145"],
-    # ["length", "=", "length"],
+    # ["length", "=", "7620"],
 ]
 doc_t = frappe.get_all("Steel Batch", filters=filters, fields=["name", "heat_no"])
 for t in doc_t:
@@ -679,6 +677,7 @@ for t in doc_t:
     doc.semi_product = '4E'
     doc.save()
 frappe.db.commit()
+print(f"处理数量： {len(doc_t)}")
 
 # 手动计算出预期数量
 def flush_expected():
@@ -691,6 +690,7 @@ def flush_expected():
         doc.save()
     frappe.db.commit()
  """
+
 
 
 # sb.pad_semi_name(filters, "None")

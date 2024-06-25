@@ -291,7 +291,6 @@
   },
   {
    "fetch_from": "semi_product.material_ratio",
-   "fetch_if_empty": 1,
    "fieldname": "material_ratio",
    "fieldtype": "Int",
    "label": "Material Ratio"
@@ -324,7 +323,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-06-25 12:02:13",
+ "modified": "2024-06-25 16:23:25",
  "modified_by": "Administrator",
  "module": "Raw Material Manage",
  "name": "Steel Batch",
