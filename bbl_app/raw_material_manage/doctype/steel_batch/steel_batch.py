@@ -85,22 +85,23 @@ class SteelBatch(Document):
     def set_expected(self):
         if (not self.material_ratio):
             return
-        # piece1 = self.get("steel_piece", 0)
-        piece2 = self.get("piece2", 0)
-        piece3 = self.get("piece3", 0)
+        piece1 = cint(self.steel_piece)
+        piece2 = cint(self.piece2)
+        piece3 = cint(self.piece3)
+        length1 = cint(self.length)
         length2 = cint(self.length2)
         length3 = cint(self.length3)
-        piece_add = self.steel_piece + piece2 + piece3
-        ratio = self.material_ratio + 3
+        piece_add = piece1 + piece2 + piece3
+        ratio = cint(self.material_ratio) + 3
         if ((not (piece2 or piece3)) or self.remaining_piece != piece_add):
             # 不能知道具体根数和匹配长度，只有以一号长度估算
-            bar_1 = cint(self.length / ratio)
+            bar_1 = cint(length1 / ratio)
             self.expected_quantity = bar_1 * self.remaining_piece
-            self.expected_scrap = (self.length - ratio * bar_1) * self.remaining_piece
+            self.expected_scrap = (length1 - ratio * bar_1) * self.remaining_piece
         else:
-            bar_1 = cint(self.length / ratio)
-            self.expected_quantity = bar_1 * self.steel_piece
-            self.expected_scrap = (self.length - ratio * bar_1) * self.steel_piece
+            bar_1 = cint(length1 / ratio)
+            self.expected_quantity = bar_1 * piece1
+            self.expected_scrap = (length1 - ratio * bar_1) * piece1
             if piece2:
                 bar_1 = cint(length2 / ratio)
                 self.expected_quantity += bar_1 * piece2
@@ -115,15 +116,16 @@ class SteelBatch(Document):
     # def before_insert(self):
     #     print_green('steel before_insert')
 
-    def before_validate(self):
-        print_green('steel before_validate')
-        self.set_expected()
+    # def before_validate(self):
+    #     print_green('steel before_validate')
     
     # def validate(self):
     #     print_green('steel validate')
     
-    # def before_save(self):
-    #     print_green('steel before_save')
+    def before_save(self):
+        print_green('steel before_save')
+        self.set_expected()
+
 
 def create_batch_no(batch_no, item_name):
     if (not frappe.db.exists('Batch', batch_no)):
