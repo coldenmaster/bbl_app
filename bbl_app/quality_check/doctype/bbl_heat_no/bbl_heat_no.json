@@ -1,0 +1,64 @@
+{
+ "actions": [],
+ "autoname": "field:heat_no",
+ "creation": "2024-06-25 10:12:40",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "heat_no",
+  "production_line",
+  "employee",
+  "for_date"
+ ],
+ "fields": [
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "heat_no",
+   "fieldtype": "Data",
+   "label": "Heat No",
+   "unique": 1
+  },
+  {
+   "fieldname": "production_line",
+   "fieldtype": "Data",
+   "label": "Production Line"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Data",
+   "label": "Employee"
+  },
+  {
+   "default": "Now",
+   "fieldname": "for_date",
+   "fieldtype": "Datetime",
+   "label": "For Date"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-06-25 10:17:56",
+ "modified_by": "Administrator",
+ "module": "Quality Check",
+ "name": "Bbl Heat No",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -43,7 +43,9 @@
   "batch_date",
   "contract_no",
   "standard",
-  "hand_in"
+  "hand_in",
+  "expected_quantity",
+  "expected_scrap"
  ],
  "fields": [
   {
@@ -291,7 +293,7 @@
    "fetch_from": "semi_product.material_ratio",
    "fetch_if_empty": 1,
    "fieldname": "material_ratio",
-   "fieldtype": "Data",
+   "fieldtype": "Int",
    "label": "Material Ratio"
   },
   {
@@ -306,11 +308,23 @@
    "fieldname": "origin_piece",
    "fieldtype": "Int",
    "label": "Origin Piece"
+  },
+  {
+   "default": "0",
+   "fieldname": "expected_quantity",
+   "fieldtype": "Int",
+   "label": "Expected Quantity"
+  },
+  {
+   "default": "0",
+   "fieldname": "expected_scrap",
+   "fieldtype": "Int",
+   "label": "Expected Scrap"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-06-14 14:27:14",
+ "modified": "2024-06-25 12:02:13",
  "modified_by": "Administrator",
  "module": "Raw Material Manage",
  "name": "Steel Batch",

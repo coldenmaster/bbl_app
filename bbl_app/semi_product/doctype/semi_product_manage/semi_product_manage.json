@@ -1,0 +1,260 @@
+{
+ "actions": [],
+ "allow_events_in_timeline": 1,
+ "allow_import": 1,
+ "autoname": "field:batch_no",
+ "creation": "2024-06-25 09:40:25",
+ "default_view": "List",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "batch_no",
+  "semi_product_name",
+  "forge_batch_no",
+  "raw_name",
+  "raw_heat_no",
+  "heat_no",
+  "cost",
+  "length",
+  "weight",
+  "piece",
+  "remaining_piece",
+  "total_piece",
+  "column_break_musm",
+  "warehouse",
+  "warehouse_area",
+  "status",
+  "semi_product",
+  "product_name",
+  "drawing_id",
+  "customer",
+  "product_type",
+  "product_line",
+  "employee",
+  "link_doc",
+  "for_date",
+  "use_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "batch_no",
+   "fieldtype": "Data",
+   "label": "Batch No",
+   "reqd": 1,
+   "set_only_once": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "heat_no",
+   "fieldtype": "Link",
+   "label": "Heat No",
+   "options": "Bbl Heat No",
+   "set_only_once": 1
+  },
+  {
+   "fetch_from": "heat_no.raw_name",
+   "fetch_if_empty": 1,
+   "fieldname": "raw_name",
+   "fieldtype": "Link",
+   "label": "Raw Name",
+   "link_filters": "[[\"Item\",\"item_group\",\"=\",\"\u539f\u6750\u6599\"]]",
+   "options": "Item"
+  },
+  {
+   "fieldname": "cost",
+   "fieldtype": "Int",
+   "label": "Cost"
+  },
+  {
+   "fieldname": "length",
+   "fieldtype": "Int",
+   "label": "Length"
+  },
+  {
+   "fieldname": "weight",
+   "fieldtype": "Float",
+   "label": "Weight",
+   "precision": "0"
+  },
+  {
+   "fieldname": "piece",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Piece"
+  },
+  {
+   "depends_on": "remaining_piece",
+   "fieldname": "remaining_piece",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Remaining Piece",
+   "non_negative": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "total_piece",
+   "fieldtype": "Int",
+   "label": "Total Piece"
+  },
+  {
+   "fieldname": "column_break_musm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "warehouse",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Warehouse",
+   "options": "Warehouse",
+   "reqd": 1
+  },
+  {
+   "fieldname": "warehouse_area",
+   "fieldtype": "Link",
+   "label": "Warehouse Area",
+   "options": "Warehouse Area"
+  },
+  {
+   "bold": 1,
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "no_copy": 1,
+   "options": "\u672a\u4f7f\u7528\n\u6b63\u5728\u4f7f\u7528\n\u4f59\u6599\n\u7528\u5b8c"
+  },
+  {
+   "fieldname": "semi_product",
+   "fieldtype": "Link",
+   "label": "Semi Product",
+   "options": "Semi Product"
+  },
+  {
+   "fieldname": "product_name",
+   "fieldtype": "Data",
+   "label": "Product Name"
+  },
+  {
+   "default": "Now",
+   "fieldname": "for_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "For Date"
+  },
+  {
+   "fieldname": "use_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Use Date"
+  },
+  {
+   "fieldname": "forge_batch_no",
+   "fieldtype": "Data",
+   "label": "Forge Batch No",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "semi_product_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Semi Product Name",
+   "link_filters": "[[\"Item\",\"item_group\",\"=\",\"\u8fc7\u7a0b\u534a\u6210\u54c1\"]]",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "raw_heat_no",
+   "fieldtype": "Link",
+   "label": "Raw Heat No",
+   "options": "Heat No",
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "drawing_id",
+   "fieldtype": "Data",
+   "label": "Drawing Id"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "product_type",
+   "fieldtype": "Link",
+   "label": "Product Type",
+   "options": "Product Type"
+  },
+  {
+   "fieldname": "product_line",
+   "fieldtype": "Select",
+   "label": "Product Line",
+   "options": "\u524d\u8f74\n\u94c1\u8def\u886c\u677f"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Data",
+   "label": "Employee"
+  },
+  {
+   "fieldname": "link_doc",
+   "fieldtype": "Link",
+   "label": "Link Doc",
+   "options": "Stock Entry Type"
+  }
+ ],
+ "is_calendar_and_gantt": 1,
+ "links": [],
+ "modified": "2024-06-25 10:57:22",
+ "modified_by": "Administrator",
+ "module": "Semi Product",
+ "name": "Semi Product Manage",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Stock Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

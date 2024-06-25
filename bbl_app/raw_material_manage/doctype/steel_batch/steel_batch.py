@@ -79,15 +79,40 @@ class SteelBatch(Document):
     def set_remaining(self, hard = False):
         if self.is_new() or hard:
             self.remaining_piece =  cint(self.steel_piece) + cint(self.piece2) + cint(self.piece3)
+            self.origin_piece = self.remaining_piece
             self.remaining_weight = cint(self.weight)
+
+    def set_expected(self):
+        if (not self.material_ratio):
+            return
+        piece_add = self.steel_piece + self.piece2 + self.piece3
+        ratio = self.material_ratio + 3
+        if ((not (self.piece2 or self.piece3)) or self.remaining_piece != piece_add):
+            # 不能知道具体根数和匹配长度，只有以一号长度估算
+            bar_1 = cint(self.length / ratio)
+            self.expected_quantity = bar_1 * self.remaining_piece
+            self.expected_scrap = (self.length - ratio * bar_1) * self.remaining_piece
+        else:
+            bar_1 = cint(self.length / ratio)
+            self.expected_quantity = bar_1 * self.steel_piece
+            self.expected_scrap = (self.length - ratio * bar_1) * self.steel_piece
+            if self.piece2:
+                bar_1 = cint(self.length2 / ratio)
+                self.expected_quantity += bar_1 * self.piece2
+                self.expected_scrap += (self.length2 - ratio * bar_1) * self.piece2
+            if self.piece3:
+                bar_1 = cint(self.length3 / ratio)
+                self.expected_quantity += bar_1 * self.piece3
+                self.expected_scrap += (self.length3 - ratio * bar_1) * self.piece3
 
             
 
     # def before_insert(self):
     #     print_green('steel before_insert')
 
-    # def before_validate(self):
-    #     print_green('steel before_validate')
+    def before_validate(self):
+        print_green('steel before_validate')
+        self.set_expected()
     
     # def validate(self):
     #     print_green('steel validate')
@@ -621,32 +646,54 @@ def clear_db():
     print('clear_db')
     clear_db_for_dev()
 
+#  需要删除
+# filters = [
+#         ["heat_no", "=", "V12400736"],
+#         # ["raw_name", "=", "40CrH-145"],
+#         # ["length", "=", "length"],
+#     ]
+# def pad_semi_name(filters, semi_product):
+#     filters = filters
+#     doc_t = frappe.get_all("Steel Batch", filters=filters, fields=["name", "heat_no"])
+#     print(f"查询数量是：{len(doc_t)}")
+#     for t in doc_t:
+#         print_yellow(type(t))
+#         doc = frappe.get_doc("Steel Batch", t.get("name"))
+#         print_blue(doc)
+#         print_blue(doc.semi_product)
+#         doc.semi_product = semi_product
+#         doc.save()
+#     frappe.db.commit()
+#     print_red("process over")
 
-# li = ['24701313', 'V12400736']
-# li = ['24701313']
-def pad_semi_name(li, semi_product):
-    filters = [
-        ["heat_no", "in", li],
-    ]
-    doc_t = frappe.get_all("Steel Batch", filters=filters, fields=["name", "heat_no"])
-    print(f"查询数量是：{len(doc_t)}")
-    for t in doc_t:
-        print_yellow(type(t))
-        doc = frappe.get_doc("Steel Batch", t.get("name"))
-        print_blue(doc)
-        print_blue(doc.semi_product)
-        if (doc.semi_product):
-            continue
 
-        doc.semi_product = semi_product
+"""  可用 系统控制台 执行代码 (用来根据炉号和长度，更改sb_doc上的半成品名称及倍尺)
+filters = [
+    ["heat_no", "=", "V12400736"],
+    # ["raw_name", "=", "40CrH-145"],
+    # ["length", "=", "length"],
+]
+doc_t = frappe.get_all("Steel Batch", filters=filters, fields=["name", "heat_no"])
+for t in doc_t:
+    doc = frappe.get_doc("Steel Batch", t.get("name"))
+    doc.semi_product = '4E'
+    doc.save()
+frappe.db.commit()
+
+# 手动计算出预期数量
+def flush_expected():
+    docs = frappe.get_all("Steel Batch")
+    # print(f"查询数量是：{len(docs)}")
+    # print(type(docs[0]))
+    # print(docs[0])
+    for d in docs:
+        doc = frappe.get_doc("Steel Batch", d.get("name"))
         doc.save()
-
     frappe.db.commit()
-    print_red("process over")
-
-    # sb.pad_semi_name(sb.li, "ZA01T")
+ """
 
 
+# sb.pad_semi_name(filters, "None")
 
 # kwargs = '''
 # {'raw_bar_name': '50H-150_短棒料', 'bar_radio': '720', 'bar_piece': '62', 'bar_weight': '6345', 'total': '{"name":"50H-150","bundle_cnt":2,"weight":6345,"piece":6,"length":45360,"ratio":"720","bar_piece":62,"batchs":[{"batch_no":"B22421204/0211","weight":3172},{"batch_no":"B22421204/0212","weight":3173}]}', 'raw_name': '50H-150', 'raw_weight': '6345', 'batchs': '[{"batch_no":"B22421204/0211","weight":3172},{"batch_no":"B22421204/0212","weight":3173}]', 'cmd': 'bbl_app.raw_material_manage.doctype.steel_batch.steel_batch.make_out_entry'}
