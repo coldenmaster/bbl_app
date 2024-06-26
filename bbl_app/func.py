@@ -98,10 +98,13 @@ def get_permission_query_conditions_sb(user):
 
 
 def on_submit_purchase_receipt(doc, method=None):
-    print_red(f"hook def on_submit_purchase_receipt { doc= }, { method= }")
+    # print_red(f"hook def on_submit_purchase_receipt { doc= }, { method= }")
+    pass
     
 def after_insert_purchase_receipt(doc, method=None):
-    print_red(f"hook def after_insert_purchase_receipt { doc= }, { method= }")
+    # print_red(f"hook def after_insert_purchase_receipt { doc= }, { method= }")
+    pass
 
 def after_insert_stock_entry(doc, method=None):
-    print_cyan(f"hook after_insert_stock_entry { doc= }, { method= }")
+    # print_cyan(f"hook after_insert_stock_entry { doc= }, { method= }")
+    pass

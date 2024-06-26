@@ -44,6 +44,8 @@
   "contract_no",
   "standard",
   "hand_in",
+  "link_doc_in",
+  "link_doc_out",
   "expected_quantity",
   "expected_scrap"
  ],
@@ -286,7 +288,8 @@
    "fieldname": "batch_date",
    "fieldtype": "Date",
    "hidden": 1,
-   "label": "Batch Date"
+   "label": "Batch Date",
+   "read_only": 1
   },
   {
    "fieldname": "semi_product",
@@ -312,24 +315,43 @@
    "depends_on": "eval:doc.show2;",
    "fieldname": "origin_piece",
    "fieldtype": "Int",
-   "label": "Origin Piece"
+   "label": "Origin Piece",
+   "read_only": 1
   },
   {
    "default": "0",
+   "depends_on": "eval:doc.expected_quantity;",
    "fieldname": "expected_quantity",
    "fieldtype": "Int",
-   "label": "Expected Quantity"
+   "label": "Expected Quantity",
+   "read_only": 1
   },
   {
    "default": "0",
+   "depends_on": "eval:doc.expected_scrap;",
    "fieldname": "expected_scrap",
    "fieldtype": "Int",
-   "label": "Expected Scrap"
+   "label": "Expected Scrap",
+   "read_only": 1
+  },
+  {
+   "fieldname": "link_doc_in",
+   "fieldtype": "Link",
+   "label": "Link Doc In",
+   "options": "Purchase Receipt",
+   "read_only": 1
+  },
+  {
+   "fieldname": "link_doc_out",
+   "fieldtype": "Link",
+   "label": "Link Doc Out",
+   "options": "Stock Entry",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-06-25 18:03:29",
+ "modified": "2024-06-26 16:06:51",
  "modified_by": "Administrator",
  "module": "Raw Material Manage",
  "name": "Steel Batch",

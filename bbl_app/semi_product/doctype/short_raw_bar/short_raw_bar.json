@@ -26,6 +26,8 @@
   "semi_product",
   "material_ratio",
   "product_name",
+  "link_doc_in",
+  "link_doc_out",
   "for_date",
   "use_date"
  ],
@@ -184,11 +186,31 @@
    "label": "Total Piece",
    "non_negative": 1,
    "reqd": 1
+  },
+  {
+   "fieldname": "link_doc_in",
+   "fieldtype": "Link",
+   "label": "Link Doc In",
+   "options": "Stock Entry",
+   "read_only": 1
+  },
+  {
+   "fieldname": "link_doc_out",
+   "fieldtype": "Link",
+   "label": "Link Doc Out",
+   "options": "Stock Entry",
+   "read_only": 1
   }
  ],
  "is_calendar_and_gantt": 1,
- "links": [],
- "modified": "2024-06-13 14:39:19",
+ "links": [
+  {
+   "link_doctype": "Stock Entry",
+   "link_fieldname": "batch_no",
+   "table_fieldname": "Items"
+  }
+ ],
+ "modified": "2024-06-26 14:25:56",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Short Raw Bar",

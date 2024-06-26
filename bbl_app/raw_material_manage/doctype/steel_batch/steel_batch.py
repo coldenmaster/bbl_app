@@ -126,6 +126,12 @@ class SteelBatch(Document):
         print_green('steel before_save')
         self.set_expected()
 
+    def on_trash(self):
+        if ("Administrator" != frappe.session.user ):
+            frappe.throw("只有管理员才能删除此文档")
+
+
+
 
 def create_batch_no(batch_no, item_name):
     if (not frappe.db.exists('Batch', batch_no)):
@@ -659,6 +665,7 @@ def set_semi_product(**kwargs):
         doc.semi_product = opts.semi_product
         doc.save()
     frappe.db.commit()
+    return f"处理数量：{len(doc_t)}条"
     
 
 # todo 清除数据库中数据，进行干净清楚的测试

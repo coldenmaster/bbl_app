@@ -134,30 +134,7 @@ frappe.listview_settings["Steel Batch"] = {
 };
 
 function show_set_semi_dialog() {
-    // let d = new frappe.ui.Dialog({
-    //     title: '设置原材料的半成品',
-    //     fields: [
-    //         {
-    //             "fieldname": "heat_no",
-    //             "label": "炉号",
-    //             "fieldtype": "Link",
-    //             "options": "Heat No",
-    //         },
-    //         {
-    //             "fieldname": "length",
-    //             "label": "捆的长度",
-    //             "fieldtype": "Int",
-    //         },
 
-    //     ],
-    //     size: 'small',
-    //     primary_action_label: '确定',
-    //     primary_action(values) {
-    //         d.hide();
-    //         // send_to_backend(values);
-    //     }
-    // })
-    // d.show();
     frappe.prompt([
         {
             "fieldname": "heat_no",
@@ -181,7 +158,6 @@ function show_set_semi_dialog() {
             "reqd": 1,
         }],
         function (values) {
-            console.log(values);
             set_semi_product(values);
         }
     )
@@ -226,7 +202,6 @@ function trans_area(doc) {
             if (doc.warehouse_area === values.warehouse_area) {
                 frappe.msgprint({ "title": "提示", message: "转入库区错误", "indicator": "red" });
             } else {
-                // frappe.show_progress('Loading..', 0, 100, '转库...');
                 into_area(doc, values.warehouse_area);
             }
         }
@@ -751,12 +726,13 @@ function set_semi_product(values) {
         method: "bbl_app.raw_material_manage.doctype.steel_batch.steel_batch.set_semi_product",
         args: values
     }).then(r => {
-        console.log("set_semi_product_to_backend r:", r);
+        // console.log("set_semi_product_to_backend r:", r);
         if (r.message) {
             frappe.show_alert({
-                message: __("设置半成品成功"),
+                message: "处理成功 ".bold() + r.message,
                 indicator: "green"
             });
+            cur_list.refresh();
         }
     })
 }
@@ -771,12 +747,6 @@ function pr_send_items(items) {
     }).then(r => {
         // console.log("pr_send_items rt:", r)
         if (r.message) {
-            // frappe.show_alert({
-            //     message: __("建立入库草稿成功"),
-            //     indicator: "green"
-            // });
-            // frappe.show_progress('Loading..', 100, 100, '处理完成', true);
-            // frappe.new_doc("Purchase Receipt", r.message);
             let doctype = "Purchase Receipt";
             let new_pr_doc;
             frappe.model.with_doctype(doctype, () => {

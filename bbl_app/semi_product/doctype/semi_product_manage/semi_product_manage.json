@@ -204,12 +204,13 @@
    "fieldname": "link_doc",
    "fieldtype": "Link",
    "label": "Link Doc",
-   "options": "Stock Entry Type"
+   "options": "Stock Entry Type",
+   "read_only": 1
   }
  ],
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-06-25 10:57:22",
+ "modified": "2024-06-26 08:12:33",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Semi Product Manage",

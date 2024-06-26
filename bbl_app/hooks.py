@@ -87,8 +87,8 @@ doc_events = {
     },
     "Purchase Receipt": {
         # 没有此hook，只能针对于  CRUD events 
-        "on_submit": "bbl_app.func.on_submit_purchase_receipt",
-        "after_insert": "bbl_app.func.after_insert_purchase_receipt",
+        "on_submit": "bbl_app.func.on_submit_purchase_receipt", # ok, 在py controller中处理
+        "after_insert": "bbl_app.func.after_insert_purchase_receipt", # ok
     },
     "Steel Batch Check": {
         
@@ -103,6 +103,7 @@ doc_events = {
 override_doctype_class = {
 	"ToDo": "bbl_app.overrides.over.CustomToDo",
     "Stock Entry": "bbl_app.overrides.over.CustomStockEntry",
+    "Purchase Receipt": "bbl_app.overrides.over.CustomPurchaseReceipt",
 }
 
 doctype_js = {"Stock Entry" : "public/js/doc_ext/stock_entry.js"}
