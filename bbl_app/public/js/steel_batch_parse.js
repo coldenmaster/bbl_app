@@ -1,3 +1,4 @@
+console.log("GangbangParse.js 加载")
 
 String.prototype.replaceAll = function(s1,s2){
     return this.replace(new RegExp(s1,"gm"),s2);
@@ -28,7 +29,8 @@ var GangbangParse = {
                 || this.jigangParse(qrcodeStr) 
                 || this.xianggangParse(qrcodeStr)
                 || this.xinxingParse(qrcodeStr)
-                || this.dongteParse(qrcodeStr))
+                || this.dongteParse(qrcodeStr)
+                || this.changqiangParse(qrcodeStr))
             return this.uploadBean;
         return false;
     },
@@ -289,6 +291,38 @@ var GangbangParse = {
         this.uploadBean.steelGrade = this.uploadBean.steelGrade.replaceAll("圆钢", "").trim();
         // this.uploadBean.steelGrade = "C" + this.uploadBean.steelGrade;
         this.uploadBean.company = company;
+        console.log("bean", this.uploadBean)
+        return this.uploadBean;
+    },
+
+    
+    changqiangParse: function (qrcodeStr){
+        // "13,24-06-1567,5,105894,40Cr,Φ90,24-208611,4092,9"
+        let company = "长强钢铁";
+        // let identifier = "代码:0104030071"
+        let identifier = "13,"
+        if (!qrcodeStr.startsWith(identifier)) {
+            return false;
+        }
+        
+        let data_ls = qrcodeStr.split(",");
+        this.uploadBean.qrcode = qrcodeStr;
+        this.uploadBean.productName = "热轧圆钢";
+        this.uploadBean.diaSize = data_ls[5].substring(1);
+        this.uploadBean.steelGrade = data_ls[4];
+        if (this.uploadBean.steelGrade.length < 3)
+            this.uploadBean.steelGrade = "C" + this.uploadBean.steelGrade;
+        this.uploadBean.heatNo = data_ls[6]
+        this.uploadBean.bundleNo = data_ls[1] + "/" + data_ls[2];
+        this.uploadBean.bundleIdx = data_ls[2];
+        this.uploadBean.bundleNum = data_ls[8];
+        this.uploadBean.weight = data_ls[7];
+        this.uploadBean.contractNo = data_ls[3];
+        this.uploadBean.company = company;
+        this.uploadBean.productdate = data_ls[1].substring(0, 8);
+        // 标签上没有，自动计算长度， 相应的减少一点长度，暂定减少20mm
+        let t_length = bbl.utils.raw_weight_to_length(this.uploadBean.weight, this.uploadBean.diaSize) 
+        this.uploadBean.length = t_length / cint(this.uploadBean.bundleNum) - 20;
         console.log("bean", this.uploadBean)
         return this.uploadBean;
     },

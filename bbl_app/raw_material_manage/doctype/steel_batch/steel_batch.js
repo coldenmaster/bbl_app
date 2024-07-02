@@ -61,104 +61,6 @@ frappe.ui.form.on("Steel Batch", {
         // frappe.boot.developer_mode = 0
         if (frappe.boot.developer_mode) {
 
-            frm.add_custom_button('SABB', () => {
-                console.log("start SABB button");
-                item = {
-                    qty: 30,
-                    has_serial_no: 1,
-                    // serial_and_batch_bundle: 'dddd23',
-                    title: 'SABB title',
-                    fields: [
-                        {
-                            fieldtype: "Section Break",
-                            label: __("{0} {1} Manually", ["Section", "2"]),
-                        },
-                        {
-                            fieldtype: "Small Text",
-                            label: __("Enter Serial Nos"),
-                            fieldname: "upload_serial_nos",
-                            description: __("Enter each serial no in a new line"),
-                        },
-                        {
-                            fieldtype: "Column Break",
-                            depends_on: "eval:true",
-                        },
-
-
-                        {
-                            fieldtype: "Button",
-                            fieldname: "make_serial_nos",
-                            label: __("Create Serial Nos"),
-                            click: () => {
-                                console.log("bt click");
-                            },
-                        },
-
-                        {
-                            fieldtype: "Section Break",
-                            label: __("{0} {1} Manually", ["Section", "2"]),
-                        },
-                        {
-                            fieldtype: "Link",
-                            fieldname: "warehouse",
-                            label: __("Warehouse"),
-                            options: "Warehouse",
-                            default: "get_warehouse",
-                            onchange: (v) => {
-                                console.log("onchange:", v, this);
-                            },
-                            get_query: () => {
-                                return {
-                                    filters: {
-                                        is_group: 0,
-                                        // company: this.frm.doc.company,
-                                    },
-                                };
-                            },
-                        },
-                        {
-                            fieldtype: "Column Break",
-                        },
-                        {
-                            fieldtype: "Data",
-                            options: "Barcode",
-                            fieldname: "scan_serial_no",
-                            label: __("Scan Serial No"),
-                            get_query: () => {
-                                return {
-                                    // filters: this.get_serial_no_filters(),
-                                };
-                            },
-                            onchange: (v) => {
-                                console.log("onchange:", v, this);
-                            },
-                        },
-                        {
-                            fieldtype: "Section Break",
-                        },
-                        {
-                            fieldname: "entries",
-                            fieldtype: "Table",
-                            allow_bulk_edit: true,
-                            data: [],
-                            fields: [],
-                        },
-
-
-                    ]
-
-
-                }
-                // new erpnext.SerialBatchPackageSelector(frm,item, r => {
-                //     console.log(r);
-                // });
-                new bbl.BaseDialog(frm, item, r => {
-                    console.log(r);
-                });
-                console.log("SABB end button");
-            }, "develop")
-
-
             frm.add_custom_button("add sb", function () {
                 const base_info = {
                     warehouse: "原钢堆场 - 百兰",
@@ -167,8 +69,8 @@ frappe.ui.form.on("Steel Batch", {
                     semi_product: "06240",
                 }
                 const sbs = `
-            湖南华菱湘潭钢铁有限公司（XISC） 产品名称：保淬透性用钢 牌号:40CrH 技术标准:XYXB2020-021 材料号:B22420506E021/0211 规格(Φ):145mm 定尺长度(L):6925mm 支数:3，重量:2714Kg 炉号:24701313 许可证: 合同号: 制造厂:棒材厂 生产日期:2024-02-09
-          
+                湖南华菱湘潭钢铁有限公司（XISC） 产品名称：保淬透性用钢 牌号:40CrH 技术标准:XYXB2020-021 材料号:B22420506E021/0212 规格(Φ):145mm 定尺长度(L):6925mm 支数:3，重量:2714Kg 炉号:24701313 许可证: 合同号: 制造厂:棒材厂 生产日期:2024-02-09
+
             `
                 let sbl = sbs.trim().split("\n");
                 for (let i = 0; i < sbl.length; i++) {

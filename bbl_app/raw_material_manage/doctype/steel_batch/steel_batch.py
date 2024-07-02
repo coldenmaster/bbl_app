@@ -19,15 +19,6 @@ class SteelBatch(Document):
         print_green("sb save")
         if not self.is_new():
             self.clear_remaining()
-            # print_red('steel save() is new')
-            # print_blue('steel save()')
-            # print_blue(self)
-            # print_blue(vars(self))
-            # self.create_heat_no()
-            # self.create_batch_no()
-            # self.create_sabb()
-            # self.set_remaining()
-        # else:
         return super().save()
         
     def insert(self):
@@ -276,10 +267,9 @@ sb_out_items = {'semi_product': '06240', 'raw_bar_name': '06240_短棒料', 'bar
 def make_out_entry(**kwargs):
     """ 
     原材料下料生产出库时，建立stock entry草稿:
-    1.
     """
     # print_blue_pp(kwargs)
-    print_blue(kwargs)
+    # print_blue(kwargs)
     if not kwargs:
         print_red("mock data 😁")
         kwargs = sb_out_items #置入假数据
@@ -416,6 +406,7 @@ def make_out_entry(**kwargs):
      
      
     # print_green_pp(items)
+    manufacture_out_doc = None
     # todo 建单据草稿 
     if stock_entry_name:
         # 存在物料转移单据，进行查询修改
@@ -439,13 +430,14 @@ def make_out_entry(**kwargs):
     # 遍历items，对短棒料进行价格设置
     manufacture_out_doc.save()
     childern_docs = manufacture_out_doc.items
-    # print_green_pp(childern_docs[0].as_dict())
+    temp_doc_table_name = ''
     
     # 重新设计，计算最后一套出入库：
     for i in range(len(childern_docs) - 1, -1, -1):
         item = childern_docs[i]
         if item.item_group == "原材料":
             raw_item = item
+            temp_doc_table_name = item.name
             # print_green(f'{raw_item.as_dict() = }')
             bar1_item = childern_docs[i+1]
             if not is_zhxl:
@@ -464,18 +456,25 @@ def make_out_entry(**kwargs):
                 print_red(f'计算短棒料价格2 综合:  {raw_item.basic_rate} x {raw_item.qty }  = {sum}')
             break # 只进行最后一个原材料组的计算
                             
+    print_red(manufacture_out_doc.get("__islocal") )
+    print_red(manufacture_out_doc.get("name") )
+    if manufacture_out_doc.get("name"):
+        manufacture_out_doc.save()
+    else:
+        manufacture_out_doc.db_update()
     
     # 原材料标注为‘草稿’
     for batch_no in raw_batchs:
         frappe.db.set_value("Steel Batch", batch_no, "status", "草稿")
 
-    manufacture_out_doc.save()
+
     
     # 数据存入Temp Doc Value,供以后submit时使用
     temp_doc = frappe.get_doc({
         'doctype': 'Temp Doc Value',
         'doc_type': 'Stock Entry',
         'doc_name': manufacture_out_doc.name,
+        'doc_table_item': temp_doc_table_name,
         'doc_status': manufacture_out_doc.docstatus,
         'data_1': bar_ratio, # 记录实际下料长度
         'data_2': flt(raw_leng_to_weight(diameter, bar_ratio), 2), # 记录实际下料重量
@@ -605,6 +604,9 @@ def create_bar_item(item_name, item_type = '短棒料'):
                 }
             ]
         })
+        # if (frappe.db.exists('Item', item_name)):
+        #     print_red("此短棒料已存在，跳过 ！！！！！！！！！！")
+        #     return False
         new_doc.insert(ignore_permissions=True)
         frappe.db.commit()
         frappe.msgprint(f"新建短棒料 {item_name}", indicator="green", alert=True)
@@ -616,7 +618,7 @@ def create_bar_item(item_name, item_type = '短棒料'):
 @frappe.whitelist()
 def raw_name(**args):
     args = frappe._dict(args)
-    print_blue(args)
+    # print_blue(args)
     item_name = args.item_name or ""
     if not item_name_ok(item_name):
         frappe.msgprint("原材料名称,格式不正确,需要" + frappe.bold("xx-##"))
@@ -703,12 +705,6 @@ def flush_expected():
  """
 
 
-
-# sb.pad_semi_name(filters, "None")
-
-# kwargs = '''
-# {'raw_bar_name': '50H-150_短棒料', 'bar_radio': '720', 'bar_piece': '62', 'bar_weight': '6345', 'total': '{"name":"50H-150","bundle_cnt":2,"weight":6345,"piece":6,"length":45360,"ratio":"720","bar_piece":62,"batchs":[{"batch_no":"B22421204/0211","weight":3172},{"batch_no":"B22421204/0212","weight":3173}]}', 'raw_name': '50H-150', 'raw_weight': '6345', 'batchs': '[{"batch_no":"B22421204/0211","weight":3172},{"batch_no":"B22421204/0212","weight":3173}]', 'cmd': 'bbl_app.raw_material_manage.doctype.steel_batch.steel_batch.make_out_entry'}
-# '''
 # k3 = eval(kwargs) # 不能解析'''的换行缩进
 """ test info
 import bbl_app.raw_material_manage.doctype.steel_batch.steel_batch as sb

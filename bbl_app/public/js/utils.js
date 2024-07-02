@@ -12,7 +12,6 @@ bbl.utils = {
         per_length = cint(per_length);
         ratio = cint(ratio);
         piece = cint(piece);
-        // console.log("下料根数计算0：", per_length, piece, ratio, gap)
         let total_p = cint(per_length / (ratio + gap)) * piece;
         let remain_weight = per_length * piece - total_p * (ratio + gap);
         // console.log("下料根数计算：", total_p, remain_weight);
@@ -30,7 +29,18 @@ bbl.utils = {
         let volume = dia * dia * 3.1415926 / 4 * length;
         let weight = flt(volume * density / 1000 / 1000);
         return weight;
-    }
+    },
+
+    // 圆钢重量长度换算 kg to mm
+    raw_weight_to_length: function(weight, dia, density=7.9) {
+        weight = cint(weight), dia = cint(dia);
+        console.log("圆钢重量长度换算", weight, dia, density)
+        let volume = weight * 1000 * 1000 / density
+        let length = volume / (dia * dia * 3.1415926 / 4)
+        console.log("圆钢重量长度换算2", volume, length)
+        return cint(length);
+    },
+
 }
 
 

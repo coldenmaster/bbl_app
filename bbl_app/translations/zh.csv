@@ -46,6 +46,7 @@ Technology,工艺,
 Linked Technology,关联生产记录,
 Diameter,直径,
 Material Ratio,倍尺
+Ratio,倍尺
 Roll Para,辊锻参数,
 Roll First,一道,
 Roll Second,二道,
@@ -303,6 +304,7 @@ Raw Material Price,原材料价格,
 Short Raw Bar,短棒料,
 Use Date,使用日期,
 Raw Bar Name,棒料名称,
+Bar Name,棒料名称,
 
 Frappe Insights,Frappe商务分析,
 DataEasy,DataEasy可视化分析
@@ -312,9 +314,13 @@ CNY,￥,
 EUR,€,
 JPY,¥,
 
+Updates,系统更新,
 Bbl Not Op,百兰生产转序,
 Total Piece,总数量,
-Updates,系统更新,
+Accu Piece,累计数量,
+Wip Piece,在制品数量,
+In Piece,新入数量
+
 
 Deleted all documents successfully,删除所有文档成功,
 Bulk Operation Successful,批量操作成功,
@@ -329,3 +335,14 @@ Link Doc In,入仓单据,
 Link Doc Out,出仓单据,
 Expected Quantity,预期数量,
 Expected Scrap,预期料头,
+Raw Op Flow,原材料日记账,
+Bar Piece,棒料根数,
+Bar Batch No,棒料批次号,
+Bar Piece,下料根数,
+Doc Table Item,子表名,
+
+
+
+
+Item rate has been updated to zero as Allow Zero Valuation Rate is checked for item {0},物料{0}的单价已根据设置更新为零,
+"Items rate has been updated to zero as Allow Zero Valuation Rate is checked for the following items: {0}",物料{0}的单价已根据设置更新为零,

@@ -16,9 +16,11 @@
   "cost",
   "length",
   "weight",
-  "piece",
+  "in_piece",
   "remaining_piece",
+  "wip_piece",
   "total_piece",
+  "accu_piece",
   "column_break_musm",
   "warehouse",
   "warehouse_area",
@@ -91,11 +93,12 @@
    "precision": "0"
   },
   {
+   "default": "0",
    "depends_on": "remaining_piece",
    "fieldname": "remaining_piece",
    "fieldtype": "Int",
-   "label": "Remaining Piece",
-   "non_negative": 1
+   "in_list_view": 1,
+   "label": "Remaining Piece"
   },
   {
    "fieldname": "column_break_musm",
@@ -122,7 +125,7 @@
    "in_standard_filter": 1,
    "label": "Status",
    "no_copy": 1,
-   "options": "\u672a\u4f7f\u7528\n\u534a\u4f7f\u7528\n\u4f59\u6599\n\u7528\u5b8c"
+   "options": "\u672a\u4f7f\u7528\n\u534a\u4f7f\u7528\n\u4f59\u6599\n\u953b\u9020\u8f66\u95f4wip\n\u7528\u5b8c"
   },
   {
    "fieldname": "semi_product",
@@ -132,6 +135,7 @@
   },
   {
    "fetch_from": "semi_product.material_ratio",
+   "fetch_if_empty": 1,
    "fieldname": "material_ratio",
    "fieldtype": "Data",
    "label": "Material Ratio"
@@ -173,19 +177,13 @@
    "label": "Cost"
   },
   {
-   "fieldname": "piece",
-   "fieldtype": "Int",
-   "in_list_view": 1,
-   "label": "Piece"
-  },
-  {
    "default": "0",
+   "description": "\u5269\u4f59 + \u5728\u5236\u54c1wip",
    "fieldname": "total_piece",
    "fieldtype": "Int",
-   "in_list_view": 1,
+   "is_virtual": 1,
    "label": "Total Piece",
-   "non_negative": 1,
-   "reqd": 1
+   "options": "doc.remaining_piece + doc.wip_piece"
   },
   {
    "fieldname": "link_doc_in",
@@ -200,17 +198,32 @@
    "label": "Link Doc Out",
    "options": "Stock Entry",
    "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "wip_piece",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Wip Piece"
+  },
+  {
+   "default": "0",
+   "fieldname": "accu_piece",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Accu Piece"
+  },
+  {
+   "default": "0",
+   "fieldname": "in_piece",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "In Piece"
   }
  ],
  "is_calendar_and_gantt": 1,
- "links": [
-  {
-   "link_doctype": "Stock Entry",
-   "link_fieldname": "batch_no",
-   "table_fieldname": "Items"
-  }
- ],
- "modified": "2024-06-26 14:25:56",
+ "links": [],
+ "modified": "2024-06-29 17:10:43",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Short Raw Bar",
