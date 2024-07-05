@@ -5,7 +5,7 @@
 import frappe
 from frappe.model.document import Document
 
-from bbl_api.utils import get_fullname, send_wechat_msg_product_queue
+from bbl_api.utils import send_wechat_msg_product_queue
 
 class SemiOutput(Document):
 
@@ -23,5 +23,5 @@ class SemiOutput(Document):
             # f"备注：{self.note or ''}\n"\
         for i, item in enumerate(self.product_list):
             doc_str += f"{i+1}. {item.semi_product_name}：{item.quantity}根 {item.production_line or ''}\n"
-        doc_str += f"------\nFrom：{get_fullname()}\n"
+        doc_str += f"------\nFrom：{frappe.utils.get_fullname()}\n"
         return f"{doc_str}"
