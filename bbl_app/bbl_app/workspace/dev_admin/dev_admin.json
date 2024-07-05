@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "dev-admin",
  "links": [],
- "modified": "2024-06-27 14:04:17",
+ "modified": "2024-07-05 18:13:31",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "dev-admin",
@@ -27,7 +27,7 @@
    "role": "Administrator"
   }
  ],
- "sequence_id": 44.0,
+ "sequence_id": 45.0,
  "shortcuts": [
   {
    "color": "Green",
