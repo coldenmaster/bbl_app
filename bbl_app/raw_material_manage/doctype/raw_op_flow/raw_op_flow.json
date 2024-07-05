@@ -30,6 +30,8 @@
    "default": "Today",
    "fieldname": "for_date",
    "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "For Date",
    "read_only": 1
   },
@@ -128,6 +130,7 @@
    "fieldname": "bar_name",
    "fieldtype": "Data",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Bar Name",
    "read_only": 1
   },
@@ -163,7 +166,7 @@
  ],
  "in_create": 1,
  "links": [],
- "modified": "2024-06-27 17:43:19",
+ "modified": "2024-07-03 16:20:48",
  "modified_by": "Administrator",
  "module": "Raw Material Manage",
  "name": "Raw Op Flow",

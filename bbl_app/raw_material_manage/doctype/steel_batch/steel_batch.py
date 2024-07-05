@@ -3,6 +3,7 @@
 
 # import frappe
 import json
+from bbl_app.utils.admin import clear_db_for_dev
 from bbl_app.utils.func import raw_leng_to_weight
 from bbl_app.utils.uitls import load_pr_items, load_pr_items_0, load_sb_out_items
 import frappe
@@ -10,7 +11,7 @@ from frappe.model.create_new import get_new_doc
 from frappe.model.document import Document
 from frappe.utils.data import cint, cstr, flt, nowdate, sbool
 
-from bbl_api.utils import clear_db_for_dev, print_blue, print_green, print_green_pp, print_red, print_yellow, timer
+from bbl_api.utils import print_blue, print_green, print_green_pp, print_red, print_yellow, timer
 
 
 class SteelBatch(Document):

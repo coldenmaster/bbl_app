@@ -34,10 +34,10 @@ bbl.utils = {
     // 圆钢重量长度换算 kg to mm
     raw_weight_to_length: function(weight, dia, density=7.9) {
         weight = cint(weight), dia = cint(dia);
-        console.log("圆钢重量长度换算", weight, dia, density)
+        // console.log("圆钢重量长度换算", weight, dia, density)
         let volume = weight * 1000 * 1000 / density
         let length = volume / (dia * dia * 3.1415926 / 4)
-        console.log("圆钢重量长度换算2", volume, length)
+        // console.log("圆钢重量长度换算2", volume, length)
         return cint(length);
     },
 

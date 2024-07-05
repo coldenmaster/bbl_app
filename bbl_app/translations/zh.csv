@@ -340,7 +340,14 @@ Bar Piece,棒料根数,
 Bar Batch No,棒料批次号,
 Bar Piece,下料根数,
 Doc Table Item,子表名,
+Fatigue Life,疲劳寿命,
 
+Measure Length,测量长度,
+Deviation,偏差,
+Target Length,目标长度,
+
+Positive,正,
+Negative,负,
 
 
 

@@ -351,6 +351,19 @@ class Raw2BarDialog2 {
         this.dialog.set_value("zh_bar_weight", weight);
     }
 
+    get_stock_entry_draft() {
+        frappe.db.get_list("Stock Entry", {
+            "filters": {
+                "stock_entry_type": ["=", "原材料下料出库"],
+                "docstatus": ["=", 0],
+            },
+            limit: 1,
+        }).then(r => {
+            // console.log("get_stock_entry_items r:", r);
+            this.dialog.set_value("stock_entry", r[0] ? r[0].name: "");
+        })
+    }
+
     make() {
         let title = "原材料/生产投料";
         let primary_label = __("Submit");
@@ -669,6 +682,7 @@ class Raw2BarDialog2 {
             // 如果是单捆，开启剩余长度，数量，公斤数输入
             // 如何打开综合下料功能
         ]
+
         this.dialog = new frappe.ui.Dialog({
             title,
             fields: this.fields,
@@ -688,7 +702,8 @@ class Raw2BarDialog2 {
             secondary_action: () => this.dialog.hide(),
         })
 
-        this.dialog.show()       
+        this.dialog.show();
+        this.get_stock_entry_draft();
         // window.dfc = this.dialog.get_field("stock_entry");
     }
 
@@ -705,9 +720,6 @@ class Raw2BarDialog2 {
                     indicator: "green"
                 });
                 frappe.set_route("Form", "Stock Entry", r.message);
-                // setTimeout(() => {
-                //     frappe.cur_frm.reload_doc();
-                // }, 2000);
             }
         })
     }

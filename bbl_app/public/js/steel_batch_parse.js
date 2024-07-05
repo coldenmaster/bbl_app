@@ -1,4 +1,4 @@
-console.log("GangbangParse.js 加载")
+// console.log("GangbangParse.js 加载")
 
 String.prototype.replaceAll = function(s1,s2){
     return this.replace(new RegExp(s1,"gm"),s2);
@@ -323,7 +323,7 @@ var GangbangParse = {
         // 标签上没有，自动计算长度， 相应的减少一点长度，暂定减少20mm
         let t_length = bbl.utils.raw_weight_to_length(this.uploadBean.weight, this.uploadBean.diaSize) 
         this.uploadBean.length = t_length / cint(this.uploadBean.bundleNum) - 20;
-        console.log("bean", this.uploadBean)
+        // console.log("bean", this.uploadBean)
         return this.uploadBean;
     },
 };
