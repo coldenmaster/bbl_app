@@ -29,6 +29,7 @@
    "fieldname": "operation",
    "fieldtype": "Link",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Operation",
    "options": "Operation Tree",
    "reqd": 1
@@ -74,7 +75,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-28 16:56:01.518066",
+ "modified": "2024-07-08 11:12:09",
  "modified_by": "Administrator",
  "module": "Paint Shop",
  "name": "Paint Output",
