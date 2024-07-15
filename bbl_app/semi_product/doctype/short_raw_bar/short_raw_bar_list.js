@@ -29,15 +29,15 @@ frappe.listview_settings["Short Raw Bar"] = {
           listview.page.actions.find('[data-label="Edit"],[data-label="%E5%88%A0%E9%99%A4"],[data-label="Assign To"]').parent().parent().remove()
         }
 
-        page.add_inner_button('生产出库', () => {
+        page.add_inner_button('转入在制品库', () => {
             // 同名称的短棒料，可以一起投产
             let items = listview.get_checked_items();
-            console.log("生产出库 items:", items);
+            console.log("转入在制品库 items:", items);
             // items = items.filter(item => !["用完", "锻造车间wip"].includes(item.status));
             items = items.filter(item => item.remaining_piece != 0);
             let item_name = items.map(item => item.raw_bar_name);
             if (new Set(item_name).size != 1) {
-                frappe.msgprint("请选择同名称的短棒料");
+                frappe.msgprint("请选择拥有库存的同名称短棒料");
                 return;
             }
 
@@ -53,7 +53,15 @@ frappe.listview_settings["Short Raw Bar"] = {
             );
             
         });
-        page.change_inner_button_type('生产出库', null, 'info');
+        page.change_inner_button_type('转入在制品库', null, 'info');
+
+        page.add_inner_button('处理工单', () => {
+            frappe.set_route('List', 'Work Order', 'List', {
+                    'production_item': ['like', ['锻坯']],
+                    'status': 'In Process'
+            })
+        });
+        page.change_inner_button_type('处理工单', null, 'warning');
 
 
     },
@@ -124,7 +132,7 @@ function make_dialog_promise(items) {
                 product_out(values);
                 resolve("values ok");
             },
-            "短棒料生产出库",
+            "短棒料转入锻造车间在制品库",
             "确认"
         );
     })
@@ -137,14 +145,9 @@ function product_out(values) {
         method: "bbl_app.semi_product.doctype.short_raw_bar.short_raw_bar.product_out",
         args: values
     }).then(r => {
-        log("bar product_out", r);
+        // log("bar product_out", r);
         if (r.message) {
-            frappe.show_alert({
-                message: __("处理成功"),
-                indicator: "green"
-            });
-            // frappe.set_route("Form", "Stock Entry", r.message);
-
+            frappe.set_route("Form", "Work Order", r.message);
         }
     })
 }

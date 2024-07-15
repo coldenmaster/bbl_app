@@ -23,14 +23,14 @@ class ShortRawBar(Document):
 
 
 
-up_obj_mock = {'semi_product': '4E', 'items': '[{"name":"DBL-20240627-462Z-4E","owner":"Administrator","creation":"2024-06-27 18:26:10","modified":"2024-06-27 18:26:10","modified_by":"Administrator","_user_tags":null,"_comments":null,"_assign":null,"_liked_by":null,"docstatus":0,"idx":0,"raw_bar_name":"4E_短棒料","heat_no":"24011462Z","length":940,"weight":131.23,"piece":105,"remaining_piece":105,"total_piece":105,"status":"未使用","for_date":"2024-06-27","_comment_count":0,"_idx":2},{"name":"DBL-20240627-0736-4E","owner":"Administrator","creation":"2024-06-27 17:54:53","modified":"2024-06-27 17:54:53","modified_by":"Administrator","_user_tags":null,"_comments":null,"_assign":null,"_liked_by":null,"docstatus":0,"idx":0,"raw_bar_name":"4E_短棒料","heat_no":"V12400736","length":940,"weight":131.23,"piece":21,"remaining_piece":21,"total_piece":21,"status":"未使用","for_date":"2024-06-27","_comment_count":0,"_idx":5}]', 'cmd': 'bbl_app.semi_product.doctype.short_raw_bar.short_raw_bar.product_out'}
+up_obj_mock = {'semi_product': '30BC', 'items': '[{"name":"DBL-20240703-3619-0BC","owner":"xiezequan@hbbbl.top","creation":"2024-07-03 16:13:04","modified":"2024-07-03 16:13:04","modified_by":"xiezequan@hbbbl.top","_user_tags":null,"_comments":null,"_assign":null,"_liked_by":null,"docstatus":0,"idx":0,"raw_bar_name":"30BC_短棒料","heat_no":"V12403619","in_piece":160,"remaining_piece":160,"wip_piece":0,"accu_piece":160,"status":"未使用","_comment_count":0,"_idx":2}]', 'cmd': 'bbl_app.semi_product.doctype.short_raw_bar.short_raw_bar.product_out'}
 
 
 # http://dev2.localhost:8000/api/method/bbl_app.semi_product.doctype.short_raw_bar.short_raw_bar.product_out?scan_barcode=123
 @frappe.whitelist()
 def product_out(**kwargs):
     print_red("srb product_out")
-    # print_blue(kwargs)
+    print_blue(kwargs)
     if not kwargs:
         print_red("mock data 😁")
         kwargs = up_obj_mock #置入假数据
@@ -79,11 +79,12 @@ def product_out(**kwargs):
 
     # over 提交数据库保存
     frappe.db.commit()
-    return 'ok 2'
+    frappe.msgprint("完成短棒料" + frappe.bold("工单发料"), indicator="green", alert=True)
+    return wo_doc.name
 
 
 
-def create_item(item_name, item_type = '锻坯'):
+def create_item(item_name, item_type = '过程半成品'):
     if (not frappe.db.exists('Item', item_name)):
         new_doc = frappe.get_doc({
             'doctype': 'Item',
@@ -104,7 +105,7 @@ def create_item(item_name, item_type = '锻坯'):
         })
         new_doc.insert(ignore_permissions=True)
         frappe.db.commit()
-        frappe.msgprint(f"新建{frappe.bold('锻坯')} {item_name}", indicator="green", alert=True)
+        # frappe.msgprint(f"新建{frappe.bold('锻坯')} {item_name}", indicator="green", alert=True)
         return new_doc
     else: 
         return frappe.get_cached_doc("Item", item_name)
@@ -125,7 +126,7 @@ def create_bom(s_name, t_name):
         # new_doc.insert(ignore_permissions=True)
         new_doc.submit()
         frappe.db.commit()
-        frappe.msgprint(f"新建BOM {t_name}", indicator="green", alert=True)
+        # frappe.msgprint(f"新建BOM {t_name}", indicator="green", alert=True)
         return new_doc
     else: 
         return frappe.get_cached_doc("BOM", find_bom[0].name)

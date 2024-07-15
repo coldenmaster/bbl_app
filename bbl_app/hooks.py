@@ -102,7 +102,7 @@ doc_events = {
 
 override_doctype_class = {
 	"ToDo": "bbl_app.overrides.over.CustomToDo",
-    "Stock Entry": "bbl_app.overrides.over.CustomStockEntry",
+    "Stock Entry": "bbl_app.overrides.over_stock_entry.CustomStockEntry",
     "Purchase Receipt": "bbl_app.overrides.over.CustomPurchaseReceipt",
 }
 

@@ -28,6 +28,7 @@
   "product_name",
   "drawing_id",
   "customer",
+  "product_form",
   "product_type",
   "product_line",
   "employee",
@@ -66,23 +67,27 @@
    "label": "Cost"
   },
   {
+   "default": "0",
    "fieldname": "length",
    "fieldtype": "Int",
    "label": "Length"
   },
   {
+   "default": "0",
    "fieldname": "weight",
    "fieldtype": "Float",
    "label": "Weight",
    "precision": "0"
   },
   {
+   "default": "0",
    "fieldname": "piece",
    "fieldtype": "Int",
    "in_list_view": 1,
    "label": "Piece"
   },
   {
+   "default": "0",
    "depends_on": "remaining_piece",
    "fieldname": "remaining_piece",
    "fieldtype": "Int",
@@ -136,7 +141,7 @@
    "label": "Product Name"
   },
   {
-   "default": "Now",
+   "default": "Today",
    "fieldname": "for_date",
    "fieldtype": "Date",
    "in_list_view": 1,
@@ -151,9 +156,10 @@
   {
    "fieldname": "forge_batch_no",
    "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Forge Batch No",
-   "reqd": 1,
-   "unique": 1
+   "reqd": 1
   },
   {
    "fieldname": "semi_product_name",
@@ -196,6 +202,7 @@
    "options": "\u524d\u8f74\n\u94c1\u8def\u886c\u677f"
   },
   {
+   "default": "__user",
    "fieldname": "employee",
    "fieldtype": "Data",
    "label": "Employee"
@@ -204,13 +211,19 @@
    "fieldname": "link_doc",
    "fieldtype": "Link",
    "label": "Link Doc",
-   "options": "Stock Entry Type",
+   "options": "Stock Entry",
    "read_only": 1
+  },
+  {
+   "fieldname": "product_form",
+   "fieldtype": "Link",
+   "label": "Product Form",
+   "options": "Product Form"
   }
  ],
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-06-26 08:12:33",
+ "modified": "2024-07-10 14:07:33",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Semi Product Manage",

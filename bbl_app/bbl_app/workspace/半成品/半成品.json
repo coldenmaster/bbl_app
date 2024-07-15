@@ -1,0 +1,130 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"RQx-i2dPp8\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>\u77ed\u68d2\u6599\u7ba1\u7406</b></span>\",\"col\":12}},{\"id\":\"_Id1kT7V_F\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Semi Product Manage\",\"col\":3}},{\"id\":\"v6S_dfvR7K\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Entry\",\"col\":3}},{\"id\":\"--Tevff0GT\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Work Order\",\"col\":3}},{\"id\":\"81oOLmPWCo\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"xJs2XtRe6B\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Semi Op Flow\",\"col\":3}},{\"id\":\"YIANqLdBZ_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u57fa\u7840\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"HUvPwSnDXp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"afXbNpFUHz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Batch\",\"col\":3}},{\"id\":\"oSjMRCkb3g\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Serial No\",\"col\":3}},{\"id\":\"nxg3EzDRis\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u5e8f\u5217\u53f7\u4e0e\u6279\u53f7\u7ec4\",\"col\":3}},{\"id\":\"fhmah6AWsM\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Product Form\",\"col\":3}},{\"id\":\"iRI_wzdLdG\",\"type\":\"card\",\"data\":{\"card_name\":\"test\",\"col\":4}}]",
+ "creation": "2024-07-10 14:01:19",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "customer",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "\u534a\u6210\u54c1",
+ "links": [
+  {
+   "description": "\u6211\u4eec\u4e00\u8d77<b>\u6447\u554a\u6447\u554a\u6447</b>",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "test",
+   "link_count": 1,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "wttleaderboard",
+   "link_count": 0,
+   "link_to": "wttleaderboard",
+   "link_type": "Page",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2024-07-10 14:05:56",
+ "modified_by": "Administrator",
+ "module": "Bbl App",
+ "name": "\u534a\u6210\u54c1",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "Personal Workspace",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "Manufacturing User"
+  },
+  {
+   "role": "Stock Manager"
+  }
+ ],
+ "sequence_id": 3.1,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Stock Entry",
+   "link_to": "Stock Entry",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "\u5e8f\u5217\u53f7\u4e0e\u6279\u53f7\u7ec4",
+   "link_to": "Serial and Batch Bundle",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Batch",
+   "link_to": "Batch",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Work Order",
+   "link_to": "Work Order",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Semi Product Manage",
+   "link_to": "Semi Product Manage",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Semi Op Flow",
+   "link_to": "Semi Op Flow",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Item",
+   "link_to": "Item",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Serial No",
+   "link_to": "Serial No",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Product Form",
+   "link_to": "Product Form",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "\u534a\u6210\u54c1"
+}

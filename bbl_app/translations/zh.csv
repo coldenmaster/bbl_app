@@ -342,10 +342,6 @@ Bar Piece,下料根数,
 Doc Table Item,子表名,
 Fatigue Life,疲劳寿命,
 
-Measure Length,测量长度,
-Deviation,偏差,
-Target Length,目标长度,
-
 Positive,正,
 Negative,负,
 Quality Department,质量部,
@@ -361,6 +357,14 @@ Standard Error Minus,标准误差负,
 Standard Error Plus,标准误差正,
 Error Length,误差长度,
 
+Steel Batch Out,原材料扫码出库,
+Semi Op Flow,半成品流转记录,
+Tar Piece,目标数量,
+Tar Name,目标名称,
+Tar Batch No,目标批次号,
+Product Class,产品分类,
+Product Form,产品形态,
+Product Stage,产品阶段,
 
 
 Item rate has been updated to zero as Allow Zero Valuation Rate is checked for item {0},物料{0}的单价已根据设置更新为零,

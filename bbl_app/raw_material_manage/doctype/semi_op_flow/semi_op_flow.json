@@ -1,0 +1,213 @@
+{
+ "actions": [],
+ "allow_copy": 1,
+ "creation": "2024-07-10 10:08:55",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "for_date",
+  "record_type",
+  "op_type",
+  "batch_doc",
+  "batch_no",
+  "item_name",
+  "forge_batch_no",
+  "piece",
+  "weight",
+  "link_doc_type",
+  "link_doc",
+  "user",
+  "column_break_xubz",
+  "tar_batch_no",
+  "tar_name",
+  "tar_piece",
+  "product_class",
+  "index",
+  "note"
+ ],
+ "fields": [
+  {
+   "default": "Today",
+   "fieldname": "for_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "For Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "record_type",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Record Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "op_type",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "label": "Op Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "batch_doc",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Batch Doc",
+   "options": "DocType",
+   "read_only": 1
+  },
+  {
+   "fieldname": "batch_no",
+   "fieldtype": "Dynamic Link",
+   "label": "Batch No",
+   "options": "batch_doc",
+   "read_only": 1
+  },
+  {
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Item Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "piece",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Piece",
+   "read_only": 1
+  },
+  {
+   "fieldname": "weight",
+   "fieldtype": "Int",
+   "label": "Weight",
+   "read_only": 1
+  },
+  {
+   "fieldname": "link_doc_type",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Link Doc Type",
+   "options": "DocType",
+   "read_only": 1
+  },
+  {
+   "fieldname": "link_doc",
+   "fieldtype": "Dynamic Link",
+   "label": "Link Doc",
+   "options": "link_doc_type",
+   "read_only": 1
+  },
+  {
+   "default": "__user",
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "label": "User",
+   "options": "User"
+  },
+  {
+   "fieldname": "column_break_xubz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "index",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Index",
+   "read_only": 1
+  },
+  {
+   "fieldname": "forge_batch_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Forge Batch No",
+   "read_only": 1
+  },
+  {
+   "fieldname": "product_class",
+   "fieldtype": "Data",
+   "label": "Product Class",
+   "read_only": 1
+  },
+  {
+   "fieldname": "note",
+   "fieldtype": "Data",
+   "label": "Note",
+   "read_only": 1
+  },
+  {
+   "fieldname": "tar_batch_no",
+   "fieldtype": "Link",
+   "label": "Tar Batch No",
+   "options": "Semi Product Manage",
+   "read_only": 1
+  },
+  {
+   "fieldname": "tar_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Tar Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "tar_piece",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Tar Piece",
+   "read_only": 1
+  }
+ ],
+ "in_create": 1,
+ "links": [],
+ "modified": "2024-07-10 10:55:33",
+ "modified_by": "Administrator",
+ "module": "Raw Material Manage",
+ "name": "Semi Op Flow",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Stock User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "item_name"
+}

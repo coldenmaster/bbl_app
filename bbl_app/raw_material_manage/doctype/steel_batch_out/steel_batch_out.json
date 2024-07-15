@@ -1,0 +1,157 @@
+{
+ "actions": [],
+ "autoname": "field:batch_no",
+ "creation": "2024-07-09 14:30:10",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "scan_barcode",
+  "column_break_wase",
+  "section_break_pvin",
+  "batch_no",
+  "heat_no",
+  "raw_name",
+  "length",
+  "weight",
+  "steel_piece",
+  "column_break_musm",
+  "status",
+  "for_date",
+  "hand_in"
+ ],
+ "fields": [
+  {
+   "depends_on": "eval:!!doc.__islocal",
+   "fieldname": "scan_barcode",
+   "fieldtype": "Small Text",
+   "label": "Scan Barcode",
+   "options": "Barcode"
+  },
+  {
+   "fieldname": "column_break_wase",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_pvin",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "batch_no",
+   "fieldtype": "Data",
+   "label": "Batch No",
+   "reqd": 1,
+   "set_only_once": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "heat_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Heat No",
+   "set_only_once": 1
+  },
+  {
+   "fetch_from": "heat_no.raw_name",
+   "fieldname": "raw_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Raw Name"
+  },
+  {
+   "fieldname": "length",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Length"
+  },
+  {
+   "fieldname": "weight",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Weight",
+   "precision": "0"
+  },
+  {
+   "fieldname": "steel_piece",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Steel Piece"
+  },
+  {
+   "fieldname": "column_break_musm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "bold": 1,
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Status",
+   "no_copy": 1
+  },
+  {
+   "fieldname": "for_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "For Date"
+  },
+  {
+   "default": "0",
+   "fieldname": "hand_in",
+   "fieldtype": "Check",
+   "label": "Hand In",
+   "read_only": 1
+  }
+ ],
+ "links": [],
+ "modified": "2024-07-09 14:42:45",
+ "modified_by": "Administrator",
+ "module": "Raw Material Manage",
+ "name": "Steel Batch Out",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Stock Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "batch_no"
+}

@@ -1,15 +1,11 @@
 frappe.require("/assets/bbl_app/js/steel_batch_parse.js", () => {
 });
 
-frappe.ui.form.on("Steel Batch Check", {
-	refresh(frm) {
-
-	},
+frappe.ui.form.on("Steel Batch Out", {
     scan_barcode(frm) {
         frm.set_value("hand_in", false);
         parse_gangbang_code(frm)
 	},
-
 });
 
 function _clear_doc(frm) {
@@ -30,7 +26,6 @@ function _clear_doc(frm) {
     frm.doc.bundle_index = "";
     frm.doc.contract_no = "";
     frm.doc.standard = "";
-    // frm.refresh();
 };
 
 
@@ -43,6 +38,8 @@ function parse_gangbang_code(frm) {
         frm.doc.scan_barcode = "";
         frm.refresh_field("scan_barcode")
         frm.refresh_field("raw_code")
+        // frappe.msgprint("二维码解析失败, qrcode:<br/>" + qrcodeStr);
+        // frm.refresh();
         frappe.show_alert({
             message:"二维码解析失败<br/>" + qrcodeStr,
             indicator:'red'
@@ -79,7 +76,7 @@ function parse_gangbang_code(frm) {
         frm.doc.steel_piece = undefined;
     }
 
-    frappe.db.exists("Steel Batch Check", frm.doc.batch_no).then(exists => {
+    frappe.db.exists("Steel Batch Out", frm.doc.batch_no).then(exists => {
         if (exists) {
             frappe.msgprint({
                 title: __('Warning'),
@@ -97,7 +94,7 @@ function parse_gangbang_code(frm) {
                     indicator:'green'
                 }, 5);
                 frappe.utils.play_sound('submit');
-                frappe.new_doc("Steel Batch Check");
+                frappe.new_doc("Steel Batch Out");
             });
         }
     })

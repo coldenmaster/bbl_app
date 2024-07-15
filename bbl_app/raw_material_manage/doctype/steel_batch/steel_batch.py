@@ -579,7 +579,7 @@ def _create_item(item_name, item_type = '原材料', uom = 'kg', has_batch_no = 
         })
         new_doc.insert(ignore_permissions=True)
         frappe.db.commit()
-        frappe.msgprint(f"新建原材料 {item_name}", indicator="green", alert=True)
+        # frappe.msgprint(f"新建原材料 {item_name}", indicator="green", alert=True)
         return new_doc
     else: 
         return False
@@ -610,7 +610,7 @@ def create_bar_item(item_name, item_type = '短棒料'):
         #     return False
         new_doc.insert(ignore_permissions=True)
         frappe.db.commit()
-        frappe.msgprint(f"新建短棒料 {item_name}", indicator="green", alert=True)
+        # frappe.msgprint(f"新建短棒料 {item_name}", indicator="green", alert=True)
         return new_doc
     else: 
         return False

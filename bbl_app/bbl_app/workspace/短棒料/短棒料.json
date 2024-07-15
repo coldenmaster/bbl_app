@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"RQx-i2dPp8\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>\u77ed\u68d2\u6599\u7ba1\u7406</b></span>\",\"col\":12}},{\"id\":\"_Id1kT7V_F\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u5e93\u5b58\u77ed\u68d2\u6599\",\"col\":3}},{\"id\":\"v6S_dfvR7K\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Entry\",\"col\":3}},{\"id\":\"--Tevff0GT\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Work Order\",\"col\":3}},{\"id\":\"bWP8vaucm5\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u6d4b\u8bd5</b></span>\",\"col\":12}},{\"id\":\"YIANqLdBZ_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u57fa\u7840\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"HUvPwSnDXp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"afXbNpFUHz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Batch\",\"col\":3}},{\"id\":\"oSjMRCkb3g\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Serial No\",\"col\":3}},{\"id\":\"nxg3EzDRis\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u5e8f\u5217\u53f7\u4e0e\u6279\u53f7\u7ec4\",\"col\":3}},{\"id\":\"iRI_wzdLdG\",\"type\":\"card\",\"data\":{\"card_name\":\"test\",\"col\":4}}]",
+ "content": "[{\"id\":\"RQx-i2dPp8\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>\u77ed\u68d2\u6599\u7ba1\u7406</b></span>\",\"col\":12}},{\"id\":\"_Id1kT7V_F\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u5e93\u5b58\u77ed\u68d2\u6599\",\"col\":3}},{\"id\":\"v6S_dfvR7K\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Entry\",\"col\":3}},{\"id\":\"--Tevff0GT\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Work Order\",\"col\":3}},{\"id\":\"YIANqLdBZ_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u57fa\u7840\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"HUvPwSnDXp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"afXbNpFUHz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Batch\",\"col\":3}},{\"id\":\"oSjMRCkb3g\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Serial No\",\"col\":3}},{\"id\":\"nxg3EzDRis\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u5e8f\u5217\u53f7\u4e0e\u6279\u53f7\u7ec4\",\"col\":3}},{\"id\":\"iRI_wzdLdG\",\"type\":\"card\",\"data\":{\"card_name\":\"test\",\"col\":4}}]",
  "creation": "2024-05-11 16:23:03",
  "custom_blocks": [],
  "docstatus": 0,
@@ -34,7 +34,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-07-05 18:13:24",
+ "modified": "2024-07-10 14:03:29",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "\u77ed\u68d2\u6599",

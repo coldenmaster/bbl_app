@@ -310,6 +310,7 @@ class Raw2BarDialog2 {
         // log("default_bar_batch heat_no:", heat_no, this.semi_product);
         return "DBL-" + frappe.datetime.now_date().replaceAll("-", "") + "-"
             + heat_no.substring(heat_no.length - 4) + "-" + prod_name.substring(prod_name.length - 3);
+        return "DBL-" + prod_name.substring(prod_name.length - 6)  + "-" + heat_no;
     }
 
     ratio_desc() {
@@ -414,6 +415,7 @@ class Raw2BarDialog2 {
                 "options": "Item",
                 "reqd": 1,
                 "readonly": 1,
+                "hidden": 1,
                 "default": this.raw_bar_name,
                 "get_query": () => {
                     return {
