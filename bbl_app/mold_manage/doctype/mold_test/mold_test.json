@@ -36,7 +36,7 @@
   },
   {
    "fieldname": "test_multi_link",
-   "fieldtype": "Autocomplete",
+   "fieldtype": "Select",
    "label": "Test Multi Link",
    "options": "link\nfill\noption\nadfasd\newr3ec"
   },
@@ -50,7 +50,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-05 17:37:38.361221",
+ "modified": "2024-07-17 08:06:51",
  "modified_by": "Administrator",
  "module": "Mold Manage",
  "name": "Mold Test",

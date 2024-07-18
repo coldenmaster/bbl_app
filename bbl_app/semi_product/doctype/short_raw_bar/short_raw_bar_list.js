@@ -3,7 +3,7 @@ frappe.listview_settings["Short Raw Bar"] = {
     hide_name_column: true, // hide the last column which shows the `name`
     hide_name_filter: true, // hide the default filter field for the name column
 
-    // add_fields: ['remaining_piece', 'total_piece'],  // 重要从后端需获取的字段（除了显示的以外的）
+    add_fields: ['remaining_piece', 'total_piece', 'semi_product'],  // 重要从后端需获取的字段（除了显示的以外的）
 
     filters: [
         // ["remaining_piece", "!=", 0],
@@ -37,7 +37,8 @@ frappe.listview_settings["Short Raw Bar"] = {
             items = items.filter(item => item.remaining_piece != 0);
             let item_name = items.map(item => item.raw_bar_name);
             if (new Set(item_name).size != 1) {
-                frappe.msgprint("请选择拥有库存的同名称短棒料");
+                // frappe.msgprint({ "title": "错误", message: "请选择拥有库存的同名称短棒料", "indicator": "red" });
+                frappe.msgprint("工单" + r.message.bold() + "已完成")
                 return;
             }
 
@@ -56,10 +57,17 @@ frappe.listview_settings["Short Raw Bar"] = {
         page.change_inner_button_type('转入在制品库', null, 'info');
 
         page.add_inner_button('处理工单', () => {
-            frappe.set_route('List', 'Work Order', 'List', {
-                    'production_item': ['like', ['锻坯']],
-                    'status': 'In Process'
-            })
+            let items = listview.get_checked_items();
+            if (items.length != 1) {
+                frappe.msgprint({ "title": "错误", message: "请只选择一条记录", indicator: "red" });
+                return
+            }
+            if (!items[0].wip_piece) {
+                frappe.msgprint({ "title": "错误", message: "在制品数量为零", indicator: "red" });
+                return
+            }
+            select_work_order_dialog(items[0]);
+
         });
         page.change_inner_button_type('处理工单', null, 'warning');
 
@@ -68,7 +76,7 @@ frappe.listview_settings["Short Raw Bar"] = {
     
     before_render: function() {
         // test_out(this.list_view);
-        // test_1();
+        // test_1(this.list_view);
     },
 
   
@@ -87,9 +95,100 @@ frappe.listview_settings["Short Raw Bar"] = {
 	},
 };
 
-function test_1() {
+function test_1(listview) {
     console.log("test_1")
+    select_work_order_dialog(listview.data[0]) 
 
+}
+
+function select_work_order_dialog(item) {
+    let semi_product = item.semi_product
+    let wo_product = semi_product + "_锻坯"
+    let wo_qty = 0
+    let wo_d = new frappe.ui.Dialog({
+        title: '选择工单'.bold(),
+        fields: [
+            {
+                fieldname: 'work_order', 
+                // fieldtype: 'Link', 
+                fieldtype: 'Select', 
+                label: '完成工单',
+                options: '没有获取到\n请等待\n', 
+                description: "工单产品：" + wo_product,
+                reqd: 1,
+                // "get_query": () => {
+                //     return {
+                //         "filters": {
+                //             'production_item': wo_product,
+                //             'status': 'In Process'
+                //         }
+                //     }
+                // },
+                onchange: (e) => {
+                    let d = wo_d;
+                    let v = e?.target?.value || d.get_value("work_order") || "";
+                    frappe.db.get_value("Work Order", v, "material_transferred_for_manufacturing").then(r => {
+                        wo_qty = r.message.material_transferred_for_manufacturing
+                        d.set_value("out_piece", wo_qty)
+                    })
+                }
+            },
+            {
+                "fieldname": "out_piece",
+                "label": "完成数量",
+                "fieldtype": "Int",
+                "reqd": 1,
+                "default": item.wip_piece,
+                "description": "工单内的" + "在制品数量".bold() + "，如未全部完成,余料将被退回短棒料仓库",
+            },
+            {
+                "fieldname": "forge_batch_no",
+                "label": "锻造批次号",
+                "fieldtype": "Data",
+                // "default": "dp-123456",
+            },
+        ],
+        primary_action_label: '确认',
+        size: "small",
+        primary_action(values) {
+            if (values.out_piece > wo_qty)
+                frappe.throw("完成数量不能大于工单数量")
+            values.wo_qty = wo_qty
+            Object.assign(values, item);
+            console.log("values:", values);
+            work_order_done(values);
+            wo_d.hide(); 
+        }
+    })
+    let wo_df = wo_d.get_field("work_order");
+    frappe.db.get_value("Short Raw Bar", item.name, "voucher_no").then(r => {
+        wo_df_opt_obj = JSON.parse(r.message.voucher_no)
+        // todo 这里需要对work_order根据剩余的生产数量进行过滤，数量不为0的进行显示，
+        // todo 工单提交完成后对voucher_no中的数量进行更新（暂时只完成了获取和显示）
+        options = wo_df_opt_obj.reduce((r, v) => r + v.voucher_no + "\n", "")
+        log(options)
+        wo_df.df.options = options
+        wo_df.set_options(options[0])
+        wo_df.df.onchange()
+    })
+
+    wo_d.show();
+
+    // window.df = wo_df;
+}
+
+function work_order_done(values) {
+    frappe.call({
+        method: "bbl_app.semi_product.doctype.short_raw_bar.short_raw_bar.work_order_done",
+        args: values,
+    }).then(r => {
+        log("bar work_order_done", r);
+        if (r.message) {
+            frappe.msgprint({ "title": "完成", message: "请选择拥有库存的同名称短棒料", "indicator": "red" });
+
+            frappe.set_route("Form", "Work Order", r.message);
+        }
+    })
 }
 
 function make_dialog_promise(items) {
@@ -147,7 +246,8 @@ function product_out(values) {
     }).then(r => {
         // log("bar product_out", r);
         if (r.message) {
-            frappe.set_route("Form", "Work Order", r.message);
+            // frappe.set_route("Form", "Work Order", r.message);
+            frappe.msgprint("建立工单" + r.message.bold() + "，并完成在制品发料")
         }
     })
 }

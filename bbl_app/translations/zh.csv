@@ -100,6 +100,7 @@ Product Center,生产动力部,
 Production department,生产部,
 Report Output,上报产量,
 For Date,日期,
+For Datetime,时间,
 ClassA,A类,
 ClassB,B类,
 ClassC,C类,
@@ -319,7 +320,10 @@ Bbl Not Op,百兰生产转序,
 Total Piece,总数量,
 Accu Piece,累计数量,
 Wip Piece,在制品数量,
-In Piece,新入数量
+In Piece,新入数量,
+Used Piece,使用数量,
+Total Used Piece,总计使用数量,
+
 
 
 Deleted all documents successfully,删除所有文档成功,
@@ -365,7 +369,7 @@ Tar Batch No,目标批次号,
 Product Class,产品分类,
 Product Form,产品形态,
 Product Stage,产品阶段,
-
+Use Type,使用类型,
 
 Item rate has been updated to zero as Allow Zero Valuation Rate is checked for item {0},物料{0}的单价已根据设置更新为零,
 "Items rate has been updated to zero as Allow Zero Valuation Rate is checked for the following items: {0}",物料{0}的单价已根据设置更新为零,

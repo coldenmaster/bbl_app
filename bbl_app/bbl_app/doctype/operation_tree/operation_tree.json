@@ -11,6 +11,7 @@
   "is_not_semi",
   "workshop",
   "production_class",
+  "use_type",
   "lft",
   "rgt",
   "is_group",
@@ -84,12 +85,18 @@
    "in_list_view": 1,
    "label": "Production Class",
    "options": "Semi Product\nProduct"
+  },
+  {
+   "fieldname": "use_type",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Use Type"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_tree": 1,
  "links": [],
- "modified": "2024-03-14 11:42:41.443311",
+ "modified": "2024-07-17 17:26:21",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Operation Tree",

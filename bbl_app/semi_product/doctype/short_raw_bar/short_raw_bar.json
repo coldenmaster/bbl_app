@@ -19,6 +19,8 @@
   "in_piece",
   "remaining_piece",
   "wip_piece",
+  "used_piece",
+  "total_used_piece",
   "total_piece",
   "accu_piece",
   "column_break_musm",
@@ -31,7 +33,8 @@
   "link_doc_in",
   "link_doc_out",
   "for_date",
-  "use_date"
+  "use_date",
+  "voucher_no"
  ],
  "fields": [
   {
@@ -94,7 +97,6 @@
   },
   {
    "default": "0",
-   "depends_on": "remaining_piece",
    "fieldname": "remaining_piece",
    "fieldtype": "Int",
    "in_list_view": 1,
@@ -219,11 +221,32 @@
    "fieldtype": "Int",
    "in_list_view": 1,
    "label": "In Piece"
+  },
+  {
+   "fieldname": "voucher_no",
+   "fieldtype": "Small Text",
+   "label": "Voucher No",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "used_piece",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Used Piece"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_used_piece",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Total Used Piece"
   }
  ],
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-06-29 17:10:43",
+ "modified": "2024-07-17 11:55:51",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Short Raw Bar",

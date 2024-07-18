@@ -307,10 +307,12 @@ class Raw2BarDialog2 {
     default_bar_batch(serial, prod) {
         let heat_no = serial || this.sb_item_0.heat_no;
         let prod_name = prod || this.sb_item_0.semi_product || "";
+        prod_name = prod_name.replace(" ", "");
+        prod_name = prod_name.replace("-", "");
         // log("default_bar_batch heat_no:", heat_no, this.semi_product);
-        return "DBL-" + frappe.datetime.now_date().replaceAll("-", "") + "-"
-            + heat_no.substring(heat_no.length - 4) + "-" + prod_name.substring(prod_name.length - 3);
-        return "DBL-" + prod_name.substring(prod_name.length - 6)  + "-" + heat_no;
+        // return "DBL-" + frappe.datetime.now_date().replaceAll("-", "") + "-"
+        //     + heat_no.substring(heat_no.length - 4) + "-" + prod_name.substring(prod_name.length - 3);
+        return "DBL-" + prod_name.substring(prod_name.length - 4)  + "-" + heat_no.substring(prod_name.length - 8); 
     }
 
     ratio_desc() {

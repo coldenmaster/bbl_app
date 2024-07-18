@@ -33,5 +33,27 @@ def load_sb_out_items():
     return sb_out_items
 
 
+""" common utilities """
+def safe_json_loads_li(*args):
+    results = []
+
+    for arg in args:
+        try:
+            arg = json.loads(arg)
+        except Exception:
+            pass
+        if arg:
+            results.append(arg)
+    return results
+
+def safe_json_loads_from_str(arg):
+    try:
+        arg = json.loads(arg)
+    except Exception:
+        arg = {}
+    return arg
+
+
+
 if __name__ == '__main__':
     print_blue_pp(safe_dict_json_load(sb_items))
