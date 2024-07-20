@@ -18,6 +18,8 @@
   "length",
   "weight",
   "piece",
+  "last_in_piece",
+  "last_out_piece",
   "remaining_piece",
   "total_piece",
   "column_break_musm",
@@ -35,13 +37,15 @@
   "link_doc",
   "for_date",
   "use_date",
-  "parent_batch_no"
+  "parent_batch_no",
+  "last_op_voucher"
  ],
  "fields": [
   {
    "fieldname": "batch_no",
    "fieldtype": "Data",
    "label": "Batch No",
+   "no_copy": 1,
    "reqd": 1,
    "set_only_once": 1,
    "unique": 1
@@ -84,23 +88,24 @@
    "default": "0",
    "fieldname": "piece",
    "fieldtype": "Int",
-   "in_list_view": 1,
-   "label": "Piece"
+   "hidden": 1,
+   "label": "Piece",
+   "no_copy": 1
   },
   {
    "default": "0",
-   "depends_on": "remaining_piece",
    "fieldname": "remaining_piece",
    "fieldtype": "Int",
    "in_list_view": 1,
    "label": "Remaining Piece",
-   "non_negative": 1
+   "no_copy": 1
   },
   {
    "default": "0",
    "fieldname": "total_piece",
    "fieldtype": "Int",
-   "label": "Total Piece"
+   "label": "Total Piece",
+   "no_copy": 1
   },
   {
    "fieldname": "column_break_musm",
@@ -111,12 +116,12 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Warehouse",
-   "options": "Warehouse",
-   "reqd": 1
+   "options": "Warehouse"
   },
   {
    "fieldname": "warehouse_area",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Warehouse Area",
    "options": "Warehouse Area"
   },
@@ -128,7 +133,7 @@
    "in_standard_filter": 1,
    "label": "Status",
    "no_copy": 1,
-   "options": "\u672a\u4f7f\u7528\n\u6b63\u5728\u4f7f\u7528\n\u4f59\u6599\n\u7528\u5b8c"
+   "options": "\u672a\u4f7f\u7528\n\u5df2\u4f7f\u7528\n\u4f59\u6599\n\u7528\u5b8c"
   },
   {
    "fieldname": "semi_product",
@@ -146,13 +151,17 @@
    "fieldname": "for_date",
    "fieldtype": "Date",
    "in_list_view": 1,
-   "label": "For Date"
+   "label": "For Date",
+   "no_copy": 1,
+   "read_only": 1
   },
   {
    "fieldname": "use_date",
    "fieldtype": "Date",
    "in_list_view": 1,
-   "label": "Use Date"
+   "label": "Use Date",
+   "no_copy": 1,
+   "read_only": 1
   },
   {
    "fieldname": "forge_batch_no",
@@ -168,8 +177,10 @@
    "in_standard_filter": 1,
    "label": "Semi Product Name",
    "link_filters": "[[\"Item\",\"item_group\",\"=\",\"\u8fc7\u7a0b\u534a\u6210\u54c1\"]]",
+   "no_copy": 1,
    "options": "Item",
-   "reqd": 1
+   "reqd": 1,
+   "set_only_once": 1
   },
   {
    "fieldname": "raw_heat_no",
@@ -205,7 +216,9 @@
    "default": "__user",
    "fieldname": "employee",
    "fieldtype": "Data",
-   "label": "Employee"
+   "label": "Employee",
+   "no_copy": 1,
+   "reqd": 1
   },
   {
    "fieldname": "link_doc",
@@ -224,12 +237,38 @@
    "fieldname": "parent_batch_no",
    "fieldtype": "Link",
    "label": "Parent Batch No",
-   "options": "Semi Product Manage"
+   "no_copy": 1,
+   "options": "Semi Product Manage",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "last_in_piece",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Last In Piece",
+   "no_copy": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "last_out_piece",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Last Out Piece",
+   "no_copy": 1
+  },
+  {
+   "fieldname": "last_op_voucher",
+   "fieldtype": "Link",
+   "label": "Last Op Voucher",
+   "no_copy": 1,
+   "options": "Semi Product Operate",
+   "read_only": 1
   }
  ],
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-07-17 17:22:47",
+ "modified": "2024-07-20 12:24:00",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Semi Product Manage",
@@ -273,6 +312,9 @@
    "write": 1
   }
  ],
+ "search_fields": "semi_product_name,remaining_piece",
+ "show_name_in_global_search": 1,
+ "show_preview_popup": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],

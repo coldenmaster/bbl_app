@@ -1,0 +1,226 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:SPO-{YYMMDD}-{####}",
+ "creation": "2024-07-19 08:45:40",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_vxde",
+  "amended_from",
+  "semi_product",
+  "semi_op_source",
+  "spm_source",
+  "product_name",
+  "source_qty",
+  "employee",
+  "employee_submit",
+  "column_break_ltfu",
+  "semi_op_target",
+  "finish_name",
+  "finish_qty",
+  "test",
+  "for_date",
+  "voucher_from",
+  "voucher_to",
+  "\u8865\u5145\u5c5e\u6027_section",
+  "property_name",
+  "column_break_fmiv",
+  "property_value",
+  "hidden_section",
+  "op_flow"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_vxde",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Semi Product Operate",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "semi_op_target",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Semi Op Target",
+   "options": "Product Form",
+   "reqd": 1
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Employee",
+   "options": "Employee Jobs",
+   "reqd": 1
+  },
+  {
+   "fieldname": "test",
+   "fieldtype": "Link",
+   "label": "Test",
+   "options": "Employee Jobs"
+  },
+  {
+   "fieldname": "spm_source",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Spm Source",
+   "options": "Semi Product Manage",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "spm_source.semi_product_name",
+   "fieldname": "product_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Source Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "spm_source.remaining_piece",
+   "fieldname": "source_qty",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Source Qty",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_ltfu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "finish_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Finish Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "finish_qty",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Finish Qty",
+   "reqd": 1
+  },
+  {
+   "fieldname": "semi_op_source",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Semi Op Source",
+   "options": "Product Form",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "for_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "For Date"
+  },
+  {
+   "fieldname": "semi_product",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Semi Product",
+   "options": "Semi Product",
+   "reqd": 1
+  },
+  {
+   "fieldname": "\u8865\u5145\u5c5e\u6027_section",
+   "fieldtype": "Section Break",
+   "label": "\u8865\u5145\u5c5e\u6027"
+  },
+  {
+   "fieldname": "property_name",
+   "fieldtype": "Data",
+   "label": "Property Name"
+  },
+  {
+   "fieldname": "column_break_fmiv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "property_value",
+   "fieldtype": "Data",
+   "label": "Property Value"
+  },
+  {
+   "fieldname": "hidden_section",
+   "fieldtype": "Section Break",
+   "label": "Hidden"
+  },
+  {
+   "fieldname": "op_flow",
+   "fieldtype": "JSON",
+   "label": "Op Flow"
+  },
+  {
+   "fieldname": "voucher_from",
+   "fieldtype": "Link",
+   "label": "Voucher From",
+   "no_copy": 1,
+   "options": "Semi Product Manage",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "voucher_to",
+   "fieldtype": "Link",
+   "label": "Voucher To",
+   "no_copy": 1,
+   "options": "Semi Product Manage",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "employee_submit",
+   "fieldtype": "Link",
+   "label": "Employee Submit",
+   "options": "Employee Jobs",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-07-20 14:11:00",
+ "modified_by": "Administrator",
+ "module": "Semi Product",
+ "name": "Semi Product Operate",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

@@ -170,7 +170,7 @@ Location Name,位置名称,
 Coordinate,坐标,
 Mold Workshop,模具车间,
 
-Piece,件数,
+Piece,新入件数,
 For Product,生产产品,
 Split,分割,
 
@@ -324,8 +324,6 @@ In Piece,新入数量,
 Used Piece,使用数量,
 Total Used Piece,总计使用数量,
 
-
-
 Deleted all documents successfully,删除所有文档成功,
 Bulk Operation Successful,批量操作成功,
 Segregate Serial / Batch Bundle,显示序列号与批号明细,
@@ -370,6 +368,31 @@ Product Class,产品分类,
 Product Form,产品形态,
 Product Stage,产品阶段,
 Use Type,使用类型,
+
+Jos Position,岗位,
+Job Post,岗位,
+Employee Jobs,员工岗位,
+Employee Id,员工Id,
+Semi Product Operate,半成品加工单,
+Semi Op Source,上一工序,
+Spm Source,产品批次选择,
+Source Qty,批次数量,
+Employee Submit,提交人,
+Semi Op Target,加工产品,
+Finish Name,完工产品名称,
+Finish Qty,完工产品数量,
+
+Property Name,属性名,
+Property Value,属性值,
+Op Flow,操作记录,
+Last In Piece,新入件数,
+Last Out Piece,新出件数,
+Parent Batch No,父批次号,
+Last Op Voucher,上一加工单,
+Voucher From,源单据,
+Voucher To,目标单据,
+
+
 
 Item rate has been updated to zero as Allow Zero Valuation Rate is checked for item {0},物料{0}的单价已根据设置更新为零,
 "Items rate has been updated to zero as Allow Zero Valuation Rate is checked for the following items: {0}",物料{0}的单价已根据设置更新为零,

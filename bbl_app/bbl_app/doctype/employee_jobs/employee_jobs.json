@@ -1,0 +1,108 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:employee",
+ "creation": "2024-07-18 11:48:26",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "employee_id",
+  "employee",
+  "employee_2",
+  "workshop",
+  "work_group",
+  "jos_position",
+  "job_post"
+ ],
+ "fields": [
+  {
+   "fetch_from": "employee_id.employee_name",
+   "fetch_if_empty": 1,
+   "fieldname": "employee",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Employee",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "jos_position",
+   "fieldtype": "Table",
+   "hidden": 1,
+   "label": "Jos Position",
+   "options": "Job Post"
+  },
+  {
+   "fieldname": "workshop",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Workshop",
+   "options": "Workshop"
+  },
+  {
+   "fieldname": "work_group",
+   "fieldtype": "Data",
+   "label": "Work Group"
+  },
+  {
+   "fieldname": "employee_id",
+   "fieldtype": "Link",
+   "label": "Employee Id",
+   "options": "Employee",
+   "reqd": 1,
+   "set_only_once": 1,
+   "unique": 1
+  },
+  {
+   "fetch_from": "employee_id.employee_name",
+   "fieldname": "employee_2",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Employee 2"
+  },
+  {
+   "fieldname": "job_post",
+   "fieldtype": "Table MultiSelect",
+   "label": "Job Post",
+   "options": "Job Post"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-07-18 17:16:43",
+ "modified_by": "Administrator",
+ "module": "Bbl App",
+ "name": "Employee Jobs",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "employee"
+}

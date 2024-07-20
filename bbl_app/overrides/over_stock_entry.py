@@ -459,9 +459,6 @@ def _make_blank_batch_no(bar_batch_no):
     forge_bathch_no = bar_batch_no.replace('DBL', 'DP')
     return forge_bathch_no
 
-def _semi_id_exist(bathch_no):
-     return frappe.db.exists('Semi Product Manage', bathch_no)
-
 def t1():
     item_code = '5004_锻坯'
     forge_bathch_no = 'DP-' + today().replace('-', '') + '-' + item_code.replace('_锻坯', '')[-4:] + '-' + frappe.utils.random_string(2)

@@ -6,7 +6,9 @@
  "engine": "InnoDB",
  "field_order": [
   "product_form",
+  "abbr",
   "workshop",
+  "default_warehouse",
   "product_stage",
   "product_line"
  ],
@@ -38,11 +40,27 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Product Line"
+  },
+  {
+   "fieldname": "abbr",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Abbr",
+   "no_copy": 1,
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "default_warehouse",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Default Warehouse",
+   "options": "Warehouse"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-07-17 17:31:37",
+ "modified": "2024-07-19 18:01:19",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Product Form",
