@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"G53F6xVn_H\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Frappe Insights</span>\",\"col\":12}},{\"id\":\"oH3EvoN3bj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"DataEasy\",\"col\":3}},{\"id\":\"fGIEQQmJnk\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u5546\u52a1\u5206\u6790\",\"col\":3}}]",
+ "content": "[{\"id\":\"G53F6xVn_H\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Frappe Insights</span>\",\"col\":12}},{\"id\":\"oH3EvoN3bj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"DataEasy\",\"col\":3}},{\"id\":\"fGIEQQmJnk\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u5546\u52a1\u5206\u6790\",\"col\":3}},{\"id\":\"56syRJ0CbO\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"2bY3UKjEDg\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Wt Page\",\"col\":3}}]",
  "creation": "2024-05-30 18:10:28",
  "custom_blocks": [],
  "docstatus": 0,
@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Frappe Insights",
  "links": [],
- "modified": "2024-07-05 18:13:31",
+ "modified": "2024-07-22 09:57:56",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Frappe Insights",
@@ -39,6 +39,13 @@
    "link_to": "insights",
    "type": "Page",
    "url": "http://localhost:8000/app/Insights"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Wt Page",
+   "link_to": "wt-page",
+   "type": "Page"
   }
  ],
  "title": "Frappe Insights"

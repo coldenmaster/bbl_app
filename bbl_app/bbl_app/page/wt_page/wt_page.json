@@ -1,0 +1,24 @@
+{
+ "content": null,
+ "creation": "2024-07-22 09:54:55",
+ "docstatus": 0,
+ "doctype": "Page",
+ "icon": "",
+ "idx": 0,
+ "modified": "2024-07-22 09:54:55",
+ "modified_by": "Administrator",
+ "module": "Bbl App",
+ "name": "wt-page",
+ "owner": "Administrator",
+ "page_name": "wt-page",
+ "roles": [
+  {
+   "role": "Manufacturing User"
+  }
+ ],
+ "script": null,
+ "standard": "Yes",
+ "style": null,
+ "system_page": 1,
+ "title": "wt\u6d4b\u8bd5\u9875\u9762"
+}

@@ -165,10 +165,11 @@
   },
   {
    "fieldname": "forge_batch_no",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Forge Batch No"
+   "label": "Forge Batch No",
+   "options": "Forge Batch No"
   },
   {
    "fieldname": "semi_product_name",
@@ -192,11 +193,13 @@
   {
    "fieldname": "drawing_id",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Drawing Id"
   },
   {
    "fieldname": "customer",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Customer",
    "options": "Customer"
   },
@@ -268,7 +271,7 @@
  ],
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-07-20 12:24:00",
+ "modified": "2024-07-22 17:37:53",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Semi Product Manage",

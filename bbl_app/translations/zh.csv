@@ -378,7 +378,7 @@ Semi Op Source,上一工序,
 Spm Source,产品批次选择,
 Source Qty,批次数量,
 Employee Submit,提交人,
-Semi Op Target,加工产品,
+Semi Op Target,当前工序,
 Finish Name,完工产品名称,
 Finish Qty,完工产品数量,
 

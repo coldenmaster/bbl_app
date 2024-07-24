@@ -1,6 +1,11 @@
 {
- "charts": [],
- "content": "[{\"id\":\"CpwdWL5wNQ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u751f\u4ea7\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"FYlL80v3XU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u65b0\u5efa\u6d82\u88c5\u4ea7\u91cf\",\"col\":3}},{\"id\":\"B5iYS4VZpk\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u6d82\u88c5\u4ea7\u91cf\u5217\u8868\",\"col\":3}},{\"id\":\"88n2n09bpN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"DNkJ5JoIEf\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u65b0\u5efa\u4f5c\u4e1a\u7ec4\",\"col\":3}},{\"id\":\"DfxnC8s9zk\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Daily Work Group\",\"col\":3}},{\"id\":\"jlUSK7OY6o\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"LpfVPbSqgA\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u4ea7\u54c1\u91cd\u91cf</b></span>\",\"col\":12}},{\"id\":\"CW0mu4956Z\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u65b0\u5efa\u91cd\u91cf\u8bb0\u5f55\",\"col\":3}},{\"id\":\"1wL3rkVJGN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u4ea7\u54c1\u91cd\u91cf\u5217\u8868\",\"col\":3}},{\"id\":\"1KWKuKZFKN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"R60vP9qSaO\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u4ea7\u54c1\u957f\u5ea6</b></span>\",\"col\":12}},{\"id\":\"Xmg8hWfj3K\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Product Length\",\"col\":3}},{\"id\":\"7pEiR4DOUi\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u4ea7\u54c1\u957f\u5ea6\u65e5\u4ea7\u91cf\",\"col\":3}},{\"id\":\"PuQVj2iFjJ\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"3u1Ln1cQb3\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u5e38\u7528\u62a5\u8868</b></span>\",\"col\":12}},{\"id\":\"mjiwxPupHx\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Semi Product\",\"col\":3}},{\"id\":\"Tfc1FiPipl\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u4ea7\u6210\u54c1\u5217\u8868\",\"col\":3}},{\"id\":\"4uZTWXclY-\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"zLrtrFavD8\",\"type\":\"card\",\"data\":{\"card_name\":\"\u8f66\u95f4\u6570\u636e\",\"col\":4}}]",
+ "charts": [
+  {
+   "chart_name": "\u6bcf\u65e5\u6d4b\u957f\u6570\u91cf",
+   "label": "\u6bcf\u65e5\u6d4b\u957f\u6570\u91cf"
+  }
+ ],
+ "content": "[{\"id\":\"CpwdWL5wNQ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u751f\u4ea7\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"FYlL80v3XU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u65b0\u5efa\u6d82\u88c5\u4ea7\u91cf\",\"col\":3}},{\"id\":\"B5iYS4VZpk\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u6d82\u88c5\u4ea7\u91cf\u5217\u8868\",\"col\":3}},{\"id\":\"88n2n09bpN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"DNkJ5JoIEf\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u65b0\u5efa\u4f5c\u4e1a\u7ec4\",\"col\":3}},{\"id\":\"DfxnC8s9zk\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Daily Work Group\",\"col\":3}},{\"id\":\"jlUSK7OY6o\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"LpfVPbSqgA\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u4ea7\u54c1\u91cd\u91cf</b></span>\",\"col\":12}},{\"id\":\"CW0mu4956Z\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u65b0\u5efa\u91cd\u91cf\u8bb0\u5f55\",\"col\":3}},{\"id\":\"1wL3rkVJGN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u4ea7\u54c1\u91cd\u91cf\u5217\u8868\",\"col\":3}},{\"id\":\"1KWKuKZFKN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"R60vP9qSaO\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u4ea7\u54c1\u957f\u5ea6</b></span>\",\"col\":12}},{\"id\":\"Xmg8hWfj3K\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Product Length\",\"col\":3}},{\"id\":\"7pEiR4DOUi\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u4ea7\u54c1\u957f\u5ea6\u65e5\u4ea7\u91cf\",\"col\":3}},{\"id\":\"MmhNFJZyHn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u6210\u54c1\u957f\u5ea6\u65e5\u4ea7\u91cf3\",\"col\":3}},{\"id\":\"rULxe-gsMm\",\"type\":\"chart\",\"data\":{\"chart_name\":\"\u6bcf\u65e5\u6d4b\u957f\u6570\u91cf\",\"col\":12}},{\"id\":\"PuQVj2iFjJ\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"3u1Ln1cQb3\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u5e38\u7528\u62a5\u8868</b></span>\",\"col\":12}},{\"id\":\"mjiwxPupHx\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Semi Product\",\"col\":3}},{\"id\":\"Tfc1FiPipl\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u4ea7\u6210\u54c1\u5217\u8868\",\"col\":3}},{\"id\":\"4uZTWXclY-\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"zLrtrFavD8\",\"type\":\"card\",\"data\":{\"card_name\":\"\u8f66\u95f4\u6570\u636e\",\"col\":4}}]",
  "creation": "2024-02-23 13:04:51.009979",
  "custom_blocks": [],
  "docstatus": 0,
@@ -43,7 +48,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-07-16 14:06:19",
+ "modified": "2024-07-24 08:10:06",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Paint Shop",
@@ -71,6 +76,13 @@
    "link_to": "Product Name",
    "stats_filter": "[]",
    "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "\u6210\u54c1\u957f\u5ea6\u65e5\u4ea7\u91cf3",
+   "link_to": "\u6210\u54c1\u957f\u5ea6\u65e5\u4ea7\u91cf3",
+   "type": "Report"
   },
   {
    "color": "Blue",

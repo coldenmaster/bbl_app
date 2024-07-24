@@ -37,11 +37,13 @@ frappe.listview_settings["Semi Product Manage"] = {
                 return
             }
             if (!items[0].remaining_piece) {
-                frappe.msgprint({ "title": "错误", message: "在制品数量为零", indicator: "red" });
+                frappe.msgprint({ "title": "错误", message: "剩余数量为零", indicator: "red" });
                 return
             }
             opts = items[0];
             opts.spm_source = opts.name;
+            let temp_li = opts.semi_product_name.split('_');
+            opts.semi_op_source = temp_li[temp_li.length - 1];
             log(opts);
             frappe.new_doc("Semi Product Operate", items[0], 
                doc => { 

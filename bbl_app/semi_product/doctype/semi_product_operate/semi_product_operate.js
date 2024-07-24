@@ -5,18 +5,14 @@ frappe.ui.form.on("Semi Product Operate", {
     op_source: "",
 
     setup(frm) {
-        // Set query for warehouses
-		// frm.set_query("wip_warehouse", function () {
-		// 	return {
-		// 		filters: {
-		// 			company: frm.doc.company,
-		// 		},
-		// 	};
-		// });
+        f = frappe;
+        c = cur_frm;
+
     },
 	refresh(frm) {
         set_default(frm);
         frm.trigger("semi_product");
+        frm.trigger("semi_op_source");
 	},
     semi_product(frm) {
         op_source = cat_op_source(frm);
@@ -25,8 +21,9 @@ frappe.ui.form.on("Semi Product Operate", {
             frm.set_value("spm_source", "");
     },
     semi_op_source(frm) {
-        op_source = cat_op_source(frm);
+        const op_source = cat_op_source(frm);
         set_spm_filter(frm, op_source);
+        set_target_form_filter(frm, frm.doc.semi_op_source);
     },
     spm_source(frm) {
         cat_finish_name(frm);
@@ -36,6 +33,12 @@ frappe.ui.form.on("Semi Product Operate", {
     },
     source_qty(frm) {
         frm.set_value("finish_qty", frm.doc.source_qty);
+    },
+    finish_qty(frm) {
+        if (frm.doc.finish_qty > frm.doc.source_qty) {
+            frappe.msgprint({ "title": "错误", message: "目标数量不能大于源数量", indicator: "red", alert: 1 });
+            frm.set_value("finish_qty", "");
+        }
     }
 
 });
@@ -67,6 +70,16 @@ function set_spm_filter(frm, op_source) {
         return {
             filters: {
                 semi_product_name: ["like", `%${op_source}%`],
+                remaining_piece: ["!=", "0"]
+            },
+        };
+    });
+}
+function set_target_form_filter(frm, value) {
+    frm.set_query("semi_op_target", function () {
+        return {
+            filters: {
+                name: ["!=", value]
             },
         };
     });

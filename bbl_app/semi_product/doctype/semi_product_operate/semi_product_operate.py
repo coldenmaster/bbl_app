@@ -130,13 +130,17 @@ def _semi_product_batch_convert(opts):
         'last_op_voucher': opts.name,
         # 'status': '未使用',
     }).insert(ignore_permissions=True)
-
+    
+    source_remaining = semi_doc_source.remaining_piece - opts.finish_qty
+    source_status = '用完' if source_remaining == 0 else '已使用'
+    if source_remaining < 5 and source_remaining != 0:
+        source_status = '余料' 
     semi_doc_source.update({
         'last_in_piece': 0,
         'last_out_piece': opts.finish_qty,
-        'remaining_piece': semi_doc_source.remaining_piece - opts.finish_qty,
+        'remaining_piece': source_remaining,
         'use_date': today(),
-        'status': '已使用',
+        'status': source_status,
         'last_op_voucher': opts.name,
     }).save()
       
