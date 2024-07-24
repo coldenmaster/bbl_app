@@ -9,7 +9,7 @@ import frappe
 from frappe.model.document import Document
 from frappe.utils.data import cint
 
-from bbl_api.utils import _print_green_pp, print_blue, print_blue_pp, print_green, print_green_pp, print_red
+from bbl_api.utils import _print_green_pp, print_blue, print_blue_pp, print_green, print_green_pp, print_red, print_yellow
 
 
 class ShortRawBar(Document):
@@ -33,7 +33,7 @@ up_obj_mock = {'semi_product': '30BC', 'items': '[{"name":"DBL-30BC-24011462Z","
 @frappe.whitelist()
 def product_out(**kwargs):
     print_red("srb product_out")
-    print_blue(kwargs)
+    # print_blue(kwargs)
     if not kwargs:
         print_red("mock data 😁")
         kwargs = up_obj_mock #置入假数据
@@ -213,7 +213,7 @@ up_obj_mock2 = {'work_order': 'MFG-WO-2024-00033', 'out_piece': '21', 'wo_qty': 
 # http://dev2.localhost:8000/api/method/bbl_app.semi_product.doctype.short_raw_bar.short_raw_bar.product_out?scan_barcode=123
 @frappe.whitelist()
 def work_order_done(**kwargs):
-    print_red("srb work_order_done")
+    print_red("srb work_order_done No_2")
     # print_blue(kwargs)
     if not kwargs:
         print_red("mock data 😁")
@@ -230,12 +230,13 @@ def work_order_done(**kwargs):
 
     bar_bacth_no = kwargs.get("name")
     bar_bacth_qty = cint(kwargs.get("out_piece"))
+    # forge_batch_no = kwargs.get("forge_batch_no")
     # 1. make sabb
     sabb_name = create_bar_sabb_for_wo_done(kwargs.raw_bar_name, bar_bacth_qty, (bar_bacth_no, bar_bacth_qty))
 
     # 2. make stock entry
-    se_doc = create_stock_entry_for_wo_done(kwargs.work_order, sabb_name)
-    return kwargs.get('woker_order')
+    se_doc = create_stock_entry_for_wo_done(kwargs.work_order, sabb_name, bar_bacth_qty)
+    return kwargs.get('work_order')
     # 3.完成后，修改短棒料的状态为‘锻造车间wip’,修改短棒料生产数量（在stock entry 的hook中完成）
 
 def create_bar_sabb_for_wo_done(item_code, qty, batch_qty):
@@ -245,7 +246,7 @@ def create_bar_sabb_for_wo_done(item_code, qty, batch_qty):
         'has_batch_no': 1,
         'warehouse': '锻造车间仓库 - 百兰',
         'type_of_transaction': 'Outward',
-        'total_qty': batch_qty, 
+        'total_qty': qty, 
         'voucher_type': 'Stock Entry',
         'entries': [
             {
@@ -257,8 +258,8 @@ def create_bar_sabb_for_wo_done(item_code, qty, batch_qty):
     sabb_doc.insert(ignore_permissions=True)
     return sabb_doc.name
 
-def create_stock_entry_for_wo_done(wo_name, sabb):
-    se_dict = make_stock_entry(wo_name, 'Manufacture')
+def create_stock_entry_for_wo_done(wo_name, sabb, qty):
+    se_dict = make_stock_entry(wo_name, 'Manufacture', qty)
     se_dict.get('items')[0]['serial_and_batch_bundle'] = sabb
     se_doc = frappe.get_doc(se_dict)
     se_doc.submit()

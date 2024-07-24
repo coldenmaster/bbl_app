@@ -1,16 +1,16 @@
 <!-- <h3>List of Users</h3> -->
 <!-- <ol>
-    {% for user in users %}
+{% for user in users %}
     <li>{{ user.first_name }} {{ user.get("last_name", "") or "" }}</li>
-    {% endfor %}
+{% endfor %}
 </ol> -->
 <!-- <h2>{{ index }}</h2> -->
-
-<h3>Index</h3>
 
 <p>Current time is {{ frappe.utils.get_datetime() }}</p>
 
 <p>Current user is {{ frappe.session.user }}</p>
 
 
-<p>{{frappe.bold("abc")}} context.testpy is {{ testpy }}</p>
+
+<pre>{{ frappe.utils.cstr(frappe).replace(",", ",\n").replace("{", "\n{\n").replace("}", "\n}") }}</pre>
+

@@ -1,4 +1,4 @@
-// console.log("GangbangParse.js 加载")
+console.log("GangbangParse.js 加载 2")
 
 String.prototype.replaceAll = function(s1,s2){
     return this.replace(new RegExp(s1,"gm"),s2);
@@ -236,7 +236,7 @@ var GangbangParse = {
                     }
                 }
             }
-        this.uploadBean.bundleNo = this.uploadBean.bundleNo;
+        this.uploadBean.bundleNo = this.uploadBean.bundleNo + "/" + this.uploadBean.bundleIdx;
 
         if (this.uploadBean.diaSize) {
             let dia_length = this.uploadBean.diaSize.split("*");

@@ -20,6 +20,7 @@ frappe.listview_settings["Short Raw Bar"] = {
         console.log("短棒料2 list, onload")
 
         this.list_view = listview;
+        lv = listview;
         let page = this.page = listview.page;
 
         let rolse = frappe.user_roles;
@@ -30,26 +31,22 @@ frappe.listview_settings["Short Raw Bar"] = {
         }
 
         page.add_inner_button('转入在制品库', () => {
-            // 同名称的短棒料，可以一起投产
             let items = listview.get_checked_items();
-            console.log("转入在制品库 items:", items);
-            // items = items.filter(item => !["用完", "锻造车间wip"].includes(item.status));
-            items = items.filter(item => item.remaining_piece != 0);
-            let item_name = items.map(item => item.raw_bar_name);
-            if (new Set(item_name).size != 1) {
-                // frappe.msgprint({ "title": "错误", message: "请选择拥有库存的同名称短棒料", "indicator": "red" });
-                frappe.msgprint("工单" + r.message.bold() + "已完成")
-                return;
+            if (items.length != 1) {
+                frappe.msgprint({ "title": "错误", message: "请只选择一条记录", indicator: "red" });
+                return
             }
-
-            // make_dialog(items);
+            if (!items[0].remaining_piece) {
+                frappe.msgprint({ "title": "错误", message: "剩余数量为零", indicator: "red" });
+                return
+            }
+            // items = items.filter(item => !["用完", "锻造车间wip"].includes(item.status));
             make_dialog_promise(items).then(
                 (r) => {
-                    log("r is 2",r);
                     listview.clear_checked_items();
                     setTimeout(() => {
                         listview.refresh();
-                    }, 3000)
+                    }, 500)
                 }
             );
             
@@ -69,9 +66,14 @@ frappe.listview_settings["Short Raw Bar"] = {
             select_work_order_dialog(items[0]);
 
         });
-        page.change_inner_button_type('处理工单', null, 'warning');
+        page.change_inner_button_type('处理工单', null, 'success');
 
 
+        page.add_inner_button('工单列表', () => {
+            frappe.set_route("List", "Work Order");
+        });
+        page.change_inner_button_type('工单列表', null, 'warning');
+        
     },
     
     before_render: function() {
@@ -141,12 +143,12 @@ function select_work_order_dialog(item) {
                 "default": item.wip_piece,
                 "description": "工单内的" + "在制品数量".bold() + "，如未全部完成,余料将被退回短棒料仓库",
             },
-            {
-                "fieldname": "forge_batch_no",
-                "label": "锻造批次号",
-                "fieldtype": "Data",
-                // "default": "dp-123456",
-            },
+            // {
+            //     "fieldname": "forge_batch_no",
+            //     "label": "锻造批次号",
+            //     "fieldtype": "Data",
+            //     // "default": "dp-123456",
+            // },
         ],
         primary_action_label: '确认',
         size: "small",
@@ -156,6 +158,7 @@ function select_work_order_dialog(item) {
             values.wo_qty = wo_qty
             Object.assign(values, item);
             console.log("values:", values);
+            cur_list?.clear_checked_items();
             work_order_done(values);
             wo_d.hide(); 
         }
@@ -184,9 +187,12 @@ function work_order_done(values) {
     }).then(r => {
         log("bar work_order_done", r);
         if (r.message) {
-            frappe.msgprint({ "title": "完成", message: "请选择拥有库存的同名称短棒料", "indicator": "red" });
-
-            frappe.set_route("Form", "Work Order", r.message);
+            frappe.msgprint({ "title": "完成", message: "工单完成", "indicator": "blue", alert: true});
+            setTimeout(() => {
+                frappe.set_route("Form", "Work Order", r.message);
+            }, 1000)
+        } else {
+            frappe.msgprint({ "title": "错误", message: "服务器返回信息为空", "indicator": "red" });
         }
     })
 }

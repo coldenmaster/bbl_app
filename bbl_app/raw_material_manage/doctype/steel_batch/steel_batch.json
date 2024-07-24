@@ -65,6 +65,7 @@
    "in_standard_filter": 1,
    "label": "Heat No",
    "options": "Heat No",
+   "remember_last_selected_value": 1,
    "set_only_once": 1
   },
   {
@@ -125,7 +126,6 @@
    "label": "Bundle Total"
   },
   {
-   "depends_on": "bundle_Index",
    "fieldname": "bundle_index",
    "fieldtype": "Int",
    "label": "Bundle Index"
@@ -187,8 +187,6 @@
    "label": "Supplier"
   },
   {
-   "fetch_from": "heat_no.product_company",
-   "fetch_if_empty": 1,
    "fieldname": "product_company",
    "fieldtype": "Data",
    "label": "Product Company"
@@ -351,7 +349,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-06-26 16:06:51",
+ "modified": "2024-07-24 11:09:22",
  "modified_by": "Administrator",
  "module": "Raw Material Manage",
  "name": "Steel Batch",

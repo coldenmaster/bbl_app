@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Iot",
  "links": [],
- "modified": "2024-07-05 18:13:31",
+ "modified": "2024-07-24 08:33:03",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Iot",
@@ -22,14 +22,7 @@
  "parent_page": "",
  "public": 1,
  "quick_lists": [],
- "roles": [
-  {
-   "role": "Manufacturing Manager"
-  },
-  {
-   "role": "Desk User"
-  }
- ],
+ "roles": [],
  "sequence_id": 46.0,
  "shortcuts": [
   {

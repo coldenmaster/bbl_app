@@ -256,6 +256,7 @@ def create_raw_bar(self):
                         'length': temp_doc_length,
                         'weight': temp_doc_weight,
                         'for_date': now(),
+                        'status': '未使用',
                     })
                 # 如果不存在，创建新的短棒料批次记录
                 else :
@@ -327,7 +328,7 @@ mock_bar_to_forge =  {'name': 'MAT-STE-2024-00332', 'owner': 'Administrator', 'c
 def process_bar_to_forge(self):
     """ 将短棒料批次信息转化为锻造批次信息 """
     print_blue('进入 bar_to_forge')
-    print(f'{self and self.as_dict() = }')
+    # print(f'{self and self.as_dict() = }')
     # todo 这注入调试数据
     if not self :
         frappe.flags.wt_t1 = True
@@ -337,7 +338,7 @@ def process_bar_to_forge(self):
     # 相关管理列表中，减掉短棒料数量
     # 新建 锻坯信息，存入相应的数量(Semi Product Manage )
     item_docs = self.get('items')
-    voucher_no = self.get('name')
+    voucher_no = self.get('work_order')
     bar_item = None
     for item in item_docs:
         if '短棒料' in item.get('item_code'):
@@ -357,6 +358,7 @@ def adjust_short_bar_status(sabb_no, voucher_no):
         print_red(f'{vn_obj = }')
         for vn in vn_obj:
             if isinstance(vn, dict):
+                print_red(f'{voucher_no = }')
                 if vn.get('voucher_no') == voucher_no:
                     vn['voucher_qty'] = vn.get('voucher_qty', 0) - abs(batch.qty)
                     print(f'{vn = }')
@@ -407,7 +409,7 @@ def create_forge_blank(bar_item, forge_item, voucher_no):
             'raw_name': bar_doc.raw_name,
             'raw_heat_no': bar_doc.heat_no,
             'cost': forge_item.basic_rate,
-            'piece': forge_item.qty,
+            'last_in_piece': forge_item.qty,
             'remaining_piece': forge_item.qty,
             'total_piece': forge_item.qty,
             'warehouse': forge_item.t_warehouse,
@@ -418,7 +420,7 @@ def create_forge_blank(bar_item, forge_item, voucher_no):
     else:
         forge_doc = frappe.get_doc('Semi Product Manage', blank_batch_no)
         forge_doc.update({
-            'piece': forge_item.qty,
+            'last_in_piece': forge_item.qty,
             'remaining_piece': forge_doc.remaining_piece + forge_item.qty,
             'total_piece': forge_doc.total_piece + forge_item.qty,
             'cost': forge_item.basic_rate,

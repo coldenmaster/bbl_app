@@ -4,7 +4,7 @@
 import frappe
 from frappe.utils.data import DATE_FORMAT, now_datetime
 
-from bbl_api.utils import print_red
+from bbl_api.utils import print_red, timer
 
 
 _TIME_FORMAT = "%H:%M:%S"
@@ -18,6 +18,8 @@ def get_fullname(user_id:str = None):
     return frappe.db.get_value('User', user_id, ['full_name'])
 
 # todo 清除数据库中数据，进行干净清楚的测试
+
+@timer
 def clear_db_for_dev():
     print_red('clear_db_for_dev from <erp.v16> == ' + frappe.local.site)
     frappe.only_for("System Manager")
@@ -65,6 +67,7 @@ def clear_db_for_dev():
             title=("Could Not clear test db Data"),
         )
     frappe.db.commit()
+    print_red('clear_db_for_dev from ' + frappe.local.site + '完成')
 
 
 def create_doc_for_server():
@@ -143,6 +146,6 @@ def t1():
 
 """ 控制台测试方法
 import bbl_app.utils.admin as admin
-sb.make_out_entry(**sb.k3)
+admin.clear_db_for_dev()
 docs = frappe.get_all("Steel Batch")
 """

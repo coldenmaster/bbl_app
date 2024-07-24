@@ -196,7 +196,9 @@ frappe.ui.form.on("Steel Batch", {
         frm.doc.supplier = gangbang_info.company;
         frm.doc.product_company = gangbang_info.company;
         frm.doc.batch_no = gangbang_info.bundleNo;
-        frm.doc.heat_no = gangbang_info.heatNo;
+        if (gangbang_info.heatNo) {
+            frm.doc.heat_no = gangbang_info.heatNo;
+        }
         frm.doc.steel_grade = gangbang_info.steelGrade.trim();
         frm.doc.diameter = parseInt(gangbang_info.diaSize) || undefined;
         frm.set_value("raw_name", frm.doc.steel_grade + (frm.doc.diameter ? "-" + frm.doc.diameter : ""));
@@ -334,10 +336,10 @@ function _clear_doc(frm) {
     frm.doc.supplier = "";
     frm.doc.product_company = "";
     frm.doc.batch_no = "";
-    frm.doc.heat_no = "";
-    frm.doc.steel_grade = "";
-    frm.doc.diameter = "";
-    frm.doc.raw_name = "";
+    // frm.doc.heat_no = "";
+    // frm.doc.steel_grade = "";
+    // frm.doc.diameter = "";
+    // frm.doc.raw_name = "";
     frm.doc.length = "";
     frm.doc.weight = "";
     frm.doc.steel_piece = "";
