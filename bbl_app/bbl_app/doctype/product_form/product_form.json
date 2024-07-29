@@ -7,10 +7,14 @@
  "field_order": [
   "product_form",
   "abbr",
-  "workshop",
-  "default_warehouse",
   "product_stage",
-  "product_line"
+  "product_line",
+  "column_break_qojy",
+  "main_form",
+  "operation",
+  "workshop",
+  "sub_workshop",
+  "default_warehouse"
  ],
  "fields": [
   {
@@ -56,11 +60,39 @@
    "in_list_view": 1,
    "label": "Default Warehouse",
    "options": "Warehouse"
+  },
+  {
+   "fieldname": "column_break_qojy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "main_form",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Main Form",
+   "options": "Operation Tree"
+  },
+  {
+   "fieldname": "sub_workshop",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Sub Workshop"
+  },
+  {
+   "fieldname": "operation",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Operation",
+   "options": "Operation Tree"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-07-19 18:01:19",
+ "modified": "2024-07-26 07:51:37",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Product Form",

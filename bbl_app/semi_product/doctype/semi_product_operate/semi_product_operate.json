@@ -19,10 +19,14 @@
   "semi_op_target",
   "finish_name",
   "finish_qty",
+  "forge_batch_no",
+  "bbl_heat_no",
+  "basket_in",
   "test",
   "for_date",
   "voucher_from",
   "voucher_to",
+  "op_note",
   "\u8865\u5145\u5c5e\u6027_section",
   "property_name",
   "column_break_fmiv",
@@ -163,6 +167,7 @@
   {
    "fieldname": "hidden_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Hidden"
   },
   {
@@ -195,12 +200,34 @@
    "label": "Employee Submit",
    "options": "Employee Jobs",
    "read_only": 1
+  },
+  {
+   "fieldname": "forge_batch_no",
+   "fieldtype": "Link",
+   "label": "Forge Batch No",
+   "options": "Forge Batch No"
+  },
+  {
+   "fieldname": "basket_in",
+   "fieldtype": "Data",
+   "label": "Basket In"
+  },
+  {
+   "fieldname": "bbl_heat_no",
+   "fieldtype": "Link",
+   "label": "Bbl Heat No",
+   "options": "Bbl Heat No"
+  },
+  {
+   "fieldname": "op_note",
+   "fieldtype": "Small Text",
+   "label": "Op Note"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-07-22 15:20:11",
+ "modified": "2024-07-26 11:40:06",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Semi Product Operate",

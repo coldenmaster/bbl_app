@@ -115,6 +115,11 @@ def _semi_product_batch_convert(opts):
     batch_no = parse_naming_series(abbr + '-.YY.MM.DD.-.###')
     print_red(f'{product_form_doc=}')
 
+    # basket_no有新使用的，清除掉其它使用次框号的
+    if (opts.basket_in):
+        # frappe.db.sql(f"update `tabSemi Product Manage` set basket_no = '' where basket_no = '{opts.basket_in}' and name != '{opts.spm_source}'")
+        frappe.db.sql(f"update `tabSemi Product Manage` set basket_no = '' where basket_no = '{opts.basket_in}' ")
+
     # 新doc设置 件数，剩余数量，总数量，操作员，产品名称，批次号（自动？）
     #   仓库（根据目标产品形态设置），状态（缺省未使用），
     semi_doc_target.update({
@@ -128,7 +133,12 @@ def _semi_product_batch_convert(opts):
         'warehouse': product_form_doc.default_warehouse,
         'parent_batch_no': opts.spm_source,
         'last_op_voucher': opts.name,
-        # 'status': '未使用',
+        'forge_batch_no': opts.forge_batch_no,
+        'basket_in': opts.basket_in,
+        'basket_no': opts.basket_in,
+        'bbl_heat_no': opts.bbl_heat_no,
+        'note': opts.op_note,
+        # 'status': '未使用', # default
     }).insert(ignore_permissions=True)
     
     source_remaining = semi_doc_source.remaining_piece - opts.finish_qty
@@ -142,9 +152,13 @@ def _semi_product_batch_convert(opts):
         'use_date': today(),
         'status': source_status,
         'last_op_voucher': opts.name,
+        'basket_no': semi_doc_source.basket_in if source_remaining != 0 else '',
+        'basket_in': semi_doc_source.basket_in if source_remaining != 0 else '',
     }).save()
+
+
       
-    print_red('已新建')
+    print_red('半成品批次管理，产品转化已完成')
     # todo 建操作记录
     return semi_doc_target.name
 

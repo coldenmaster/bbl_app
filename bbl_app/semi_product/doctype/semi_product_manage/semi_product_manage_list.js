@@ -5,7 +5,7 @@ frappe.listview_settings["Semi Product Manage"] = {
 
     add_fields: [
         "semi_product",
-        // "warehouse_area",
+        "bbl_heat_no",
     ],
     // filters: [
     //     ["status", "!=", "出完"]
@@ -44,10 +44,11 @@ frappe.listview_settings["Semi Product Manage"] = {
             opts.spm_source = opts.name;
             let temp_li = opts.semi_product_name.split('_');
             opts.semi_op_source = temp_li[temp_li.length - 1];
-            log(opts);
-            frappe.new_doc("Semi Product Operate", items[0], 
+            opts.basket_in = '';
+            frappe.new_doc("Semi Product Operate", opts, 
                doc => { 
-                   console.log("操作单，新建完成 doc:", doc);
+                //    console.log("新建操作单frm, opts属性:", opts);
+                //    console.log("新建操作单frm, doc属性:", doc);
                    this.list_view.clear_checked_items();
                 })
         });

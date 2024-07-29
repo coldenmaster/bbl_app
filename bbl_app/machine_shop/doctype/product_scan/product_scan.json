@@ -1,0 +1,183 @@
+{
+ "actions": [],
+ "allow_copy": 1,
+ "autoname": "field:customer_code",
+ "creation": "2024-07-26 14:02:51",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "scan_barcode",
+  "section_break_tvca",
+  "bbl_code",
+  "column_break_gbun",
+  "customer_code",
+  "section_break_awpw",
+  "operation",
+  "employee",
+  "customer",
+  "for_date",
+  "column_break_kmii",
+  "amended_from",
+  "parent_from",
+  "sub_code",
+  "\u5ba2\u6237\u6761\u7801\u4fe1\u606f_section",
+  "cus_code_date",
+  "cus_batch_no",
+  "cus_product_code",
+  "cus_flow_id"
+ ],
+ "fields": [
+  {
+   "depends_on": "eval:!!doc.__islocal",
+   "fieldname": "scan_barcode",
+   "fieldtype": "Small Text",
+   "label": "Scan Barcode",
+   "options": "Barcode"
+  },
+  {
+   "fieldname": "section_break_tvca",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "bbl_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Bbl Code"
+  },
+  {
+   "fieldname": "column_break_gbun",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "customer_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customer Code",
+   "no_copy": 1,
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "section_break_awpw",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "__user",
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee",
+   "options": "Employee Jobs"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customer"
+  },
+  {
+   "fieldname": "column_break_kmii",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Amended From",
+   "options": "Product Scan"
+  },
+  {
+   "default": "`${doc.name}`",
+   "fieldname": "sub_code",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Sub Code"
+  },
+  {
+   "fieldname": "parent_from",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Parent From",
+   "options": "Product Scan"
+  },
+  {
+   "default": "\u626b\u7801",
+   "fieldname": "operation",
+   "fieldtype": "Link",
+   "label": "Operation",
+   "link_filters": "[[\"Operation Tree\",\"is_not_semi\",\"=\",1]]",
+   "options": "Operation Tree"
+  },
+  {
+   "default": "Today",
+   "fieldname": "for_date",
+   "fieldtype": "Date",
+   "label": "For Date"
+  },
+  {
+   "fieldname": "\u5ba2\u6237\u6761\u7801\u4fe1\u606f_section",
+   "fieldtype": "Section Break",
+   "label": "\u5ba2\u6237\u6761\u7801\u4fe1\u606f"
+  },
+  {
+   "fieldname": "cus_code_date",
+   "fieldtype": "Date",
+   "label": "Cus Code Date"
+  },
+  {
+   "fieldname": "cus_batch_no",
+   "fieldtype": "Data",
+   "label": "Cus Batch No"
+  },
+  {
+   "fieldname": "cus_product_code",
+   "fieldtype": "Data",
+   "label": "Cus Product Code"
+  },
+  {
+   "fieldname": "cus_flow_id",
+   "fieldtype": "Data",
+   "label": "Cus Flow Id"
+  }
+ ],
+ "hide_toolbar": 1,
+ "links": [],
+ "modified": "2024-07-29 14:29:25",
+ "modified_by": "Administrator",
+ "module": "Machine Shop",
+ "name": "Product Scan",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "show_preview_popup": 1,
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "customer_code"
+}

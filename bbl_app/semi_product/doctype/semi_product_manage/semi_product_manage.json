@@ -13,7 +13,7 @@
   "forge_batch_no",
   "raw_name",
   "raw_heat_no",
-  "heat_no",
+  "bbl_heat_no",
   "cost",
   "length",
   "weight",
@@ -22,6 +22,8 @@
   "last_out_piece",
   "remaining_piece",
   "total_piece",
+  "basket_no",
+  "basket_in",
   "column_break_musm",
   "warehouse",
   "warehouse_area",
@@ -38,7 +40,8 @@
   "for_date",
   "use_date",
   "parent_batch_no",
-  "last_op_voucher"
+  "last_op_voucher",
+  "note"
  ],
  "fields": [
   {
@@ -49,13 +52,6 @@
    "reqd": 1,
    "set_only_once": 1,
    "unique": 1
-  },
-  {
-   "fieldname": "heat_no",
-   "fieldtype": "Link",
-   "label": "Heat No",
-   "options": "Bbl Heat No",
-   "set_only_once": 1
   },
   {
    "fetch_from": "heat_no.raw_name",
@@ -69,7 +65,8 @@
   {
    "fieldname": "cost",
    "fieldtype": "Int",
-   "label": "Cost"
+   "label": "Cost",
+   "read_only": 1
   },
   {
    "default": "0",
@@ -129,7 +126,6 @@
    "bold": 1,
    "fieldname": "status",
    "fieldtype": "Select",
-   "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Status",
    "no_copy": 1,
@@ -138,6 +134,8 @@
   {
    "fieldname": "semi_product",
    "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Semi Product",
    "options": "Semi Product"
   },
@@ -151,6 +149,7 @@
    "fieldname": "for_date",
    "fieldtype": "Date",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "For Date",
    "no_copy": 1,
    "read_only": 1
@@ -267,11 +266,37 @@
    "no_copy": 1,
    "options": "Semi Product Operate",
    "read_only": 1
+  },
+  {
+   "fieldname": "basket_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Basket No",
+   "no_copy": 1
+  },
+  {
+   "fieldname": "note",
+   "fieldtype": "Small Text",
+   "label": "Note",
+   "no_copy": 1
+  },
+  {
+   "fieldname": "bbl_heat_no",
+   "fieldtype": "Link",
+   "label": "Bbl Heat No",
+   "options": "Bbl Heat No"
+  },
+  {
+   "fieldname": "basket_in",
+   "fieldtype": "Data",
+   "label": "Basket In",
+   "no_copy": 1
   }
  ],
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-07-22 17:37:53",
+ "modified": "2024-07-26 11:36:09",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Semi Product Manage",

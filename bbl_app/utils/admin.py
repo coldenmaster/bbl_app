@@ -52,7 +52,7 @@ def clear_db_for_dev():
         frappe.db.delete("BOM Explosion Item")
         frappe.db.delete("Work Order")
         frappe.db.delete("Semi Product Manage")
-
+        frappe.db.delete("Semi Product Operate")
         # frappe.db.delete("Batch")
         # frappe.db.delete("Batch")
         # frappe.db.delete("GL Entry") # 总账条目

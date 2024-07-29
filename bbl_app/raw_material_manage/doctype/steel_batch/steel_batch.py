@@ -262,8 +262,9 @@ sb_out_items1 = {'semi_product': '06240',
 }
 
 
-sb_out_items = {'semi_product': '06240', 'raw_bar_name': '06240_短棒料', 'bar_ratio': '780', 'bar_piece': '27', 'bar_weight': '3172', 'scrap_length': '1539', 'scrap_weight': '214.9', 'stock_entry': 'MAT-STE-2024-00187', 'bar_batch': 'DBL-20240617-1925-240', 'check_zhxl': '1', 'zh_semi_product': 'EQ145', 'zh_raw_bar_name': 'EQ145_短棒料', 'zh_bar_ratio': '820', 'zh_bar_piece': '10', 'zh_bar_weight': '1151', 'zh_bar_batch': 'DBL-20240617-1925-145', 'raw_name': '50H-150', 'raw_weight': '3172', 'batchs': '[{"batch_no":"B22421204/0225","weight":3172}]', 'diameter': '150', 'crap_weight': '214.9', 'cmd': 'bbl_app.raw_material_manage.doctype.steel_batch.steel_batch.make_out_entry'}
-# http://dev2.localhost:8000/api/method/bbl_app.raw_material_manage.doctype.steel_batch.steel_batch.make_out_entry?scan_barcode=123
+# sb_out_items = {'semi_product': '06240', 'raw_bar_name': '06240_短棒料', 'bar_ratio': '780', 'bar_piece': '27', 'bar_weight': '3172', 'scrap_length': '1539', 'scrap_weight': '214.9', 'stock_entry': 'MAT-STE-2024-00187', 'bar_batch': 'DBL-20240617-1925-240', 'check_zhxl': '1', 'zh_semi_product': 'EQ145', 'zh_raw_bar_name': 'EQ145_短棒料', 'zh_bar_ratio': '820', 'zh_bar_piece': '10', 'zh_bar_weight': '1151', 'zh_bar_batch': 'DBL-20240617-1925-145', 'raw_name': '50H-150', 'raw_weight': '3172', 'batchs': '[{"batch_no":"B22421204/0225","weight":3172}]', 'diameter': '150', 'crap_weight': '214.9', 'cmd': 'bbl_app.raw_material_manage.doctype.steel_batch.steel_batch.make_out_entry'}
+sb_out_items = {}
+# # http://dev2.localhost:8000/api/method/bbl_app.raw_material_manage.doctype.steel_batch.steel_batch.make_out_entry?scan_barcode=123
 @frappe.whitelist()
 def make_out_entry(**kwargs):
     """ 

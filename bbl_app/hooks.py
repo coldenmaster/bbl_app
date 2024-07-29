@@ -124,6 +124,7 @@ permission_query_conditions = {
 # 通过以下命令导出数据库数据进行迁移
 # bench export-fixtures --app bbl_app
 fixtures = [
+    "Product Form",
     # "Warehouse Area",
     # "Device Type",
     # "Iot Device",

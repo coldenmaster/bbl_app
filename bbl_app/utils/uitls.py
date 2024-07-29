@@ -1,5 +1,4 @@
 import json
-from frappe.utils import safe_json_loads
 from bbl_api.utils import *
 
 

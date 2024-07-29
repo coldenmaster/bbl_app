@@ -129,10 +129,19 @@ function select_work_order_dialog(item) {
                 onchange: (e) => {
                     let d = wo_d;
                     let v = e?.target?.value || d.get_value("work_order") || "";
-                    frappe.db.get_value("Work Order", v, "material_transferred_for_manufacturing").then(r => {
-                        wo_qty = r.message.material_transferred_for_manufacturing
-                        d.set_value("out_piece", wo_qty)
-                    })
+                    if (! v) {
+                        d.set_value("out_piece", "")
+                        return
+                    }
+                    frappe.model.with_doc("Work Order", v, (nam, doc) => {
+                        // log("doc name", nam, doc)
+                    }).then(
+                        (doc) => {
+                            log("doc12", doc)
+                            wo_qty = doc.material_transferred_for_manufacturing - doc.produced_qty
+                            d.set_value("out_piece", wo_qty)     
+                        }
+                    )
                 }
             },
             {
@@ -168,8 +177,14 @@ function select_work_order_dialog(item) {
         wo_df_opt_obj = JSON.parse(r.message.voucher_no)
         // todo 这里需要对work_order根据剩余的生产数量进行过滤，数量不为0的进行显示，
         // todo 工单提交完成后对voucher_no中的数量进行更新（暂时只完成了获取和显示）
-        options = wo_df_opt_obj.reduce((r, v) => r + v.voucher_no + "\n", "")
-        log(options)
+        // options = wo_df_opt_obj.reduce((r, v) => r + v.voucher_no + "\n", "")
+        options = wo_df_opt_obj.reduce((r, v) => 
+        {
+            if (v.voucher_qty > 0)
+                r = r + v.voucher_no + "\n", ""
+            return r
+        }, "")
+        // log(options)
         wo_df.df.options = options
         wo_df.set_options(options[0])
         wo_df.df.onchange()
@@ -185,12 +200,15 @@ function work_order_done(values) {
         method: "bbl_app.semi_product.doctype.short_raw_bar.short_raw_bar.work_order_done",
         args: values,
     }).then(r => {
-        log("bar work_order_done", r);
+        // log("bar work_order_done", r);
         if (r.message) {
             frappe.msgprint({ "title": "完成", message: "工单完成", "indicator": "blue", alert: true});
             setTimeout(() => {
                 frappe.set_route("Form", "Work Order", r.message);
-            }, 1000)
+                setTimeout(() => {
+                    cur_frm.reload_doc();
+                }, 500)
+            }, 500)
         } else {
             frappe.msgprint({ "title": "错误", message: "服务器返回信息为空", "indicator": "red" });
         }

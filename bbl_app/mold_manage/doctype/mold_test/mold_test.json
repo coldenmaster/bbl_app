@@ -9,7 +9,8 @@
   "data_dafn",
   "link",
   "test_multi_link",
-  "test_custom_action"
+  "test_custom_action",
+  "test_virtual"
  ],
  "fields": [
   {
@@ -46,11 +47,19 @@
    "fieldtype": "Link",
    "label": "Test Custom Action",
    "options": "Semi Product"
+  },
+  {
+   "default": "06240",
+   "fieldname": "test_virtual",
+   "fieldtype": "Link",
+   "is_virtual": 1,
+   "label": "Test Virtual",
+   "options": "Semi Product"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-07-17 08:06:51",
+ "modified": "2024-07-26 08:51:13",
  "modified_by": "Administrator",
  "module": "Mold Manage",
  "name": "Mold Test",

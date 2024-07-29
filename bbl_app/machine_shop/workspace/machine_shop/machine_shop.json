@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"5RKDRJJG8R\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>\u751f\u4ea7\u7ba1\u7406</b></span>\",\"col\":12}},{\"id\":\"tLEVa9RCK8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u6210\u54c1\u62a5\u4ea7\",\"col\":3}},{\"id\":\"NxE8QoBdr8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u6210\u54c1\u4ea7\u91cf\u5217\u8868\",\"col\":3}},{\"id\":\"ahTbntEqI8\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"CpwdWL5wNQ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u751f\u4ea7\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"qfzJrANF6C\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"1KWKuKZFKN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"zLrtrFavD8\",\"type\":\"card\",\"data\":{\"card_name\":\"\u8f66\u95f4\u6570\u636e\",\"col\":4}}]",
+ "content": "[{\"id\":\"5RKDRJJG8R\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>\u751f\u4ea7\u7ba1\u7406</b></span>\",\"col\":12}},{\"id\":\"tLEVa9RCK8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u6210\u54c1\u62a5\u4ea7\",\"col\":3}},{\"id\":\"NxE8QoBdr8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u6210\u54c1\u4ea7\u91cf\u5217\u8868\",\"col\":3}},{\"id\":\"ahTbntEqI8\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"CpwdWL5wNQ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u751f\u4ea7\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"jAb8cdM8TU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u673a\u52a0\u5de5\u4ea7\u54c1\u626b\u7801\",\"col\":3}},{\"id\":\"qfzJrANF6C\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"1KWKuKZFKN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"zLrtrFavD8\",\"type\":\"card\",\"data\":{\"card_name\":\"\u8f66\u95f4\u6570\u636e\",\"col\":4}}]",
  "creation": "2024-02-04 15:23:12.913424",
  "custom_blocks": [],
  "docstatus": 0,
@@ -43,9 +43,9 @@
    "type": "Link"
   }
  ],
- "modified": "2024-07-05 18:13:24",
+ "modified": "2024-07-26 14:47:51",
  "modified_by": "Administrator",
- "module": "Bbl App",
+ "module": "Machine Shop",
  "name": "Machine Shop",
  "number_cards": [],
  "owner": "Administrator",
@@ -61,6 +61,15 @@
    "format": "new",
    "label": "\u6210\u54c1\u62a5\u4ea7",
    "link_to": "Paint Output",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Cyan",
+   "doc_view": "List",
+   "format": "\u5171{}\u6761",
+   "label": "\u673a\u52a0\u5de5\u4ea7\u54c1\u626b\u7801",
+   "link_to": "Product Scan",
    "stats_filter": "[]",
    "type": "DocType"
   },

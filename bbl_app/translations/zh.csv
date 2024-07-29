@@ -391,7 +391,19 @@ Parent Batch No,父批次号,
 Last Op Voucher,上一加工单,
 Voucher From,源单据,
 Voucher To,目标单据,
+Basket No,框号,
+Basket In,装入框号,
+Basket Out,转出框号,
+Op Note,操作备注,
+Main Form,主形态
+Sub Workshop,子车间,
+Product Scan,产品扫码,
+Bbl Code,百兰代码,
 
+Cus Code Date,代码日期,
+Cus Batch No,批次号,
+Cus Product Code,产品代码,
+Cus Flow Id,流程号,
 
 
 Item rate has been updated to zero as Allow Zero Valuation Rate is checked for item {0},物料{0}的单价已根据设置更新为零,
