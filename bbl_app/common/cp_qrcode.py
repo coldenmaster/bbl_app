@@ -6,6 +6,7 @@ customers = {
     'hande': {"name": "陕汽汉德", "prefix": "652"},
     'zhongqi': {"name": "重汽", "prefix": "068"},
     'sanyi': {"name": "三一", "prefix": "SANYI"},
+    'bbl': {"name": "百兰", "prefix": "BBL"},
 
     'other': {"name": "未知客户", "prefix": ""},
     
@@ -28,6 +29,15 @@ class CpQrcode:
 
     def is_zhongqi(self):
         return self.qrcode_str.startswith("068")
+    
+    def is_sanyi(self):
+        return False
+
+    def is_bbl(self):
+        # ZQ0CT202407180013
+        if len(self.qrcode_str) == 17 and self.qrcode_str[-12:-9] == '202':
+            return True
+        return False
 
     def get_company(self):
         if self.is_dena():
@@ -36,8 +46,10 @@ class CpQrcode:
             return customers.get("hande")['name']
         elif self.is_zhongqi():
             return customers.get("zhongqi")['name']
-        # elif self.is_sanyi():
-        #     return customers.get("sanyi")['name']
+        elif self.is_sanyi():
+            return customers.get("sanyi")['name']
+        elif self.is_bbl():
+            return customers.get("bbl")['name']
         else:
             return '未知客户'
         
@@ -112,6 +124,7 @@ class CpQrcode:
         self.upload_bean["forge_batch"] = batch_code[0:11]
         self.upload_bean["code_date"] = self.split_date_str(batch_code[5:5+6])
         self.upload_bean["flow_id"] = batch_code[11:]
+        self.upload_bean["cus_product_name"] = strs[1].split("-")[-1]
         return self.upload_bean
 
     def parse_hande(self):
@@ -154,6 +167,29 @@ class CpQrcode:
         self.upload_bean["flow_id"] = self.qrcode_str[17:17+4]
         return self.upload_bean
 
+    def parse_sanyi(self):
+        pass
+
+    def parse_bbl(self):
+        company = customers.get("bbl")["name"]
+        if not self.is_bbl():
+            self.err_msg = "*识别厂家失败"
+            return False
+
+        self.err_msg = company
+        # if not self.validate_zhongqi():
+        #     self.err_msg += "/*二维码验证错误"
+        #     return False
+
+        self.decode_flag = True
+        self.err_msg += "/二维码验证成功"
+        self.upload_bean["company"] = company
+        self.upload_bean["product_code"] = self.qrcode_str[:-12]
+        self.upload_bean["forge_batch"] = ""
+        self.upload_bean["code_date"] = self.split_date_str(self.qrcode_str[-10:-10+6])
+        self.upload_bean["flow_id"] = self.qrcode_str[-4:]
+        return self.upload_bean
+
     def parse_data(self):
         self.qrcode_str = self.qrcode_str.strip()
         self.decode_flag = False
@@ -164,6 +200,10 @@ class CpQrcode:
             self.parse_hande()
         elif self.is_zhongqi():
             self.parse_zhongqi()
+        elif self.is_sanyi():
+            self.parse_sanyi()
+        elif self.is_bbl():
+            self.parse_bbl()
         else:
             self.err_msg = "*未识别到产品厂家"
             self.upload_bean["company"] = customers.get("other")["name"]

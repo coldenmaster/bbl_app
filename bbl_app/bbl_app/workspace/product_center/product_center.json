@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"asLJjudqv4\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">\u751f\u4ea7\u52a8\u529b\u90e8</span>\",\"col\":12}},{\"id\":\"BXEepRrkhp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u4e0a\u62a5\u534a\u6210\u54c1\u4ea7\u91cf\",\"col\":3}},{\"id\":\"qKC22TWFVw\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u534a\u6210\u54c1\u4ea7\u91cf\u5217\u8868\",\"col\":3}},{\"id\":\"S5UZInvH_Z\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"QxhN1Bvowk\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u4e0a\u62a5\u6210\u54c1\u4ea7\u91cf\",\"col\":3}},{\"id\":\"2snodndvwj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u6210\u54c1\u4ea7\u91cf\u5217\u8868\",\"col\":3}},{\"id\":\"7lHyH6s4OY\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"kSu784K9UX\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>\u57fa\u7840\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"8UOCKOjAlv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u534a\u6210\u54c1\",\"col\":3}},{\"id\":\"N2iUvJ3ACF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u4ea7\u54c1\u540d\u79f0\",\"col\":3}},{\"id\":\"3RGdNYT68N\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"sb-cndH8rG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Workshop\",\"col\":3}},{\"id\":\"anFuUGs518\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Operation Tree\",\"col\":3}}]",
+ "content": "[{\"id\":\"asLJjudqv4\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">\u751f\u4ea7\u52a8\u529b\u90e8</span>\",\"col\":12}},{\"id\":\"BXEepRrkhp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u4e0a\u62a5\u534a\u6210\u54c1\u4ea7\u91cf\",\"col\":3}},{\"id\":\"qKC22TWFVw\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u534a\u6210\u54c1\u4ea7\u91cf\u5217\u8868\",\"col\":3}},{\"id\":\"S5UZInvH_Z\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"QxhN1Bvowk\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u4e0a\u62a5\u6210\u54c1\u4ea7\u91cf\",\"col\":3}},{\"id\":\"2snodndvwj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u6210\u54c1\u4ea7\u91cf\u5217\u8868\",\"col\":3}},{\"id\":\"7lHyH6s4OY\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"kSu784K9UX\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>\u57fa\u7840\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"8UOCKOjAlv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u534a\u6210\u54c1\",\"col\":3}},{\"id\":\"N2iUvJ3ACF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u4ea7\u54c1\u540d\u79f0\",\"col\":3}},{\"id\":\"3RGdNYT68N\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"sb-cndH8rG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Workshop\",\"col\":3}},{\"id\":\"anFuUGs518\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Operation Tree\",\"col\":3}},{\"id\":\"raddpuBN4o\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Jobs\",\"col\":3}}]",
  "creation": "2024-02-20 17:49:09.709351",
  "custom_blocks": [],
  "docstatus": 0,
@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Product Center",
  "links": [],
- "modified": "2024-07-05 18:13:24",
+ "modified": "2024-07-29 14:53:11",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Product Center",
@@ -48,6 +48,14 @@
    "format": "{}\u79cd",
    "label": "\u534a\u6210\u54c1",
    "link_to": "Semi Product",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Employee Jobs",
+   "link_to": "Employee Jobs",
    "stats_filter": "[]",
    "type": "DocType"
   },

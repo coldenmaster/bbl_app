@@ -30,6 +30,14 @@ def send_back_data(**kwargs):
         kwargs = _mock_data #置入假数据
 
     kwargs = frappe._dict(kwargs)
+    # 检查客户二维码是否已经存在
+    # if frappe.db.exists("Product Scan", {"customer_code": kwargs.customer_code}):
+    if frappe.db.exists("Product Scan", kwargs.customer_code):
+        # frappe.throw(f"客户二维码已经存在: {kwargs.customer_code}")
+        # frappe.msgprint(f"客户二维码已经存在:\n{kwargs.customer_code}", raise_exception=True)
+        frappe.msgprint(f"客户二维码已经存在:\n{kwargs.customer_code}")
+
+
     kwargs.doctype = "Product Scan"
     cus_code_info = CpQrcode(kwargs.customer_code).parse_data()
     kwargs.update({
@@ -38,7 +46,14 @@ def send_back_data(**kwargs):
         'cus_batch_no': cus_code_info.get("forge_batch"),
         'cus_product_code': cus_code_info.get("product_code"),
         'cus_flow_id': cus_code_info.get("flow_id"),
+        'product_name': cus_code_info.get("cus_product_name", ""),
     })
+    if kwargs.get('bbl_code'):
+        bbl_code_info = CpQrcode(kwargs.bbl_code).parse_data()
+        kwargs.update({
+            'product_name': kwargs.get('product_name') or bbl_code_info.get("cus_product_name", "code"),
+            'bbl_flow_id': bbl_code_info.get("flow_id"),
+        })
     print_blue_pp(kwargs)
     try:
         new_doc = frappe.get_doc(kwargs)

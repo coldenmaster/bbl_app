@@ -403,7 +403,8 @@ Bbl Code,百兰代码,
 Cus Code Date,代码日期,
 Cus Batch No,批次号,
 Cus Product Code,产品代码,
-Cus Flow Id,流程号,
+Cus Flow Id,流水号,
+Bbl Flow Id,百兰流水号,
 
 
 Item rate has been updated to zero as Allow Zero Valuation Rate is checked for item {0},物料{0}的单价已根据设置更新为零,

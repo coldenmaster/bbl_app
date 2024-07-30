@@ -17,7 +17,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "\u8f66\u95f4\u6570\u636e",
-   "link_count": 2,
+   "link_count": 1,
    "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
@@ -25,25 +25,15 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Production Line",
+   "label": "\u751f\u4ea7\u7ebf",
    "link_count": 0,
    "link_to": "Production Line",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Employee",
-   "link_count": 0,
-   "link_to": "Employee",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
   }
  ],
- "modified": "2024-07-26 14:47:51",
+ "modified": "2024-07-29 16:33:22",
  "modified_by": "Administrator",
  "module": "Machine Shop",
  "name": "Machine Shop",
