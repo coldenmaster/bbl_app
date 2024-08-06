@@ -15,10 +15,11 @@
   "operation",
   "employee",
   "counter",
+  "for_date",
   "column_break_uyyp",
   "product_name",
+  "forge_batch_no",
   "bbl_flow_id",
-  "for_date",
   "column_break_kmii",
   "amended_from",
   "parent_from",
@@ -48,6 +49,7 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "in_preview": 1,
+   "in_standard_filter": 1,
    "label": "Bbl Code"
   },
   {
@@ -72,14 +74,11 @@
    "fieldname": "employee",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "in_standard_filter": 1,
    "label": "Employee"
   },
   {
    "fieldname": "customer",
    "fieldtype": "Data",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
    "label": "Customer"
   },
   {
@@ -91,21 +90,24 @@
    "fieldtype": "Link",
    "hidden": 1,
    "label": "Amended From",
-   "options": "Product Scan"
+   "options": "Product Scan",
+   "report_hide": 1
   },
   {
    "default": "`${doc.name}`",
    "fieldname": "sub_code",
    "fieldtype": "Data",
    "hidden": 1,
-   "label": "Sub Code"
+   "label": "Sub Code",
+   "report_hide": 1
   },
   {
    "fieldname": "parent_from",
    "fieldtype": "Link",
    "hidden": 1,
    "label": "Parent From",
-   "options": "Product Scan"
+   "options": "Product Scan",
+   "report_hide": 1
   },
   {
    "default": "\u626b\u7801",
@@ -166,8 +168,6 @@
   {
    "fieldname": "bbl_flow_id",
    "fieldtype": "Data",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
    "label": "Bbl Flow Id"
   },
   {
@@ -175,11 +175,18 @@
    "fieldtype": "Int",
    "in_list_view": 1,
    "label": "Counter"
+  },
+  {
+   "fieldname": "forge_batch_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Forge Batch No"
   }
  ],
  "hide_toolbar": 1,
  "links": [],
- "modified": "2024-07-30 14:28:21",
+ "modified": "2024-08-06 16:27:48",
  "modified_by": "Administrator",
  "module": "Machine Shop",
  "name": "Product Scan",

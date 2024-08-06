@@ -5,6 +5,7 @@ frappe.ui.form.on("Semi Product Manage", {
 	refresh(frm) {
 
         frm.add_custom_button('新建加工单', () => {
+            frappe.show_alert("功能未完成");
             let items = listview.get_checked_items();
             if (items.length != 1) {
                 frappe.msgprint({ "title": "错误", message: "请只选择一条记录", indicator: "red" });
@@ -25,7 +26,7 @@ frappe.ui.form.on("Semi Product Manage", {
                    this.list_view.clear_checked_items();
                 })
         });
-        page.change_custom_button_type('新建加工单', null, 'info');
+        frm.change_custom_button_type('新建加工单', null, 'info');
     
 
 	},

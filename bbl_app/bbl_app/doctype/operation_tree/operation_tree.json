@@ -1,6 +1,5 @@
 {
  "actions": [],
- "allow_rename": 1,
  "autoname": "field:operation_name",
  "creation": "2024-02-23 17:10:46.030962",
  "doctype": "DocType",
@@ -96,7 +95,7 @@
  "index_web_pages_for_search": 1,
  "is_tree": 1,
  "links": [],
- "modified": "2024-07-17 17:26:21",
+ "modified": "2024-08-03 15:20:16",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Operation Tree",

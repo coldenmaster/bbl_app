@@ -4,8 +4,9 @@
 from bbl_app.common.cp_qrcode import CpQrcode
 import frappe
 from frappe.model.document import Document
+from frappe.utils.data import add_to_date, now_datetime
 
-from bbl_api.utils import print_blue, print_blue_pp, print_red
+from bbl_api.utils import USERS_IDS, WxcpApp, print_blue, print_blue_pp, print_red, send_wx_msg_q
 
 
 class ProductScan(Document):
@@ -39,20 +40,25 @@ def send_back_data(**kwargs):
 
 
     kwargs.doctype = "Product Scan"
-    cus_code_info = CpQrcode(kwargs.customer_code).parse_data()
+    customer_cp_qrcode = CpQrcode(kwargs.customer_code)
+    cus_code_info = customer_cp_qrcode.parse_data()
     kwargs.update({
         'customer': cus_code_info.get("company"),
         'cus_code_date': cus_code_info.get("code_date"),
         'cus_batch_no': cus_code_info.get("forge_batch"),
         'cus_product_code': cus_code_info.get("product_code"),
         'cus_flow_id': cus_code_info.get("flow_id"),
-        'product_name': cus_code_info.get("cus_product_name", ""),
+        'product_name': cus_code_info.get("cus_product_name"),
     })
+
+    # kwargs['bbl_code'] = kwargs.get('bbl_code') or customer_cp_qrcode.is_bbl() or ""
     if kwargs.get('bbl_code'):
-        bbl_code_info = CpQrcode(kwargs.bbl_code).parse_data()
+        bbl_code_info = CpQrcode(kwargs.get('bbl_code')).parse_data()
         kwargs.update({
-            'product_name': kwargs.get('product_name') or bbl_code_info.get("cus_product_name", "code"),
+            'product_name': kwargs.get('product_name') or bbl_code_info.get("product_code") 
+                or cus_code_info.get('product_code') or "未识别",
             'bbl_flow_id': bbl_code_info.get("flow_id"),
+            'forge_batch_no' : bbl_code_info.get("forge_batch"),
         })
     print_blue_pp(kwargs)
     try:
@@ -69,7 +75,63 @@ def send_back_data(**kwargs):
     return kwargs.get('customer_code')
 
 
+
+
+def product_qrcode_daily_statistics(delta:int = 0):
+    """ 
+    测长短制作每日报告:仿造电表，
+    日期，报告类型，产品，数量，误差+，误差-数量，误差百分比
+    """
+    report_type = '测长短'
+    report_period = '日报'
+    now_time = now_datetime()
+    now_time = add_to_date(now_time, days=delta)
+    # end_time = now_time.replace(hour=0, minute=0, second=0, microsecond=0)
+    end_time = now_time
+    start_time = add_to_date(end_time, days=-1)
+    product_name_cnt = _get_list(start_time, end_time)
+    report = {
+        # 'report_type': report_type,
+        # 'report_period': report_period,
+        'start_time': start_time,
+        'end_time': end_time,
+        'name_cnt': product_name_cnt
+    }
+    rt_str = _report_str(report)
+    send_wx_msg_q(rt_str, app_name=WxcpApp.PRODUCT_APP.value, user_ids=USERS_IDS.get('product_scan_code', ''))
+    # send_wx_msg_q(rt_str, app_name=WxcpApp.PRODUCT_APP.value, user_ids=USERS_IDS.get('admins', ''))
+    # send_wechat_msg_admin_site(rt_str)
+    # print_green(rt_str)
+
+
+def _get_list(start_time, end_time):
+    docs = frappe.get_list('Product Scan', 
+        filters={
+            'creation': ['between', [start_time, end_time]],
+            # 'error_length': ['<', 20]
+        }, 
+        fields=['product_name', 'customer'])
+    product_names = [d.product_name for d in docs]
+    product_name_set = set(product_names)
+    # print_green(product_name_set)
+    name_cnt = { name: product_names.count(name) for name in product_name_set}
+    name_cnt['合计'] = len(product_names)
+    # _print_blue_pp(name_cnt)
+    return name_cnt
+
+def _report_str(report):
+    rt_str = (
+        '<<机加工扫码产量日报>>\n------\n'
+        f'开始时间: {report.get("start_time").strftime("%Y-%m-%d %H:%M:%S")}\n'
+        f'结束时间: {report.get("end_time").strftime("%Y-%m-%d %H:%M:%S")}\n------'
+    )
+    for name, cnt in report.get("name_cnt").items():
+        rt_str += f'\n{name}: {cnt} 根'
+    # rt_str += '\n------'
+    return rt_str
+
+
 """ test info
 import bbl_app.machine_shop.doctype.product_scan.product_scan as ps
-sb.clear_db()
+ps.product_qrcode_daily_statistics()
 """

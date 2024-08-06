@@ -15,6 +15,7 @@
   "source_qty",
   "employee",
   "employee_submit",
+  "op_mark",
   "column_break_ltfu",
   "semi_op_target",
   "finish_name",
@@ -222,12 +223,18 @@
    "fieldname": "op_note",
    "fieldtype": "Small Text",
    "label": "Op Note"
+  },
+  {
+   "description": "\u8bc6\u522b\u6b64\u6279\u6b21\u7684<b>\u7279\u6b8a\u6807\u8bb0</b>\uff0c\u4fbf\u4e8e\u67e5\u627e",
+   "fieldname": "op_mark",
+   "fieldtype": "Data",
+   "label": "Op Mark"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-07-26 11:40:06",
+ "modified": "2024-08-06 08:08:35",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Semi Product Operate",

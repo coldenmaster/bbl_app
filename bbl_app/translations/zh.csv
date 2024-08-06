@@ -405,6 +405,9 @@ Cus Batch No,批次号,
 Cus Product Code,产品代码,
 Cus Flow Id,流水号,
 Bbl Flow Id,百兰流水号,
+Op Times,操作次数,
+Op Mark,操作标记,
+
 
 
 Item rate has been updated to zero as Allow Zero Valuation Rate is checked for item {0},物料{0}的单价已根据设置更新为零,

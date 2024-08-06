@@ -1,4 +1,5 @@
 import json
+from bbl_app.utils.frappe_func import make_simi_product_batch_no
 from bbl_app.utils.uitls import safe_json_loads_from_str
 from erpnext.stock.doctype.stock_entry.stock_entry import StockEntry
 import frappe
@@ -322,7 +323,20 @@ def create_raw_bar(self):
 
 
 
-mock_bar_to_forge =  {'name': 'MAT-STE-2024-00332', 'owner': 'Administrator', 'creation': '2024-07-17 10:22:44', 'modified': '2024-07-17 10:22:44', 'modified_by': 'Administrator', 'docstatus': 1, 'idx': 0, 'naming_series': 'MAT-STE-.YYYY.-', 'stock_entry_type': 'Manufacture', 'outgoing_stock_entry': None, 'purpose': 'Manufacture', 'add_to_transit': 0, 'work_order': 'MFG-WO-2024-00048', 'purchase_order': None, 'subcontracting_order': None, 'delivery_note_no': None, 'sales_invoice_no': None, 'pick_list': None, 'purchase_receipt_no': None, 'company': '百兰车轴', 'posting_date': '2024-07-17', 'posting_time': '10:22:44.226635', 'set_posting_time': 0, 'inspection_required': 0, 'apply_putaway_rule': 0, 'from_bom': 1, 'use_multi_level_bom': 1, 'bom_no': 'BOM-2310D_锻坯-001', 'fg_completed_qty': 30.0, 'process_loss_percentage': 0.0, 'process_loss_qty': 0.0, 'from_warehouse': '锻造车间仓库 - 百兰', 'source_warehouse_address': None, 'source_address_display': None, 'to_warehouse': '锻造车间仓库 - 百兰', 'target_warehouse_address': None, 'target_address_display': None, 'scan_barcode': None, 'total_outgoing_value': 2822.1, 'total_incoming_value': 2822.1, 'value_difference': 0.0, 'total_additional_costs': 0.0, 'supplier': None, 'supplier_name': None, 'supplier_address': None, 'address_display': None, 'project': None, 'select_print_heading': None, 'letter_head': None, 'is_opening': 'No', 'remarks': None, 'per_transferred': 0.0, 'total_amount': 0.0, 'job_card': None, 'amended_from': None, 'credit_note': None, 'is_return': 0, 'doctype': 'Stock Entry', 'items': [{'name': 'fbcagd583v', 'owner': 'Administrator', 'creation': '2024-07-17 10:22:44', 'modified': '2024-07-17 10:22:44', 'modified_by': 'Administrator', 'docstatus': 1, 'idx': 1, 'barcode': None, 'has_item_scanned': 0, 's_warehouse': '锻造车间仓库 - 百兰', 't_warehouse': None, 'item_code': '2310D_短棒料', 'item_name': '2310D_短棒料', 'is_finished_item': 0, 'is_scrap_item': 0, 'quality_inspection': None, 'subcontracted_item': None, 'description': '2310D_短棒料', 'item_group': '短棒料', 'image': None, 'qty': 30.0, 'transfer_qty': 30.0, 'retain_sample': 0, 'uom': '根', 'stock_uom': '根', 'conversion_factor': 1.0, 'sample_quantity': 0, 'basic_rate': 94.07, 'additional_cost': 0.0, 'valuation_rate': 94.07, 'allow_zero_valuation_rate': 0, 'set_basic_rate_manually': 0, 'basic_amount': 2822.1, 'amount': 2822.1, 'use_serial_batch_fields': 0, 'serial_and_batch_bundle': 'SABB-00001008', 'serial_no': None, 'batch_no': None, 'expense_account': '库存调整 - 百兰', 'cost_center': '主 - 百兰', 'project': None, 'actual_qty': 37.0, 'transferred_qty': 0.0, 'bom_no': None, 'allow_alternative_item': 0, 'material_request': None, 'material_request_item': None, 'original_item': None, 'against_stock_entry': None, 'ste_detail': None, 'po_detail': None, 'sco_rm_detail': None, 'putaway_rule': None, 'reference_purchase_receipt': None, 'job_card_item': None, 'parent': 'MAT-STE-2024-00332', 'parentfield': 'items', 'parenttype': 'Stock Entry', 'doctype': 'Stock Entry Detail', '__unsaved': 1}, {'name': 'fbcala58kt', 'owner': 'Administrator', 'creation': '2024-07-17 10:22:44', 'modified': '2024-07-17 10:22:44', 'modified_by': 'Administrator', 'docstatus': 1, 'idx': 2, 'barcode': None, 'has_item_scanned': 0, 's_warehouse': None, 't_warehouse': '锻造车间仓库 - 百兰', 'item_code': '2310D_锻坯', 'item_name': '2310D_锻坯', 'is_finished_item': 1, 'is_scrap_item': 0, 'quality_inspection': None, 'subcontracted_item': None, 'description': '2310D_锻坯', 'item_group': '过程半成品', 'image': None, 'qty': 30.0, 'transfer_qty': 30.0, 'retain_sample': 0, 'uom': '根', 'stock_uom': '根', 'conversion_factor': 1.0, 'sample_quantity': 0, 'basic_rate': 94.07, 'additional_cost': 0.0, 'valuation_rate': 94.07, 'allow_zero_valuation_rate': 0, 'set_basic_rate_manually': 0, 'basic_amount': 2822.1, 'amount': 2822.1, 'use_serial_batch_fields': 0, 'serial_and_batch_bundle': None, 'serial_no': None, 'batch_no': None, 'expense_account': '库存调整 - 百兰', 'cost_center': '主 - 百兰', 'project': None, 'actual_qty': 264.0, 'transferred_qty': 0.0, 'bom_no': 'BOM-2310D_锻坯-001', 'allow_alternative_item': 0, 'material_request': None, 'material_request_item': None, 'original_item': None, 'against_stock_entry': None, 'ste_detail': None, 'po_detail': None, 'sco_rm_detail': None, 'putaway_rule': None, 'reference_purchase_receipt': None, 'job_card_item': None, 'parent': 'MAT-STE-2024-00332', 'parentfield': 'items', 'parenttype': 'Stock Entry', 'doctype': 'Stock Entry Detail', '__unsaved': 1}], 'additional_costs': [], '__unsaved': 1}
+mock_bar_to_forge =  {'name': 'MAT-STE-2024-00332', 'owner': 'Administrator', 
+                        'creation': '2024-07-17 10:22:44', 'modified': '2024-07-17 10:22:44', 'modified_by': 'Administrator', 'docstatus': 1, 'idx': 0,
+                        'naming_series': 'MAT-STE-.YYYY.-', 'stock_entry_type': 'Manufacture', 'outgoing_stock_entry': None, 'purpose': 'Manufacture',
+                          'add_to_transit': 0, 'work_order': 'MFG-WO-2024-00048', 'purchase_order': None, 
+                          'subcontracting_order': None, 'delivery_note_no': None, 'sales_invoice_no': None, 'pick_list': None, 'purchase_receipt_no': None, 
+                          'company': '百兰车轴', 'posting_date': '2024-07-17', 'posting_time': '10:22:44.226635', 'set_posting_time': 0, 'inspection_required': 0, 
+                          'apply_putaway_rule': 0, 'from_bom': 1, 'use_multi_level_bom': 1, 'bom_no': 'BOM-2310D_锻坯-001', 'fg_completed_qty': 30.0, 
+                          'process_loss_percentage': 0.0, 'process_loss_qty': 0.0, 'from_warehouse': '锻造车间仓库 - 百兰', 'source_warehouse_address': None, 
+                          'source_address_display': None, 'to_warehouse': '锻造车间仓库 - 百兰', 'target_warehouse_address': None, 'target_address_display': None, 
+                          'scan_barcode': None, 'total_outgoing_value': 2822.1, 'total_incoming_value': 2822.1, 'value_difference': 0.0, 'total_additional_costs': 0.0, 
+                          'supplier': None, 'supplier_name': None, 'supplier_address': None, 'address_display': None, 'project': None, 'select_print_heading': None, 
+                          'letter_head': None, 'is_opening': 'No', 'remarks': None, 'per_transferred': 0.0, 'total_amount': 0.0, 'job_card': None, 'amended_from': None, 
+                          'credit_note': None, 'is_return': 0, 'doctype': 'Stock Entry', 'items': [{'name': 'fbcagd583v', 'owner': 'Administrator', 'creation': '2024-07-17 10:22:44',
+                           'modified': '2024-07-17 10:22:44', 'modified_by': 'Administrator', 'docstatus': 1, 'idx': 1, 'barcode': None, 'has_item_scanned': 0, 's_warehouse': '锻造车间仓库 - 百兰', 't_warehouse': None, 'item_code': '2310D_短棒料', 'item_name': '2310D_短棒料', 'is_finished_item': 0, 'is_scrap_item': 0, 'quality_inspection': None, 'subcontracted_item': None, 'description': '2310D_短棒料', 'item_group': '短棒料', 'image': None, 'qty': 30.0, 'transfer_qty': 30.0, 'retain_sample': 0, 'uom': '根', 'stock_uom': '根', 'conversion_factor': 1.0, 'sample_quantity': 0, 'basic_rate': 94.07, 'additional_cost': 0.0, 'valuation_rate': 94.07, 'allow_zero_valuation_rate': 0, 'set_basic_rate_manually': 0, 'basic_amount': 2822.1, 'amount': 2822.1, 'use_serial_batch_fields': 0, 'serial_and_batch_bundle': 'SABB-00001008', 'serial_no': None, 'batch_no': None, 'expense_account': '库存调整 - 百兰', 'cost_center': '主 - 百兰', 'project': None, 'actual_qty': 37.0, 'transferred_qty': 0.0, 'bom_no': None, 'allow_alternative_item': 0, 'material_request': None, 'material_request_item': None, 'original_item': None, 'against_stock_entry': None, 'ste_detail': None, 'po_detail': None, 'sco_rm_detail': None, 'putaway_rule': None, 'reference_purchase_receipt': None, 'job_card_item': None, 'parent': 'MAT-STE-2024-00332', 'parentfield': 'items', 'parenttype': 'Stock Entry', 'doctype': 'Stock Entry Detail', '__unsaved': 1}, {'name': 'fbcala58kt', 'owner': 'Administrator', 'creation': '2024-07-17 10:22:44', 'modified': '2024-07-17 10:22:44', 'modified_by': 'Administrator', 'docstatus': 1, 'idx': 2, 'barcode': None, 'has_item_scanned': 0, 's_warehouse': None, 't_warehouse': '锻造车间仓库 - 百兰', 'item_code': '2310D_锻坯', 'item_name': '2310D_锻坯', 'is_finished_item': 1, 'is_scrap_item': 0, 'quality_inspection': None, 'subcontracted_item': None, 'description': '2310D_锻坯', 'item_group': '过程半成品', 'image': None, 'qty': 30.0, 'transfer_qty': 30.0, 'retain_sample': 0, 'uom': '根', 'stock_uom': '根', 'conversion_factor': 1.0, 'sample_quantity': 0, 'basic_rate': 94.07, 'additional_cost': 0.0, 'valuation_rate': 94.07, 'allow_zero_valuation_rate': 0, 'set_basic_rate_manually': 0, 'basic_amount': 2822.1, 'amount': 2822.1, 'use_serial_batch_fields': 0, 'serial_and_batch_bundle': None, 'serial_no': None, 'batch_no': None, 'expense_account': '库存调整 - 百兰', 'cost_center': '主 - 百兰', 'project': None, 'actual_qty': 264.0, 'transferred_qty': 0.0, 'bom_no': 'BOM-2310D_锻坯-001', 'allow_alternative_item': 0, 'material_request': None, 'material_request_item': None, 'original_item': None, 'against_stock_entry': None, 'ste_detail': None, 'po_detail': None, 'sco_rm_detail': None, 'putaway_rule': None, 'reference_purchase_receipt': None, 'job_card_item': None, 'parent': 'MAT-STE-2024-00332', 'parentfield': 'items', 'parenttype': 'Stock Entry', 'doctype': 'Stock Entry Detail', '__unsaved': 1}], 'additional_costs': [], '__unsaved': 1}
 
 
 def process_bar_to_forge(self):
@@ -398,8 +412,11 @@ def create_forge_blank(bar_item, forge_item, voucher_no):
     _print_blue_pp(bar_doc)
 
     # forge_bathch_no = 'DP-' + today().replace('-', '') + '-' + forge_item.item_code.replace('_锻坯', '')[-4:] + '-' + frappe.utils.random_string(2)
-    blank_batch_no = _make_blank_batch_no(bar_batch_no)
+    # blank_batch_no = _make_blank_batch_no(bar_batch_no)
+    semi_product_name = forge_item.item_code.replace('_锻坯', '')
+    blank_batch_no = make_simi_product_batch_no(semi_product_name, "DP")
 
+    # 这里改为每次都新建一个锻坯批次信息
     if not frappe.db.exists('Semi Product Manage', blank_batch_no):
         forge_doc = frappe.new_doc(**{
             'doctype': 'Semi Product Manage',
@@ -415,7 +432,9 @@ def create_forge_blank(bar_item, forge_item, voucher_no):
             'warehouse': forge_item.t_warehouse,
             'status': '未使用',
             'semi_product': forge_item.item_code.replace('_锻坯', ''),
+            'product_form': '锻坯',
             'link_doc': forge_item.parent,
+            # 'op_times': 0,
             }).insert(ignore_links=True)
     else:
         forge_doc = frappe.get_doc('Semi Product Manage', blank_batch_no)
@@ -455,11 +474,13 @@ def create_forge_blank(bar_item, forge_item, voucher_no):
     # todo 建操作记录
 
 # blank 毛坯
-def _make_blank_batch_no(bar_batch_no):
-    # todo 锻坯批次号内是否需要标识原材料炉号
-    # forge_bathch_no = 'DP-' + item_code.replace('_锻坯', '')[-6:] + '-' + today().replace('-', '')
-    forge_bathch_no = bar_batch_no.replace('DBL', 'DP')
-    return forge_bathch_no
+# def _make_blank_batch_no(bar_batch_no):
+#     # todo 锻坯批次号内是否需要标识原材料炉号
+#     # forge_bathch_no = 'DP-' + item_code.replace('_锻坯', '')[-6:] + '-' + today().replace('-', '')
+#     forge_bathch_no = bar_batch_no.replace('DBL', 'DP')
+#     return forge_bathch_no
+
+
 
 def t1():
     item_code = '5004_锻坯'

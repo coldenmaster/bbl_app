@@ -1,14 +1,19 @@
 import re
 from datetime import datetime
 
+from bbl_api.utils import print_blue
+
+# from bbl_app.bbl_app.common.cp_qrcode import CpQrcode
+
 customers = {
     'dena' :{"name": "东风德纳", "prefix": "X1250"},
     'hande': {"name": "陕汽汉德", "prefix": "652"},
     'zhongqi': {"name": "重汽", "prefix": "068"},
-    'sanyi': {"name": "三一", "prefix": "SANYI"},
+    'sanyi': {"name": "三一", "prefix": "SY"},
+    'liuzhou_fangsheng': {"name": "柳州方盛", "prefix": "171"},
     'bbl': {"name": "百兰", "prefix": "BBL"},
 
-    'other': {"name": "未知客户", "prefix": ""},
+    'other': {"name": "", "prefix": ""},
     
 }
 class CpQrcode:
@@ -30,14 +35,7 @@ class CpQrcode:
     def is_zhongqi(self):
         return self.qrcode_str.startswith("068")
     
-    def is_sanyi(self):
-        return False
 
-    def is_bbl(self):
-        # ZQ0CT202407180013
-        if len(self.qrcode_str) == 17 and self.qrcode_str[-12:-9] == '202':
-            return True
-        return False
 
     def get_company(self):
         if self.is_dena():
@@ -48,6 +46,8 @@ class CpQrcode:
             return customers.get("zhongqi")['name']
         elif self.is_sanyi():
             return customers.get("sanyi")['name']
+        elif self.is_liuzhou_fangsheng():
+            return customers.get("liuzhou_fangsheng")['name']
         elif self.is_bbl():
             return customers.get("bbl")['name']
         else:
@@ -167,9 +167,65 @@ class CpQrcode:
         self.upload_bean["flow_id"] = self.qrcode_str[17:17+4]
         return self.upload_bean
 
-    def parse_sanyi(self):
-        pass
+# =======================
+    # SYC0087315724505432112010001
+    # SYC008731572 物料编码
+    # 450543 6位供应商编码
+    # 211201 年月日
+    # 0001 流水号
+    def is_sanyi(self):
+        return self.qrcode_str.startswith("SY")
 
+    def parse_sanyi(self):
+        if not self.is_sanyi():
+            self.err_msg = "*识别厂家失败"
+            return False
+
+        company = customers.get("sanyi")["name"]
+        self.err_msg = company
+        # if not self.validate_zhongqi():
+        #     self.err_msg += "/*二维码验证错误"
+        #     return False
+
+        self.decode_flag = True
+        self.err_msg += "/二维码验证成功"
+        self.upload_bean["company"] = company
+        self.upload_bean["product_code"] = self.qrcode_str[:12]
+        self.upload_bean["code_date"] = self.split_date_str(self.qrcode_str[-4-6:-4])
+        self.upload_bean["flow_id"] = self.qrcode_str[-4:]
+# =======================
+    # 17102112018702408050044
+    def is_liuzhou_fangsheng(self):
+        return self.qrcode_str.startswith("171")
+
+    def parse_liuzhou_fangsheng(self):
+        if not self.is_liuzhou_fangsheng():
+            self.err_msg = "*识别厂家失败"
+            return False
+
+        company = customers.get("liuzhou_fangsheng")["name"]
+        self.err_msg = company
+        # if not self.validate_zhongqi():
+        #     self.err_msg += "/*二维码验证错误"
+        #     return False
+
+        self.decode_flag = True
+        self.err_msg += "/二维码验证成功"
+        self.upload_bean["company"] = company
+        self.upload_bean["product_code"] = self.qrcode_str[:12]
+        self.upload_bean["code_date"] = self.split_date_str(self.qrcode_str[-4-6:-4])
+        self.upload_bean["flow_id"] = self.qrcode_str[-4:]
+# =======================
+    def is_bbl(self):
+        # ZQ0CT202407180013 or BBL*P3*C2312IY249*0005
+        first5 = self.qrcode_str[0:5].upper()
+        if first5.startswith("BBL"):
+            return True
+        # if len(self.qrcode_str) == 17 and self.qrcode_str[-12:-9] == '202':
+        if self.qrcode_str[-12:-9] == '202':
+            return True
+        return False
+    
     def parse_bbl(self):
         company = customers.get("bbl")["name"]
         if not self.is_bbl():
@@ -181,15 +237,21 @@ class CpQrcode:
         #     self.err_msg += "/*二维码验证错误"
         #     return False
 
+        sep = '-'
+        if not sep in self.qrcode_str:
+            sep = '*'
+        strs = self.qrcode_str.split(sep)
+        if len(strs) < 4:
+            return {}
         self.decode_flag = True
         self.err_msg += "/二维码验证成功"
         self.upload_bean["company"] = company
-        self.upload_bean["product_code"] = self.qrcode_str[:-12]
-        self.upload_bean["forge_batch"] = ""
-        self.upload_bean["code_date"] = self.split_date_str(self.qrcode_str[-10:-10+6])
-        self.upload_bean["flow_id"] = self.qrcode_str[-4:]
+        self.upload_bean["product_code"] = strs[1]
+        self.upload_bean["forge_batch"] = strs[2]
+        self.upload_bean["flow_id"] = strs[-1]
         return self.upload_bean
 
+# ======================
     def parse_data(self):
         self.qrcode_str = self.qrcode_str.strip()
         self.decode_flag = False
@@ -202,6 +264,8 @@ class CpQrcode:
             self.parse_zhongqi()
         elif self.is_sanyi():
             self.parse_sanyi()
+        elif self.is_liuzhou_fangsheng():
+            self.parse_liuzhou_fangsheng()
         elif self.is_bbl():
             self.parse_bbl()
         else:
@@ -211,10 +275,40 @@ class CpQrcode:
         return self.upload_bean
     
 
-
-
     def check(self):
         self.qrcode_str = self.qrcode_str.strip()
         if self.is_dena() or self.is_hande() or self.is_zhongqi():
             return True
         return False
+
+
+def parse_bbl_forge_batch_no(forge_batch_no):
+    # C2312IY249
+    forge_info = {}
+    # 材质代码
+    forge_info["material_grade"] = forge_batch_no[0]
+    forge_info["month"] = forge_batch_no[1:5]
+    match = re.search(r'\d+$', forge_batch_no)
+    product_line_start = 5
+    product_line_end = 6
+    if match:
+        forge_info["heat_no_idx"] = match.group()
+        product_line_end = match.start() - 1
+    # 材料炉号代码，只打刻当年同规格材料炉号进厂顺序号
+    forge_info["product_line"] = forge_batch_no[product_line_start:product_line_end]
+    forge_info["material_supplier"] = forge_batch_no[product_line_end]
+    return forge_info
+
+
+if __name__ == "__main__":
+    # s2 = 'C2312IY249'
+    # t2 = parse_bbl_forge_batch_no(s2)
+    # print_blue(t2)
+    s1 = "BBL*P3*C2312IY249*0005"
+    s1 = "BBL-P3-C2312IY249*1-0005"
+    s1 = "SYC0087315724505432112010001"
+    s1 = ""
+    s1 = "17102112018702408050044"
+    
+    t1 = CpQrcode(s1)
+    print_blue(t1.parse_data())

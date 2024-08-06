@@ -74,7 +74,6 @@ class ScanProductDialog {
             this.single_code_check = 0;
         this.counter = Number(localStorage.getItem("pruduct_scan_code_counter")) || 0;
         this.last_product_first_5 = localStorage.getItem("last_product_first_5") || "";
-        log(this.counter, this.last_product_first_5);
 
         this.make();
     }
@@ -101,10 +100,14 @@ class ScanProductDialog {
                     let v = d.get_value("product_barcode").trim();
                     // this.cnt = this.cnt + 1;
                     // log("onchange:" + this.cnt, v);
-                    this.auto_clear(v);
                     if (!v)
                         return;
                     d.set_value("product_barcode", "");
+                    if (v.length < 10) {
+                        frappe.show_alert("输入二维码少于10字符");
+                        return;
+                    }
+                    // this.auto_clear(v);
                     if (this.process_barcode(v)) {
                         setTimeout(() => { 
                             this.send_back_data(this.values); 
@@ -190,17 +193,16 @@ class ScanProductDialog {
         // let me = this;
         this.blur_timer = setInterval(() => {
             if (document.activeElement != this.scan_input_df.$input[0]) {
-                // log("设置焦点+1");
                 this.scan_input_df.set_focus();
             }
         }, 30000);
-        this.dialog.$wrapper.on("click", function () {
+        // this.dialog.$wrapper.on("click", function () {
             // log("dialog.$wrapper.click");
-        });
+        // });
         this.dialog.get_primary_btn().off("click").on("click", () => {
             frappe.show_alert("自动上传，不需要点击确认按钮");
         });
-        window.m3= this;
+        // window.me= this;
         // window.dg = this.dialog;
         // window.df = this.scan_input_df;
         // window.bt = dg.get_primary_btn()
@@ -216,7 +218,7 @@ class ScanProductDialog {
         if (!this.customer_code) {
             this.customer_code = v;
             d.set_value("customer_code", v);
-            log("!this.single_code_check", !this.single_code_check, this.single_code_check);
+            this.auto_clear(v);
             if (!this.single_code_check)
                 return false;
         }
@@ -226,10 +228,13 @@ class ScanProductDialog {
             this.bbl_code = v;
             if (this.customer_code.length < this.bbl_code.length)
                 [this.customer_code, this.bbl_code] = [this.bbl_code, this.customer_code];
+            if (cpQrcode.isBbl(this.customer_code) && !cpQrcode.isBbl(this.bbl_code))
+                [this.customer_code, this.bbl_code] = [this.bbl_code, this.customer_code];
         }
 
         d.set_value("bbl_code", this.bbl_code);
         d.set_value("customer_code", this.customer_code);
+        this.auto_clear(v);
         
         this.accu_counter();
         this.values = {
@@ -240,7 +245,7 @@ class ScanProductDialog {
             single_code_check: this.single_code_check,
             counter: this.counter,
         }
-        log("process_barcode, values:", this.values);
+        // log("process_barcode, values:", this.values);
         return true;
     }
 
@@ -259,7 +264,7 @@ class ScanProductDialog {
     }
 
     send_back_data(values) {
-        console.log("send_back_data values:", values);
+        // console.log("send_back_data values:", values);
         frappe.call({
             method: "bbl_app.machine_shop.doctype.product_scan.product_scan.send_back_data",
             args: values,
@@ -297,7 +302,6 @@ class ScanProductDialog {
         // log("clear_dialog 完成")
     }
     
-    
     auto_clear(v) {
         if (v) {
             if (this.itv_timer) {
@@ -333,9 +337,7 @@ const default_user_list = frappe.session.user_fullname
     + "\n" + "张宏波"
 
 function add_user_dialog() {
-    log("into add_user_dialog")
     frappe.prompt("请输入员工姓名", (values) => {
-        log('values', values);
         let v = localStorage.getItem("prodct_scan_user_select");
         if (!v) { 
             v = default_user_list;
@@ -345,3 +347,46 @@ function add_user_dialog() {
     })
 }
 
+var cpQrcode = {
+    isCustomer: function (qrcodeStr) {
+        qrcodeStr = qrcodeStr.trim();
+        if (this.isDena(qrcodeStr) || this.isHande(qrcodeStr) || this.isZhongqi(qrcodeStr))
+            return true;
+        return false;
+    },
+
+    isBbl: function (qrcodeStr)  {
+        // ZQ0CT202407180013 or BBl*123*dzbatchno*1*a
+        let first5 = qrcodeStr.substring(0, 5).toUpperCase();
+        if (first5.startsWith("BBL")) {
+            return true;
+        }
+        if (qrcodeStr.substring(5, 8) === '202') {
+            return true;
+        }
+        return false;
+    },
+
+    isDena: function (qrcodeStr) {
+        if (qrcodeStr.startsWith("X1250")) {
+            return true;
+        }
+        return false;
+    },
+    isHande: function (qrcodeStr) {
+        if (qrcodeStr.startsWith("652")) {
+            return true;
+        }
+        return false;
+    },
+    isZhongqi: function (qrcodeStr) {
+        if (qrcodeStr.startsWith("068")) {
+            return true;
+        }
+        return false;
+    },
+
+
+}
+
+window.t1 = cpQrcode;

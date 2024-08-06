@@ -24,6 +24,7 @@
   "total_piece",
   "basket_no",
   "basket_in",
+  "op_mark",
   "column_break_musm",
   "warehouse",
   "warehouse_area",
@@ -41,17 +42,30 @@
   "use_date",
   "parent_batch_no",
   "last_op_voucher",
-  "note"
+  "note",
+  "section_break_ostr",
+  "lft",
+  "rgt",
+  "is_group",
+  "old_parent",
+  "parent_semi_product_manage",
+  "column_break_hvwr",
+  "op_times"
  ],
  "fields": [
   {
+   "bold": 1,
+   "columns": 2,
    "fieldname": "batch_no",
    "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
    "label": "Batch No",
    "no_copy": 1,
    "reqd": 1,
-   "set_only_once": 1,
-   "unique": 1
+   "unique": 1,
+   "width": "200px"
   },
   {
    "fetch_from": "heat_no.raw_name",
@@ -232,6 +246,8 @@
   {
    "fieldname": "product_form",
    "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Product Form",
    "options": "Product Form"
   },
@@ -247,7 +263,7 @@
    "default": "0",
    "fieldname": "last_in_piece",
    "fieldtype": "Int",
-   "in_list_view": 1,
+   "hidden": 1,
    "label": "Last In Piece",
    "no_copy": 1
   },
@@ -292,15 +308,76 @@
    "fieldtype": "Data",
    "label": "Basket In",
    "no_copy": 1
+  },
+  {
+   "fieldname": "lft",
+   "fieldtype": "Int",
+   "label": "Left",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "rgt",
+   "fieldtype": "Int",
+   "label": "Right",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_group",
+   "fieldtype": "Check",
+   "label": "Is Group",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "old_parent",
+   "fieldtype": "Link",
+   "label": "Old Parent",
+   "options": "Semi Product Manage",
+   "read_only": 1
+  },
+  {
+   "fieldname": "parent_semi_product_manage",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Parent Semi Product Manage",
+   "no_copy": 1,
+   "options": "Semi Product Manage",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_ostr",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_hvwr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "op_times",
+   "fieldtype": "Int",
+   "label": "Op Times",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "op_mark",
+   "fieldtype": "Data",
+   "label": "Op Mark",
+   "no_copy": 1
   }
  ],
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-07-26 11:36:09",
+ "modified": "2024-08-06 08:08:06",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Semi Product Manage",
  "naming_rule": "By fieldname",
+ "nsm_parent_field": "parent_semi_product_manage",
  "owner": "Administrator",
  "permissions": [
   {
@@ -346,5 +423,6 @@
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
+ "title_field": "semi_product_name",
  "track_changes": 1
 }

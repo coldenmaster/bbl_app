@@ -1,6 +1,7 @@
 # Copyright (c) 2024, bbl and contributors
 # For license information, please see license.txt
 
+from bbl_app.utils.frappe_func import make_simi_product_batch_no
 import frappe
 from frappe.model.document import Document
 from frappe.model.naming import getseries, parse_naming_series
@@ -50,12 +51,12 @@ mock_data = {'amended_from': None,
  'test': None}
 
 def spm_op(opts):
-    print_red("spm_op：半成品加工单 处理半成品管理记录 ")
+    print_red("spm_op:半成品加工单 处理半成品管理记录 ")
     if not opts:
         print_red("mock data 😁")
         opts = mock_data #置入假数据
     opts = frappe._dict(opts)
-    print_green(opts)
+    # print_green(opts)
     # 检查目标产品是否有物料名称，没有新建
     _create_item(opts.finish_name)
 
@@ -108,12 +109,14 @@ def _semi_product_batch_convert(opts):
     semi_doc_source = frappe.get_doc('Semi Product Manage', opts.spm_source)
     semi_doc_target = frappe.copy_doc(semi_doc_source, False)
     item_name = opts.finish_name
-    target_product_form = item_name.split('_')[-1]
+    semi_product_name, target_product_form = item_name.rsplit('_', 1)
+    
     product_form_doc = frappe.get_cached_doc('Product Form', target_product_form)
-    abbr = product_form_doc.abbr
+    target_abbr = product_form_doc.abbr
     # batch_no = abbr + getseries(abbr, 3)
-    batch_no = parse_naming_series(abbr + '-.YY.MM.DD.-.###')
-    print_red(f'{product_form_doc=}')
+    # batch_no = parse_naming_series(target_abbr + '-.YY.MM.DD.-.###')
+    batch_no = make_simi_product_batch_no(semi_product_name, target_abbr)
+    # print_red(f'{product_form_doc=} {batch_no=} {semi_product_name=}')
 
     # basket_no有新使用的，清除掉其它使用次框号的
     if (opts.basket_in):
@@ -131,14 +134,19 @@ def _semi_product_batch_convert(opts):
         'employee': opts.employee,
         'product_form': target_product_form,
         'warehouse': product_form_doc.default_warehouse,
-        'parent_batch_no': opts.spm_source,
-        'last_op_voucher': opts.name,
         'forge_batch_no': opts.forge_batch_no,
         'basket_in': opts.basket_in,
         'basket_no': opts.basket_in,
         'bbl_heat_no': opts.bbl_heat_no,
         'note': opts.op_note,
+        'op_times': semi_doc_source.op_times + 1,
+        'last_op_voucher': opts.name,
+        # 'parent_batch_no': opts.spm_source,
+        'parent_semi_product_manage': opts.spm_source,
+        'old_parent': opts.spm_source,
         # 'status': '未使用', # default
+        'op_mark': opts.op_mark,
+
     }).insert(ignore_permissions=True)
     
     source_remaining = semi_doc_source.remaining_piece - opts.finish_qty
@@ -154,6 +162,7 @@ def _semi_product_batch_convert(opts):
         'last_op_voucher': opts.name,
         'basket_no': semi_doc_source.basket_in if source_remaining != 0 else '',
         'basket_in': semi_doc_source.basket_in if source_remaining != 0 else '',
+        'is_group': 1,
     }).save()
 
 
