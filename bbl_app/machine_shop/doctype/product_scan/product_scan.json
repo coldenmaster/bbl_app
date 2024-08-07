@@ -30,6 +30,7 @@
   "cus_batch_no",
   "column_break_qxra",
   "cus_product_code",
+  "drawing_id",
   "cus_flow_id"
  ],
  "fields": [
@@ -143,6 +144,7 @@
   {
    "fieldname": "cus_product_code",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Cus Product Code"
   },
   {
@@ -182,11 +184,16 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Forge Batch No"
+  },
+  {
+   "fieldname": "drawing_id",
+   "fieldtype": "Data",
+   "label": "Drawing Id"
   }
  ],
  "hide_toolbar": 1,
  "links": [],
- "modified": "2024-08-06 16:27:48",
+ "modified": "2024-08-07 11:25:47",
  "modified_by": "Administrator",
  "module": "Machine Shop",
  "name": "Product Scan",

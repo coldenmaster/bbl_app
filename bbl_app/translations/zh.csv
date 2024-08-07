@@ -407,6 +407,10 @@ Cus Flow Id,流水号,
 Bbl Flow Id,百兰流水号,
 Op Times,操作次数,
 Op Mark,操作标记,
+Drawing Id,图纸编号,
+Drawing Name,图纸名称,
+Drawing Version,图纸版本,
+Drawing No,图纸编号,
 
 
 

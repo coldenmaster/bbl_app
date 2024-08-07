@@ -1,7 +1,7 @@
 import re
 from datetime import datetime
 
-from bbl_api.utils import print_blue
+from bbl_api.utils import print_blue, print_cyan
 
 # from bbl_app.bbl_app.common.cp_qrcode import CpQrcode
 
@@ -9,9 +9,12 @@ customers = {
     'dena' :{"name": "东风德纳", "prefix": "X1250"},
     'hande': {"name": "陕汽汉德", "prefix": "652"},
     'zhongqi': {"name": "重汽", "prefix": "068"},
-    'sanyi': {"name": "三一", "prefix": "SY"},
-    'liuzhou_fangsheng': {"name": "柳州方盛", "prefix": "171"},
-    'bbl': {"name": "百兰", "prefix": "BBL"},
+    'sanyi': {"name": "三一重工", "prefix": "SY"},
+    'liuzhou_fangsheng': {"name": "柳州/苏州方盛", "prefix": "1710"},
+    'hefei_fangsheng': {"name": "合肥方盛", "prefix": "7027"},
+    'qingdao_haitong': {"name": "青岛海通", "prefix": "S0383"},
+            # 'liuzhou_fangsheng': {"name": "方盛", "prefix": "171"}, # 条码上不能分出是柳州还是柳州方盛
+    'bbl': {"name": "百兰车轴", "prefix": "BBL"},
 
     'other': {"name": "", "prefix": ""},
     
@@ -24,7 +27,8 @@ class CpQrcode:
         self.upload_bean = {}
 
     def split_date_str(self, date_str):
-        return "20" + date_str[0:2] + "-" + date_str[2:4] + "-" + date_str[4:6]
+        if date_str.isdigit():
+            return "20" + date_str[0:2] + "-" + date_str[2:4] + "-" + date_str[4:6]
 
     def is_dena(self):
         return self.qrcode_str.startswith("X1250")
@@ -48,6 +52,10 @@ class CpQrcode:
             return customers.get("sanyi")['name']
         elif self.is_liuzhou_fangsheng():
             return customers.get("liuzhou_fangsheng")['name']
+        elif self.is_hefei_fangsheng():
+            return customers.get("hefei_fangsheng")['name']
+        elif self.is_qingdao_haitong():
+            return customers.get("qingdao_haitong")['name']
         elif self.is_bbl():
             return customers.get("bbl")['name']
         else:
@@ -121,6 +129,7 @@ class CpQrcode:
         self.err_msg += "/二维码验证成功"
         self.upload_bean["company"] = company
         self.upload_bean["product_code"] = "C" + strs[1]
+        self.upload_bean["drawing_id"] = "C" + strs[1]
         self.upload_bean["forge_batch"] = batch_code[0:11]
         self.upload_bean["code_date"] = self.split_date_str(batch_code[5:5+6])
         self.upload_bean["flow_id"] = batch_code[11:]
@@ -142,6 +151,7 @@ class CpQrcode:
         self.err_msg += "/二维码验证成功"
         self.upload_bean["company"] = company
         self.upload_bean["product_code"] = self.qrcode_str[3:3+5]
+        self.upload_bean["drawing_id"] = self.qrcode_str[3:3+5]
         self.upload_bean["forge_batch"] = self.qrcode_str[8:8+6]
         self.upload_bean["code_date"] = self.split_date_str(self.qrcode_str[8:8+6])
         self.upload_bean["flow_id"] = self.qrcode_str[14:]
@@ -162,6 +172,7 @@ class CpQrcode:
         self.err_msg += "/二维码验证成功"
         self.upload_bean["company"] = company
         self.upload_bean["product_code"] = self.qrcode_str[3:3+6]
+        self.upload_bean["drawing_id"] = self.qrcode_str[3:3+6]
         self.upload_bean["forge_batch"] = ""
         self.upload_bean["code_date"] = self.split_date_str(self.qrcode_str[10:10+6])
         self.upload_bean["flow_id"] = self.qrcode_str[17:17+4]
@@ -190,13 +201,14 @@ class CpQrcode:
         self.decode_flag = True
         self.err_msg += "/二维码验证成功"
         self.upload_bean["company"] = company
-        self.upload_bean["product_code"] = self.qrcode_str[:12]
+        self.upload_bean["product_code"] = self.qrcode_str[-16:-10]
+        self.upload_bean["drawing_id"] = self.qrcode_str[:-16]
         self.upload_bean["code_date"] = self.split_date_str(self.qrcode_str[-4-6:-4])
         self.upload_bean["flow_id"] = self.qrcode_str[-4:]
 # =======================
     # 17102112018702408050044
     def is_liuzhou_fangsheng(self):
-        return self.qrcode_str.startswith("171")
+        return self.qrcode_str.startswith("1710")
 
     def parse_liuzhou_fangsheng(self):
         if not self.is_liuzhou_fangsheng():
@@ -212,9 +224,56 @@ class CpQrcode:
         self.decode_flag = True
         self.err_msg += "/二维码验证成功"
         self.upload_bean["company"] = company
-        self.upload_bean["product_code"] = self.qrcode_str[:12]
+        self.upload_bean["product_code"] = self.qrcode_str[4:13]
+        self.upload_bean["drawing_id"] = self.qrcode_str[4:13]
         self.upload_bean["code_date"] = self.split_date_str(self.qrcode_str[-4-6:-4])
         self.upload_bean["flow_id"] = self.qrcode_str[-4:]
+# =======================
+    # 70279112011751901120001
+    def is_hefei_fangsheng(self):
+        return self.qrcode_str.startswith("7027")
+
+    def parse_hefei_fangsheng(self):
+        if not self.is_hefei_fangsheng():
+            self.err_msg = "*识别厂家失败"
+            return False
+
+        company = customers.get("hefei_fangsheng")["name"]
+        self.err_msg = company
+        # if not self.validate_zhongqi():
+        #     self.err_msg += "/*二维码验证错误"
+        #     return False
+
+        self.decode_flag = True
+        self.err_msg += "/二维码验证成功"
+        self.upload_bean["company"] = company
+        self.upload_bean["product_code"] = self.qrcode_str[4:13]
+        self.upload_bean["drawing_id"] = self.qrcode_str[4:13]
+        self.upload_bean["code_date"] = self.split_date_str(self.qrcode_str[-4-6:-4])
+        self.upload_bean["flow_id"] = self.qrcode_str[-4:]
+# =======================
+    # 17102112018702408050044
+    def is_qingdao_haitong(self):
+        return self.qrcode_str.startswith(customers.get("qingdao_haitong")["prefix"])
+
+    def parse_qingdao_haitong(self):
+        if not self.is_qingdao_haitong():
+            self.err_msg = "*识别厂家失败"
+            return False
+
+        company = customers.get("qingdao_haitong")["name"]
+        self.err_msg = company
+        # if not self.validate_zhongqi():
+        #     self.err_msg += "/*二维码验证错误"
+        #     return False
+
+        self.decode_flag = True
+        self.err_msg += "/二维码验证成功"
+        self.upload_bean["company"] = company
+        self.upload_bean["product_code"] = self.qrcode_str[5:15]
+        self.upload_bean["drawing_id"] = self.qrcode_str[5:15]
+        self.upload_bean["code_date"] = self.split_date_str(self.qrcode_str[15:21])
+        self.upload_bean["flow_id"] = self.qrcode_str[21:]
 # =======================
     def is_bbl(self):
         # ZQ0CT202407180013 or BBL*P3*C2312IY249*0005
@@ -242,14 +301,17 @@ class CpQrcode:
             sep = '*'
         strs = self.qrcode_str.split(sep)
         if len(strs) < 4:
-            return {}
+            # 兼容旧打印格式，无分割符 ZQ0CT202407180013
+            self.upload_bean["product_code"] = self.qrcode_str[:-12]
+            self.upload_bean["flow_id"] = self.qrcode_str[-4:]
+        else:
+            self.upload_bean["flow_id"] = strs[-1]
+            self.upload_bean["product_code"] = strs[1]
+            self.upload_bean["forge_batch"] = strs[2]
         self.decode_flag = True
         self.err_msg += "/二维码验证成功"
         self.upload_bean["company"] = company
-        self.upload_bean["product_code"] = strs[1]
-        self.upload_bean["forge_batch"] = strs[2]
-        self.upload_bean["flow_id"] = strs[-1]
-        return self.upload_bean
+        # return self.upload_bean
 
 # ======================
     def parse_data(self):
@@ -266,6 +328,10 @@ class CpQrcode:
             self.parse_sanyi()
         elif self.is_liuzhou_fangsheng():
             self.parse_liuzhou_fangsheng()
+        elif self.is_hefei_fangsheng():
+            self.parse_hefei_fangsheng()
+        elif self.is_qingdao_haitong():
+            self.parse_qingdao_haitong()
         elif self.is_bbl():
             self.parse_bbl()
         else:
@@ -303,12 +369,21 @@ def parse_bbl_forge_batch_no(forge_batch_no):
 if __name__ == "__main__":
     # s2 = 'C2312IY249'
     # t2 = parse_bbl_forge_batch_no(s2)
-    # print_blue(t2)
+    print_cyan("test:")
     s1 = "BBL*P3*C2312IY249*0005"
     s1 = "BBL-P3-C2312IY249*1-0005"
+    s1 = "SYC0087315724505432112010002"
     s1 = "SYC0087315724505432112010001"
+    s1 = "17102112371632302120001"
     s1 = ""
-    s1 = "17102112018702408050044"
+    s1 = ""
+    s1 = ""
+    s1 = ""
+    s1 = ""
+    s1 = "70279112011751901120001"
+    s1 = "UnboundLocalError: local variable 'bbl_code_info' referenced before assignment"
+    s1 = "S038330100100852305280001"
+    s1 = "0083202407240013"
     
     t1 = CpQrcode(s1)
     print_blue(t1.parse_data())

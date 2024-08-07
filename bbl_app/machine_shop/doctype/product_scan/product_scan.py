@@ -25,7 +25,7 @@ def send_back_data(**kwargs):
     """ 
     前端上传产品扫描的二维码数据:
     """
-    print_blue(kwargs)
+    # print_blue(kwargs)
     if not kwargs:
         print_red("mock data 😁")
         kwargs = _mock_data #置入假数据
@@ -42,24 +42,28 @@ def send_back_data(**kwargs):
     kwargs.doctype = "Product Scan"
     customer_cp_qrcode = CpQrcode(kwargs.customer_code)
     cus_code_info = customer_cp_qrcode.parse_data()
+
     kwargs.update({
         'customer': cus_code_info.get("company"),
         'cus_code_date': cus_code_info.get("code_date"),
         'cus_batch_no': cus_code_info.get("forge_batch"),
         'cus_product_code': cus_code_info.get("product_code"),
         'cus_flow_id': cus_code_info.get("flow_id"),
-        'product_name': cus_code_info.get("cus_product_name"),
+        'drawing_id': cus_code_info.get("drawing_id"),
+        # 'product_name': cus_code_info.get("cus_product_name"),
     })
 
-    # kwargs['bbl_code'] = kwargs.get('bbl_code') or customer_cp_qrcode.is_bbl() or ""
+    bbl_code_info = {}
     if kwargs.get('bbl_code'):
         bbl_code_info = CpQrcode(kwargs.get('bbl_code')).parse_data()
         kwargs.update({
-            'product_name': kwargs.get('product_name') or bbl_code_info.get("product_code") 
-                or cus_code_info.get('product_code') or "未识别",
+            # 'product_name': kwargs.get('product_name') or bbl_code_info.get("product_code") 
+            #     or cus_code_info.get('product_code') or "未识别",
             'bbl_flow_id': bbl_code_info.get("flow_id"),
             'forge_batch_no' : bbl_code_info.get("forge_batch"),
         })
+    kwargs['product_name'] = bbl_code_info.get("product_code") or cus_code_info.get('drawing_id') \
+                or cus_code_info.get('product_code') or "未识别",
     print_blue_pp(kwargs)
     try:
         new_doc = frappe.get_doc(kwargs)
@@ -70,7 +74,6 @@ def send_back_data(**kwargs):
     except frappe.exceptions.DuplicateEntryError as e:
         print_red("DuplicateEntryError exption")
         frappe.msgprint(f"客户二维码重复:\n{kwargs.customer_code}", raise_exception=True)
-
 
     return kwargs.get('customer_code')
 
