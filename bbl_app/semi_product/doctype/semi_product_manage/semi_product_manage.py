@@ -46,7 +46,8 @@ def _get_children(doctype, parent="", ignore_permissions=False, **filters):
             "for_date",
         ],
         filters=filters,
-        order_by="name",
+        # order_by="name",
+        order_by="for_date desc",
         ignore_permissions=ignore_permissions,
         
     )

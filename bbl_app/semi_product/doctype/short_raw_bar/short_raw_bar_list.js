@@ -105,7 +105,7 @@ function test_1(listview) {
 
 function select_work_order_dialog(item) {
     let semi_product = item.semi_product
-    let wo_product = semi_product + "_锻坯"
+    let wo_product = semi_product + "_锻坯登记"
     let wo_qty = 0
     let wo_d = new frappe.ui.Dialog({
         title: '选择工单'.bold(),

@@ -10,9 +10,9 @@
  "field_order": [
   "batch_no",
   "semi_product_name",
-  "forge_batch_no",
   "raw_name",
   "raw_heat_no",
+  "forge_batch_no",
   "bbl_heat_no",
   "cost",
   "length",
@@ -24,33 +24,41 @@
   "total_piece",
   "basket_no",
   "basket_in",
-  "op_mark",
   "column_break_musm",
-  "warehouse",
-  "warehouse_area",
   "status",
   "semi_product",
   "product_name",
-  "drawing_id",
-  "customer",
-  "product_form",
   "product_type",
-  "product_line",
+  "customer",
   "employee",
   "link_doc",
+  "short_bar_doc",
   "for_date",
   "use_date",
   "parent_batch_no",
   "last_op_voucher",
+  "op_mark",
   "note",
   "section_break_ostr",
+  "column_break_hvwr",
+  "op_times",
+  "product_form",
+  "operation",
+  "product_grade",
+  "product_line",
+  "column_break_pilk",
+  "workshop",
+  "sub_workshop",
+  "warehouse",
+  "warehouse_area",
+  "is_sub_form",
+  "section_break_jeav",
   "lft",
   "rgt",
   "is_group",
   "old_parent",
   "parent_semi_product_manage",
-  "column_break_hvwr",
-  "op_times"
+  "column_break_samu"
  ],
  "fields": [
   {
@@ -124,10 +132,9 @@
   },
   {
    "fieldname": "warehouse",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Warehouse",
-   "options": "Warehouse"
+   "label": "Warehouse"
   },
   {
    "fieldname": "warehouse_area",
@@ -202,12 +209,6 @@
    "label": "Raw Heat No",
    "options": "Heat No",
    "set_only_once": 1
-  },
-  {
-   "fieldname": "drawing_id",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Drawing Id"
   },
   {
    "fieldname": "customer",
@@ -319,6 +320,7 @@
   {
    "fieldname": "rgt",
    "fieldtype": "Int",
+   "hidden": 1,
    "label": "Right",
    "no_copy": 1,
    "read_only": 1
@@ -327,6 +329,7 @@
    "default": "0",
    "fieldname": "is_group",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Is Group",
    "no_copy": 1,
    "read_only": 1
@@ -341,6 +344,7 @@
   {
    "fieldname": "parent_semi_product_manage",
    "fieldtype": "Link",
+   "hidden": 1,
    "ignore_user_permissions": 1,
    "label": "Parent Semi Product Manage",
    "no_copy": 1,
@@ -368,11 +372,62 @@
    "fieldtype": "Data",
    "label": "Op Mark",
    "no_copy": 1
+  },
+  {
+   "fieldname": "operation",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Operation",
+   "options": "Operation Tree"
+  },
+  {
+   "fieldname": "product_grade",
+   "fieldtype": "Select",
+   "label": "Product Grade",
+   "options": "\n\u6b63\u54c1\n\u6b21\u54c1\n\u5e9f\u54c1"
+  },
+  {
+   "fieldname": "column_break_pilk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "workshop",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Workshop"
+  },
+  {
+   "fieldname": "sub_workshop",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Sub Workshop"
+  },
+  {
+   "fieldname": "section_break_jeav",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_samu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "short_bar_doc",
+   "fieldtype": "Link",
+   "label": "Short Bar Doc",
+   "options": "Short Raw Bar",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_sub_form",
+   "fieldtype": "Check",
+   "label": "Is Sub Form"
   }
  ],
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-08-06 08:08:06",
+ "modified": "2024-08-08 10:48:01",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Semi Product Manage",

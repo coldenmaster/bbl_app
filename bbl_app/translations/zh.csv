@@ -243,6 +243,8 @@ Settings,设置
 ERPNext Integrations,外部集成
 Browse Apps,可安装应用
 {0} has been submitted successfully,{0} 提交成功
+Filter,过滤,
+
 
 d,天,Days (Field: Duration)
 h,小时,Hours (Field: Duration)
@@ -411,7 +413,10 @@ Drawing Id,图纸编号,
 Drawing Name,图纸名称,
 Drawing Version,图纸版本,
 Drawing No,图纸编号,
+Product Grade,产品等级,
+Is Sub Form,是附加形态,
 
+Short Bar Doc,短棒料文档,
 
 
 Item rate has been updated to zero as Allow Zero Valuation Rate is checked for item {0},物料{0}的单价已根据设置更新为零,

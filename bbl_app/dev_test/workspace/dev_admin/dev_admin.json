@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"eIgmz6sWRs\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">\u6e29\u5ea6\u91c7\u96c6</span><b><span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"></span></b>\",\"col\":12}},{\"id\":\"WMb2s5oQaR\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Rcl Water Temp\",\"col\":3}},{\"id\":\"3EPlfcJmju\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Ip Info\",\"col\":3}},{\"id\":\"fF8DVZQTLl\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Iot Device\",\"col\":3}},{\"id\":\"byUKbLIFd7\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u4f01\u4e1a\u5fae\u4fe1\u96c6\u6210</b></span>\",\"col\":12}},{\"id\":\"D7wKmHGpgk\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Wechat Send Test\",\"col\":3}},{\"id\":\"WdnE1BoOKY\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Wechat Message Type\",\"col\":3}},{\"id\":\"fd4IKtrJFP\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Wechat Corp\",\"col\":3}},{\"id\":\"W5jRBFI7pd\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Wechat Agent\",\"col\":3}},{\"id\":\"nypOCKrvDe\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u7cfb\u7edf\u5de5\u5177</b></span>\",\"col\":12}},{\"id\":\"7dKj6l5B97\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"System Console\",\"col\":3}},{\"id\":\"C4HNS7txvy\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Scheduled Job Type\",\"col\":3}},{\"id\":\"MMmsHNjlB_\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Scheduled Job Log\",\"col\":3}},{\"id\":\"_VrGo2bwtc\",\"type\":\"spacer\",\"data\":{\"col\":3}},{\"id\":\"oHZ60oYrrf\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Rq Worker\",\"col\":3}},{\"id\":\"tQexotroNW\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Rq Job\",\"col\":3}},{\"id\":\"95-WIk5cXv\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u65e5\u5fd7</b></span>\",\"col\":12}},{\"id\":\"Y04nwUJBE4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Log Settings\",\"col\":3}},{\"id\":\"0WL8I5WDtq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Access Log\",\"col\":3}},{\"id\":\"qeZZmsKC6B\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recorder\",\"col\":3}},{\"id\":\"eIbQL4Lc_T\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Webhook Request Log\",\"col\":3}},{\"id\":\"QD2FG-7rzS\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>E-mail</b></span>\",\"col\":12}},{\"id\":\"BKYs4PFJL7\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Email Queue\",\"col\":3}},{\"id\":\"Xl9MWN9KVd\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Email Template\",\"col\":3}},{\"id\":\"HDr7QWmrtV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Email Rule\",\"col\":3}},{\"id\":\"EVI4tE2K0p\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Email Domain\",\"col\":3}},{\"id\":\"QYGVLCcTtb\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Email Digest\",\"col\":3}},{\"id\":\"lGRSbAywFv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Auto Email Report\",\"col\":3}},{\"id\":\"RC5vhwT2TM\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Email Group\",\"col\":3}},{\"id\":\"yCSJARWJcs\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>DocType</b></span>\",\"col\":12}},{\"id\":\"baxARyLDJf\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Doctype\",\"col\":3}},{\"id\":\"QlfzI-aFxk\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b></b></span><span class=\\\"h5\\\"><span class=\\\"h4\\\">\u65b0\u52a0\u5165/\u6d4b\u8bd5\u5355\u636e</span></span>\",\"col\":12}},{\"id\":\"8kN4-kmVCe\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Temp Barcode\",\"col\":3}},{\"id\":\"n8lCjRMF1l\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Temp Doc Value\",\"col\":3}}]",
+ "content": "[{\"id\":\"eIgmz6sWRs\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">\u6e29\u5ea6\u91c7\u96c6</span><b><span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"></span></b>\",\"col\":12}},{\"id\":\"WMb2s5oQaR\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Rcl Water Temp\",\"col\":3}},{\"id\":\"3EPlfcJmju\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Ip Info\",\"col\":3}},{\"id\":\"fF8DVZQTLl\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Iot Device\",\"col\":3}},{\"id\":\"byUKbLIFd7\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u4f01\u4e1a\u5fae\u4fe1\u96c6\u6210</b></span>\",\"col\":12}},{\"id\":\"D7wKmHGpgk\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Wechat Send Test\",\"col\":3}},{\"id\":\"WdnE1BoOKY\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Wechat Message Type\",\"col\":3}},{\"id\":\"fd4IKtrJFP\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Wechat Corp\",\"col\":3}},{\"id\":\"W5jRBFI7pd\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Wechat Agent\",\"col\":3}},{\"id\":\"nypOCKrvDe\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u7cfb\u7edf\u5de5\u5177</b></span>\",\"col\":12}},{\"id\":\"7dKj6l5B97\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"System Console\",\"col\":3}},{\"id\":\"C4HNS7txvy\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Scheduled Job Type\",\"col\":3}},{\"id\":\"MMmsHNjlB_\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Scheduled Job Log\",\"col\":3}},{\"id\":\"_VrGo2bwtc\",\"type\":\"spacer\",\"data\":{\"col\":3}},{\"id\":\"oHZ60oYrrf\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Rq Worker\",\"col\":3}},{\"id\":\"tQexotroNW\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Rq Job\",\"col\":3}},{\"id\":\"iIdk2RcaMk\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recorder\",\"col\":3}},{\"id\":\"Q62MSTnk8s\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"System Health Report\",\"col\":3}},{\"id\":\"95-WIk5cXv\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u65e5\u5fd7</b></span>\",\"col\":12}},{\"id\":\"Y04nwUJBE4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Log Settings\",\"col\":3}},{\"id\":\"0WL8I5WDtq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Access Log\",\"col\":3}},{\"id\":\"qeZZmsKC6B\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recorder\",\"col\":3}},{\"id\":\"eIbQL4Lc_T\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Webhook Request Log\",\"col\":3}},{\"id\":\"QD2FG-7rzS\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>E-mail</b></span>\",\"col\":12}},{\"id\":\"BKYs4PFJL7\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Email Queue\",\"col\":3}},{\"id\":\"Xl9MWN9KVd\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Email Template\",\"col\":3}},{\"id\":\"HDr7QWmrtV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Email Rule\",\"col\":3}},{\"id\":\"EVI4tE2K0p\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Email Domain\",\"col\":3}},{\"id\":\"QYGVLCcTtb\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Email Digest\",\"col\":3}},{\"id\":\"lGRSbAywFv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Auto Email Report\",\"col\":3}},{\"id\":\"RC5vhwT2TM\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Email Group\",\"col\":3}},{\"id\":\"yCSJARWJcs\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>DocType</b></span>\",\"col\":12}},{\"id\":\"baxARyLDJf\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Doctype\",\"col\":3}},{\"id\":\"QlfzI-aFxk\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b></b></span><span class=\\\"h5\\\"><span class=\\\"h4\\\">\u65b0\u52a0\u5165/\u6d4b\u8bd5\u5355\u636e</span></span>\",\"col\":12}},{\"id\":\"8kN4-kmVCe\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Temp Barcode\",\"col\":3}},{\"id\":\"n8lCjRMF1l\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Temp Doc Value\",\"col\":3}}]",
  "creation": "2024-01-18 17:22:40.222300",
  "custom_blocks": [],
  "docstatus": 0,
@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "dev-admin",
  "links": [],
- "modified": "2024-08-01 22:16:40",
+ "modified": "2024-08-09 11:58:18",
  "modified_by": "Administrator",
  "module": "Dev Test",
  "name": "dev-admin",
@@ -42,14 +42,6 @@
    "doc_view": "List",
    "label": "Rq Job",
    "link_to": "RQ Job",
-   "stats_filter": "[]",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "Recorder",
-   "link_to": "Recorder",
    "stats_filter": "[]",
    "type": "DocType"
   },
@@ -153,6 +145,21 @@
    "label": "Wechat Send Test",
    "link_to": "Wechat Send Test",
    "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Recorder",
+   "link_to": "Recorder",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "System Health Report",
+   "link_to": "System Health Report",
    "type": "DocType"
   },
   {

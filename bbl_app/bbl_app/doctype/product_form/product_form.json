@@ -9,12 +9,14 @@
   "abbr",
   "product_stage",
   "product_line",
+  "product_grade",
+  "is_sub_form",
   "column_break_qojy",
   "main_form",
   "operation",
   "workshop",
   "sub_workshop",
-  "default_warehouse"
+  "warehouse"
  ],
  "fields": [
   {
@@ -27,23 +29,28 @@
   },
   {
    "fieldname": "workshop",
-   "fieldtype": "Data",
+   "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "Workshop"
+   "label": "Workshop",
+   "options": "\n\u953b\u9020\u8f66\u95f4\n\u70ed\u5904\u7406\u8f66\u95f4\n\u6253\u78e8\u8f66\u95f4\n\u534a\u6210\u54c1\u5e93\n\u6cb9\u6f06\u8f66\u95f4\n\u673a\u52a0\u5de5\u8f66\u95f4\n\u6210\u54c1\u5e93",
+   "reqd": 1
   },
   {
    "fieldname": "product_stage",
-   "fieldtype": "Data",
+   "fieldtype": "Select",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Product Stage"
+   "label": "Product Stage",
+   "options": "\n\u534a\u6210\u54c1\n\u6210\u54c1"
   },
   {
+   "default": "\u524d\u8f74",
    "fieldname": "product_line",
-   "fieldtype": "Data",
+   "fieldtype": "Select",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Product Line"
+   "label": "Product Line",
+   "options": "\n\u524d\u8f74\n\u94c1\u8def\u886c\u677f"
   },
   {
    "fieldname": "abbr",
@@ -53,13 +60,6 @@
    "no_copy": 1,
    "reqd": 1,
    "unique": 1
-  },
-  {
-   "fieldname": "default_warehouse",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Default Warehouse",
-   "options": "Warehouse"
   },
   {
    "fieldname": "column_break_qojy",
@@ -87,12 +87,34 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Operation",
-   "options": "Operation Tree"
+   "options": "Operation Tree",
+   "reqd": 1
+  },
+  {
+   "default": "\u6b63\u54c1",
+   "fieldname": "product_grade",
+   "fieldtype": "Select",
+   "label": "Product Grade",
+   "options": "\n\u6b63\u54c1\n\u6b21\u54c1\n\u5e9f\u54c1"
+  },
+  {
+   "default": "0",
+   "description": "&emsp;\u52fe\u9009\u540e\uff0c\u4e0d\u8fdb\u884c\u7edf\u8ba1\u8ba1\u7b97",
+   "fieldname": "is_sub_form",
+   "fieldtype": "Check",
+   "label": "Is Sub Form"
+  },
+  {
+   "fieldname": "warehouse",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Warehouse",
+   "options": "\n\u953b\u9020\u8f66\u95f4\n\u70ed\u5904\u7406\u8f66\u95f4\n\u6253\u78e8\u8f66\u95f4\n\u534a\u6210\u54c1\u5e93\n\u6210\u54c1\u5e93"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-07-26 07:51:37",
+ "modified": "2024-08-08 08:38:34",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Product Form",

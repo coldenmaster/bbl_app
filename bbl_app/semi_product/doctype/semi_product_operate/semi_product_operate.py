@@ -40,7 +40,7 @@ mock_data = {'amended_from': None,
  'op_flow': None,
  'owner': 'Administrator',
  'parent_from': None,
- 'product_name': '4E_锻坯',
+ 'product_name': '4E_锻坯登记',
  'property_name': None,
  'property_value': None,
  'semi_op_source': '锻坯',
@@ -133,8 +133,8 @@ def _semi_product_batch_convert(opts):
         'semi_product_name': opts.finish_name,
         'employee': opts.employee,
         'product_form': target_product_form,
-        'warehouse': product_form_doc.default_warehouse,
-        'forge_batch_no': opts.forge_batch_no,
+        'forge_batch_no': opts.forge_batch_no or semi_doc_source.forge_batch_no,
+        'bbl_heat_no': opts.bbl_heat_no or semi_doc_source.bbl_heat_no,
         'basket_in': opts.basket_in,
         'basket_no': opts.basket_in,
         'bbl_heat_no': opts.bbl_heat_no,
@@ -146,6 +146,12 @@ def _semi_product_batch_convert(opts):
         'old_parent': opts.spm_source,
         # 'status': '未使用', # default
         'op_mark': opts.op_mark,
+        'operation': product_form_doc.operation,
+        'product_grade': product_form_doc.product_grade,
+        'workshop': product_form_doc.workshop,
+        'sub_workshop': product_form_doc.sub_workshop,
+        'warehouse': product_form_doc.default_warehouse,
+        'is_sub_form': product_form_doc.is_sub_form,
 
     }).insert(ignore_permissions=True)
     

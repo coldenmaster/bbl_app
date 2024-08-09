@@ -46,7 +46,7 @@ def product_out(**kwargs):
 
     # 1.求取需要的数据
     semi_product = up_obj.get("semi_product")
-    t_item_name = semi_product + "_锻坯"
+    t_item_name = semi_product + "_锻坯登记"
     item = frappe._dict(items[0])
     # print_blue_pp(item)
     
@@ -220,13 +220,6 @@ def work_order_done(**kwargs):
         kwargs = up_obj_mock2 #置入假数据
     kwargs = frappe._dict(kwargs)
     # _print_green_pp(kwargs)
-
-    # 不用此方法这么麻烦，直接是 'name': 'DBL-20240703-462Z-4E'就是短棒料的出货批次号
-    # wo_doc = frappe.get_doc("Work Order", kwargs.work_order)
-    # se_transfer_name = frappe.db.get_value("Stock Entry", {"work_order": wo_doc.name, "purpose": "Material Transfer for Manufacture"}, "name")
-    # print_red(se_transfer_name)
-    # se_transfor_sabb_name = frappe.db.get_value("Serial and Batch Bundle", {"warehouse": "短棒料仓 - 百兰", "voucher_no": se_transfer_name}, "name")
-    # print_red(se_transfor_sabb_name)
 
     bar_bacth_no = kwargs.get("name")
     bar_bacth_qty = cint(kwargs.get("out_piece"))

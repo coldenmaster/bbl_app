@@ -4,29 +4,27 @@
 frappe.ui.form.on("Semi Product Manage", {
 	refresh(frm) {
 
-        frm.add_custom_button('新建加工单', () => {
-            frappe.show_alert("功能未完成");
-            let items = listview.get_checked_items();
-            if (items.length != 1) {
-                frappe.msgprint({ "title": "错误", message: "请只选择一条记录", indicator: "red" });
-                return
+        frm.disable_save();
+        // frm.page.set_primary_action_text('新建加工单');
+        frm.page.set_primary_action('新建加工单', () => {
+            if (frm.doc.remaining_piece < 1) { 
+                frappe.throw("剩余数量为0根");
             }
-            if (!items[0].remaining_piece) {
-                frappe.msgprint({ "title": "错误", message: "剩余数量为零", indicator: "red" });
-                return
-            }
-            opts = items[0];
-            opts.spm_source = opts.name;
-            let temp_li = opts.semi_product_name.split('_');
-            opts.semi_op_source = temp_li[temp_li.length - 1];
-            log(opts);
-            frappe.new_doc("Semi Product Operate", items[0], 
+            opts = {};
+            opts.spm_source = frm.doc.name;
+            opts.semi_op_source = frm.doc.product_form;
+            opts.raw_heat_no = frm.doc.raw_heat_no;
+            opts.forge_batch_no = frm.doc.forge_batch_no;
+            opts.bbl_heat_no = frm.doc.bbl_heat_no;
+            opts.semi_product = frm.doc.semi_product;
+            // route_opts = opts;
+            frappe.new_doc("Semi Product Operate", opts, 
                doc => { 
-                   console.log("操作单，新建完成 doc:", doc);
-                   this.list_view.clear_checked_items();
+                //    console.log("新建操作单frm, opts属性:", opts);
+                //    console.log("新建操作单frm, doc属性:", doc);
+                   frappe.show_alert("功能ok");
                 })
         });
-        frm.change_custom_button_type('新建加工单', null, 'info');
     
 
 	},

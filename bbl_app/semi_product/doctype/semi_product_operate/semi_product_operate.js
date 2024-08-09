@@ -8,7 +8,24 @@ frappe.ui.form.on("Semi Product Operate", {
         // f = frappe;
         frm = cur_frm;
     },
+    on_submit(frm) {
+        log("spo on_submit", frm)
+    },
 	refresh(frm) {
+        if (frm.is_new()) {
+            frm.add_custom_button("挑选半成品", () => {
+                // frm.trigger("clearForm"); // 占位，手机段第一个显示不出来
+                frappe.show_alert("显示 挑选对话框")
+                select_spm_dialog(frm);
+                // frm.doc.show2 = 1;
+                // frm.toggle_display(['length2', 'piece2', 'length3', 'piece3'], true);
+            })
+            // frm.change_custom_button_type("挑选半成品", null, 'primary');
+            frm.change_custom_button_type("挑选半成品", null, 'info');
+    
+        };  
+        
+        
         set_default(frm);
         setup_search_basket_field(frm);
         // frm.trigger("semi_product");
@@ -28,6 +45,7 @@ frappe.ui.form.on("Semi Product Operate", {
     },
     spm_source(frm) {
         cat_finish_name(frm);
+        query_spm_source_data(frm);
     },
     semi_op_target(frm) {
         cat_finish_name(frm);
@@ -67,6 +85,18 @@ function cat_finish_name(frm) {
     }
     frm.set_value("finish_name", val);
 }
+
+function query_spm_source_data(frm) {
+    const spm_source = frm.doc.spm_source || "";
+    if (spm_source) {
+        frappe.model.with_doc("Semi Product Manage", spm_source).then(doc => {
+            log("with_doc2", doc);
+            frm.set_value("forge_batch_no", doc.forge_batch_no);
+            frm.set_value("bbl_heat_no", doc.bbl_heat_no);
+        })
+    };
+}
+
 function set_spm_filter(frm, op_source) {
     if (frm.is_new())
         frm.set_value("spm_source", "");
@@ -79,6 +109,7 @@ function set_spm_filter(frm, op_source) {
         };
     });
 }
+
 function set_target_form_filter(frm, value) {
     frm.set_query("semi_op_target", function () {
         return {
@@ -104,7 +135,7 @@ function set_forge_batch_no_disp(frm) {
         return;
     const last_op = frm.doc.semi_op_source;
     let fd = frm.get_field("forge_batch_no");
-    if (last_op != "锻坯") 
+    if (last_op != "锻坯登记") 
         set_frm_df_rend(fd, 0, 0);
     else    
         set_frm_df_rend(fd, 1, 1);
@@ -179,3 +210,156 @@ function set_frm_df_rend(df, show, reqd) {
     // df.refresh();
 }
 
+
+
+
+function select_spm_dialog(frm) { 
+    log("select_spm_dialog frm:", frm);
+    // let main_dialog = new SemiOperationDialog(list_view, r => {
+    //     console.log("main_dialog callback:", r);
+    // })
+
+    // new frappe.ui.form.MultiSelectDialog({
+    //     doctype: "Material Request",
+    //     target: this.cur_frm,
+    //     setters: {
+    //         schedule_date: null,
+    //         status: 'Pending'
+    //     },
+    //     add_filters_group: 1,
+    //     date_field: "transaction_date",
+    //     get_query() {
+    //         return {
+    //             filters: { docstatus: ['!=', 2] }
+    //         }
+    //     },
+    //     action(selections) {
+    //         console.log(selections);
+    //     }
+    // });
+
+    // new frappe.ui.form.MultiSelectDialog({
+    //     doctype: "Material Request",
+    //     target: this.cur_frm,
+    //     setters: {
+    //         schedule_date: null,
+    //         status: null
+    //     },
+    //     add_filters_group: 1,
+    //     date_field: "transaction_date",
+    //     allow_child_item_selection: 1,
+    //     child_fieldname: "items", // child table fieldname, whose records will be shown &amp; can be filtered
+    //     child_columns: ["item_code", "qty"], // child item columns to be displayed
+    //     get_query() {
+    //         return {
+    //             filters: { docstatus: ['!=', 2] }
+    //         }
+    //     },
+    //     action(selections, args) {
+    //         console.log(args.filtered_children); // list of selected item names
+    //     }
+    // });
+    
+    new frappe.ui.form.MultiSelectDialog({
+        doctype: "Semi Product Manage",
+        target: frm,
+        setters: {
+            semi_product_name: null,
+            // status: 'Pending',
+            operation: null,
+            remaining_piece: null,
+        },
+        add_filters_group: 1,
+        // date_field: "for_date",
+        date_field: "creation",
+        get_query() {
+            return {
+                filters: { docstatus: ['!=', 2] }
+            }
+        },
+        action(selections) {
+            console.log(selections);
+        }
+    });
+    
+}
+
+class SemiOperationDialog {
+    constructor(opts, callback) {
+        console.log("SemiOperationDialog opts:", opts);
+        this.dialog = null;
+        this.callback = callback;
+        this.make();
+    }
+    make() {
+        let title = "原材料/生产投料";
+        let primary_label = __("Submit");
+        this.fields = [
+            { 
+                fieldtype: "Link", 
+                label: "待加工产品名",
+                options: "Product Form",
+                fieldname: "wip_type",
+                reqd: 1 
+            },
+            { 
+                fieldtype: "Data",
+                label: "选择产品",
+                fieldname: "info",
+            },
+            { 
+                fieldtype: "Link",
+                label: "目标产品名",
+                options: "Product Form",
+                fieldname: "end_type",
+                reqd: 1 
+            },
+            { 
+                fieldtype: "Data",
+                label: "提交信息1",
+                fieldname: "info1",
+            },
+            { fieldtype: "Data", label: "提交信息2", options: "", fieldname: "info2",},
+            { fieldtype: "Data", label: "提交信息3", options: "", fieldname: "info3",},
+            { 
+                fieldtype: "Link",
+                label: "操作人员", 
+                options: "Employee Jobs", 
+                fieldname: "user", 
+                reqd: 1,
+                default: frappe.session.user_fullname
+            },           
+
+
+        //     {
+        //         // "fieldname": "d0",product_qty
+        //         "label": "出库产品:&emsp;" + this.sb_item_0.raw_name.bold(),
+        //         "fieldtype": "Heading",
+        //     },
+        //     {
+        //         // "fieldname": "d1",
+        //         "label": "炉号:&emsp;&emsp;&emsp;" + cstr(this.sb_item_0.heat_no).bold(),
+        //         "fieldtype": "Heading",
+        //     },
+        ];
+        this.dialog = new frappe.ui.Dialog({
+            title,
+            fields: this.fields,
+            // size: "small",
+            primary_action_label: primary_label,
+            primary_action: (values) => {
+                log(values);
+                this.dialog.hide();
+
+            },
+            secondary_action_label: __("关闭"),
+            secondary_action: () => this.dialog.hide(),
+        });
+
+        this.dialog.show();
+        // this.get_stock_entry_draft();
+        // window.dfc = this.dialog.get_field("stock_entry");
+        window.wtd = this.dialog;
+    }
+
+}

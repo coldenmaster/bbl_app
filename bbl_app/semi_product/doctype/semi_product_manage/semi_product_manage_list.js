@@ -7,9 +7,9 @@ frappe.listview_settings["Semi Product Manage"] = {
         "semi_product",
         "bbl_heat_no",
     ],
-    // filters: [
-    //     ["status", "!=", "出完"]
-    // ],
+    filters: [
+        ["remaining_piece", ">", 0],
+    ],
     list_view: "",
 
     get_indicator: function (doc) {
@@ -24,6 +24,11 @@ frappe.listview_settings["Semi Product Manage"] = {
 		};
 		return [doc.status, colors[doc.status], "status,=," + doc.status];
 	},
+
+    primary_action() {
+        frappe.new_doc("Semi Product Operate");
+    },
+
 
     onload: function (listview) {
         this.list_view = listview;
@@ -45,6 +50,7 @@ frappe.listview_settings["Semi Product Manage"] = {
             let temp_li = opts.semi_product_name.split('_');
             opts.semi_op_source = temp_li[temp_li.length - 1];
             opts.basket_in = '';
+            log("新建操作单frm, opts属性:", opts);
             frappe.new_doc("Semi Product Operate", opts, 
                doc => { 
                 //    console.log("新建操作单frm, opts属性:", opts);
@@ -83,90 +89,3 @@ frappe.listview_settings["Semi Product Manage"] = {
     }
 
 }
-
-// function make_main_op_dialog(list_view) { 
-//     log("make_main_op_dialog list_view:", list_view);
-//     let main_dialog = new SemiOperationDialog(list_view, r => {
-//         console.log("main_dialog callback:", r);
-//     })
-// }
-
-// class SemiOperationDialog {
-//     constructor(opts, callback) {
-//         console.log("SemiOperationDialog opts:", opts);
-//         this.dialog = null;
-//         this.callback = callback;
-//         this.make();
-//     }
-//     make() {
-//         let title = "原材料/生产投料";
-//         let primary_label = __("Submit");
-//         this.fields = [
-//             { 
-//                 fieldtype: "Link", 
-//                 label: "待加工产品名",
-//                 options: "Product Form",
-//                 fieldname: "wip_type",
-//                 reqd: 1 
-//             },
-//             { 
-//                 fieldtype: "Data",
-//                 label: "选择产品",
-//                 fieldname: "info",
-//             },
-//             { 
-//                 fieldtype: "Link",
-//                 label: "目标产品名",
-//                 options: "Product Form",
-//                 fieldname: "end_type",
-//                 reqd: 1 
-//             },
-//             { 
-//                 fieldtype: "Data",
-//                 label: "提交信息1",
-//                 fieldname: "info1",
-//             },
-//             { fieldtype: "Data", label: "提交信息2", options: "", fieldname: "info2",},
-//             { fieldtype: "Data", label: "提交信息3", options: "", fieldname: "info3",},
-//             { 
-//                 fieldtype: "Link",
-//                 label: "操作人员", 
-//                 options: "Employee Jobs", 
-//                 fieldname: "user", 
-//                 reqd: 1,
-//                 default: frappe.session.user_fullname
-//             },           
-
-
-//         //     {
-//         //         // "fieldname": "d0",product_qty
-//         //         "label": "出库产品:&emsp;" + this.sb_item_0.raw_name.bold(),
-//         //         "fieldtype": "Heading",
-//         //     },
-//         //     {
-//         //         // "fieldname": "d1",
-//         //         "label": "炉号:&emsp;&emsp;&emsp;" + cstr(this.sb_item_0.heat_no).bold(),
-//         //         "fieldtype": "Heading",
-//         //     },
-//         ];
-//         this.dialog = new frappe.ui.Dialog({
-//             title,
-//             fields: this.fields,
-//             // size: "small",
-//             primary_action_label: primary_label,
-//             primary_action: (values) => {
-//                 log(values);
-//                 this.dialog.hide();
-
-//             },
-//             secondary_action_label: __("关闭"),
-//             secondary_action: () => this.dialog.hide(),
-//         });
-
-//         this.dialog.show();
-//         // this.get_stock_entry_draft();
-//         // window.dfc = this.dialog.get_field("stock_entry");
-//         window.wtd = this.dialog;
-    // }
-
-// }
