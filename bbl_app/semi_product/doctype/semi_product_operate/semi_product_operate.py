@@ -23,6 +23,16 @@ class SemiProductOperate(Document):
         self.voucher_from = self.spm_source
         self.voucher_to = spm_op(self.as_dict())
         return super().submit()
+    
+    # 可提交文档，提交后不能删除    
+    # def on_trash(self):
+    #     if ("Administrator" != frappe.session.user ):
+    #         frappe.throw("只有管理员才能删除此文档")
+            
+    def cancel(self):
+        frappe.throw("此文档不能取消,可进行转回操作")
+        # return super().cancel()
+
 
 mock_data = {'amended_from': None,
  'creation': '2024-07-19 17:05:51',
@@ -51,7 +61,7 @@ mock_data = {'amended_from': None,
  'test': None}
 
 def spm_op(opts):
-    print_red("spm_op:半成品加工单 处理半成品管理记录 ")
+    # print_red("spm_op:半成品加工单 处理半成品管理记录 ")
     if not opts:
         print_red("mock data 😁")
         opts = mock_data #置入假数据
@@ -76,7 +86,6 @@ def _create_item(item_name, item_type = '过程半成品', warehouse = '锻造�
         # warehouse = frappe.db.get_value('Product Form', target_job, 'default_warehouse')
         abbr = product_form_doc.abbr
         warehouse = product_form_doc.default_warehouse
-        print_red(f'新建 半成品 物料 {abbr=}')
         new_doc = frappe.get_doc({
             'doctype': 'Item',
             'item_code': item_name,
@@ -125,6 +134,8 @@ def _semi_product_batch_convert(opts):
 
     # 新doc设置 件数，剩余数量，总数量，操作员，产品名称，批次号（自动？）
     #   仓库（根据目标产品形态设置），状态（缺省未使用），
+
+    is_sub_form = target_product_form in semi_doc_source.op_list.split('-') or product_form_doc.is_sub_form
     semi_doc_target.update({
         'batch_no': batch_no,
         'last_in_piece': opts.finish_qty,
@@ -140,6 +151,7 @@ def _semi_product_batch_convert(opts):
         'bbl_heat_no': opts.bbl_heat_no,
         'note': opts.op_note,
         'op_times': semi_doc_source.op_times + 1,
+        'op_list': semi_doc_source.op_list + '-' + target_product_form,
         'last_op_voucher': opts.name,
         # 'parent_batch_no': opts.spm_source,
         'parent_semi_product_manage': opts.spm_source,
@@ -150,8 +162,8 @@ def _semi_product_batch_convert(opts):
         'product_grade': product_form_doc.product_grade,
         'workshop': product_form_doc.workshop,
         'sub_workshop': product_form_doc.sub_workshop,
-        'warehouse': product_form_doc.default_warehouse,
-        'is_sub_form': product_form_doc.is_sub_form,
+        'warehouse': product_form_doc.warehouse,
+        'is_sub_form': is_sub_form,
 
     }).insert(ignore_permissions=True)
     
@@ -171,9 +183,6 @@ def _semi_product_batch_convert(opts):
         'is_group': 1,
     }).save()
 
-
-      
-    print_red('半成品批次管理，产品转化已完成')
     # todo 建操作记录
     return semi_doc_target.name
 

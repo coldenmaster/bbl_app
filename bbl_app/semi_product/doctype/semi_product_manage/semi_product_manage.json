@@ -42,6 +42,7 @@
   "section_break_ostr",
   "column_break_hvwr",
   "op_times",
+  "op_list",
   "product_form",
   "operation",
   "product_grade",
@@ -423,11 +424,18 @@
    "fieldname": "is_sub_form",
    "fieldtype": "Check",
    "label": "Is Sub Form"
+  },
+  {
+   "default": "0",
+   "fieldname": "op_list",
+   "fieldtype": "Small Text",
+   "label": "Op List",
+   "read_only": 1
   }
  ],
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-08-08 10:48:01",
+ "modified": "2024-08-12 11:38:22",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Semi Product Manage",

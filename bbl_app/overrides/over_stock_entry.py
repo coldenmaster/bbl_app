@@ -435,7 +435,9 @@ def create_forge_blank(bar_item, forge_item, voucher_no):
             'product_form': '锻坯登记',
             'link_doc': forge_item.parent,
             "short_bar_doc": bar_doc.name,
-            # 'op_times': 0,
+            'op_times': 1,
+            'op_list': '锻坯登记',
+
             }).insert(ignore_links=True)
     else:
         # todo 以下未使用，可能需要删除

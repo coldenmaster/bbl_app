@@ -30,7 +30,7 @@ frappe.listview_settings["Short Raw Bar"] = {
           listview.page.actions.find('[data-label="Edit"],[data-label="%E5%88%A0%E9%99%A4"],[data-label="Assign To"]').parent().parent().remove()
         }
 
-        page.add_inner_button('转入在制品库', () => {
+        page.add_inner_button('转锻坯登记', () => {
             let items = listview.get_checked_items();
             if (items.length != 1) {
                 frappe.msgprint({ "title": "错误", message: "请只选择一条记录", indicator: "red" });
@@ -51,7 +51,7 @@ frappe.listview_settings["Short Raw Bar"] = {
             );
             
         });
-        page.change_inner_button_type('转入在制品库', null, 'info');
+        page.change_inner_button_type('转锻坯登记', null, 'info');
 
         page.add_inner_button('处理工单', () => {
             let items = listview.get_checked_items();
@@ -60,7 +60,7 @@ frappe.listview_settings["Short Raw Bar"] = {
                 return
             }
             if (!items[0].wip_piece) {
-                frappe.msgprint({ "title": "错误", message: "在制品数量为零", indicator: "red" });
+                frappe.msgprint({ "title": "错误", message: "锻坯登记数量为零", indicator: "red" });
                 return
             }
             select_work_order_dialog(items[0]);
@@ -150,7 +150,7 @@ function select_work_order_dialog(item) {
                 "fieldtype": "Int",
                 "reqd": 1,
                 "default": item.wip_piece,
-                "description": "工单内的" + "在制品数量".bold() + "，如未全部完成,余料将被退回短棒料仓库",
+                "description": "工单内的" + "锻坯登记数量".bold() + "，如未全部完成,余料将被退回短棒料仓库",
             },
             // {
             //     "fieldname": "forge_batch_no",
@@ -255,7 +255,7 @@ function make_dialog_promise(items) {
                 product_out(values);
                 resolve("values ok");
             },
-            "短棒料转入锻造车间在制品库",
+            "短棒料转入锻造车间锻坯登记库",
             "确认"
         );
     })
@@ -271,7 +271,7 @@ function product_out(values) {
         // log("bar product_out", r);
         if (r.message) {
             // frappe.set_route("Form", "Work Order", r.message);
-            frappe.msgprint("建立工单" + r.message.bold() + "，并完成在制品发料")
+            frappe.msgprint("建立工单" + r.message.bold() + "，并完成锻坯登记发料")
         }
     })
 }

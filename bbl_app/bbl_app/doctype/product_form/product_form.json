@@ -16,7 +16,8 @@
   "operation",
   "workshop",
   "sub_workshop",
-  "warehouse"
+  "warehouse",
+  "disable"
  ],
  "fields": [
   {
@@ -109,12 +110,18 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Warehouse",
-   "options": "\n\u953b\u9020\u8f66\u95f4\n\u70ed\u5904\u7406\u8f66\u95f4\n\u6253\u78e8\u8f66\u95f4\n\u534a\u6210\u54c1\u5e93\n\u6210\u54c1\u5e93"
+   "options": "\n\u953b\u9020\u8f66\u95f4\n\u70ed\u5904\u7406\u8f66\u95f4\n\u6253\u78e8\u8f66\u95f4\n\u534a\u6210\u54c1\u5e93\n\u6210\u54c1\u5e93\n\u673a\u52a0\u5de5\u8f66\u95f4"
+  },
+  {
+   "default": "0",
+   "fieldname": "disable",
+   "fieldtype": "Check",
+   "label": "Disable"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-08 08:38:34",
+ "modified": "2024-08-09 16:41:31",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Product Form",

@@ -34,6 +34,15 @@ frappe.listview_settings["Semi Product Manage"] = {
         this.list_view = listview;
         let page = listview.page;
 
+        // let rolse = frappe.user_roles;
+        // log("rolse:", rolse)
+        // if (!(rolse.includes("Administrator") || rolse.includes("Manual Invoice"))) {}
+        // if (!(rolse.includes("Administrator"))) {
+        // }
+        // 去掉 编辑/删除 按钮
+        listview.page.actions.find('[data-label="%E7%BC%96%E8%BE%91"],[data-label="%E5%88%A0%E9%99%A4"],[data-label="Assign To"]').parent().parent().remove()
+        // $(".btn-primary").hide();
+
 
         page.add_inner_button('新建加工单', () => {
             let items = listview.get_checked_items();
@@ -68,22 +77,6 @@ frappe.listview_settings["Semi Product Manage"] = {
         // }).addClass("btn-primary");
         });
         page.change_inner_button_type('加工单列表', null, 'warning');
-
-        // page.add_inner_button('通用操作', () => {
-        //     make_main_op_dialog(listview);
-        // }).addClass("btn-primary");
-        // // page.change_inner_button_type('通用操作', null, 'info');
-        // page.add_inner_button('锻坯调质', () => {
-        //     let items = listview.get_checked_items();
-        //     items = items.filter(item => item.status === "未入库");
-        //     // console.log("items", items);
-        //     if (items.length === 0) {
-        //         frappe.msgprint({ "title": "提示", message: "请选择'未入库'批次", "indicator": "red" });
-        //         return
-        //     }
-        //     purchase_receipt(items, listview);
-        // }, '子菜单');
-
 
 
     }

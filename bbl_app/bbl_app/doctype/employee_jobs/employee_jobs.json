@@ -69,7 +69,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-07-18 17:16:43",
+ "modified": "2024-08-12 17:02:32",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Employee Jobs",
@@ -85,6 +85,7 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "select": 1,
    "share": 1,
    "write": 1
   },

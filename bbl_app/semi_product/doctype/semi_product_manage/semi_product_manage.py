@@ -2,14 +2,17 @@
 # For license information, please see license.txt
 
 import frappe
+from frappe.desk.search import search_widget
 from frappe.model.document import Document
 
 from bbl_api.utils import _print_green_pp, print_blue, print_red, print_yellow
 
 
 class SemiProductManage(Document):
-    pass
-
+        
+    def on_trash(self):
+        if ("Administrator" != frappe.session.user ):
+            frappe.throw("只有管理员才能删除此文档")
 
 
 @frappe.whitelist()
@@ -47,7 +50,8 @@ def _get_children(doctype, parent="", ignore_permissions=False, **filters):
         ],
         filters=filters,
         # order_by="name",
-        order_by="for_date desc",
+        # order_by="for_date desc",
+        order_by="creation desc",
         ignore_permissions=ignore_permissions,
         
     )
@@ -67,6 +71,27 @@ def _make_filters(**kwargs):
 
     return filters
 
+
+# this is called by the search box
+
+def search_widget_del(
+	doctype: str,
+	txt: str,
+	query: str | None = None,
+	searchfield: str | None = None,
+	start: int = 0,
+	page_length: int = 10,
+	filters: str | None | dict | list = None,
+	filter_fields=None,
+	as_dict: bool = False,
+	reference_doctype: str | None = None,
+	ignore_user_permissions: bool = False,
+):
+    pass
+
+@frappe.whitelist()
+def search_widget_wt(*args, **kwargs):
+    search_widget(*args, **kwargs)
 
 
 """ 
