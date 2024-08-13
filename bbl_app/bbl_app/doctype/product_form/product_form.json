@@ -70,10 +70,9 @@
    "fieldname": "main_form",
    "fieldtype": "Link",
    "hidden": 1,
-   "in_list_view": 1,
-   "in_standard_filter": 1,
    "label": "Main Form",
-   "options": "Operation Tree"
+   "options": "Operation Tree",
+   "report_hide": 1
   },
   {
    "fieldname": "sub_workshop",
@@ -121,7 +120,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-09 16:41:31",
+ "modified": "2024-08-13 14:57:59",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Product Form",

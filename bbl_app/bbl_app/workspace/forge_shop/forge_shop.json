@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"5RKDRJJG8R\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>\u6a21\u5177\u7ba1\u7406</b></span>\",\"col\":12}},{\"id\":\"tLEVa9RCK8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u65b0\u5efa\u6a21\u5177\u6863\u6848\",\"col\":3}},{\"id\":\"NxE8QoBdr8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u953b\u9020\u6a21\u5177\u5217\u8868\",\"col\":3}},{\"id\":\"ahTbntEqI8\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"CpwdWL5wNQ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u751f\u4ea7\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"ejBNEMuq4Y\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u65b0\u5efa\u953b\u9020\u8bb0\u5f55\",\"col\":3}},{\"id\":\"j3R03XXMvV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u953b\u9020\u8bb0\u5f55\u5217\u8868\",\"col\":3}},{\"id\":\"qfzJrANF6C\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"LpfVPbSqgA\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u4ea7\u54c1\u91cd\u91cf</b></span>\",\"col\":12}},{\"id\":\"CW0mu4956Z\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u65b0\u5efa\u91cd\u91cf\u8bb0\u5f55\",\"col\":3}},{\"id\":\"1wL3rkVJGN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u4ea7\u54c1\u91cd\u91cf\u8bb0\u5f55\",\"col\":3}},{\"id\":\"1KWKuKZFKN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"3u1Ln1cQb3\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u5e38\u7528\u62a5\u8868</b></span>\",\"col\":12}},{\"id\":\"mjiwxPupHx\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Semi Product\",\"col\":3}},{\"id\":\"HYyhf-Mmti\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Product Name\",\"col\":3}},{\"id\":\"jmY02I2Pnt\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"31kYoHutCh\",\"type\":\"card\",\"data\":{\"card_name\":\"\u57fa\u7840\u6570\u636e\",\"col\":4}},{\"id\":\"AebyyeTb-I\",\"type\":\"card\",\"data\":{\"card_name\":\"\u6a21\u5177\u6570\u636e\",\"col\":4}},{\"id\":\"zLrtrFavD8\",\"type\":\"card\",\"data\":{\"card_name\":\"\u8f66\u95f4\u6570\u636e\",\"col\":4}}]",
+ "content": "[{\"id\":\"5RKDRJJG8R\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>\u6a21\u5177\u7ba1\u7406</b></span>\",\"col\":12}},{\"id\":\"tLEVa9RCK8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u65b0\u5efa\u6a21\u5177\u6863\u6848\",\"col\":3}},{\"id\":\"NxE8QoBdr8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u953b\u9020\u6a21\u5177\u5217\u8868\",\"col\":3}},{\"id\":\"Iz5xPoBXNZ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Mold Use Life\",\"col\":3}},{\"id\":\"ahTbntEqI8\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"CpwdWL5wNQ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u751f\u4ea7\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"ejBNEMuq4Y\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u65b0\u5efa\u953b\u9020\u8bb0\u5f55\",\"col\":3}},{\"id\":\"j3R03XXMvV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u953b\u9020\u8bb0\u5f55\u5217\u8868\",\"col\":3}},{\"id\":\"qfzJrANF6C\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"LpfVPbSqgA\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u4ea7\u54c1\u91cd\u91cf</b></span>\",\"col\":12}},{\"id\":\"CW0mu4956Z\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u65b0\u5efa\u91cd\u91cf\u8bb0\u5f55\",\"col\":3}},{\"id\":\"1wL3rkVJGN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u4ea7\u54c1\u91cd\u91cf\u8bb0\u5f55\",\"col\":3}},{\"id\":\"1KWKuKZFKN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"3u1Ln1cQb3\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u5e38\u7528\u62a5\u8868</b></span>\",\"col\":12}},{\"id\":\"mjiwxPupHx\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Semi Product\",\"col\":3}},{\"id\":\"HYyhf-Mmti\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Product Name\",\"col\":3}},{\"id\":\"jmY02I2Pnt\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"31kYoHutCh\",\"type\":\"card\",\"data\":{\"card_name\":\"\u57fa\u7840\u6570\u636e\",\"col\":4}},{\"id\":\"AebyyeTb-I\",\"type\":\"card\",\"data\":{\"card_name\":\"\u6a21\u5177\u6570\u636e\",\"col\":4}},{\"id\":\"zLrtrFavD8\",\"type\":\"card\",\"data\":{\"card_name\":\"\u8f66\u95f4\u6570\u636e\",\"col\":4}}]",
  "creation": "2024-01-19 16:29:50.777337",
  "custom_blocks": [],
  "docstatus": 0,
@@ -13,34 +13,6 @@
  "is_hidden": 0,
  "label": "Forge Shop",
  "links": [
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "\u6a21\u5177\u6570\u636e",
-   "link_count": 2,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "\u6a21\u5177\u7c7b\u578b",
-   "link_count": 0,
-   "link_to": "Mold Type",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "\u6a21\u5177\u72b6\u6001",
-   "link_count": 0,
-   "link_to": "Mold Status",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
   {
    "hidden": 0,
    "is_query_report": 0,
@@ -106,9 +78,48 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "\u6a21\u5177\u6570\u636e",
+   "link_count": 3,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Mold Name",
+   "link_count": 0,
+   "link_to": "Mold Name",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "\u6a21\u5177\u7c7b\u578b",
+   "link_count": 0,
+   "link_to": "Mold Type",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "\u6a21\u5177\u72b6\u6001",
+   "link_count": 0,
+   "link_to": "Mold Status",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2024-07-05 18:13:24",
+ "modified": "2024-08-13 15:38:10",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Forge Shop",
@@ -153,6 +164,14 @@
    "format": "{}\u79cd",
    "label": "Semi Product",
    "link_to": "Semi Product",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Mold Use Life",
+   "link_to": "Mold Use Life",
    "stats_filter": "[]",
    "type": "DocType"
   },

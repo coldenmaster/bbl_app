@@ -1,0 +1,89 @@
+{
+ "actions": [],
+ "autoname": "field:mold_name",
+ "creation": "2024-08-13 15:33:56",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "mold_name",
+  "semi_product",
+  "mold_type"
+ ],
+ "fields": [
+  {
+   "fieldname": "semi_product",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Semi Product",
+   "options": "Semi Product",
+   "reqd": 1
+  },
+  {
+   "fieldname": "mold_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Mold Type",
+   "options": "Mold Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "mold_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Mold Name",
+   "reqd": 1,
+   "unique": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-08-13 17:38:41",
+ "modified_by": "Administrator",
+ "module": "Mold Manage",
+ "name": "Mold Name",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Mold Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

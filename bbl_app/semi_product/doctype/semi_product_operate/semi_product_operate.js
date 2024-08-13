@@ -27,6 +27,8 @@ frappe.ui.form.on("Semi Product Operate", {
         
         set_default(frm);
         setup_search_basket_field(frm);
+        set_target_form_filter(frm);
+        set_else_filter(frm);
         // frm.trigger("semi_product");
         // frm.trigger("semi_op_source");
         judge_fields_display(frm);
@@ -113,7 +115,18 @@ function set_target_form_filter(frm, value) {
     frm.set_query("semi_op_target", function () {
         return {
             filters: {
-                name: ["!=", value]
+                name: ["!=", value],
+                disable: 0,
+
+            },
+        };
+    });
+}
+function set_else_filter(frm) {
+    frm.set_query("semi_op_source", function () {
+        return {
+            filters: {
+                disable: 0,
             },
         };
     });

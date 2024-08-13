@@ -435,7 +435,7 @@
  ],
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-08-12 11:38:22",
+ "modified": "2024-08-13 17:44:58",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Semi Product Manage",
@@ -481,8 +481,6 @@
   }
  ],
  "search_fields": "semi_product_name,remaining_piece",
- "show_name_in_global_search": 1,
- "show_preview_popup": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],

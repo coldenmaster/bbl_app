@@ -296,9 +296,9 @@ class CpQrcode:
         #     self.err_msg += "/*二维码验证错误"
         #     return False
 
-        sep = '-'
+        sep = '*'
         if not sep in self.qrcode_str:
-            sep = '*'
+            sep = '-'
         strs = self.qrcode_str.split(sep)
         if len(strs) < 4:
             # 兼容旧打印格式，无分割符 ZQ0CT202407180013
@@ -379,11 +379,11 @@ if __name__ == "__main__":
     s1 = ""
     s1 = ""
     s1 = ""
-    s1 = ""
     s1 = "70279112011751901120001"
     s1 = "UnboundLocalError: local variable 'bbl_code_info' referenced before assignment"
     s1 = "S038330100100852305280001"
     s1 = "0083202407240013"
+    s1 = "BBL*30DS03-A*A2406IX131*0013"
     
     t1 = CpQrcode(s1)
     print_blue(t1.parse_data())
