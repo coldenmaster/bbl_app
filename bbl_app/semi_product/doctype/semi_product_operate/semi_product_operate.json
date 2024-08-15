@@ -16,6 +16,8 @@
   "employee",
   "employee_submit",
   "op_mark",
+  "is_merge_batch",
+  "merge_batch",
   "column_break_ltfu",
   "semi_op_target",
   "finish_name",
@@ -57,6 +59,7 @@
    "in_standard_filter": 1,
    "label": "Semi Op Target",
    "options": "Product Form",
+   "remember_last_selected_value": 1,
    "reqd": 1
   },
   {
@@ -229,13 +232,31 @@
    "fieldname": "op_mark",
    "fieldtype": "Data",
    "label": "Op Mark"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval: !!doc.is_merge_batch",
+   "fieldname": "is_merge_batch",
+   "fieldtype": "Check",
+   "label": "Is Merge Batch",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "merge_batch",
+   "fieldtype": "Small Text",
+   "label": "Merge Batch",
+   "max_height": "3rem",
+   "no_copy": 1,
+   "read_only": 1,
+   "report_hide": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-08-09 14:32:47",
+ "modified": "2024-08-15 10:15:31",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Semi Product Operate",

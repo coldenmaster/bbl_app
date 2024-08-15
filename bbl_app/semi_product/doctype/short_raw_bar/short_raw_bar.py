@@ -25,8 +25,8 @@ class ShortRawBar(Document):
 
 
 
-# up_obj_mock = {}
-up_obj_mock = {'semi_product': '30BC', 'items': '[{"name":"DBL-30BC-24011462Z","owner":"xiezequan@hbbbl.top","creation":"2024-07-03 16:13:04","modified":"2024-07-03 16:13:04","modified_by":"xiezequan@hbbbl.top","_user_tags":null,"_comments":null,"_assign":null,"_liked_by":null,"docstatus":0,"idx":0,"raw_bar_name":"30BC_短棒料","heat_no":"V12403619","in_piece":160,"remaining_piece":160,"wip_piece":0,"accu_piece":160,"status":"未使用","_comment_count":0,"_idx":2}]', 'cmd': 'bbl_app.semi_product.doctype.short_raw_bar.short_raw_bar.product_out'}
+up_obj_mock = {}
+# up_obj_mock = {'semi_product': '30BC', 'items': '[{"name":"DBL-30BC-24011462Z","owner":"xiezequan@hbbbl.top","creation":"2024-07-03 16:13:04","modified":"2024-07-03 16:13:04","modified_by":"xiezequan@hbbbl.top","_user_tags":null,"_comments":null,"_assign":null,"_liked_by":null,"docstatus":0,"idx":0,"raw_bar_name":"30BC_短棒料","heat_no":"V12403619","in_piece":160,"remaining_piece":160,"wip_piece":0,"accu_piece":160,"status":"未使用","_comment_count":0,"_idx":2}]', 'cmd': 'bbl_app.semi_product.doctype.short_raw_bar.short_raw_bar.product_out'}
 
 """ 短棒料 建生产工单部分 """
 # http://dev2.localhost:8000/api/method/bbl_app.semi_product.doctype.short_raw_bar.short_raw_bar.product_out?scan_barcode=123
@@ -208,7 +208,8 @@ def create_op_flow(batch_qtys, item, se_doc_name, s_item_name):
 """ 短棒料 根据生产工单 转换成锻坯部分
     主要完成为生产工单的物料转移设定正确的短棒料批次号
 """
-up_obj_mock2 = {'work_order': 'MFG-WO-2024-00033', 'out_piece': '21', 'wo_qty': '21', 'name': 'DBL-20240703-462Z-4E', 'owner': 'gaoxuesong@hbbbl.top', 'creation': '2024-07-03 17:01:15', 'modified': '2024-07-16 11:15:58', 'modified_by': 'Administrator', '_user_tags': '', '_comments': '', '_assign': '', '_liked_by': '', 'docstatus': '0', 'idx': '0', 'raw_bar_name': '4E_短棒料', 'heat_no': '24011462Z', 'in_piece': '21', 'remaining_piece': '0', 'wip_piece': '32', 'accu_piece': '63', 'status': '锻造车间wip', 'semi_product': '4E', '_comment_count': '0', '_idx': '0', 'cmd': 'bbl_app.semi_product.doctype.short_raw_bar.short_raw_bar.work_order_done'}
+# up_obj_mock2 = {'work_order': 'MFG-WO-2024-00033', 'out_piece': '21', 'wo_qty': '21', 'name': 'DBL-20240703-462Z-4E', 'owner': 'gaoxuesong@hbbbl.top', 'creation': '2024-07-03 17:01:15', 'modified': '2024-07-16 11:15:58', 'modified_by': 'Administrator', '_user_tags': '', '_comments': '', '_assign': '', '_liked_by': '', 'docstatus': '0', 'idx': '0', 'raw_bar_name': '4E_短棒料', 'heat_no': '24011462Z', 'in_piece': '21', 'remaining_piece': '0', 'wip_piece': '32', 'accu_piece': '63', 'status': '锻造车间wip', 'semi_product': '4E', '_comment_count': '0', '_idx': '0', 'cmd': 'bbl_app.semi_product.doctype.short_raw_bar.short_raw_bar.work_order_done'}
+up_obj_mock2 = {}
 
 # http://dev2.localhost:8000/api/method/bbl_app.semi_product.doctype.short_raw_bar.short_raw_bar.product_out?scan_barcode=123
 @frappe.whitelist()

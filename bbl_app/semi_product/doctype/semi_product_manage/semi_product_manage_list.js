@@ -6,6 +6,7 @@ frappe.listview_settings["Semi Product Manage"] = {
     add_fields: [
         "semi_product",
         "bbl_heat_no",
+        "is_group",
     ],
     filters: [
         ["remaining_piece", ">", 0],
@@ -44,7 +45,7 @@ frappe.listview_settings["Semi Product Manage"] = {
         // $(".btn-primary").hide();
 
 
-        page.add_inner_button('新建加工单', () => {
+        page.add_inner_button('加工', () => {
             let items = listview.get_checked_items();
             if (items.length != 1) {
                 frappe.msgprint({ "title": "错误", message: "请只选择一条记录", indicator: "red" });
@@ -60,6 +61,7 @@ frappe.listview_settings["Semi Product Manage"] = {
             opts.semi_op_source = temp_li[temp_li.length - 1];
             opts.basket_in = '';
             log("新建操作单frm, opts属性:", opts);
+            bbl.flag_has_spm_opts = 1;
             frappe.new_doc("Semi Product Operate", opts, 
                doc => { 
                 //    console.log("新建操作单frm, opts属性:", opts);
@@ -67,7 +69,8 @@ frappe.listview_settings["Semi Product Manage"] = {
                    this.list_view.clear_checked_items();
                 })
         });
-        page.change_inner_button_type('新建加工单', null, 'info');
+        page.change_inner_button_type('加工', null, 'info');
+
 
         page.add_inner_button('加工单列表', () => {
             // make_main_op_dialog(listview);
@@ -79,6 +82,152 @@ frappe.listview_settings["Semi Product Manage"] = {
         page.change_inner_button_type('加工单列表', null, 'warning');
 
 
+        page.add_inner_button('合批', () => {
+            make_batch_merge(listview);
+            // frappe.set_route("List", "Semi Product Operate");
+        });
+        page.change_inner_button_type('合批', null, 'danger');
+
     }
 
 }
+
+function make_batch_merge(listview) {
+    let items = listview.get_checked_items();
+    log("合批, items:", items);
+    if (items.length < 2){
+        frappe.msgprint({ "title": "错误", message: "请选择两条以上记录", indicator: "red" });
+        return;
+    }
+    let items_ok = true;
+    let semi_product_name = items[0].semi_product_name;
+    let forge_batch_no = items[0].forge_batch_no;
+    let parent_item = items[0];
+    let qty_max = 0, qty_total = 0;
+    let item_names = [];
+    let item_qtys = [];
+    for (let element of items) {
+        if (element.semi_product_name != semi_product_name)
+            items_ok = false;
+        if (element.remaining_piece < 1)
+            items_ok = false;
+        if (element.forge_batch_no != forge_batch_no)
+            items_ok = false;
+        if (element.is_group)
+            items_ok = false;
+        if (!items_ok) {
+            const msg = "请选择" + "相同名称".bold() + ",相同批次".bold()   + ",未使用".bold()  + "的记录" ;
+            frappe.msgprint({ "title": "错误", message: msg, indicator: "red" });
+            return;
+        }
+        item_names.push(element.name);
+        item_qtys.push(element.remaining_piece);
+        qty_total += element.remaining_piece;
+        if(element.remaining_piece > qty_max) {
+            qty_max = element.remaining_piece;
+            parent_item = element;
+        }
+    }
+
+    const args = {forge_batch_no, semi_product_name, item_names, item_qtys, parent_item, qty_max, qty_total};
+    make_batch_merge_dialog(args);
+
+
+    // todo 合批操作逻辑
+    /* 
+    1.名称相同，锻造批次号相同，没有子单据，可以进行合并,
+    2.显示一个操作单，操作名称是“锻坯合批”，‘打磨合批’
+    3.合并后的数量是所有选中的数量之和，父亲单据，是数量最多的旧单据
+    4.旧单据数量全设0，状态为用完，
+    */
+    // let opts = items[0];
+    // opts.spm_source = opts.name;
+    // let temp_li = opts.semi_product_name.split('_');
+}
+
+function make_batch_merge_dialog(args) {
+    frappe.prompt([
+        {
+            label: "工件名称:&emsp;" + args.semi_product_name.bold(),
+            fieldtype: "Heading",
+        },
+        // {
+        //     label: "批次号:&emsp;&emsp;" + args.parent_item.name.bold(),
+        //     fieldtype: "Heading",
+        // },
+        {
+            label: "锻造批次:&emsp;" + args.forge_batch_no.bold(),
+            fieldtype: "Heading",
+        },
+        {
+            label: "合并数量:&emsp;" + cstr(args.qty_total).bold() + "根",
+            fieldtype: "Heading",
+        },
+        {
+            label: "合批批次:&emsp;" + args.item_qtys.join(" + ").bold() + "根",
+            fieldtype: "Heading",
+        }],
+        () => {
+            // send_batch_merge_data(args);
+            make_merge_doc_form(args);
+        },
+        "半成品批次合并".bold(),
+        "合并"
+    )
+
+}
+
+function make_merge_doc_form(args) {
+    console.log("make_merge_doc_form args:", args);
+    opts = args;
+    // opts = Object.assign({}, args);
+    // opts = Object.assign(opts, args);
+    opts = Object.assign(opts, args.parent_item);
+    opts.spm_source = args.parent_item.name;
+    opts.semi_op_source = args.parent_item.product_form;
+    opts.semi_op_target = args.item_names;
+    // opts.finish_qty = opts.source_qty = args.qty_total;
+    opts.basket_in = '';
+    log("opts属性:", opts);
+    bbl.flag_has_spm_opts = 1;
+    bbl.flag_spm_merge = 1;
+    frappe.new_doc("Semi Product Operate", opts, 
+       doc => { 
+            console.log("frm, opts属性:", opts);
+            console.log("新建操作单frm, doc属性:", doc);
+            doc.finish_qty = doc.source_qty = args.qty_total;
+            doc.semi_op_target = opts.semi_op_source + "合批";
+            doc.finish_name = opts.semi_product + "_" + doc.semi_op_target;
+            doc.is_merge_batch = 1;
+            doc.merge_batch = JSON.stringify(merge_batch_note(opts.item_names, opts.item_qtys));
+
+           //    this.list_view.clear_checked_items();
+        })
+}   
+
+function merge_batch_note(names, qtys) {
+    log(names, qtys)
+    let note = {};
+    for (let i = 0; i < names.length; i++) {
+        note[names[i]] = qtys[i];
+    }
+    log(note)
+    return note;
+}
+
+
+// function send_batch_merge_data(values) {
+//     console.log("send_batch_merge_data values:", values);
+//     frappe.call({
+//         method: "bbl_app.semi_product.doctype.semi_product_manage.semi_product_manage.send_batch_merge_data",
+//         args: values
+//     }).then(r => {
+//         if (r.message) {
+//             frappe.show_alert({
+//                 message: __("跳转到新建单据"),
+//                 indicator: "green"
+//             });
+//             frappe.set_route("Form", "Semi Product Manage", r.message);
+//         }
+//     })
+// }

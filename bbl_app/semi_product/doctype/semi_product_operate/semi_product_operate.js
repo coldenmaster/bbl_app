@@ -3,10 +3,15 @@
 
 frappe.ui.form.on("Semi Product Operate", {
     op_source: "",
-
     setup(frm) {
-        // f = frappe;
-        frm = cur_frm;
+        // log("setup,  frappe.route_options", frappe.route_options);
+        // if (frappe.route_options.
+    },
+    onload(frm) {
+        // log("onload,  frappe.route_options", frappe.route_options, frm.doc);
+        log("onload,  frappe.route_options", frappe.route_options);
+        if (!frm.doc.semi_op_target || !frm.doc.semi_op_target.endsWith("合批")) 
+            bbl.flag_spm_merge = false;
     },
     on_submit(frm) {
         log("spo on_submit", frm)
@@ -23,37 +28,80 @@ frappe.ui.form.on("Semi Product Operate", {
             frm.change_custom_button_type("挑选半成品", null, 'info');
     
         };  
-        
-        
-        set_default(frm);
-        setup_search_basket_field(frm);
-        set_target_form_filter(frm);
-        set_else_filter(frm);
-        // frm.trigger("semi_product");
-        // frm.trigger("semi_op_source");
-        judge_fields_display(frm);
+
+        frm.set_value("employee", frappe.session.user_fullname);
+        if (!bbl.flag_spm_merge) {
+            console.warn("bbl.flag_spm_merge", bbl.flag_spm_merge);
+            set_default(frm);
+            setup_search_basket_field(frm);
+            set_target_form_filter(frm);
+            set_else_filter(frm);
+            // frm.trigger("semi_product");
+            // frm.trigger("semi_op_source");
+            judge_fields_display(frm);
+        } else {
+            process_flag_spm_merge(frm);
+        }
+
+
 	},
     semi_product(frm) {
-        op_source = cat_op_source(frm);
-        set_spm_filter(frm, op_source);
+        if (!bbl.flag_spm_merge) {
+            op_source = cat_op_source(frm);
+            set_spm_filter(frm, op_source);
+        }
 
     },
     semi_op_source(frm) {
-        const op_source = cat_op_source(frm);
-        set_spm_filter(frm, op_source);
-        set_target_form_filter(frm, frm.doc.semi_op_source);
-        set_forge_batch_no_disp(frm);
+        if (!bbl.flag_spm_merge) {
+            const op_source = cat_op_source(frm);
+            set_spm_filter(frm, op_source);
+            set_target_form_filter(frm, frm.doc.semi_op_source);
+            set_forge_batch_no_disp(frm);
+        }
     },
+
+
     spm_source(frm) {
-        cat_finish_name(frm);
-        query_spm_source_data(frm);
+        log("根据原单，自动设置数据", bbl.flag_spm_merge);
+        if (!bbl.flag_spm_merge) {
+            cat_finish_name(frm);
+            query_spm_source_data(frm);
+        }
     },
     semi_op_target(frm) {
-        cat_finish_name(frm);
-        set_bbl_heat_no_disp(frm);
+        if (!bbl.flag_spm_merge) {
+            cat_finish_name(frm);
+            set_bbl_heat_no_disp(frm);
+        }
+        // let value = frm.doc.semi_op_target;
+        // if (value?.includes("合批")) {
+        //     frm.doc.is_merge_batch = 1;;
+        // }
+        // log("is_merge_batch", frm.doc.is_merge_batch);
+        // log("frm.fields_dict[is_merge_batch]", frm.fields_dict["is_merge_batch"])
+        // if (frm.doc.is_merge_batch && !frm.fields_dict["is_merge_batch"]) {
+        //     frm.layout.add_fields([
+        //         {
+        //             fieldtype: "Check",
+        //             fieldname: "is_merge_batch",
+        //             default: 1,
+        //             readonly: 1,
+        //             label: "合批",
+        //         },
+        //         {
+        //             fieldtype: "Data",
+        //             fieldname: "merge_batch",
+        //             label: "合批信息",
+        //         },
+        //     ]);
+        //     frm.doc.merge_batch = "4个合批";
+        // }
     },
     source_qty(frm) {
-        frm.set_value("finish_qty", frm.doc.source_qty);
+        if (!bbl.flag_spm_merge) {
+            frm.set_value("finish_qty", frm.doc.source_qty);
+        }
     },
     finish_qty(frm) {
         if (frm.doc.finish_qty > frm.doc.source_qty) {
@@ -64,9 +112,16 @@ frappe.ui.form.on("Semi Product Operate", {
 
 });
 
+function process_flag_spm_merge(frm) {
+    if (bbl.flag_spm_merge) {
+        frm.get_field("basket_in").toggle(0);
+        frm.get_field("bbl_heat_no").toggle(0);
+        frm.get_field("补充属性_section").hide();
+    }
+}
+
 function set_default(frm) {
     if (frm.is_new()) {
-        frm.set_value("employee", frappe.session.user_fullname);
         frm.set_value("semi_op_target", "");
     }
 }
@@ -91,7 +146,7 @@ function query_spm_source_data(frm) {
     const spm_source = frm.doc.spm_source || "";
     if (spm_source) {
         frappe.model.with_doc("Semi Product Manage", spm_source).then(doc => {
-            log("with_doc2", doc);
+            // log("with_doc2", doc);
             frm.set_value("forge_batch_no", doc.forge_batch_no);
             frm.set_value("bbl_heat_no", doc.bbl_heat_no);
         })
@@ -99,7 +154,7 @@ function query_spm_source_data(frm) {
 }
 
 function set_spm_filter(frm, op_source) {
-    if (frm.is_new())
+    if (frm.is_new() && !bbl.flag_has_spm_opts)
         frm.set_value("spm_source", "");
     frm.set_query("spm_source", function () {
         return {
@@ -112,6 +167,7 @@ function set_spm_filter(frm, op_source) {
 }
 
 function set_target_form_filter(frm, value) {
+
     frm.set_query("semi_op_target", function () {
         return {
             filters: {
@@ -121,7 +177,32 @@ function set_target_form_filter(frm, value) {
             },
         };
     });
+    frm.user_oprations = [];
+    frappe.db.get_list("Job Post", {
+        filters: {
+            parent: frappe.session.user_fullname,
+        },
+        fields: ["job_post"],
+        pluck: "job_post",
+        parent_doctype: "Employee Jobs",
+    }).then(r => {
+        // log("user_oprations :", r);
+        if (r.length == 0) {
+            return;
+        }
+        frm.user_oprations = r;
+        frm.set_query("semi_op_target", function () {
+            return {
+                filters: {
+                    operation: ["in", frm.user_oprations],
+                    name: ["!=", value],
+                    disable: 0,
+                },
+            };
+        });
+    });
 }
+
 function set_else_filter(frm) {
     frm.set_query("semi_op_source", function () {
         return {
@@ -130,6 +211,7 @@ function set_else_filter(frm) {
             },
         };
     });
+
 }
 
 function judge_fields_display(frm) {
@@ -231,6 +313,7 @@ function select_spm_dialog(frm) {
     let sps = new SpmSelectDialog({
         doctype: "Semi Product Manage",
         target: frm,
+        me: this,
         // setters: {
         //     semi_product_name: null,
         //     remaining_piece: null,
@@ -260,22 +343,45 @@ function select_spm_dialog(frm) {
                 fieldname: "basket_in",
                 label: "框号",
             }, {
+                fieldtype: "Date",
+                fieldname: "for_date",
+                label: "for_date",
+                hidden: 1,
+            }, {
                 fieldtype: "Data",
                 fieldname: "op_mark",
                 label: "标记",
-            }, 
+            }, {
+                fieldtype: "Button",
+                fieldname: "clear_field1",
+                label: "清除过滤",
+                click: () => {
+                    const d = cur_dialog;
+                    const dfs = cur_dialog.fields;
+                    dfs.forEach(df => {
+                        if (["Data", "Link", "Int"].includes(df.fieldtype)) {
+                            d.set_value(df.fieldname);
+                        }
+                    })
+                    sps.args = {};
+                    setTimeout(() => {
+                        sps.get_results();
+                    }, 0);
+                }
+            },
         ],
         add_filters_group: 1,
-        // date_field: "for_date",
-        date_field: "creation",
+        date_field: "for_date",
+        // date_field: "creation",
         // data_fields: [
         //     {
         //         fieldtype: "Data",
         //         fieldname: "add_field1",
-        //         label: "add_field1",
+        //         label: "for_date",
         //     },
         // ],
-        columns: ["semi_product_name", "forge_batch_no", "remaining_piece", "for_date"],
+        // columns: ["semi_product_name", "forge_batch_no", "remaining_piece", "for_date"],
+        columns: ["semi_product_name", "remaining_piece", "for_date"],
         get_query() {
             return {
                 filters: { 
@@ -759,24 +865,42 @@ class SpmSelectDialog {
 		let head = Object.keys(result).length === 0;
 
 		let contents = ``;
+        // log("result",result);
 		this.get_datatable_columns().forEach(function (column) {
-			contents += `<div class="list-item__content ellipsis">
-				${
-					head
-						? `<span class="ellipsis text-muted" title="${__(
-								frappe.model.unscrub(column)
-						  )}">${__(frappe.model.unscrub(column))}</span>`
-						: column !== "name"
-						? `<span class="ellipsis result-row" title="${__(
-								result[column] || ""
-						  )}">${__(result[column] || "")}</span>`
-						: `<a href="${
-								"/app/" + frappe.router.slug(me.doctype) + "/" + result[column] ||
-								""
-						  }" class="list-id ellipsis" title="${__(result[column] || "")}">
-							${__(result[column] || "")}</a>`
-				}
-			</div>`;
+			// contents += `<div class="list-item__content ellipsis">
+			// 	${
+			// 		head
+			// 			? `<span class="ellipsis text-muted" title="${__(
+			// 					frappe.model.unscrub(column)
+			// 			  )}">${__(frappe.model.unscrub(column))}</span>`
+			// 			: column !== "name"
+            //             ? `<span class="ellipsis result-row" title="${__(
+			// 					result[column] || ""
+			// 			  )}">${__(result[column] || "")}</span>`
+			// 			: `<a href="${
+			// 					"/app/" + frappe.router.slug(me.doctype) + "/" + result[column] ||
+			// 					""
+			// 			  }" class="list-id ellipsis" title="${__(result[column] || "")}">
+			// 				${__(result[column] || "")}</a>`
+			// 	}
+			// </div>`;
+            contents += `<div class="list-item__content ">
+                ${
+                    head
+                        ? `<span class="ellipsis text-muted" title="${__(
+                                frappe.model.unscrub(column)
+                        )}">${__(frappe.model.unscrub(column))}</span>`
+                        : column !== "semi_product_name"
+                        ? `<span class="result-row" title="${__(
+                                result[column] || ""
+                        )}">${__(result[column] || "")}</span>`
+                        : `<a href="${
+                                "/app/" + frappe.router.slug(me.doctype) + "/" + result.name ||
+                                ""
+                        }" class="list-id " title="${__(result[column] || "")}">
+                            ${__(result[column] || "")}</a>`
+                }
+            </div>`;
 		});
 
 		let $row = $(`<div class="list-item">
@@ -896,6 +1020,7 @@ class SpmSelectDialog {
 	}
 
 	async perform_search(args) {
+        log("perform_search args", args);
 		const res = await frappe.call({
 			type: "GET",
 			method: "frappe.desk.search.search_widget",
@@ -910,6 +1035,7 @@ class SpmSelectDialog {
 	async get_results() {
 		const args = this.get_args_for_search();
 		let [results, more] = await this.perform_search(args);
+        // log("results, more", results, more)
 
 		if (more) {
 			results = results.splice(0, this.page_length);
@@ -997,4 +1123,6 @@ class SpmSelectDialog {
             });
 		}
     }
+    
 };
+

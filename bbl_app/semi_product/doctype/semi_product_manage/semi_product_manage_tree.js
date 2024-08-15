@@ -217,6 +217,8 @@ frappe.treeview_settings["Semi Product Manage"] = {
                 opts.semi_product = product_name_form[0];
                 opts.semi_op_source = product_name_form[1];
                 opts.spm_source = node.data.value;
+                bbl.flag_has_spm_opts = 1;
+
                 frappe.new_doc("Semi Product Operate", opts, 
                    doc => { 
                     //    console.log("新建操作单frm, doc属性:", doc);

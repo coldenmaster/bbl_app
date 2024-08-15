@@ -6,7 +6,7 @@ import frappe
 from frappe.model.document import Document
 from frappe.model.naming import getseries, parse_naming_series
 from frappe.utils import get_fullname
-from frappe.utils.data import dict_with_keys, today
+from frappe.utils.data import cint, dict_with_keys, today
 
 from bbl_api.utils import _print_blue_pp, print_blue, print_blue_pp, print_green, print_green_pp, print_red
 
@@ -60,6 +60,43 @@ mock_data = {'amended_from': None,
  'spm_source': 'DP-4E-V22401504',
  'test': None}
 
+mock_data = {'amended_from': None,
+ 'basket_in': '',
+ 'bbl_heat_no': None,
+ 'creation': '2024-08-15 10:51:37',
+ 'docstatus': 1,
+ 'doctype': 'Semi Product Operate',
+ 'employee': 'Administrator',
+ 'employee_submit': None,
+ 'finish_name': '4E_冷校合批',
+ 'finish_qty': 50,
+ 'for_date': '2024-08-15',
+ 'forge_batch_no': 'pch123456',
+ 'idx': 0,
+ 'is_merge_batch': 1,
+ 'merge_batch': '{"LXZ/LX-240815-4E-02":37,"LXZ/LX-240815-4E-01":8,"LXZ/LX-240814-4E-01":5}',
+ 'modified': '2024-08-15 10:51:37',
+ 'modified_by': 'Administrator',
+ 'name': 'SPO-20240815-0011',
+ 'op_flow': None,
+ 'op_mark': None,
+ 'op_note': None,
+ 'owner': 'Administrator',
+ 'product_name': '4E_冷校',
+ 'property_name': None,
+ 'property_value': None,
+ 'semi_op_source': '冷校',
+ 'semi_op_target': '冷校合批',
+ 'semi_product': '4E',
+ 'source_qty': 37,
+ 'spm_source': 'LXZ/LX-240815-4E-02',
+ 'test': None,
+ 'voucher_from': None,
+ 'voucher_to': None,
+ 'workflow_state': None
+}
+
+
 def spm_op(opts):
     # print_red("spm_op:半成品加工单 处理半成品管理记录 ")
     if not opts:
@@ -112,7 +149,6 @@ def _create_item(item_name, item_type = '过程半成品', warehouse = '锻造�
 
 
 def _semi_product_batch_convert(opts):
-    print_blue("新建半成品产品批次信息")
     # if frappe.flags.wt_t1:
     #     bar_item = frappe._dict(bar_item)
     semi_doc_source = frappe.get_doc('Semi Product Manage', opts.spm_source)
@@ -134,8 +170,22 @@ def _semi_product_batch_convert(opts):
 
     # 新doc设置 件数，剩余数量，总数量，操作员，产品名称，批次号（自动？）
     #   仓库（根据目标产品形态设置），状态（缺省未使用），
-
     is_sub_form = target_product_form in semi_doc_source.op_list.split('-') or product_form_doc.is_sub_form
+
+    is_merge_batch = opts.is_merge_batch
+    merge_batch= {}
+    if is_merge_batch:
+        merge_batch= frappe.parse_json(opts.merge_batch)
+        merge_qty = cint(opts.finish_qty)
+        batch_qts_total = sum([cint(v) for v in merge_batch.values()])
+        if merge_qty != batch_qts_total:
+            frappe.throw(f'合并批次数量不匹配 {merge_qty=} {batch_qts_total=}')
+    #     print_red(f'{merge_batch=}')
+    #     print_red(f'批次数量匹配 {merge_qty=} {batch_qts_total=}')
+        
+
+    # print_red(f' {is_merge_batch=}')
+
     semi_doc_target.update({
         'batch_no': batch_no,
         'last_in_piece': opts.finish_qty,
@@ -164,6 +214,8 @@ def _semi_product_batch_convert(opts):
         'sub_workshop': product_form_doc.sub_workshop,
         'warehouse': product_form_doc.warehouse,
         'is_sub_form': is_sub_form,
+        'is_merge_batch': is_merge_batch,
+        'merge_batch': opts.merge_batch,
 
     }).insert(ignore_permissions=True)
     
@@ -171,19 +223,40 @@ def _semi_product_batch_convert(opts):
     source_status = '用完' if source_remaining == 0 else '已使用'
     if source_remaining < 5 and source_remaining != 0:
         source_status = '余料' 
-    semi_doc_source.update({
-        'last_in_piece': 0,
-        'last_out_piece': opts.finish_qty,
-        'remaining_piece': source_remaining,
-        'use_date': today(),
-        'status': source_status,
-        'last_op_voucher': opts.name,
-        'basket_no': semi_doc_source.basket_in if source_remaining != 0 else '',
-        'basket_in': semi_doc_source.basket_in if source_remaining != 0 else '',
-        'is_group': 1,
-    }).save()
+    
+    if (not is_merge_batch):
+        # 非合批批次
+        semi_doc_source.update({
+            'last_in_piece': 0,
+            'last_out_piece': opts.finish_qty,
+            'remaining_piece': source_remaining,
+            'use_date': today(),
+            'status': source_status,
+            'last_op_voucher': opts.name,
+            'basket_no': semi_doc_source.basket_in if source_remaining != 0 else '',
+            'basket_in': semi_doc_source.basket_in if source_remaining != 0 else '',
+            'is_group': 1,
+        }).save()
+    else:   
+        # 合批批次操作
+        for batch_name, batch_qty in merge_batch.items():
+            print_red(f'{batch_name=}: {batch_qty=}')
+            # semi_doc_source = frappe.get_doc('Semi Product Manage', opts.spm_source)
+            frappe.db.set_value('Semi Product Manage', batch_name,
+                                {
+                                    'last_in_piece': 0,
+                                    'last_out_piece': batch_qty,
+                                    'remaining_piece': 0,
+                                    'use_date': today(),
+                                    'status': "合批",
+                                    'last_op_voucher': opts.name,
+                                    'basket_no': '',
+                                    'basket_in': '',
+                                    # 'is_group': 1,
+                                })
 
     # todo 建操作记录
+    frappe.db.commit()
     return semi_doc_target.name
 
     # print_blue_pp(semi_doc_source.as_dict())

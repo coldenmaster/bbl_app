@@ -17,12 +17,13 @@ frappe.ui.form.on("Semi Product Manage", {
             opts.forge_batch_no = frm.doc.forge_batch_no;
             opts.bbl_heat_no = frm.doc.bbl_heat_no;
             opts.semi_product = frm.doc.semi_product;
+            bbl.flag_has_spm_opts = 1;
             // route_opts = opts;
             frappe.new_doc("Semi Product Operate", opts, 
                doc => { 
                 //    console.log("新建操作单frm, opts属性:", opts);
                 //    console.log("新建操作单frm, doc属性:", doc);
-                   frappe.show_alert("功能ok");
+                //    frappe.show_alert("功能ok");
                 })
         });
     

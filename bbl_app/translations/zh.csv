@@ -244,6 +244,7 @@ ERPNext Integrations,外部集成
 Browse Apps,可安装应用
 {0} has been submitted successfully,{0} 提交成功
 Filter,过滤,
+Filters {0},过滤器{0},
 
 
 d,天,Days (Field: Duration)
@@ -333,7 +334,7 @@ Segregate Serial / Batch Bundle,显示序列号与批号明细,
 Semi Product Manage,半成品管理,
 Forge Batch No,锻造批次号,
 Raw No Copy,原材料炉号,
-Bbl Heat No,热处理炉号,
+Bbl Heat No,热处理批次号,
 Link Doc,关联单据,
 Link Doc In,入仓单据,
 Link Doc Out,出仓单据,
@@ -390,7 +391,7 @@ Op Flow,操作记录,
 Last In Piece,新入件数,
 Last Out Piece,新出件数,
 Parent Batch No,父批次号,
-Last Op Voucher,上一加工单,
+Last Op Voucher,加工单,
 Voucher From,源单据,
 Voucher To,目标单据,
 Basket No,框号,
@@ -421,6 +422,10 @@ Mold Use Life,模具维修记录
 Mold Life,模具寿命,
 Mold Name,模具名称,
 Maintenance Content,维修内容,
+Production Qty,生产数量,
+Is Merge Batch,合并批次,
+Merge Batch,合批信息,
+
 
 Item rate has been updated to zero as Allow Zero Valuation Rate is checked for item {0},物料{0}的单价已根据设置更新为零,
 "Items rate has been updated to zero as Allow Zero Valuation Rate is checked for the following items: {0}",物料{0}的单价已根据设置更新为零,

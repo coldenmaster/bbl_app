@@ -27,15 +27,14 @@
   "column_break_musm",
   "status",
   "semi_product",
-  "product_name",
-  "product_type",
   "customer",
   "employee",
   "link_doc",
-  "short_bar_doc",
   "for_date",
   "use_date",
   "parent_batch_no",
+  "short_bar_doc",
+  "old_parent",
   "last_op_voucher",
   "op_mark",
   "note",
@@ -47,17 +46,20 @@
   "operation",
   "product_grade",
   "product_line",
+  "product_name",
+  "product_type",
   "column_break_pilk",
   "workshop",
   "sub_workshop",
   "warehouse",
   "warehouse_area",
   "is_sub_form",
+  "is_merge_batch",
+  "merge_batch",
   "section_break_jeav",
   "lft",
   "rgt",
   "is_group",
-  "old_parent",
   "parent_semi_product_manage",
   "column_break_samu"
  ],
@@ -88,6 +90,7 @@
   {
    "fieldname": "cost",
    "fieldtype": "Int",
+   "hidden": 1,
    "label": "Cost",
    "read_only": 1
   },
@@ -95,12 +98,15 @@
    "default": "0",
    "fieldname": "length",
    "fieldtype": "Int",
-   "label": "Length"
+   "hidden": 1,
+   "label": "Length",
+   "read_only": 1
   },
   {
    "default": "0",
    "fieldname": "weight",
    "fieldtype": "Float",
+   "hidden": 1,
    "label": "Weight",
    "precision": "0"
   },
@@ -110,7 +116,8 @@
    "fieldtype": "Int",
    "hidden": 1,
    "label": "Piece",
-   "no_copy": 1
+   "no_copy": 1,
+   "read_only": 1
   },
   {
    "default": "0",
@@ -151,7 +158,7 @@
    "in_standard_filter": 1,
    "label": "Status",
    "no_copy": 1,
-   "options": "\u672a\u4f7f\u7528\n\u5df2\u4f7f\u7528\n\u4f59\u6599\n\u7528\u5b8c"
+   "options": "\u672a\u4f7f\u7528\n\u5df2\u4f7f\u7528\n\u4f59\u6599\n\u7528\u5b8c\n\u5408\u6279"
   },
   {
    "fieldname": "semi_product",
@@ -267,7 +274,8 @@
    "fieldtype": "Int",
    "hidden": 1,
    "label": "Last In Piece",
-   "no_copy": 1
+   "no_copy": 1,
+   "read_only": 1
   },
   {
    "default": "0",
@@ -275,7 +283,8 @@
    "fieldtype": "Int",
    "in_list_view": 1,
    "label": "Last Out Piece",
-   "no_copy": 1
+   "no_copy": 1,
+   "read_only": 1
   },
   {
    "fieldname": "last_op_voucher",
@@ -314,6 +323,7 @@
   {
    "fieldname": "lft",
    "fieldtype": "Int",
+   "hidden": 1,
    "label": "Left",
    "no_copy": 1,
    "read_only": 1
@@ -401,6 +411,7 @@
   {
    "fieldname": "sub_workshop",
    "fieldtype": "Data",
+   "hidden": 1,
    "in_list_view": 1,
    "label": "Sub Workshop"
   },
@@ -426,16 +437,27 @@
    "label": "Is Sub Form"
   },
   {
-   "default": "0",
    "fieldname": "op_list",
    "fieldtype": "Small Text",
    "label": "Op List",
    "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_merge_batch",
+   "fieldtype": "Check",
+   "label": "Is Merge Batch"
+  },
+  {
+   "fieldname": "merge_batch",
+   "fieldtype": "Small Text",
+   "label": "Merge Batch",
+   "no_copy": 1
   }
  ],
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-08-13 17:44:58",
+ "modified": "2024-08-15 11:35:06",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Semi Product Manage",
