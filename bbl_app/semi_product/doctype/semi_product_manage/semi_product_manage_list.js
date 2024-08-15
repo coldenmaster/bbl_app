@@ -193,11 +193,10 @@ function make_merge_doc_form(args) {
     bbl.flag_spm_merge = 1;
     frappe.new_doc("Semi Product Operate", opts, 
        doc => { 
-            console.log("frm, opts属性:", opts);
-            console.log("新建操作单frm, doc属性:", doc);
+            // console.log("新建操作单frm, doc属性:",opts, doc);
             doc.finish_qty = doc.source_qty = args.qty_total;
             doc.semi_op_target = opts.semi_op_source + "合批";
-            doc.finish_name = opts.semi_product + "_" + doc.semi_op_target;
+            doc.finish_name = opts.semi_product + "_" + opts.semi_op_source + "合批";
             doc.is_merge_batch = 1;
             doc.merge_batch = JSON.stringify(merge_batch_note(opts.item_names, opts.item_qtys));
 

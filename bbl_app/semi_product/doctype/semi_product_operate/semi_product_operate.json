@@ -209,7 +209,8 @@
    "fieldname": "forge_batch_no",
    "fieldtype": "Link",
    "label": "Forge Batch No",
-   "options": "Forge Batch No"
+   "options": "Forge Batch No",
+   "remember_last_selected_value": 1
   },
   {
    "fieldname": "basket_in",
@@ -220,7 +221,8 @@
    "fieldname": "bbl_heat_no",
    "fieldtype": "Link",
    "label": "Bbl Heat No",
-   "options": "Bbl Heat No"
+   "options": "Bbl Heat No",
+   "remember_last_selected_value": 1
   },
   {
    "fieldname": "op_note",
@@ -256,7 +258,7 @@
  "is_calendar_and_gantt": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-08-15 10:15:31",
+ "modified": "2024-08-15 14:01:55",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Semi Product Operate",

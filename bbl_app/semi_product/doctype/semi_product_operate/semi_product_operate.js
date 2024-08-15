@@ -12,6 +12,9 @@ frappe.ui.form.on("Semi Product Operate", {
         log("onload,  frappe.route_options", frappe.route_options);
         if (!frm.doc.semi_op_target || !frm.doc.semi_op_target.endsWith("合批")) 
             bbl.flag_spm_merge = false;
+
+        process_flag_spm_merge(frm);
+
     },
     on_submit(frm) {
         log("spo on_submit", frm)
@@ -117,6 +120,10 @@ function process_flag_spm_merge(frm) {
         frm.get_field("basket_in").toggle(0);
         frm.get_field("bbl_heat_no").toggle(0);
         frm.get_field("补充属性_section").hide();
+        frm.get_field("semi_op_target").df.read_only = 1;
+        frm.get_field("finish_name").df.read_only = 1;
+        frm.get_field("finish_qty").df.read_only = 1;
+        frm.get_field("forge_batch_no").df.read_only = 1;
     }
 }
 
