@@ -425,6 +425,20 @@ Maintenance Content,维修内容,
 Production Qty,生产数量,
 Is Merge Batch,合并批次,
 Merge Batch,合批信息,
+Yield Operation,产量工序,
+Is Yield,计产量,
+Op List,操作列表,
+Yield List,记产列表,
+
+
+
+
+
+
+
+
+
+
 
 
 Item rate has been updated to zero as Allow Zero Valuation Rate is checked for item {0},物料{0}的单价已根据设置更新为零,

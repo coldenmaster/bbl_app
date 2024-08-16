@@ -42,6 +42,7 @@
   "column_break_hvwr",
   "op_times",
   "op_list",
+  "yield_list",
   "product_form",
   "operation",
   "product_grade",
@@ -440,6 +441,7 @@
    "fieldname": "op_list",
    "fieldtype": "Small Text",
    "label": "Op List",
+   "max_height": "3rem",
    "read_only": 1
   },
   {
@@ -453,11 +455,18 @@
    "fieldtype": "Small Text",
    "label": "Merge Batch",
    "no_copy": 1
+  },
+  {
+   "fieldname": "yield_list",
+   "fieldtype": "Small Text",
+   "label": "Yield List",
+   "max_height": "3rem",
+   "read_only": 1
   }
  ],
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-08-15 11:35:06",
+ "modified": "2024-08-15 16:46:27",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Semi Product Manage",

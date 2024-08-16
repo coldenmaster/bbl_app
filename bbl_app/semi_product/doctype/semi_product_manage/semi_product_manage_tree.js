@@ -33,8 +33,21 @@ frappe.treeview_settings["Semi Product Manage"] = {
                 }
             },
             onchange: () => {
-                // const val = tv.page.fields_dict.root_item.get_value()
-                // log("root_item onchange, tv",val , tv)
+                // LXZ/LXHP-240816-4E-01
+                // DP/ZP-240816-06A0-02
+                const cur_treeview = frappe.views.trees["Semi Product Manage"];
+                const val = cur_treeview.page.fields_dict.root_item.get_value();
+                // log("root_item onchange, cur_treeview",val , cur_treeview);
+                find_root_item(val).then((r) => {
+                    if (r.message !== val) {
+                        cur_treeview.page.fields_dict.root_item.set_value(r.message)
+                        bbl.temp_tree_node = val;
+                    } else {
+                        // 如果是root，自动展开+彩色显示 title
+                        const tree = cur_treeview.tree;
+                        tree.load_children(tree.root_node, true);
+                    }
+                });
             },
             label: "单独显示",
         },
@@ -80,7 +93,7 @@ frappe.treeview_settings["Semi Product Manage"] = {
 		frappe.treeview_settings["Semi Product Manage"].treeview = {};
 		$.extend(frappe.treeview_settings["Semi Product Manage"].treeview, treeview);
         this.tree_view = treeview;
-        window.tv = treeview;
+        window.cur_treeview = treeview;
 
         // treeview.page.add_inner_button(
 		// 	"查看详情",
@@ -95,19 +108,18 @@ frappe.treeview_settings["Semi Product Manage"] = {
         log("refresh 无", node);
     },
     post_render: function (treeview) {
-        log("post_render");   
+        // log("post_render");   
 		// frappe.treeview_settings["Semi Product Manage"].treeview["tree"] = treeview.tree;
 		treeview.page.set_primary_action(
 			"新建加工单",
 			function () {
                 frappe.new_doc("Semi Product Operate", 
                    doc => { 
-                    //    console.log("新建操作单frm, opts属性:", opts);
-                    //    console.log("新建操作单frm, doc属性:", doc);
                 })
 			},
 			"add"
 		);
+
 	},
     
     on_get_node: function (nodes, deep = false) {
@@ -155,6 +167,14 @@ frappe.treeview_settings["Semi Product Manage"] = {
                             color_1 = "dark";
                         li[1] = li[1].fontcolor(color_1);
                         li[2] = li[2].fontcolor("blue");
+                        
+                        if (node.value == bbl.temp_tree_node) {
+                            log("node.value:" + node.value);
+                            // node.$li.addClass("active");
+                            li[0] = li[0].bold().fontcolor("green");
+                            // node.title = li.join("/");
+                            // bbl.temp_tree_node = null;
+                        }
                         node.title = li.join("/");
                     }
                 }    
@@ -162,22 +182,18 @@ frappe.treeview_settings["Semi Product Manage"] = {
         }
         setTimeout(() => {
             recursive_nodes(nodes);
-            // nodes.forEach((node, n2) => {
-            //     if (!node.is_root) {
-            //         if (Array.isArray(node.data)) {
-            //             node.data.forEach((node, n3) => {
-            //                 let val = node.value;
-            //                 add_tail(val);
-            //             })
-            //         } else {
-            //             let val = node.value;
-            //             add_tail(val);
-            //         }
-            //     }
-            // })
         },0);
-        // nodes[0].title = "大傻逼";
         recursive_title(nodes);
+        setTimeout(() => {
+            if (bbl.temp_tree_node) {
+                const $item = $(`[data-label="${bbl.temp_tree_node}"]`);
+                // $item.css("background-color", "lightblue");
+                $item.css("background-color", "lightyellow");
+                $item.css("border-radius", "10px");
+                $item.trigger("click");
+                $item.trigger("click");
+            }
+        }, 0);
     },
 
     on_render_node: function (node) {
@@ -233,17 +249,17 @@ frappe.treeview_settings["Semi Product Manage"] = {
                 if(node.is_root) {
                     return false;
                 }
-                // log(node);
-                return !node?.parent_node?.data?.value;
+                return true;
+                // return !node?.parent_node?.data?.value;
             },
             click: function (node) {
-                const tv = frappe.views.trees["Semi Product Manage"];
-                const root_item_fd = tv.page.fields_dict["root_item"];
+                const cur_treeview = frappe.views.trees["Semi Product Manage"];
+                const root_item_fd = cur_treeview.page.fields_dict["root_item"];
                 root_item_fd.set_input(node.data.value);
                 // $(root_item_fd).trigger("change");
                 // log($("[data-fieldname=root_item]"));
                 $("[data-fieldname=root_item]").trigger("change");
-                log(node);
+                // log(node);
             },
             // btnClass: "hidden-xs",
         },
@@ -252,3 +268,16 @@ frappe.treeview_settings["Semi Product Manage"] = {
     // extend_toolbar: true,
 
 }
+
+
+function find_root_item(item_name) {
+    // console.log("find_root_item from backend:", item_name);
+    return frappe.call({
+        method: "bbl_app.semi_product.doctype.semi_product_manage.semi_product_manage.find_root_item",
+        args: {item_name}
+    }).then(r => {
+        return r
+    })
+}
+
+// log(find_root_item("LXZ/LXHP-240816-4E-01"));

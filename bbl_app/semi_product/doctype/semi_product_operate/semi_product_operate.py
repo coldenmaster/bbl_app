@@ -8,7 +8,7 @@ from frappe.model.naming import getseries, parse_naming_series
 from frappe.utils import get_fullname
 from frappe.utils.data import cint, dict_with_keys, today
 
-from bbl_api.utils import _print_blue_pp, print_blue, print_blue_pp, print_green, print_green_pp, print_red
+from bbl_api.utils import _print_blue_pp, print_blue, print_blue_pp, print_green, print_green_pp, print_red, print_yellow
 
 
 class SemiProductOperate(Document):
@@ -171,6 +171,12 @@ def _semi_product_batch_convert(opts):
     # 新doc设置 件数，剩余数量，总数量，操作员，产品名称，批次号（自动？）
     #   仓库（根据目标产品形态设置），状态（缺省未使用），
     is_sub_form = target_product_form in semi_doc_source.op_list.split('-') or product_form_doc.is_sub_form
+    yield_operation = opts.yield_operation
+    yield_list = semi_doc_source.yield_list or ''
+    if (yield_operation and not yield_operation in yield_list.split('-')):
+        semi_doc_target.yield_list = yield_list + '-' + yield_operation if yield_list else yield_operation
+    print_red(f'{semi_doc_target.yield_list=}')
+
 
     is_merge_batch = opts.is_merge_batch
     merge_batch= {}
@@ -207,7 +213,7 @@ def _semi_product_batch_convert(opts):
         'parent_semi_product_manage': opts.spm_source,
         'old_parent': opts.spm_source,
         # 'status': '未使用', # default
-        'op_mark': opts.op_mark,
+        'op_mark': (opts.op_mark or "") + "-" + opts.production_line,
         'operation': product_form_doc.operation,
         'product_grade': product_form_doc.product_grade,
         'workshop': product_form_doc.workshop,
@@ -241,6 +247,8 @@ def _semi_product_batch_convert(opts):
         # 合批批次操作
         for batch_name, batch_qty in merge_batch.items():
             print_red(f'{batch_name=}: {batch_qty=}')
+            is_group = 1 if (batch_name == opts.spm_source) else 0
+            print_yellow(f'{is_group=}')
             # semi_doc_source = frappe.get_doc('Semi Product Manage', opts.spm_source)
             frappe.db.set_value('Semi Product Manage', batch_name,
                                 {
@@ -252,12 +260,13 @@ def _semi_product_batch_convert(opts):
                                     'last_op_voucher': opts.name,
                                     'basket_no': '',
                                     'basket_in': '',
-                                    # 'is_group': 1,
+                                    'is_group': is_group,
                                 })
 
-    # todo 建操作记录
-    frappe.db.commit()
+    # frappe.db.commit()
+    # return (new_spm_name, is_yield, yield_operation)
     return semi_doc_target.name
+
 
     # print_blue_pp(semi_doc_source.as_dict())
     # print_green_pp(semi_doc_target.as_dict())   

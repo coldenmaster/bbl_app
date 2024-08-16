@@ -437,6 +437,8 @@ def create_forge_blank(bar_item, forge_item, voucher_no):
             "short_bar_doc": bar_doc.name,
             'op_times': 1,
             'op_list': '锻坯登记',
+            'yield_list': '下料',
+            'operation': '下料',
 
             }).insert(ignore_links=True)
     else:

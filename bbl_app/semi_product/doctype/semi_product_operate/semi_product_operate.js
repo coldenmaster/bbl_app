@@ -29,12 +29,15 @@ frappe.ui.form.on("Semi Product Operate", {
             })
             // frm.change_custom_button_type("挑选半成品", null, 'primary');
             frm.change_custom_button_type("挑选半成品", null, 'info');
-    
+
+            frm.set_value("employee", frappe.session.user_fullname);
+
         };  
 
-        frm.set_value("employee", frappe.session.user_fullname);
+        query_product_form_data(frm);
+
+
         if (!bbl.flag_spm_merge) {
-            console.warn("bbl.flag_spm_merge", bbl.flag_spm_merge);
             set_default(frm);
             setup_search_basket_field(frm);
             set_target_form_filter(frm);
@@ -77,6 +80,7 @@ frappe.ui.form.on("Semi Product Operate", {
             cat_finish_name(frm);
             set_bbl_heat_no_disp(frm);
         }
+        query_product_form_data(frm);
         // let value = frm.doc.semi_op_target;
         // if (value?.includes("合批")) {
         //     frm.doc.is_merge_batch = 1;;
@@ -157,6 +161,38 @@ function query_spm_source_data(frm) {
             frm.set_value("forge_batch_no", doc.forge_batch_no);
             frm.set_value("bbl_heat_no", doc.bbl_heat_no);
         })
+    };
+}
+
+function query_product_form_data(frm) {
+    // log(frm);
+    const product_form = frm.doc.semi_op_target || "";
+    const old_is_yield = frm.doc.is_yield || 0;
+    if (product_form) {
+        frappe.model.with_doc("Product Form", product_form).then(doc => {
+            // log("产品形态查询Product Form, doc1", product_form, doc);
+            frm.set_value("operation", doc.operation);
+            frm.set_value("yield_operation", doc.yield_operation);
+            frappe.model.with_doc("Semi Product Manage", frm.doc.spm_source).then(doc2 => {
+                const yield_list = doc2.yield_list || [];
+                // log("产品spm doc2", yield_list, doc2);
+                // 此单是否记产量标记, 
+                // 1.没有标记附属工序,
+                // 2.不是合批
+                // 3.工序不重复，重复工序不记产量(在4中同时处理了)
+                // 4.不是冲突工序，如（半成品正品，半成品次品）
+                let is_yield = !doc.is_sub_form;
+                if (product_form.endsWith("合批"))
+                    is_yield = 0;
+                else if (yield_list.includes(doc.yield_operation))
+                    is_yield = 0;
+    
+                // log("is_yield 1",old_is_yield, is_yield);
+                if (old_is_yield != is_yield)
+                    frm.set_value("is_yield", is_yield);
+                return doc;
+            });
+        });
     };
 }
 

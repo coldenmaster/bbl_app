@@ -2,6 +2,11 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on("Semi Product Manage", {
+
+    onload(frm) {
+        frm.set_read_only();
+    },
+
 	refresh(frm) {
 
         frm.disable_save();
@@ -17,6 +22,7 @@ frappe.ui.form.on("Semi Product Manage", {
             opts.forge_batch_no = frm.doc.forge_batch_no;
             opts.bbl_heat_no = frm.doc.bbl_heat_no;
             opts.semi_product = frm.doc.semi_product;
+            opts.yield_list = frm.yield_list;
             bbl.flag_has_spm_opts = 1;
             // route_opts = opts;
             frappe.new_doc("Semi Product Operate", opts, 

@@ -8,6 +8,7 @@
   "section_break_faw1",
   "operation_name",
   "is_not_semi",
+  "is_yield",
   "workshop",
   "production_class",
   "use_type",
@@ -90,12 +91,18 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Use Type"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_yield",
+   "fieldtype": "Check",
+   "label": "Is Yield"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_tree": 1,
  "links": [],
- "modified": "2024-08-03 15:20:16",
+ "modified": "2024-08-15 16:31:37",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Operation Tree",

@@ -24,12 +24,18 @@
   "finish_qty",
   "forge_batch_no",
   "bbl_heat_no",
+  "production_line",
   "basket_in",
   "test",
   "for_date",
   "voucher_from",
   "voucher_to",
   "op_note",
+  "section_break_ocly",
+  "operation",
+  "column_break_qfui",
+  "yield_operation",
+  "is_yield",
   "\u8865\u5145\u5c5e\u6027_section",
   "property_name",
   "column_break_fmiv",
@@ -227,7 +233,8 @@
   {
    "fieldname": "op_note",
    "fieldtype": "Small Text",
-   "label": "Op Note"
+   "label": "Op Note",
+   "max_height": "5rem"
   },
   {
    "description": "\u8bc6\u522b\u6b64\u6279\u6b21\u7684<b>\u7279\u6b8a\u6807\u8bb0</b>\uff0c\u4fbf\u4e8e\u67e5\u627e",
@@ -252,13 +259,51 @@
    "no_copy": 1,
    "read_only": 1,
    "report_hide": 1
+  },
+  {
+   "fieldname": "section_break_ocly",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "operation",
+   "fieldtype": "Data",
+   "label": "Operation",
+   "read_only": 1,
+   "remember_last_selected_value": 1
+  },
+  {
+   "fieldname": "column_break_qfui",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "yield_operation",
+   "fieldtype": "Data",
+   "label": "Yield Operation",
+   "read_only": 1,
+   "remember_last_selected_value": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_yield",
+   "fieldtype": "Check",
+   "label": "Is Yield",
+   "options": "Product Form",
+   "read_only": 1,
+   "remember_last_selected_value": 1
+  },
+  {
+   "fieldname": "production_line",
+   "fieldtype": "Select",
+   "label": "Production Line",
+   "no_copy": 1,
+   "options": "\n\u4e00\u7ebf\n\u4e8c\u7ebf\n\u4e09\u7ebf\n\u56db\u7ebf\n\u4e94\u7ebf"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-08-15 14:01:55",
+ "modified": "2024-08-16 09:59:13",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Semi Product Operate",

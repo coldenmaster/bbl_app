@@ -5,6 +5,7 @@ frappe.listview_settings["Semi Product Manage"] = {
 
     add_fields: [
         "semi_product",
+        "product_form",
         "bbl_heat_no",
         "is_group",
     ],
@@ -87,6 +88,11 @@ frappe.listview_settings["Semi Product Manage"] = {
             // frappe.set_route("List", "Semi Product Operate");
         });
         page.change_inner_button_type('合批', null, 'danger');
+
+
+        page.add_inner_button('树视图', () => {
+            frappe.set_route("Tree", "Semi Product Manage");
+        });
 
     }
 
@@ -178,55 +184,65 @@ function make_batch_merge_dialog(args) {
 }
 
 function make_merge_doc_form(args) {
-    console.log("make_merge_doc_form args:", args);
+    // console.log("make_merge_doc_form args:", args);
     opts = args;
     // opts = Object.assign({}, args);
     // opts = Object.assign(opts, args);
     opts = Object.assign(opts, args.parent_item);
     opts.spm_source = args.parent_item.name;
     opts.semi_op_source = args.parent_item.product_form;
-    opts.semi_op_target = args.item_names;
     // opts.finish_qty = opts.source_qty = args.qty_total;
     opts.basket_in = '';
-    log("opts属性:", opts);
+    // log("opts属性:", opts);
     bbl.flag_has_spm_opts = 1;
     bbl.flag_spm_merge = 1;
-    frappe.new_doc("Semi Product Operate", opts, 
-       doc => { 
-            // console.log("新建操作单frm, doc属性:",opts, doc);
-            doc.finish_qty = doc.source_qty = args.qty_total;
-            doc.semi_op_target = opts.semi_op_source + "合批";
-            doc.finish_name = opts.semi_product + "_" + opts.semi_op_source + "合批";
-            doc.is_merge_batch = 1;
-            doc.merge_batch = JSON.stringify(merge_batch_note(opts.item_names, opts.item_qtys));
+    // 先找到合批工序好（提前完成新建）
+    const merge_no = opts.semi_op_source + "合批";
+    find_merge_batch_no(merge_no).then(r => {
+        log("find_merge_batch_no", r);
+        if (!r) {
+            frappe.throw("新建合批工序失败: " + r, indicator="red");
+        }
 
-           //    this.list_view.clear_checked_items();
+        frappe.new_doc("Semi Product Operate", opts, 
+           doc => { 
+                console.log("新建操作单frm, doc属性:",opts, doc);
+                doc.finish_qty = doc.source_qty = args.qty_total;
+                doc.semi_op_target = merge_no;
+                doc.finish_name = opts.semi_product + "_" + merge_no;
+                doc.is_merge_batch = 1;
+                doc.merge_batch = JSON.stringify(merge_batch_note(opts.item_names, opts.item_qtys));
+               //    this.list_view.clear_checked_items();
         })
+    });
 }   
 
+function find_merge_batch_no(merge_no) {
+    console.log("find_merge_batch_no to backend:", merge_no);
+    return frappe.call({
+        method: "bbl_app.semi_product.doctype.semi_product_manage.semi_product_manage.find_merge_batch_no",
+        args: {merge_no}
+    }).then(r => {
+        if (r.message) {
+            return r.message;
+        }
+        frappe.msgprint("新建合批工序失败: " + r.message.bold(), indicator="red");
+    })
+}
+
+// log("test 测试");
+// log(find_merge_batch_no(["abc", "def"]).then(r => {
+//   log("test r", r)  
+// })
+// );
+
+
 function merge_batch_note(names, qtys) {
-    log(names, qtys)
+    // log(names, qtys)
     let note = {};
     for (let i = 0; i < names.length; i++) {
         note[names[i]] = qtys[i];
     }
-    log(note)
+    // log(note)
     return note;
 }
-
-
-// function send_batch_merge_data(values) {
-//     console.log("send_batch_merge_data values:", values);
-//     frappe.call({
-//         method: "bbl_app.semi_product.doctype.semi_product_manage.semi_product_manage.send_batch_merge_data",
-//         args: values
-//     }).then(r => {
-//         if (r.message) {
-//             frappe.show_alert({
-//                 message: __("跳转到新建单据"),
-//                 indicator: "green"
-//             });
-//             frappe.set_route("Form", "Semi Product Manage", r.message);
-//         }
-//     })
-// }
