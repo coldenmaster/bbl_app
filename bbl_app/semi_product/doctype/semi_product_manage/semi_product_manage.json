@@ -24,6 +24,7 @@
   "total_piece",
   "basket_no",
   "basket_in",
+  "production_line",
   "column_break_musm",
   "status",
   "semi_product",
@@ -175,7 +176,6 @@
    "label": "Product Name"
   },
   {
-   "default": "Today",
    "fieldname": "for_date",
    "fieldtype": "Date",
    "in_list_view": 1,
@@ -462,11 +462,17 @@
    "label": "Yield List",
    "max_height": "3rem",
    "read_only": 1
+  },
+  {
+   "fieldname": "production_line",
+   "fieldtype": "Data",
+   "label": "Production Line",
+   "no_copy": 1
   }
  ],
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-08-15 16:46:27",
+ "modified": "2024-08-16 15:49:30",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Semi Product Manage",

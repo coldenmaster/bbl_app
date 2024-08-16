@@ -61,20 +61,6 @@ class CpQrcode:
         else:
             return '未知客户'
         
-    def validate_dena(self):
-        strs = self.qrcode_str.split("*")
-        batch_code_match = re.search("QZ\\d*", self.qrcode_str)
-
-        if not batch_code_match or len(batch_code_match.group(0)) != 15:
-            self.err_msg += "/生产批次号错误"
-            return False
-
-        date_str = self.split_date_str(batch_code_match.group(0)[5:5+6])
-        if not datetime.strptime(date_str, "%Y-%m-%d"):
-            self.err_msg += "/日期错误"
-            return False
-
-        return True
 
     def validate_hande(self):
         if len(self.qrcode_str) != 18:
@@ -110,23 +96,44 @@ class CpQrcode:
 
         return True
 
+# =======================
+    # x1250*3001011-kq01n***qz0022408160154*1**7awagafc
+
+    def is_dena(self):
+        return self.qrcode_str.upper().startswith("X1250")
+
+
+    def validate_dena(self):
+        # strs = self.qrcode_str.split("*")
+        qrcode_upper = self.qrcode_str.upper()
+        batch_code_match = re.search("QZ\\d*", qrcode_upper)
+        if not batch_code_match or len(batch_code_match.group(0)) != 15:
+            print("生产批次号错误")
+            return False
+        date_str = self.split_date_str(batch_code_match.group(0)[5:5+6])
+        if not datetime.strptime(date_str, "%Y-%m-%d"):
+            print("日期错误")
+            return False
+
+        return True
+
     def parse_dena(self):
         company = customers.get("dena")["name"]
         if not self.is_dena():
-            self.err_msg = "*识别厂家失败"
-            return False
+            self.upload_bean.err_msg = f"{company}:识别厂家失败"
+            return self.upload_bean
 
-        self.err_msg = company
         if not self.validate_dena():
-            self.err_msg += "/*二维码验证错误"
-            return False
-
+            self.upload_bean.err_msg = f"{company}:二维码验证错误"
+            return self.upload_bean
+        
         strs = self.qrcode_str.split("*")
         strs = [str for str in strs if str != ""]
-        batch_code = re.search("QZ\\d*", self.qrcode_str).group(0)
+        print(strs)
+        batch_code = re.search("(qz|QZ)\\d*", self.qrcode_str).group(0)
+        print(batch_code)
 
         self.decode_flag = True
-        self.err_msg += "/二维码验证成功"
         self.upload_bean["company"] = company
         self.upload_bean["product_code"] = "C" + strs[1]
         self.upload_bean["drawing_id"] = "C" + strs[1]
@@ -378,12 +385,12 @@ if __name__ == "__main__":
     s1 = ""
     s1 = ""
     s1 = ""
-    s1 = ""
     s1 = "70279112011751901120001"
     s1 = "UnboundLocalError: local variable 'bbl_code_info' referenced before assignment"
     s1 = "S038330100100852305280001"
     s1 = "0083202407240013"
     s1 = "BBL*30DS03-A*A2406IX131*0013"
+    s1 = "x1250*3001011-kq01n***qz0022408160154*1**7awagafc"
     
     t1 = CpQrcode(s1)
     print_blue(t1.parse_data())
