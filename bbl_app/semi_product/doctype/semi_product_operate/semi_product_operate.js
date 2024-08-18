@@ -32,6 +32,12 @@ frappe.ui.form.on("Semi Product Operate", {
 
             frm.set_value("employee", frappe.session.user_fullname);
 
+            const show_dialog = frm.doc?.semi_product
+            log("show_dialog", show_dialog)
+            if (!show_dialog) {
+                select_spm_dialog(frm);
+            }
+
         };  
 
         query_product_form_data(frm);
@@ -428,11 +434,13 @@ function select_spm_dialog(frm) {
         get_query() {
             return {
                 filters: { 
-                    status: ['!=', "用完"],
+                    status: ['not in', ["用完", "合批"]],
+                    remaining_piece: [">", 0], // 不起作用,因为在filter_fields中
                     // semi_product: "4E",
                 }
             }
         },
+        // size: "extra-large",
         primary_action_label: "加工处理",
         action(selections) {
             console.log(selections);
@@ -445,8 +453,29 @@ function select_spm_dialog(frm) {
         secondary_action_label: "取消",
 
         post_init() {
-            log("wtt post_init, this:", this);
+            // log("sps post_init, this:", this);
+            if (this.dialog) {
+                const $wr = this.dialog.$wrapper;
+                $wr.find(".modal-dialog").removeClass("modal-dialog");
+                $wr.find(".modal-body").css("padding", 0);
+                $wr.find(".filter-area").css("padding", 20);
+                $wr.find(".section-body").eq(0).css("padding", 20);
+                $wr.find(".section-body").eq(0).find(".form-column").css("padding", 10);
+
+            } else {
+                setTimeout(() => {
+                    this.post_init();
+                }, 1000);
+            }
+
+        },
+        post_render(results) {
+            this.dialog.$wrapper.animate({ scrollTop: 3000 }, 1000);
+            this.$results.find(".result-row").even().addClass("indicator-pill green");
+            this.$results.find(".list-item__content").filter(($("span"))).css("max-width", "30px");
+            this.$results.find(".result-row").parent().css("max-width", "15%");
         }
+
     });
     // 寻找用户，和拥有的工序，设置搜索框，包含所需的工序
 
@@ -545,6 +574,7 @@ class SpmSelectDialog {
 			title: title,
 			fields: this.fields,
 			size: this.size,
+            no_focus: true,
 			primary_action_label: this.primary_action_label || __("Get Items"),
 			secondary_action_label: this.secondary_action_label || __("Make {0}", [__(this.doctype)]),
 			primary_action: () => {
@@ -607,7 +637,7 @@ class SpmSelectDialog {
 		this.$parent = $(this.dialog.body);
 		this.$wrapper = this.dialog.fields_dict.results_area.$wrapper
 			.append(`<div class="results my-3"
-			style="border: 1px solid #d1d8dd; border-radius: 3px; height: 300px; overflow: auto;"></div>`);
+			style="border: 1px solid #d1d8dd; border-radius: 3px; height: 600px; overflow: auto;"></div>`);
 
 		this.$results = this.$wrapper.find(".results");
 		this.$results.append(this.make_list_row());
@@ -991,6 +1021,11 @@ class SpmSelectDialog {
 		if (frappe.flags.auto_scroll) {
 			this.$results.animate({ scrollTop: me.$results.prop("scrollHeight") }, 500);
 		}
+        
+        if (this.post_render) {
+            this.post_render(results);
+        }
+
 	}
 
 	empty_list() {
@@ -1088,6 +1123,7 @@ class SpmSelectDialog {
 		if (results.length) {
 			results.forEach((result) => {
 				result.checked = 0;
+                result.for_date = result.for_date.substring(5);
 				this.results.push(result);
 			});
 		}
@@ -1157,6 +1193,7 @@ class SpmSelectDialog {
                 let date1 = frappe.datetime.get_today();
                 date1 = frappe.datetime.add_days(date1, -5);
                 this.filter_group.add_filter(this.doctype, "for_date", ">=", date1);
+                // this.filter_group.add_filter(this.doctype, "remaining_piece", ">", 0);
                 if (r.length)
                     this.filter_group.add_filter(this.doctype, "operation", "in", r);
                 
