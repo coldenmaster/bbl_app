@@ -37,9 +37,15 @@ frappe.treeview_settings["Semi Product Manage"] = {
                 // DP/ZP-240816-06A0-02
                 const cur_treeview = frappe.views.trees["Semi Product Manage"];
                 const val = cur_treeview.page.fields_dict.root_item.get_value();
+                if (!val) {
+                    const default_date = frappe.datetime.add_days(frappe.datetime.now_date(), -10)
+                    cur_treeview.page.fields_dict.for_date.set_value(default_date)
+                    return;
+                }
                 // log("root_item onchange, cur_treeview",val , cur_treeview);
                 find_root_item(val).then((r) => {
                     if (r.message !== val) {
+                        cur_treeview.page.fields_dict.for_date.set_value(null)
                         cur_treeview.page.fields_dict.root_item.set_value(r.message)
                         bbl.temp_tree_node = val;
                     } else {

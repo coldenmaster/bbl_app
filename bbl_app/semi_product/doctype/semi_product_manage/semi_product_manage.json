@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_copy": 1,
  "allow_events_in_timeline": 1,
  "allow_import": 1,
  "autoname": "field:batch_no",
@@ -342,7 +343,6 @@
    "default": "0",
    "fieldname": "is_group",
    "fieldtype": "Check",
-   "hidden": 1,
    "label": "Is Group",
    "no_copy": 1,
    "read_only": 1
@@ -471,9 +471,10 @@
    "no_copy": 1
   }
  ],
+ "hide_toolbar": 1,
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-08-20 16:10:27",
+ "modified": "2024-08-21 18:10:58",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Semi Product Manage",

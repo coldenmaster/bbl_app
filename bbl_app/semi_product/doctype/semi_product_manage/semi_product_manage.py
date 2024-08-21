@@ -9,16 +9,19 @@ from bbl_api.utils import _print_green_pp, print_blue, print_red, print_yellow
 
 
 class SemiProductManage(Document):
-        
-    def on_trash(self):
-        if ("Administrator" != frappe.session.user ):
-            frappe.throw("只有管理员才能删除此文档")
+    
+    # 连接互锁着,不会以外删除。
+    # def on_trash(self):
+    #     if ("Administrator" != frappe.session.user ):
+    #         frappe.throw("只有管理员才能删除此文档")
+
+    pass
 
 
 @frappe.whitelist()
 def get_children(doctype, parent="", **filters):
-    print(doctype, parent)
-    print_yellow(filters)
+    # print(doctype, parent)
+    # print_yellow(filters)
     return _get_children(doctype, parent, **filters)
 
 

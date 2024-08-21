@@ -172,7 +172,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-07-19 16:32:11",
+ "modified": "2024-08-21 14:39:59",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Gao Xuesong",
@@ -204,6 +204,9 @@
   },
   {
    "role": "Stock User"
+  },
+  {
+   "role": "Manufacturing Manager"
   }
  ],
  "sequence_id": 2.0,

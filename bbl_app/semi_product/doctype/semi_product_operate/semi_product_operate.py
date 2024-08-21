@@ -1,12 +1,13 @@
 # Copyright (c) 2024, bbl and contributors
 # For license information, please see license.txt
 
+import datetime
 from bbl_app.utils.frappe_func import make_simi_product_batch_no
 import frappe
 from frappe.model.document import Document
 from frappe.model.naming import getseries, parse_naming_series
 from frappe.utils import get_fullname
-from frappe.utils.data import cint, dict_with_keys, today
+from frappe.utils.data import cint, dict_with_keys, now_datetime, time_diff_in_hours, today
 
 from bbl_api.utils import _print_blue_pp, print_blue, print_blue_pp, print_green, print_green_pp, print_red, print_yellow
 
@@ -24,14 +25,59 @@ class SemiProductOperate(Document):
         self.voucher_to = spm_op(self.as_dict())
         return super().submit()
     
-    # 可提交文档，提交后不能删除    
-    # def on_trash(self):
-    #     if ("Administrator" != frappe.session.user ):
-    #         frappe.throw("只有管理员才能删除此文档")
+    # 可提交文档,提交后不能删除    
+    def on_trash(self):
+        if ("Administrator" != frappe.session.user ):
+            frappe.throw("只有管理员才能删除此文档")
             
     def cancel(self):
-        frappe.throw("此文档不能取消,可进行转回操作")
-        # return super().cancel()
+        print_red("半成品加工单 cancel")
+        print(self)
+        # frappe.throw("此文档不能取消,可进行转回操作")
+        """ 取消 半成品操作单据 逻辑
+        1. 检查目标单据是否已经使用,如果已经使用,(and如果建单时间大于2小时)则不能取消
+        1.1 如果用户不是本人,则不能取消
+        2. 源单据 剩余数量 加上目标单据的剩余数量,
+        2.1 如果剩余数量=总数量,is_group = 0;
+        3. 删除目标单据。
+         """
+        from_doc = frappe.get_doc("Semi Product Manage", self.voucher_from)
+        to_doc = frappe.get_doc("Semi Product Manage", self.voucher_to)
+        if to_doc.status != '未使用':
+            frappe.throw("单据已经使用,不能取消")
+        # if (now_datetime() - to_doc.creation) > datetime.timedelta(hours = 24):
+            # frappe.throw("单据超时,不能取消")
+        print_blue("用户:{}".format(frappe.session.user))
+        print_blue("用户全名:{}".format(get_fullname()))
+        if frappe.session.user != "Administrator" and self.employee_submit != get_fullname():
+            frappe.throw("只有本人才能取消")
+
+
+        # 更新源单据信息
+        remaining_piece = from_doc.remaining_piece + to_doc.remaining_piece
+        if remaining_piece == from_doc.total_piece:
+            # 恢复未使用状态
+            from_doc.status = '未使用'
+            from_doc.is_group = 0
+        else:
+            from_doc.status = '已使用'
+        from_doc.update({
+            'remaining_piece': remaining_piece
+        })
+        from_doc.save()
+        # self.oucher_to = None
+
+        # frappe.throw("此处拦截")
+        to_doc.delete(force=True)
+        # to_doc.upadate({
+        #     'status': '已取消',
+        #     'remaining_piece': 0
+        # })
+        return super().cancel()
+
+def t1():   
+    # frappe.get_doc("Semi Product Operate", "SPO-20240820-0009").cancel()
+    frappe.get_doc("Semi Product Operate", "SPO-20240821-0001").cancel()
 
 mock_data = {}
 
@@ -105,7 +151,7 @@ def spm_op(opts):
         opts = mock_data #置入假数据
     opts = frappe._dict(opts)
     # print_green(opts)
-    # 检查目标产品是否有物料名称，没有新建
+    # 检查目标产品是否有物料名称,没有新建
     _create_item(opts.finish_name)
 
     # 创建目标产品的 半成品管理记录
@@ -164,13 +210,13 @@ def _semi_product_batch_convert(opts):
     batch_no = make_simi_product_batch_no(semi_product_name, target_abbr)
     # print_red(f'{product_form_doc=} {batch_no=} {semi_product_name=}')
 
-    # basket_no有新使用的，清除掉其它使用次框号的
+    # basket_no有新使用的,清除掉其它使用次框号的
     if (opts.basket_in):
         # frappe.db.sql(f"update `tabSemi Product Manage` set basket_no = '' where basket_no = '{opts.basket_in}' and name != '{opts.spm_source}'")
         frappe.db.sql(f"update `tabSemi Product Manage` set basket_no = '' where basket_no = '{opts.basket_in}' ")
 
-    # 新doc设置 件数，剩余数量，总数量，操作员，产品名称，批次号（自动？）
-    #   仓库（根据目标产品形态设置），状态（缺省未使用），
+    # 新doc设置 件数,剩余数量,总数量,操作员,产品名称,批次号（自动？）
+    #   仓库（根据目标产品形态设置）,状态（缺省未使用）,
     is_sub_form = target_product_form in semi_doc_source.op_list.split('-') or product_form_doc.is_sub_form
     yield_operation = opts.yield_operation
     yield_list = semi_doc_source.yield_list or ''
@@ -279,6 +325,7 @@ def _semi_product_batch_convert(opts):
 """ test info
 import bbl_app.semi_product.doctype.semi_product_operate.semi_product_operate as spo
 spo.spm_op(None)
+spo.t1()
 
 sb.clear_db()
 """
