@@ -176,6 +176,7 @@
    "label": "Product Name"
   },
   {
+   "default": "Today",
    "fieldname": "for_date",
    "fieldtype": "Date",
    "in_list_view": 1,
@@ -472,7 +473,7 @@
  ],
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-08-16 15:49:30",
+ "modified": "2024-08-20 16:10:27",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Semi Product Manage",

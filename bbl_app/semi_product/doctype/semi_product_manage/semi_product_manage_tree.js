@@ -75,9 +75,8 @@ frappe.treeview_settings["Semi Product Manage"] = {
                 delete tree_view.args.root_item;
                 // log ("tree_view.opts.title", tree_view.opts.title)
                 tree_view.root_label = tree_view.opts.title;
+                // tree_view.make_tree();
                 tree_view.make_filters();
-                tree_view.make_tree();
-                // log(__("{0} {1} Tree", ["__(this.doctype)", "dab"]))
                 // tree_view.tree.refresh();
             },
             // hidden: true,
@@ -95,14 +94,6 @@ frappe.treeview_settings["Semi Product Manage"] = {
         this.tree_view = treeview;
         window.cur_treeview = treeview;
 
-        // treeview.page.add_inner_button(
-		// 	"查看详情",
-		// 	function () {
-		// 		// frappe.set_route("Tree", "Cost Center", { company: get_company() });
-        //         frappe.show_alert("查看详情");
-		// 	},
-		// 	__("View")
-		// );
     },
     refresh: function (node) {
         log("refresh 无", node);

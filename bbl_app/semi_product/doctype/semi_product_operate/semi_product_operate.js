@@ -152,6 +152,8 @@ function cat_finish_name(frm) {
     const spm_source = frm.doc.product_name || "";
     const semi_op_target = frm.doc.semi_op_target || "";
     let val = ""
+    log("显示名称", spm_source, semi_op_target)
+
     if (spm_source && semi_op_target) {
         const spm_0 = spm_source.split(/_[^_]+$/, 2)[0];
         val = spm_0 + "_" + semi_op_target
@@ -374,6 +376,11 @@ function select_spm_dialog(frm) {
                 hidden: 1,
                 label: "工件名称",
             }, {
+                fieldtype: "Datetime",
+                fieldname: "modified",
+                hidden: 1,
+                label: "工件名称",
+            }, {
                 fieldtype: "Link",
                 options: "Forge Batch No",
                 fieldname: "forge_batch_no",
@@ -443,11 +450,12 @@ function select_spm_dialog(frm) {
         // size: "extra-large",
         primary_action_label: "加工处理",
         action(selections) {
-            console.log(selections);
+            console.log(selections, this);
             if (selections.length != 1) {
                 frappe.msgprint("请选择一个半成品");
             }
-            frappe.msgprint("进行处理");
+            goto_spo(selections[0], frm, sps);
+
             
         },
         secondary_action_label: "取消",
@@ -478,11 +486,41 @@ function select_spm_dialog(frm) {
 
     });
     // 寻找用户，和拥有的工序，设置搜索框，包含所需的工序
-
-
     window.sps = sps;
     window.spd = sps.dialog;
     
+}
+
+function goto_spo(spm_name, cur_frm, sps_dialog) {
+    log("goto_spo, spm_name:", spm_name);
+    frappe.model.with_doc("Semi Product Manage", spm_name).then(doc => {
+        log("doc:", doc);
+        // cur_frm.doc = doc;
+        cur_frm.doc.semi_product = doc.semi_product;
+        cur_frm.doc.semi_op_source = doc.product_form;
+        // cur_frm.doc.spm_source = doc.name;
+        // cur_frm.doc.source_qty = doc.remaining_piece;
+
+        // cur_frm.set_value("semi_product", doc.semi_product);
+        // cur_frm.set_value("semi_op_source", doc.product_form);
+        cur_frm.set_value("spm_source", doc.name);
+        cur_frm.set_value("source_qty", doc.remaining_piece);
+
+        cur_frm.doc.raw_heat_no = doc.raw_heat_no;
+        cur_frm.doc.forge_batch_no = doc.forge_batch_no;
+        cur_frm.doc.bbl_heat_no = doc.bbl_heat_no;
+        cur_frm.doc.yield_list = doc.yield_list;
+        cur_frm.doc.op_list = doc.op_list;  // todo 在后台处理
+        // bbl.flag_has_spm_opts = 1;
+        // cur_frm.doc.op_list = doc.op_list;
+        // route_opts = opts;
+        // frappe.new_doc("Semi Product Operate", opts, 
+        //    doc => { 
+            //     })
+        cur_frm.refresh();
+        sps_dialog.dialog.hide();
+    });
+
 }
 
 // bbl.ui.SpmSelectDialog = class SpmSelectDialog {
@@ -1098,7 +1136,7 @@ class SpmSelectDialog {
 	}
 
 	async perform_search(args) {
-        log("perform_search args", args);
+        // log("perform_search args", args);
 		const res = await frappe.call({
 			type: "GET",
 			method: "frappe.desk.search.search_widget",
@@ -1113,17 +1151,26 @@ class SpmSelectDialog {
 	async get_results() {
 		const args = this.get_args_for_search();
 		let [results, more] = await this.perform_search(args);
-        // log("results, more", results, more)
+        // log("results, more", results, more);
 
 		if (more) {
 			results = results.splice(0, this.page_length);
 		}
 
+        // todo results 排序
+        results.sort((a, b) =>{
+            return new Date(b.modified) - new Date(a.modified);
+        });
+        // todo results 反转排序
+        // results.reverse();
+        // results.
+        // 日期字符串转日期
+
 		this.results = [];
 		if (results.length) {
 			results.forEach((result) => {
 				result.checked = 0;
-                result.for_date = result.for_date.substring(5);
+                result.for_date = result.for_date.substring(5);  // wtt remove year from date
 				this.results.push(result);
 			});
 		}

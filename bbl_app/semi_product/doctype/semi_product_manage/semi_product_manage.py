@@ -17,8 +17,8 @@ class SemiProductManage(Document):
 
 @frappe.whitelist()
 def get_children(doctype, parent="", **filters):
-    print(doctype, parent, filters)
-    # print_yellow(filters)
+    print(doctype, parent)
+    print_yellow(filters)
     return _get_children(doctype, parent, **filters)
 
 
@@ -26,8 +26,9 @@ def _get_children(doctype, parent="", ignore_permissions=False, **filters):
     parent_field = "parent_" + frappe.scrub(doctype)
     # print_blue(filters)
     filters = _make_filters(**filters)
-    filters += [[f"ifnull(`{parent_field}`,'')", "=", parent], ["docstatus", "<", 2]]
-    # _print_green_pp(filters)
+    filters += [[f"ifnull(`{parent_field}`,'')", "=", parent]]
+    # filters += [[f"ifnull(`{parent_field}`,'')", "=", parent], ["docstatus", "<", 2]]
+    _print_green_pp(filters)
 
     meta = frappe.get_meta(doctype)
 
