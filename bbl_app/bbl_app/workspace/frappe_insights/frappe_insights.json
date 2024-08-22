@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"G53F6xVn_H\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Frappe Insights</span>\",\"col\":12}},{\"id\":\"oH3EvoN3bj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"DataEasy\",\"col\":3}},{\"id\":\"fGIEQQmJnk\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u5546\u52a1\u5206\u6790\",\"col\":3}},{\"id\":\"56syRJ0CbO\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"2bY3UKjEDg\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Wt Page\",\"col\":3}},{\"id\":\"X89MmhC5HH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"<font color=\\\"green\\\">\u624b\u673a\u7248</font>\",\"col\":3}},{\"id\":\"z7I4xLtOv4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"<p class =\\\"indicator-pill green\\\">\u624b\u673a\u7248</p>\",\"col\":3}}]",
+ "content": "[{\"id\":\"G53F6xVn_H\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Frappe\u5546\u52a1\u5206\u6790</span>\",\"col\":12}},{\"id\":\"oH3EvoN3bj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"DataEasy\u53ef\u89c6\u5316\u5206\u6790\",\"col\":3}},{\"id\":\"fGIEQQmJnk\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u5546\u52a1\u5206\u6790\",\"col\":3}},{\"id\":\"56syRJ0CbO\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"2bY3UKjEDg\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Wt Page\",\"col\":3}},{\"id\":\"X89MmhC5HH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"<font color=\\\"green\\\">\u624b\u673a\u7248</font>\",\"col\":3}}]",
  "creation": "2024-05-30 18:10:28",
  "custom_blocks": [],
  "docstatus": 0,
@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Frappe Insights",
  "links": [],
- "modified": "2024-08-19 01:38:06",
+ "modified": "2024-08-22 08:58:36",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Frappe Insights",
@@ -28,9 +28,9 @@
   {
    "color": "Grey",
    "doc_view": "List",
-   "label": "DataEasy",
+   "label": "DataEasy\u53ef\u89c6\u5316\u5206\u6790",
    "type": "URL",
-   "url": "http://de.hbbbl.top:82/link/pqLhWi1u"
+   "url": "http://de.hbbbl.top:82"
   },
   {
    "color": "Grey",
@@ -45,14 +45,6 @@
    "doc_view": "New",
    "label": "<font color=\"green\">\u624b\u673a\u7248</font>",
    "link_to": "Raw Material Price",
-   "stats_filter": "[]",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "<p class=\"indicator-pill green\">\u624b\u673a\u7248</p>",
-   "link_to": "Role Profile",
    "stats_filter": "[]",
    "type": "DocType"
   },

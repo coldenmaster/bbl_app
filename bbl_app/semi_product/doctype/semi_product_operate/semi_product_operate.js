@@ -8,17 +8,30 @@ frappe.ui.form.on("Semi Product Operate", {
         // if (frappe.route_options.
     },
     onload(frm) {
+        log("onload");
         // log("onload,  frappe.route_options", frappe.route_options, frm.doc);
-        log("onload,  frappe.route_options", frappe.route_options);
         if (!frm.doc.semi_op_target || !frm.doc.semi_op_target.endsWith("合批")) 
             bbl.flag_spm_merge = false;
 
         process_flag_spm_merge(frm);
 
+        if (frm.doc.semi_op_target && !frm.doc.semi_product_name) {
+            log("semi_op_target trigger");
+            frm.trigger("semi_op_target");
+        }
+
     },
     on_submit(frm) {
         log("spo on_submit", frm)
     },
+    before_save(frm) {
+        log("spo before_save doc", frm.doc);
+        if (frm.doc.semi_op_source == frm.doc.semi_op_target) {
+            frappe.throw("工序来源和目标不能相同");
+        }
+
+    },
+    
 	refresh(frm) {
         if (frm.is_new()) {
             frm.add_custom_button("挑选半成品", () => {
@@ -27,20 +40,20 @@ frappe.ui.form.on("Semi Product Operate", {
                 // frm.doc.show2 = 1;
                 // frm.toggle_display(['length2', 'piece2', 'length3', 'piece3'], true);
             })
-            // frm.change_custom_button_type("挑选半成品", null, 'primary');
             frm.change_custom_button_type("挑选半成品", null, 'info');
 
             frm.set_value("employee", frappe.session.user_fullname);
 
             const show_dialog = frm.doc?.semi_product
-            log("show_dialog", show_dialog)
+            // log("show_dialog", show_dialog)
             if (!show_dialog) {
                 select_spm_dialog(frm);
             }
 
         };  
 
-        query_product_form_data(frm);
+
+        // query_product_form_data(frm); //多次set，造成需要保存
 
 
         if (!bbl.flag_spm_merge) {
@@ -75,7 +88,7 @@ frappe.ui.form.on("Semi Product Operate", {
 
 
     spm_source(frm) {
-        log("根据原单，自动设置数据", bbl.flag_spm_merge);
+        // log("根据原单，自动设置数据", bbl.flag_spm_merge);
         if (!bbl.flag_spm_merge) {
             cat_finish_name(frm);
             query_spm_source_data(frm);
@@ -139,7 +152,7 @@ function process_flag_spm_merge(frm) {
 
 function set_default(frm) {
     if (frm.is_new()) {
-        frm.set_value("semi_op_target", "");
+        // frm.set_value("semi_op_target", "");
     }
 }
 function cat_op_source(frm) {
@@ -149,7 +162,8 @@ function cat_op_source(frm) {
 }
 function cat_finish_name(frm) {
     // 挑选产品 + 选择目标形态 = 自动进行设置
-    const spm_source = frm.doc.product_name || "";
+    // const spm_source = frm.doc.product_name || "";
+    const spm_source = frm.doc.semi_product || "";
     const semi_op_target = frm.doc.semi_op_target || "";
     let val = ""
     log("显示名称", spm_source, semi_op_target)
@@ -182,8 +196,9 @@ function query_product_form_data(frm) {
             frm.set_value("operation", doc.operation);
             frm.set_value("yield_operation", doc.yield_operation);
             frappe.model.with_doc("Semi Product Manage", frm.doc.spm_source).then(doc2 => {
-                const yield_list = doc2.yield_list || [];
-                // log("产品spm doc2", yield_list, doc2);
+                log("产品spm doc2", doc2);
+                const yield_list = doc2?.yield_list || [];
+                log("产品spm yield_list", yield_list);
                 // 此单是否记产量标记, 
                 // 1.没有标记附属工序,
                 // 2.不是合批
@@ -323,10 +338,10 @@ function setup_search_basket_field(frm) {
             }, 
             ["name", "semi_product_name"], 
             (r) => {
-                log("getaa", r)
+                // log("getaa", r)
             if (r && r.name) {
                 li = r.semi_product_name.split("_");
-                log(li);
+                // log(li);
                 frm.set_value("semi_product", li[0]);
                 frm.set_value("semi_op_source", li[1]);
                 setTimeout(() => {
@@ -359,7 +374,7 @@ function set_frm_df_rend(df, show, reqd) {
 
 
 function select_spm_dialog(frm) { 
-    log("select_spm_dialog frm:", frm);
+    // log("select_spm_dialog frm:", frm);
        
     let sps = new SpmSelectDialog({
         doctype: "Semi Product Manage",
@@ -450,7 +465,7 @@ function select_spm_dialog(frm) {
         // size: "extra-large",
         primary_action_label: "加工处理",
         action(selections) {
-            console.log(selections, this);
+            // console.log(selections, this);
             if (selections.length != 1) {
                 frappe.msgprint("请选择一个半成品");
             }
@@ -478,7 +493,12 @@ function select_spm_dialog(frm) {
 
         },
         post_render(results) {
-            this.dialog.$wrapper.animate({ scrollTop: 3000 }, 1000);
+            if (frappe.flags.auto_scroll) {
+                frappe.flags.auto_scroll = false;
+                this.dialog.$wrapper.animate({ scrollTop: 1000 }, 500);
+                // this.dialog.$wrapper.animate({ scrollTop: this.$results.prop("scrollHeight") }, 500);
+                
+            }
             this.$results.find(".result-row").even().addClass("indicator-pill green");
             this.$results.find(".list-item__content").filter(($("span"))).css("max-width", "30px");
             this.$results.find(".result-row").parent().css("max-width", "15%");
@@ -486,15 +506,16 @@ function select_spm_dialog(frm) {
 
     });
     // 寻找用户，和拥有的工序，设置搜索框，包含所需的工序
+    frappe.flags.auto_scroll = true;
     window.sps = sps;
     window.spd = sps.dialog;
     
 }
 
 function goto_spo(spm_name, cur_frm, sps_dialog) {
-    log("goto_spo, spm_name:", spm_name);
+    // log("goto_spo, spm_name:", spm_name);
     frappe.model.with_doc("Semi Product Manage", spm_name).then(doc => {
-        log("doc:", doc);
+        // log("doc:", doc);
         // cur_frm.doc = doc;
         cur_frm.doc.semi_product = doc.semi_product;
         cur_frm.doc.semi_op_source = doc.product_form;

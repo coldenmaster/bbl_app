@@ -183,7 +183,6 @@
   {
    "fieldname": "supplier",
    "fieldtype": "Data",
-   "hidden": 1,
    "label": "Supplier"
   },
   {
@@ -349,7 +348,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-07-24 11:09:22",
+ "modified": "2024-08-22 14:15:16",
  "modified_by": "Administrator",
  "module": "Raw Material Manage",
  "name": "Steel Batch",

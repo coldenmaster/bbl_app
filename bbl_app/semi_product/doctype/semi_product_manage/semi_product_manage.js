@@ -4,7 +4,10 @@
 frappe.ui.form.on("Semi Product Manage", {
 
     onload(frm) {
-        frm.set_read_only();
+        
+        if (!frappe.user_roles.includes("Administrator")) {
+            frm.set_read_only();
+        }
     },
 
 	refresh(frm) {
@@ -33,62 +36,62 @@ frappe.ui.form.on("Semi Product Manage", {
                 })
         });
 
-        if (frappe.user_roles.includes("Administrator")) {
-            frm.page.add_inner_button('Patch', () => {
-                // make_main_op_dialog(listview);
-                // frappe.set_route("Form", "Work Order", r.message);
-                make_spm(frm);
+        // if (frappe.user_roles.includes("Administrator")) {
+        //     frm.page.add_inner_button('Patch', () => {
+        //         // make_main_op_dialog(listview);
+        //         // frappe.set_route("Form", "Work Order", r.message);
+        //         make_spm(frm);
 
-            });
-            // page.change_inner_button_type('加工单列表', null, 'warning');
-        }
+        //     });
+        //     // page.change_inner_button_type('加工单列表', null, 'warning');
+        // }
 
 	},
 });
 
-function make_spm(frm) {
-    frappe.prompt([
-        {
-            "fieldname": "semi_product",
-            "label": "半成品",
-            "fieldtype": "Link",
-            "options": "Semi Product",
-            "reqd": 1,
-        },
-        {
-            "fieldname": "product_form",
-            "label": "工序",
-            "fieldtype": "Link",
-            "options": "Product Form",
-            "reqd": 1,
-        },
-        {
-            "fieldname": "qty",
-            "label": "数量",
-            "fieldtype": "Int",
-            "reqd": 1,
-        }],
-        function (values) {
-            frappe.new_doc("Semi Product Manage", 
-                {
-                    semi_product: values.semi_product,
-                    // semi_product_name: values.semi_product + "_" + values.product_form,
-                    // product_form: values.semi_product + "_" + values.product_form,
-                    // remaining_piece: values.qty,
-                    // batch_no: "batch_no2134",
+// function make_spm(frm) {
+//     frappe.prompt([
+//         {
+//             "fieldname": "semi_product",
+//             "label": "半成品",
+//             "fieldtype": "Link",
+//             "options": "Semi Product",
+//             "reqd": 1,
+//         },
+//         {
+//             "fieldname": "product_form",
+//             "label": "工序",
+//             "fieldtype": "Link",
+//             "options": "Product Form",
+//             "reqd": 1,
+//         },
+//         {
+//             "fieldname": "qty",
+//             "label": "数量",
+//             "fieldtype": "Int",
+//             "reqd": 1,
+//         }],
+//         function (values) {
+//             frappe.new_doc("Semi Product Manage", 
+//                 {
+//                     semi_product: values.semi_product,
+//                     // semi_product_name: values.semi_product + "_" + values.product_form,
+//                     // product_form: values.semi_product + "_" + values.product_form,
+//                     // remaining_piece: values.qty,
+//                     // batch_no: "batch_no2134",
                     
-                }, (doc) => {
-                 log("doc", doc)
-                 doc.batch_no = "batch_no2134";
-                 doc.semi_product_name = values.semi_product + "_" + values.product_form;
-                 doc.remaining_piece = values.qty;
-                 log("doc", doc)
-                 frappe.db.insert(doc)
-                }
-                ).then((doc) => {
-                    log("no use doc", doc)
-                })
-                ;
-        }, "Admin,手动补充数量,平衡单据", "新建半成品"
-    )
-}
+//                 }, (doc) => {
+//                  log("doc", doc)
+//                  doc.batch_no = "batch_no2134";
+//                  doc.semi_product_name = values.semi_product + "_" + values.product_form;
+//                  doc.remaining_piece = values.qty;
+//                  log("doc", doc)
+//                  frappe.db.insert(doc)
+//                 }
+//                 ).then((doc) => {
+//                     log("no use doc", doc)
+//                 })
+//                 ;
+//         }, "Admin,手动补充数量,平衡单据", "新建半成品"
+//     )
+// }
