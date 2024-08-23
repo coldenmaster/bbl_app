@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "autoname": "field:heat_no",
  "creation": "2024-04-19 12:55:34",
  "doctype": "DocType",
@@ -9,11 +10,31 @@
   "raw_name",
   "steel_grade",
   "diameter",
-  "section_break_vpqb",
+  "certificate",
+  "column_break_xbaw",
+  "for_date",
+  "status",
+  "manufacturer",
   "contract_no",
   "standard",
-  "tab_2_tab",
-  "test_field"
+  "section_break_ypix",
+  "j9",
+  "j15",
+  "c",
+  "si",
+  "mn",
+  "p",
+  "s",
+  "cr",
+  "column_break_fnvu",
+  "mo",
+  "ni",
+  "al",
+  "co",
+  "cu",
+  "b",
+  "nb",
+  "note"
  ],
  "fields": [
   {
@@ -50,43 +71,151 @@
    "label": "Standard"
   },
   {
-   "fieldname": "section_break_vpqb",
+   "fieldname": "column_break_xbaw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "for_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "For Date"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "\n\u5408\u683c\n\u4e0d\u5408\u683c\n\u672a\u68c0\u9a8c\n\u9000\u8d27"
+  },
+  {
+   "fieldname": "section_break_ypix",
    "fieldtype": "Section Break",
-   "label": "Section Two"
+   "label": "\u68c0\u9a8c\u7ed3\u679c"
   },
   {
-   "fieldname": "tab_2_tab",
-   "fieldtype": "Tab Break",
-   "label": "Tab 2"
+   "fieldname": "manufacturer",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Manufacturer",
+   "options": "\nJ\nY\nX\n\u5176\u5b83"
   },
   {
-   "fieldname": "test_field",
-   "fieldtype": "Autocomplete",
-   "label": "Test Field"
+   "fieldname": "j9",
+   "fieldtype": "Float",
+   "label": "J9",
+   "precision": "1"
+  },
+  {
+   "fieldname": "j15",
+   "fieldtype": "Float",
+   "label": "J15",
+   "precision": "1"
+  },
+  {
+   "fieldname": "c",
+   "fieldtype": "Percent",
+   "label": "C",
+   "precision": "2"
+  },
+  {
+   "fieldname": "si",
+   "fieldtype": "Percent",
+   "label": "Si",
+   "precision": "2"
+  },
+  {
+   "fieldname": "certificate",
+   "fieldtype": "Attach",
+   "label": "Certificate"
+  },
+  {
+   "fieldname": "mn",
+   "fieldtype": "Percent",
+   "label": "Mn",
+   "precision": "2"
+  },
+  {
+   "fieldname": "p",
+   "fieldtype": "Percent",
+   "label": "P",
+   "precision": "3"
+  },
+  {
+   "fieldname": "s",
+   "fieldtype": "Percent",
+   "label": "S",
+   "precision": "3"
+  },
+  {
+   "fieldname": "cr",
+   "fieldtype": "Percent",
+   "label": "Cr.",
+   "precision": "2"
+  },
+  {
+   "fieldname": "column_break_fnvu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mo",
+   "fieldtype": "Percent",
+   "label": "Mo",
+   "precision": "2"
+  },
+  {
+   "fieldname": "al",
+   "fieldtype": "Percent",
+   "label": "Al",
+   "precision": "2"
+  },
+  {
+   "fieldname": "co",
+   "fieldtype": "Percent",
+   "label": "Co",
+   "precision": "2"
+  },
+  {
+   "fieldname": "cu",
+   "fieldtype": "Percent",
+   "label": "Cu",
+   "precision": "2"
+  },
+  {
+   "fieldname": "b",
+   "fieldtype": "Percent",
+   "label": "B",
+   "precision": "2"
+  },
+  {
+   "fieldname": "nb",
+   "fieldtype": "Percent",
+   "label": "Nb",
+   "precision": "2"
+  },
+  {
+   "fieldname": "note",
+   "fieldtype": "Small Text",
+   "label": "Note",
+   "max_height": "3rem",
+   "precision": "2"
+  },
+  {
+   "fieldname": "ni",
+   "fieldtype": "Percent",
+   "label": "Ni",
+   "precision": "2"
   }
  ],
- "hide_toolbar": 1,
- "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-06-15 18:03:32",
+ "modified": "2024-08-23 09:31:15",
  "modified_by": "Administrator",
  "module": "Raw Material Manage",
  "name": "Heat No",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  },
   {
    "create": 1,
    "delete": 1,
@@ -108,6 +237,18 @@
    "read": 1,
    "report": 1,
    "role": "Stock User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Quality Manager",
    "share": 1,
    "write": 1
   }

@@ -70,8 +70,12 @@ frappe.treeview_settings["Semi Product Manage"] = {
 		{
             fieldname: "refresh_bt",
 			fieldtype: "Button",
-			label: "刷新".fontcolor("blue"),
+			label: " 刷新",
 			disable_onchange: true,
+            primary: 1,
+            icon: "reply-all",
+            placeholder: "刷sb新",
+
             click: (e) => {
                 let tree_view = frappe.views.trees["Semi Product Manage"];
                 // log(tree_view);
@@ -84,6 +88,8 @@ frappe.treeview_settings["Semi Product Manage"] = {
                 // tree_view.make_tree();
                 tree_view.make_filters();
                 // tree_view.tree.refresh();
+                window.bt = cur_treeview.page.fields_dict.refresh_bt
+                log(bt);
             },
             // hidden: true,
 		},

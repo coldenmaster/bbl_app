@@ -29,13 +29,3 @@ frappe.ui.form.on("Heat No", {
 
 });
 
-// function socketio() {
-//     frappe.realtime
-//         .on("wtt", (data) => {
-//             log("Heat No, socketio", data);
-//             frappe.show_alert("socketio"  + data);
-//         }
-//     );
-// }
-
-// rt = frappe.realtime;

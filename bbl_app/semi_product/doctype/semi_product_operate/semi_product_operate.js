@@ -16,7 +16,6 @@ frappe.ui.form.on("Semi Product Operate", {
         process_flag_spm_merge(frm);
 
         if (frm.doc.semi_op_target && !frm.doc.semi_product_name) {
-            log("semi_op_target trigger");
             frm.trigger("semi_op_target");
         }
 
@@ -166,7 +165,7 @@ function cat_finish_name(frm) {
     const spm_source = frm.doc.semi_product || "";
     const semi_op_target = frm.doc.semi_op_target || "";
     let val = ""
-    log("显示名称", spm_source, semi_op_target)
+    // log("显示名称", spm_source, semi_op_target)
 
     if (spm_source && semi_op_target) {
         const spm_0 = spm_source.split(/_[^_]+$/, 2)[0];
@@ -196,9 +195,9 @@ function query_product_form_data(frm) {
             frm.set_value("operation", doc.operation);
             frm.set_value("yield_operation", doc.yield_operation);
             frappe.model.with_doc("Semi Product Manage", frm.doc.spm_source).then(doc2 => {
-                log("产品spm doc2", doc2);
+                // log("产品spm doc2", doc2);
                 const yield_list = doc2?.yield_list || [];
-                log("产品spm yield_list", yield_list);
+                // log("产品spm yield_list", yield_list);
                 // 此单是否记产量标记, 
                 // 1.没有标记附属工序,
                 // 2.不是合批
@@ -495,7 +494,10 @@ function select_spm_dialog(frm) {
         post_render(results) {
             if (frappe.flags.auto_scroll) {
                 frappe.flags.auto_scroll = false;
-                this.dialog.$wrapper.animate({ scrollTop: 1000 }, 500);
+                this.dialog.$wrapper.animate({ scrollTop: 1000 }, 500, () => {
+                    this.$results[0].scroll(0, 0);
+                    
+                });
                 // this.dialog.$wrapper.animate({ scrollTop: this.$results.prop("scrollHeight") }, 500);
                 
             }
@@ -703,6 +705,7 @@ class SpmSelectDialog {
 	}
 
 	show_child_results() {
+        log("show_child_results")
 		this.get_child_result().then((r) => {
 			this.child_results = r.message || [];
 			this.render_child_datatable();
@@ -729,6 +732,7 @@ class SpmSelectDialog {
 	}
 
 	render_child_datatable() {
+        log("render_child_datatable", this.child_datatable)
 		if (!this.child_datatable) {
 			this.setup_child_datatable();
 		} else {
@@ -736,7 +740,7 @@ class SpmSelectDialog {
 				this.child_datatable.rowmanager.checkMap = [];
 				this.child_datatable.refresh(this.get_child_datatable_rows());
 				this.$child_wrapper.find(".dt-scrollable").css("height", "300px");
-				this.$child_wrapper.find(".dt-scrollable").css("overflow-y", "scroll");
+				// this.$child_wrapper.find(".dt-scrollable").css("overflow-y", "scroll");
 			}, 500);
 		}
 	}
@@ -778,6 +782,8 @@ class SpmSelectDialog {
 			disableReorderColumn: true,
 		});
 		this.$child_wrapper.find(".dt-scrollable").css("height", "300px");
+        log("this.child_datatable", this.child_datatable)
+        window.cd = this.child_datatable;
 	}
 
 	get_primary_filters() {
