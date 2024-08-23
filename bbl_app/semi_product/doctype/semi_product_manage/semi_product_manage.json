@@ -58,6 +58,7 @@
   "warehouse_area",
   "is_sub_form",
   "is_merge_batch",
+  "is_over",
   "merge_batch",
   "section_break_jeav",
   "lft",
@@ -469,12 +470,18 @@
    "fieldtype": "Data",
    "label": "Production Line",
    "no_copy": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_over",
+   "fieldtype": "Check",
+   "label": "Is Over"
   }
  ],
  "hide_toolbar": 1,
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-08-21 18:10:58",
+ "modified": "2024-08-23 14:10:08",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Semi Product Manage",

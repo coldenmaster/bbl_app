@@ -103,13 +103,13 @@
   },
   {
    "fieldname": "j9",
-   "fieldtype": "Float",
+   "fieldtype": "Data",
    "label": "J9",
    "precision": "1"
   },
   {
    "fieldname": "j15",
-   "fieldtype": "Float",
+   "fieldtype": "Data",
    "label": "J15",
    "precision": "1"
   },
@@ -209,7 +209,7 @@
   }
  ],
  "links": [],
- "modified": "2024-08-23 09:31:15",
+ "modified": "2024-08-23 15:55:22",
  "modified_by": "Administrator",
  "module": "Raw Material Manage",
  "name": "Heat No",

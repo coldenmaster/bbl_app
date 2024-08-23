@@ -18,10 +18,30 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "\u534a\u6210\u54c1\u7ba1\u7406\u62a5\u8868",
-   "link_count": 2,
+   "link_count": 3,
    "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "\u534a\u6210\u54c1\u5e93\u5b58",
+   "link_count": 0,
+   "link_to": "\u534a\u6210\u54c1\u7ba1\u7406\u5e93\u5b58",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "\u534a\u6210\u54c1\u5de5\u5e8f\u5e93\u5b58",
+   "link_count": 0,
+   "link_to": "\u534a\u6210\u54c1\u5206\u7c7b\u5e93\u5b58",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
   },
   {
    "hidden": 0,
@@ -32,19 +52,9 @@
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 1,
-   "label": "\u534a\u6210\u54c1\u7ba1\u7406\u5e93\u5b58",
-   "link_count": 0,
-   "link_to": "\u534a\u6210\u54c1\u7ba1\u7406\u5e93\u5b58",
-   "link_type": "Report",
-   "onboard": 0,
-   "type": "Link"
   }
  ],
- "modified": "2024-08-21 14:41:31",
+ "modified": "2024-08-23 14:28:36",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "\u534a\u6210\u54c1",

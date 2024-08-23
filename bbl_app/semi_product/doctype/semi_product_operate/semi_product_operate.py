@@ -271,6 +271,7 @@ def _semi_product_batch_convert(opts):
         'workshop': product_form_doc.workshop,
         'sub_workshop': product_form_doc.sub_workshop,
         'warehouse': product_form_doc.warehouse,
+        'is_over': product_form_doc.is_over,
         'is_sub_form': is_sub_form,
         'is_merge_batch': is_merge_batch,
         'merge_batch': opts.merge_batch,

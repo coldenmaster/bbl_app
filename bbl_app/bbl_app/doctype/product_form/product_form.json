@@ -11,6 +11,7 @@
   "product_line",
   "product_grade",
   "is_sub_form",
+  "is_over",
   "column_break_qojy",
   "main_form",
   "operation",
@@ -124,11 +125,18 @@
    "in_standard_filter": 1,
    "label": "Yield Operation",
    "options": "Operation Tree"
+  },
+  {
+   "default": "0",
+   "description": "&emsp;\u52fe\u9009\u540e\uff0c\u8868\u793a\u534a\u6210\u54c1\u9636\u6bb5\u5b8c\u7ed3\uff0c\u4e0d\u8ba1\u7b97\u6210\u534a\u6210\u54c1\u6570\u91cf",
+   "fieldname": "is_over",
+   "fieldtype": "Check",
+   "label": "Is Over"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-15 16:30:14",
+ "modified": "2024-08-23 14:13:09",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Product Form",
