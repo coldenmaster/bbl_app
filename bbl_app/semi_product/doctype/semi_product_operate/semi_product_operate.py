@@ -1,15 +1,13 @@
 # Copyright (c) 2024, bbl and contributors
 # For license information, please see license.txt
 
-import datetime
 from bbl_app.utils.frappe_func import make_simi_product_batch_no
 import frappe
 from frappe.model.document import Document
-from frappe.model.naming import getseries, parse_naming_series
 from frappe.utils import get_fullname
-from frappe.utils.data import cint, dict_with_keys, now_datetime, time_diff_in_hours, today
+from frappe.utils.data import cint, today
 
-from bbl_api.utils import _print_blue_pp, print_blue, print_blue_pp, print_green, print_green_pp, print_red, print_yellow
+from bbl_api.utils import USERS_IDS, WxcpApp, _print_blue_pp, print_blue, print_blue_pp, print_green, print_green_pp, print_red, print_yellow, send_wx_msg_q
 
 
 class SemiProductOperate(Document):
@@ -19,11 +17,16 @@ class SemiProductOperate(Document):
     
     def submit(self):
         print_green("半成品加工单 submit")
-        print_blue_pp(self.as_dict())
+        # print_blue_pp(self.as_dict())
         self.employee_submit = get_fullname()
         self.voucher_from = self.spm_source
         self.voucher_to = spm_op(self.as_dict())
         return super().submit()
+    
+    def on_submit(self):
+        # print_green("!有效 半成品加工单 on_submit")
+        _send_wx_op_info(self)
+        # return super().on_submit() # super' object has no attribute 'on_submit
     
     # 可提交文档,提交后不能删除    
     def on_trash(self):
@@ -314,18 +317,37 @@ def _semi_product_batch_convert(opts):
 
     # frappe.db.commit()
     # return (new_spm_name, is_yield, yield_operation)
+    # print_blue_pp(semi_doc_source.as_dict())
+    # print_green_pp(semi_doc_target.as_dict())   
     return semi_doc_target.name
 
 
-    # print_blue_pp(semi_doc_source.as_dict())
-    # print_green_pp(semi_doc_target.as_dict())   
-
+def _send_wx_op_info(spo):
+    spo = frappe.get_last_doc('Semi Product Operate')
+    # _print_blue_pp(spo.as_dict())
+    rt_str = (
+        ' --- 半成品加工信息 ---\n'
+        '------\n'
+        f'批次号: {spo.voucher_to}\n'
+        f'批次名称: {spo.finish_name}\n'
+        # f'半成品: {spo.semi_product}\n'
+        f'锻造标识: {spo.forge_batch_no}\n'
+        f'加工数量: {spo.finish_qty} 根\n'
+        f'剩余数量: {spo.source_qty - spo.finish_qty} 根\n'
+        # '------\n'
+        # f'时间: {spo.modified.strftime("%Y-%m-%d %H:%M:%S")}\n'
+        f'生产员工: {spo.employee}'
+    )
+    # _print_blue_pp(rt_str)
+    # send_wx_msg_q(rt_str, app_name=WxcpApp.PRODUCT_APP.value)
+    send_wx_msg_q(rt_str, app_name=WxcpApp.PRODUCT_APP.value, user_ids=USERS_IDS.get('semi_product_operate', ''))
 
 
 """ test info
 import bbl_app.semi_product.doctype.semi_product_operate.semi_product_operate as spo
 spo.spm_op(None)
 spo.t1()
+spo._send_wx_op_info(None)
 
 sb.clear_db()
 """

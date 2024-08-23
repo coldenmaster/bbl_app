@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"5RKDRJJG8R\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>\u751f\u4ea7\u7ba1\u7406</b></span>\",\"col\":12}},{\"id\":\"tLEVa9RCK8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u75b2\u52b3\u5bff\u547d\",\"col\":3}},{\"id\":\"iESXdWqczk\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Product Length\",\"col\":3}},{\"id\":\"PJoEINl3_1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Rcl Water Temp\",\"col\":3}},{\"id\":\"OXXPlzro_l\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u4e2d\u9891\u7089\u6d4b\u6e29\",\"col\":3}},{\"id\":\"ahTbntEqI8\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"CpwdWL5wNQ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u751f\u4ea7\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"qfzJrANF6C\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"zLrtrFavD8\",\"type\":\"card\",\"data\":{\"card_name\":\"\u8f66\u95f4\u6570\u636e\",\"col\":4}},{\"id\":\"p2V4KG3P0j\",\"type\":\"card\",\"data\":{\"card_name\":\"\u62a5\u8868\",\"col\":4}}]",
+ "content": "[{\"id\":\"5RKDRJJG8R\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>\u751f\u4ea7\u7ba1\u7406</b></span>\",\"col\":12}},{\"id\":\"tLEVa9RCK8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u75b2\u52b3\u5bff\u547d\",\"col\":3}},{\"id\":\"iESXdWqczk\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Product Length\",\"col\":3}},{\"id\":\"PJoEINl3_1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Rcl Water Temp\",\"col\":3}},{\"id\":\"OXXPlzro_l\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u4e2d\u9891\u7089\u6d4b\u6e29\",\"col\":3}},{\"id\":\"ahTbntEqI8\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"CpwdWL5wNQ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u751f\u4ea7\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"qfzJrANF6C\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"RLTKHBTCHU\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u57fa\u7840\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"-sr3OuIYiI\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u539f\u6750\u6599\u7089\u53f7\",\"col\":3}},{\"id\":\"FYGscARQ9o\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"zLrtrFavD8\",\"type\":\"card\",\"data\":{\"card_name\":\"\u8f66\u95f4\u6570\u636e\",\"col\":4}},{\"id\":\"p2V4KG3P0j\",\"type\":\"card\",\"data\":{\"card_name\":\"\u62a5\u8868\",\"col\":4}}]",
  "creation": "2024-07-05 18:06:36",
  "custom_blocks": [],
  "docstatus": 0,
@@ -52,7 +52,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-08-06 18:08:35",
+ "modified": "2024-08-23 10:39:51",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Quality Department",
@@ -64,15 +64,6 @@
  "roles": [],
  "sequence_id": 12.0,
  "shortcuts": [
-  {
-   "color": "Blue",
-   "doc_view": "List",
-   "format": "N{}",
-   "label": "\u75b2\u52b3\u5bff\u547d",
-   "link_to": "Fatigue Life",
-   "stats_filter": "[]",
-   "type": "DocType"
-  },
   {
    "color": "Green",
    "doc_view": "List",
@@ -86,6 +77,24 @@
    "doc_view": "List",
    "label": "Rcl Water Temp",
    "link_to": "Rcl Water Temp",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "format": "{}\u4e2a",
+   "label": "\u539f\u6750\u6599\u7089\u53f7",
+   "link_to": "Heat No",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "format": "{}\u6761",
+   "label": "\u75b2\u52b3\u5bff\u547d",
+   "link_to": "Fatigue Life",
    "stats_filter": "[]",
    "type": "DocType"
   },

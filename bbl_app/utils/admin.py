@@ -30,7 +30,7 @@ def clear_db_for_dev():
         # todo <<注意不要删除需要的了>> <<直接删除，非常危险>>
         frappe.db.delete("Steel Batch")
         frappe.db.delete("Short Raw Bar")
-        frappe.db.delete("Heat No")
+        # frappe.db.delete("Heat No")  // 固定使用信息
         frappe.db.delete("Batch")
         frappe.db.delete("Serial and Batch Bundle")
         frappe.db.delete("Serial and Batch Entry")
