@@ -21,10 +21,10 @@ frappe.ui.form.on("Semi Product Operate", {
 
     },
     on_submit(frm) {
-        log("spo on_submit", frm)
+        // log("spo on_submit", frm)
     },
     before_save(frm) {
-        log("spo before_save doc", frm.doc);
+        // log("spo before_save doc", frm.doc);
         if (frm.doc.semi_op_source == frm.doc.semi_op_target) {
             frappe.throw("工序来源和目标不能相同");
         }
@@ -672,7 +672,6 @@ class SpmSelectDialog {
 	make_new_document(e) {
 		// If user wants to close the modal
 		if (e) {
-            log("e1", e)
 			this.set_route_options();
 			// frappe.new_doc(this.doctype, true);
 		}
@@ -732,7 +731,7 @@ class SpmSelectDialog {
 	}
 
 	render_child_datatable() {
-        log("render_child_datatable", this.child_datatable)
+        // log("render_child_datatable", this.child_datatable)
 		if (!this.child_datatable) {
 			this.setup_child_datatable();
 		} else {
@@ -782,7 +781,7 @@ class SpmSelectDialog {
 			disableReorderColumn: true,
 		});
 		this.$child_wrapper.find(".dt-scrollable").css("height", "300px");
-        log("this.child_datatable", this.child_datatable)
+        // log("this.child_datatable", this.child_datatable)
         window.cd = this.child_datatable;
 	}
 
@@ -1263,7 +1262,7 @@ class SpmSelectDialog {
                 pluck: "job_post",
                 parent_doctype: "Employee Jobs",
             }).then(r => {
-                log("add filter :", r);
+                // log("add filter :", r);
                 let date1 = frappe.datetime.get_today();
                 date1 = frappe.datetime.add_days(date1, -5);
                 this.filter_group.add_filter(this.doctype, "for_date", ">=", date1);

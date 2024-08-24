@@ -24,7 +24,9 @@ frappe.listview_settings["Semi Product Manage"] = {
 			"Pending Review": "orange",
 			Cancelled: "dark grey",
 		};
-		return [doc.status, colors[doc.status], "status,=," + doc.status];
+		return [("" + doc.remaining_piece).bold() + "/" + doc.status, 
+            colors[doc.status], 
+            "status,=," + doc.status];
 	},
 
     primary_action() {
@@ -71,7 +73,14 @@ frappe.listview_settings["Semi Product Manage"] = {
                 })
         });
         page.change_inner_button_type('加工', null, 'info');
-
+        
+        
+        page.add_inner_button('合批', () => {
+            make_batch_merge(listview);
+            // frappe.set_route("List", "Semi Product Operate");
+        });
+        page.change_inner_button_type('合批', null, 'danger');
+        
 
         page.add_inner_button('加工单列表', () => {
             // make_main_op_dialog(listview);
@@ -79,24 +88,29 @@ frappe.listview_settings["Semi Product Manage"] = {
             // frappe.set_route("Form", "Work Order", r.message);
 
         // }).addClass("btn-primary");
-        });
+        }, "扩展功能");
         page.change_inner_button_type('加工单列表', null, 'warning');
-
-
-        page.add_inner_button('合批', () => {
-            make_batch_merge(listview);
-            // frappe.set_route("List", "Semi Product Operate");
-        });
-        page.change_inner_button_type('合批', null, 'danger');
-
 
         page.add_inner_button('树视图', () => {
             frappe.set_route("Tree", "Semi Product Manage");
-        });
+        }, "扩展功能");
+
+        page.add_inner_button('显示搜索', () => {
+            toggle_search_form(listview);
+        }, "扩展功能");
+        toggle_search_form(listview) 
 
     }
 
 }
+
+function toggle_search_form(listview) {
+    const $section = listview.$page.find(".standard-filter-section");
+    if (frappe.is_mobile()) {
+        $section.toggleClass("hidden");
+    }
+}
+
 
 function make_batch_merge(listview) {
     let items = listview.get_checked_items();

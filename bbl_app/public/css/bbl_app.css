@@ -1,0 +1,19 @@
+/* report 高度不能适配手机显示40vw 改为80vh */
+.dt-scrollable {
+    /* height: 80vh !important; */
+    height: 80vh;
+    overflow: auto;
+    border-top: 2px solid #d1d8dd;
+    border-top: 2px solid var(--dt-border-color);
+}
+
+@media (max-width: 700px) {
+    .hidden-xs {
+      display: none !important;
+    }
+  }
+  @media (min-width: 700px) and (max-width: 991px) {
+    .hidden-sm {
+      display: none !important;
+    }
+  }

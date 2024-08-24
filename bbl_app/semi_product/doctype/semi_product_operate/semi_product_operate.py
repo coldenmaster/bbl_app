@@ -7,7 +7,7 @@ from frappe.model.document import Document
 from frappe.utils import get_fullname
 from frappe.utils.data import cint, today
 
-from bbl_api.utils import USERS_IDS, WxcpApp, _print_blue_pp, print_blue, print_blue_pp, print_green, print_green_pp, print_red, print_yellow, send_wx_msg_q
+from bbl_api.utils import USERS_IDS, WxcpApp, WxcpGroupTag, _print_blue_pp, print_blue, print_blue_pp, print_green, print_green_pp, print_red, print_yellow, send_wx_msg_q
 
 
 class SemiProductOperate(Document):
@@ -328,7 +328,7 @@ def _send_wx_op_info(spo):
     # _print_blue_pp(spo.as_dict())
     rt_str = (
         ' --- 半成品加工信息 ---\n'
-        '------\n'
+        # '------\n'
         f'批次号: {spo.voucher_to}\n'
         f'批次名称: {spo.finish_name}\n'
         # f'半成品: {spo.semi_product}\n'
@@ -340,15 +340,18 @@ def _send_wx_op_info(spo):
         f'生产员工: {spo.employee}'
     )
     # _print_blue_pp(rt_str)
+    # send_wx_msg_q(rt_str, now=True, app_name=WxcpApp.PRODUCT_APP.value)
     # send_wx_msg_q(rt_str, app_name=WxcpApp.PRODUCT_APP.value)
-    send_wx_msg_q(rt_str, app_name=WxcpApp.PRODUCT_APP.value, user_ids=USERS_IDS.get('semi_product_operate', ''))
+    # send_wx_msg_q(rt_str, app_name=WxcpApp.PRODUCT_APP.value, user_ids=USERS_IDS.get('semi_product_operate'))
+    send_wx_msg_q(rt_str, app_name=WxcpApp.PRODUCT_APP.value, tag_ids=WxcpGroupTag.SEMI_PRODUCT_OPERATE.value)
 
 
 """ test info
 import bbl_app.semi_product.doctype.semi_product_operate.semi_product_operate as spo
 spo.spm_op(None)
 spo.t1()
-spo._send_wx_op_info(None)
+d = frappe.get_last_doc('Semi Product Operate')
+spo._send_wx_op_info(d)
 
 sb.clear_db()
 """

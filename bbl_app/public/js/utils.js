@@ -5,7 +5,7 @@ window.log = console.log;
 
 
 bbl.utils = {
-    test_str: "abc",
+    test_str: "abcd",
 
     // 计算下料根数
     calc_bar_piece: function(per_length, piece, ratio, gap) {
