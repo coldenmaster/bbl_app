@@ -88,6 +88,7 @@ frappe.listview_settings["Short Raw Bar"] = {
 			半使用: "orange",
 			余料: "red",
 			锻造车间wip: "blue",
+			部分锻造: "blue",
 			出完: "gray",
 			Working: "orange",
 			"Pending Review": "orange",

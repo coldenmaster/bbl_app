@@ -34,8 +34,8 @@ class SemiProductOperate(Document):
             frappe.throw("只有管理员才能删除此文档")
             
     def cancel(self):
-        print_red("半成品加工单 cancel")
-        print(self)
+        # print_red("半成品加工单 cancel")
+        # print(self)
         # frappe.throw("此文档不能取消,可进行转回操作")
         """ 取消 半成品操作单据 逻辑
         1. 检查目标单据是否已经使用,如果已经使用,(and如果建单时间大于2小时)则不能取消
@@ -44,6 +44,8 @@ class SemiProductOperate(Document):
         2.1 如果剩余数量=总数量,is_group = 0;
         3. 删除目标单据。
          """
+        if self.semi_op_target and self.semi_op_target.endswith('合批'):
+            frappe.throw("合批单据,不能取消")
         from_doc = frappe.get_doc("Semi Product Manage", self.voucher_from)
         to_doc = frappe.get_doc("Semi Product Manage", self.voucher_to)
         if to_doc.status != '未使用':

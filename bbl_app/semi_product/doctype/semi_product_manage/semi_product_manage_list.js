@@ -5,6 +5,7 @@ frappe.listview_settings["Semi Product Manage"] = {
 
     add_fields: [
         "semi_product",
+        "remaining_piece",
         "product_form",
         "bbl_heat_no",
         "is_group",

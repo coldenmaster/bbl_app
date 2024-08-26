@@ -381,7 +381,7 @@ def adjust_short_bar_status(sabb_no, voucher_no):
 
         used_qty = abs(batch.qty)
         wip_piece = srb_doc.wip_piece - used_qty
-        srb_doc.status = "半使用"
+        srb_doc.status = "部分锻造"
         if wip_piece == 0:
             if srb_doc.remaining_piece == 0:
                 srb_doc.status = "用完"

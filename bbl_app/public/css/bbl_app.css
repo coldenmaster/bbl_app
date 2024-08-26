@@ -7,13 +7,9 @@
     border-top: 2px solid var(--dt-border-color);
 }
 
+/* 无效 */
 @media (max-width: 700px) {
     .hidden-xs {
-      display: none !important;
+        display: none !important;
     }
-  }
-  @media (min-width: 700px) and (max-width: 991px) {
-    .hidden-sm {
-      display: none !important;
-    }
-  }
+}

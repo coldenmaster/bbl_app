@@ -430,6 +430,14 @@ Is Yield,计产量,
 Op List,操作列表,
 Yield List,记产列表,
 Is Over,完结,
+Bbl Warehouse,百兰仓库,
+Semi Handover,半成品交接,
+Semi Product Batch,半成品批次,
+From Operation,来源工序,
+To Operation,目标工序,
+From Employee,员工(发送人),
+
+
 
 
 

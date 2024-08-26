@@ -127,7 +127,7 @@
    "in_standard_filter": 1,
    "label": "Status",
    "no_copy": 1,
-   "options": "\u672a\u4f7f\u7528\n\u534a\u4f7f\u7528\n\u4f59\u6599\n\u953b\u9020\u8f66\u95f4wip\n\u7528\u5b8c"
+   "options": "\u672a\u4f7f\u7528\n\u534a\u4f7f\u7528\n\u4f59\u6599\n\u953b\u9020\u8f66\u95f4wip\n\u90e8\u5206\u953b\u9020\n\u7528\u5b8c"
   },
   {
    "fieldname": "semi_product",
@@ -246,7 +246,7 @@
  ],
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-07-17 11:55:51",
+ "modified": "2024-08-26 17:21:51",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Short Raw Bar",
