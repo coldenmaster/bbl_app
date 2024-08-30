@@ -19,6 +19,14 @@ frappe.ui.form.on("Semi Product Operate", {
             frm.trigger("semi_op_target");
         }
 
+        if (frm.doc.bbl_heat_no) {
+            log("has_bbl_heat_no", frm.doc.has_bbl_heat_no);
+            frm.doc.has_bbl_heat_no = 1;
+        }
+
+        // model 字段赋值
+
+        // log(frm.doc)
     },
     on_submit(frm) {
         // log("spo on_submit", frm)
@@ -47,6 +55,11 @@ frappe.ui.form.on("Semi Product Operate", {
             // log("show_dialog", show_dialog)
             if (!show_dialog) {
                 select_spm_dialog(frm);
+            }
+
+            if (frm.doc.semi_op_target == frm.doc.semi_op_source) {
+                log("clear semi_op_target");
+                frm.set_value("semi_op_target", "");
             }
 
         };  
@@ -125,7 +138,9 @@ frappe.ui.form.on("Semi Product Operate", {
     },
     source_qty(frm) {
         if (!bbl.flag_spm_merge) {
-            frm.set_value("finish_qty", frm.doc.source_qty);
+            if (frm.doc.source_qty < 50) {
+                frm.set_value("finish_qty", frm.doc.source_qty);
+            }
         }
     },
     finish_qty(frm) {
@@ -133,7 +148,16 @@ frappe.ui.form.on("Semi Product Operate", {
             frappe.msgprint({ "title": "错误", message: "目标数量不能大于源数量", indicator: "red", alert: 1 });
             frm.set_value("finish_qty", "");
         }
-    }
+    },
+    forge_batch_no(frm) {
+        if (frm.doc.forge_batch_no) {
+            localStorage.setItem("bbl_spo_forge_batch_no", frm.doc.forge_batch_no);
+        }
+    },
+    bbl_heat_no(frm) {
+        if (frm.doc.bbl_heat_no)
+            localStorage.setItem("bbl_spo_bbl_heat_no", frm.doc.bbl_heat_no);
+    },
 
 });
 
@@ -179,8 +203,15 @@ function query_spm_source_data(frm) {
     if (spm_source) {
         frappe.model.with_doc("Semi Product Manage", spm_source).then(doc => {
             // log("with_doc2", doc);
-            frm.set_value("forge_batch_no", doc.forge_batch_no);
-            frm.set_value("bbl_heat_no", doc.bbl_heat_no);
+            // log(!!doc.forge_batch_no, !!doc.bbl_heat_no)
+            if (doc.forge_batch_no)
+                frm.doc.forge_batch_no = doc.forge_batch_no;
+                // frm.set_value("forge_batch_no", doc.forge_batch_no);
+            if (doc.bbl_heat_no) {
+                frm.doc.has_bbl_heat_no = true;
+                frm.doc.bbl_heat_no = doc.bbl_heat_no;
+                // frm.set_value("bbl_heat_no", doc.bbl_heat_no);
+            }
         })
     };
 }
@@ -296,10 +327,14 @@ function set_forge_batch_no_disp(frm) {
     let fd = frm.get_field("forge_batch_no");
     if (last_op != "锻坯登记") 
         set_frm_df_rend(fd, 0, 0);
-    else    
+    else {
         set_frm_df_rend(fd, 1, 1);
+        const temp1 =  localStorage.getItem("bbl_spo_forge_batch_no")
+        frm.doc.forge_batch_no = frm.doc.forge_batch_no || temp1 || "";
+    }
 
 }
+
 function set_bbl_heat_no_disp(frm) {
     if (!frm.is_new())  // 新建时，隐藏字段，对界面进行简化
         return;
@@ -308,8 +343,14 @@ function set_bbl_heat_no_disp(frm) {
     let fd = frm.get_field("bbl_heat_no");
     if (!bbl_heat_no_list.includes(target_op)) {
         set_frm_df_rend(fd, 0, 0);
+        if (!frm.doc.has_bbl_heat_no) {
+            frm.doc.bbl_heat_no = "";
+        }
     } else {
         set_frm_df_rend(fd, 1, 1);
+        let temp1 =  localStorage.getItem("bbl_spo_bbl_heat_no")
+        temp1 = frm.doc.bbl_heat_no || temp1 || "";
+        frm.set_value("bbl_heat_no", temp1);
     }
 }
 
@@ -782,7 +823,7 @@ class SpmSelectDialog {
 		});
 		this.$child_wrapper.find(".dt-scrollable").css("height", "300px");
         // log("this.child_datatable", this.child_datatable)
-        window.cd = this.child_datatable;
+        // window.cd = this.child_datatable;
 	}
 
 	get_primary_filters() {

@@ -46,6 +46,7 @@
    "fieldtype": "Section Break"
   },
   {
+   "columns": 2,
    "fieldname": "bbl_code",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -58,6 +59,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "columns": 2,
    "fieldname": "customer_code",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -157,6 +159,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "columns": 1,
    "fieldname": "product_name",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -193,7 +196,7 @@
  ],
  "hide_toolbar": 1,
  "links": [],
- "modified": "2024-08-09 14:05:54",
+ "modified": "2024-08-28 14:48:20",
  "modified_by": "Administrator",
  "module": "Machine Shop",
  "name": "Product Scan",

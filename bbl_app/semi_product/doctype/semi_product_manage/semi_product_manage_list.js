@@ -101,8 +101,56 @@ frappe.listview_settings["Semi Product Manage"] = {
         }, "扩展功能");
         toggle_search_form(listview) 
 
+        // 调整页面，viewport md 大小时选择显示一些字段
+        
+
+    },
+    refresh: function (listview) {
+        log("refresh");
+        if (bbl.utils.is_ms560_680()) {
+            show_sm_colomn();
+        }
     }
 
+}
+
+$(window).on('resize', function () {
+    // fn_onResize();
+    // log("window, resize");
+})
+
+var updateOrientation = function() {
+    log("window, orientationchange");
+    if (bbl.utils.is_ms560_680()) {
+        show_sm_colomn();
+    }
+    var orientation = window.orientation;
+    switch(orientation) {
+        case 90: case -90:
+            orientation = 'landscape';
+            break;
+        default:
+            orientation = 'portrait';
+    }
+    // set the class on the HTML element (i.e. )
+    document.body.parentNode.setAttribute('class', orientation);
+};
+// event triggered every 90 degrees of rotation
+window.addEventListener('orientationchange', updateOrientation, false);
+
+function show_sm_colomn() {
+    // log("show_sm_colomn");
+    $result = cur_list.$result;
+    $status_col = $result.find(".level-item.text-right").removeClass("visible-xs");
+    // $status_col = $result.find(".level-item.text-right").toggleClass("visible-xs");
+    $row_left = $result.find(".level-left");
+    $row_left.each(function (i, el) {
+        let $this = $(this);
+        let $child = $this.children();
+        $child.last().removeClass("hidden-xs");
+    })
+    // window.$result = $result;
+    // window.rw = $row_left;
 }
 
 function toggle_search_form(listview) {
@@ -177,7 +225,7 @@ function make_batch_merge_dialog(args) {
         //     fieldtype: "Heading",
         // },
         {
-            label: "锻造批次:&emsp;" + args.forge_batch_no.bold(),
+            label: "锻造批次:&emsp;" + (args.forge_batch_no || "无").bold(),
             fieldtype: "Heading",
         },
         {
@@ -260,4 +308,8 @@ function merge_batch_note(names, qtys) {
     }
     // log(note)
     return note;
+}
+
+bbl.utils.is_ms560_680 = function() {
+    return $(document).width() > 560 && $(document).width() < 680;
 }

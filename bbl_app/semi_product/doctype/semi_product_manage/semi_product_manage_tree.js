@@ -178,6 +178,10 @@ frappe.treeview_settings["Semi Product Manage"] = {
                             // node.title = li.join("/");
                             // bbl.temp_tree_node = null;
                         }
+                        if (li[0].indexOf("合批") != -1) {
+                            li[0] = li[0].bold();
+                            // li[0] = li[0].fontcolor("yellow");
+                        }
                         node.title = li.join("/");
                     }
                 }    

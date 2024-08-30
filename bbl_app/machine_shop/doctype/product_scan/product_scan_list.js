@@ -93,6 +93,11 @@ class ScanProductDialog {
                 "options": "Barcode",
                 "reqd": 1,
                 "max_height": "5rem",
+                "input_css": {
+                    "font-size": "1.2rem",
+                    "background-color": "#ffffe0",
+                    "color": "#00b89f",
+                },
                 // "height": "2rem",
                 "description": "使用说明：" + "请把输入光标置入此框，然后10秒内连续扫描两个二维码，进行绑定上传。".fontcolor("#00b89f"),
                 onchange: (e) => {

@@ -41,6 +41,9 @@ bbl.utils = {
         return cint(length);
     },
 
+    is_ms560_680: function() {
+        return $(document).width() > 560 && $(document).width() < 680;
+    }
 }
 
 

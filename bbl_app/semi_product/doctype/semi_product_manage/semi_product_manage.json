@@ -439,11 +439,11 @@
    "label": "Is Sub Form"
   },
   {
+   "default": "\"\"",
    "fieldname": "op_list",
    "fieldtype": "Small Text",
    "label": "Op List",
-   "max_height": "3rem",
-   "read_only": 1
+   "max_height": "3rem"
   },
   {
    "default": "0",
@@ -480,7 +480,7 @@
  "hide_toolbar": 1,
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-08-24 11:09:17",
+ "modified": "2024-08-30 16:50:08",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Semi Product Manage",

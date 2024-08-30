@@ -15,7 +15,7 @@ def make_simi_product_batch_no(product_name, form_abbr, find_times=5):
     """
     # batch_no_0 = form_abbr + BBL_SEP + product_name[-5:] + BBL_SEP + date.replace('-', '')[2:]
     date = today()
-    batch_no_0 = form_abbr + BBL_SEP + date.replace('-', '')[2:]+ BBL_SEP + product_name[-4:] 
+    batch_no_0 = form_abbr + BBL_SEP + date.replace('-', '')[2:]+ BBL_SEP + product_name[-6:] 
     doc_list = search_batch_no_in_spm(batch_no_0)
     # print_red("date  1 is:" + date)
     # print_red("today 2 is:" + today())

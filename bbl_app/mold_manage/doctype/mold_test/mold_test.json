@@ -5,12 +5,12 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "collaps",
   "mold_name_section",
   "data_dafn",
-  "link",
-  "test_multi_link",
-  "test_custom_action",
-  "test_virtual"
+  "test_autocomplete",
+  "test_data",
+  "test_bt"
  ],
  "fields": [
   {
@@ -21,45 +21,38 @@
   {
    "default": "06240",
    "fieldname": "data_dafn",
+   "fieldtype": "Data",
+   "label": "Mold Name"
+  },
+  {
+   "fieldname": "test_autocomplete",
    "fieldtype": "Autocomplete",
-   "label": "Mold Name",
-   "options": "\u534a\u6210\u54c1"
-  },
-  {
-   "default": "28",
-   "fieldname": "link",
-   "fieldtype": "Link",
    "in_list_view": 1,
-   "in_preview": 1,
    "in_standard_filter": 1,
-   "label": "Link",
-   "options": "Semi Product"
+   "label": "Test Autocomplete"
   },
   {
-   "fieldname": "test_multi_link",
-   "fieldtype": "Select",
-   "label": "Test Multi Link",
-   "options": "link\nfill\noption\nadfasd\newr3ec"
+   "fieldname": "test_data",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Test Data"
   },
   {
-   "default": "06240",
-   "fieldname": "test_custom_action",
-   "fieldtype": "Link",
-   "label": "Test Custom Action",
-   "options": "Semi Product"
+   "bold": 1,
+   "fieldname": "test_bt",
+   "fieldtype": "Button",
+   "label": "Test Bt"
   },
   {
-   "default": "06240",
-   "fieldname": "test_virtual",
-   "fieldtype": "Link",
-   "is_virtual": 1,
-   "label": "Test Virtual",
-   "options": "Semi Product"
+   "fieldname": "collaps",
+   "fieldtype": "Fold",
+   "label": "Colleps"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-07-26 08:51:13",
+ "modified": "2024-08-28 14:46:07",
  "modified_by": "Administrator",
  "module": "Mold Manage",
  "name": "Mold Test",

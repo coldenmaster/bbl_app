@@ -2,8 +2,11 @@ Bbl App,百兰App,
 Bbl_App,百兰App,
 Update Hooks Resolution Order,更新app钩子解析顺序,
 
-Workshop,车间,
+Workspace Settings,工作模块选择,
+Select modules you want to see in the sidebar,选择你希望在侧边栏看到的模块,
 
+
+Workshop,车间,
 Equipment Manage,设备管理,
 
 Mold,锻造模具档案,
@@ -332,7 +335,7 @@ Bulk Operation Successful,批量操作成功,
 Segregate Serial / Batch Bundle,显示序列号与批号明细,
 
 Semi Product Manage,半成品管理,
-Forge Batch No,锻造批次号,
+Forge Batch No,锻造标识,
 Raw No Copy,原材料炉号,
 Bbl Heat No,热处理批次号,
 Link Doc,关联单据,

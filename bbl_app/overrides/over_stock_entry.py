@@ -491,7 +491,7 @@ def create_forge_blank(bar_item, forge_item, voucher_no):
 
 def t1():
     item_code = '5004_锻坯登记'
-    forge_bathch_no = 'DP-' + today().replace('-', '') + '-' + item_code.replace('_锻坯登记', '')[-4:] + '-' + frappe.utils.random_string(2)
+    forge_bathch_no = 'DP-' + today().replace('-', '') + '-' + item_code.replace('_锻坯登记', '')[-6:] + '-' + frappe.utils.random_string(2)
     print(forge_bathch_no)
     pass
 
