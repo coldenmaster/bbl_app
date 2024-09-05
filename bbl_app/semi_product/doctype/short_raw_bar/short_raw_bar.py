@@ -3,14 +3,16 @@
 
 # import frappe
 import json
+from bbl_app.raw_material_manage.doctype.steel_batch.steel_batch import create_bar_item
+from bbl_app.utils.bbl_uitls import make_semi_batch_no_name, make_semi_stage_name
 from bbl_app.utils.uitls import safe_json_loads_from_str
-from erpnext.manufacturing.doctype.work_order.work_order import make_work_order, make_stock_entry
+from erpnext.manufacturing.doctype.work_order.work_order import close_work_order, make_stock_return_entry, make_work_order, make_stock_entry
 import frappe
 from frappe.model.document import Document
 from frappe.utils.data import cint
 
-from bbl_api.utils import _print_green_pp, print_blue, print_blue_pp, print_green, print_green_pp, print_red, print_yellow
-
+from bbl_api.utils import _print_blue_pp, _print_green_pp, print_blue, print_blue_pp, print_green, print_green_pp, print_red, print_yellow
+from bbl_app.utils.uitls import bbl_obj
 
 class ShortRawBar(Document):
     pass
@@ -67,11 +69,11 @@ def product_out(**kwargs):
     bar_sabb_name = create_bar_sabb(s_item_name, s_piece, batch_qtys)
     se_doc = create_stock_entry(wo_doc.name, bar_sabb_name)
 
-    # 3.全部单据创建-提交完成，修改短棒料的状态为‘锻造车间wip’
+    # 3.全部单据创建-提交完成，修改短棒料的状态为‘锻造wip’
     adjust_short_bar_status(batch_qtys, wo_doc.name)
         # frappe.set_value("Short Raw Bar", batch_qty[0], "remaining_piece", 0)
     
-    # 4.记录操作流水(此处记录多少短棒料转移到锻造车间wip)
+    # 4.记录操作流水(此处记录多少短棒料转移到锻造wip)
     create_op_flow(batch_qtys, item, se_doc.name, s_item_name)
 
     # over 提交数据库保存
@@ -135,7 +137,7 @@ def create_work_order(bom_name, item_name, piece, wip_warehouse, fg_warehouse):
     return wo_doc
 
 def create_bar_sabb(item_code, qty, batch_qtys):
-    # print("新建SABB", opts.raw_name, opts.weight, opts.batchs)
+    # print("新建SABB", item_code, qty, batch_qtys)
     sabb_doc = frappe.get_doc({
         'doctype': 'Serial and Batch Bundle',
         # 'company': '百兰车轴',
@@ -160,6 +162,7 @@ def create_stock_entry(wo_name, sabb):
     se_dict = make_stock_entry(wo_name, purpose)
     se_dict.get('items')[0]['serial_and_batch_bundle'] = sabb
     se_doc = frappe.get_doc(se_dict)
+    se_doc.stock_entry_type = 'Material Transfer for Manufacture'
     se_doc.submit()
     # frappe.db.commit()
     return se_doc
@@ -177,7 +180,7 @@ def adjust_short_bar_status(batch_qtys, se_doc_name):
         print_red(srb_doc.name)
         print_red(vn_obj)
         srb_doc.update({
-            "status": "锻造车间wip",
+            "status": "锻造wip",
             "warehouse": "锻造车间仓库 - 百兰",
             "wip_piece": srb_doc.wip_piece + batch_qty[1],
             "remaining_piece": srb_doc.remaining_piece - batch_qty[1],
@@ -208,7 +211,7 @@ def create_op_flow(batch_qtys, item, se_doc_name, s_item_name):
 """ 短棒料 根据生产工单 转换成锻坯部分
     主要完成为生产工单的物料转移设定正确的短棒料批次号
 """
-# up_obj_mock2 = {'work_order': 'MFG-WO-2024-00033', 'out_piece': '21', 'wo_qty': '21', 'name': 'DBL-20240703-462Z-4E', 'owner': 'gaoxuesong@hbbbl.top', 'creation': '2024-07-03 17:01:15', 'modified': '2024-07-16 11:15:58', 'modified_by': 'Administrator', '_user_tags': '', '_comments': '', '_assign': '', '_liked_by': '', 'docstatus': '0', 'idx': '0', 'raw_bar_name': '4E_短棒料', 'heat_no': '24011462Z', 'in_piece': '21', 'remaining_piece': '0', 'wip_piece': '32', 'accu_piece': '63', 'status': '锻造车间wip', 'semi_product': '4E', '_comment_count': '0', '_idx': '0', 'cmd': 'bbl_app.semi_product.doctype.short_raw_bar.short_raw_bar.work_order_done'}
+# up_obj_mock2 = {'work_order': 'MFG-WO-2024-00033', 'out_piece': '21', 'wo_qty': '21', 'name': 'DBL-20240703-462Z-4E', 'owner': 'gaoxuesong@hbbbl.top', 'creation': '2024-07-03 17:01:15', 'modified': '2024-07-16 11:15:58', 'modified_by': 'Administrator', '_user_tags': '', '_comments': '', '_assign': '', '_liked_by': '', 'docstatus': '0', 'idx': '0', 'raw_bar_name': '4E_短棒料', 'heat_no': '24011462Z', 'in_piece': '21', 'remaining_piece': '0', 'wip_piece': '32', 'accu_piece': '63', 'status': '锻造wip', 'semi_product': '4E', '_comment_count': '0', '_idx': '0', 'cmd': 'bbl_app.semi_product.doctype.short_raw_bar.short_raw_bar.work_order_done'}
 up_obj_mock2 = {}
 
 # http://dev2.localhost:8000/api/method/bbl_app.semi_product.doctype.short_raw_bar.short_raw_bar.product_out?scan_barcode=123
@@ -231,7 +234,7 @@ def work_order_done(**kwargs):
     # 2. make stock entry
     se_doc = create_stock_entry_for_wo_done(kwargs.work_order, sabb_name, bar_bacth_qty)
     return kwargs.get('work_order')
-    # 3.完成后，修改短棒料的状态为‘锻造车间wip’,修改短棒料生产数量（在stock entry 的hook中完成）
+    # 3.完成后，修改短棒料的状态为‘锻造wip’,修改短棒料生产数量（在stock entry 的hook中完成）
 
 def create_bar_sabb_for_wo_done(item_code, qty, batch_qty):
     sabb_doc = frappe.get_doc({
@@ -261,6 +264,151 @@ def create_stock_entry_for_wo_done(wo_name, sabb, qty):
     return se_doc
 
 
+up_obj_mock2 = {
+    'old_sbr_doc_id': 'DBL-0903-4E-24011462Z', 
+    'new_product_name': '06240', 
+    'qty': '3', 
+    'cmd': 'bbl_app.semi_product.doctype.short_raw_bar.short_raw_bar.change_srb_name'
+    }
+
+@frappe.whitelist()
+def change_srb_name(**kwargs):
+    print_red("srb change_srb_name")
+    # print_blue(kwargs)
+    if not kwargs:
+        print_red("mock data 😁")
+        kwargs = up_obj_mock2 #置入假数据
+    kwargs = frappe._dict(kwargs)
+    # 获取doc
+    from_srb_doc_id = kwargs.old_sbr_doc_id
+    srb_doc = frappe.get_cached_doc("Short Raw Bar", from_srb_doc_id)
+    target_product_name = kwargs.new_product_name
+    # target_item_name = target_product_name.replace(" ", "").replace("-", "")  + "_短棒料"
+    target_item_name = make_semi_stage_name(target_product_name, 6, "短棒料")
+
+    target_qty = cint(kwargs.qty)
+    # print(srb_doc.as_dict())
+    # 根据源doc内短棒料批次，新建目标短棒料批次
+    # md = frappe.utils.today().replace("-", "")[-4:]
+    # to_batch_no = "DBL-" + md + "-" + target_product_name[-6:] + "-" + srb_doc.heat_no[-10:]
+    to_batch_no = make_semi_batch_no_name(target_product_name, "DBL", srb_doc.heat_no)
+    print_red(to_batch_no)
+
+    # create_item(target_item_name)
+    create_bar_item(target_item_name)
+    if (not frappe.db.exists('Batch', to_batch_no)):
+        batch_no_doc = frappe.get_doc({
+            'doctype': 'Batch',
+            'batch_id': to_batch_no,
+            'item': target_item_name,
+        })
+        batch_no_doc.insert(ignore_permissions=True)
+
+    old_sabb_kw ={
+        "doctype": "Serial and Batch Bundle",
+        'item_code': srb_doc.raw_bar_name,
+        'has_batch_no': 1,
+        'warehouse': '短棒料仓 - 百兰',
+        'type_of_transaction': 'Outward',
+        'total_qty': target_qty, 
+        'voucher_type': 'Stock Entry',
+        'entries': [{'batch_no': srb_doc.name,
+                'qty': target_qty}],
+    }
+    new_sabb_kw ={
+        "doctype": "Serial and Batch Bundle",
+        # 'company': '百兰车轴',
+        # 'naming_series': sabb_no,
+        # 'name': sabb_no,
+        'item_code': target_item_name,
+        'has_batch_no': 1,
+        'warehouse': '短棒料仓 - 百兰',
+        'type_of_transaction': 'Inward',
+        'total_qty': target_qty, 
+        'voucher_type': 'Purchase Receipt',
+        'entries': [{'batch_no': to_batch_no,
+                'qty': target_qty}],
+    }
+    old_sabb_doc = frappe.get_doc(old_sabb_kw)
+    new_sabb_doc = frappe.get_doc(new_sabb_kw)
+    old_sabb_doc.insert(ignore_permissions=True)
+    new_sabb_doc.insert(ignore_permissions=True)
+
+    # 新建物料转移单，直接进行提交
+    # se_dict = make_stock_entry(srb_doc.name, 'Material Transfer', kwargs.qty)
+    se_doc = frappe.get_doc({
+        'doctype': 'Stock Entry',
+        'stock_entry_type': 'Repack',
+        'items':[
+                    {
+                        "item_code": srb_doc.raw_bar_name,
+                        "qty": target_qty,
+                        "s_warehouse": "短棒料仓 - 百兰",
+                        "uom": "根",
+                        "serial_and_batch_bundle": old_sabb_doc.name
+                    },
+                    {
+                        "item_code": target_item_name,
+                        "qty": target_qty,
+                        "t_warehouse": "短棒料仓 - 百兰",
+                        "uom": "根",
+                        "serial_and_batch_bundle": new_sabb_doc.name
+                    }
+                ]
+    })
+    # _print_blue_pp(se_doc.as_dict())
+    bbl = bbl_obj
+    bbl['srb_tmp1'] = {
+        'from_srb_doc_id': from_srb_doc_id,
+        'target_product_name': target_product_name,
+        'target_item_name': target_item_name,
+        'to_batch_no': to_batch_no,
+        'target_qty': target_qty,
+        }
+    # print_red(bbl)
+    # se_doc.insert(ignore_permissions=True)
+    # frappe.db.commit()
+    se_doc.submit()
+    return se_doc.name
+
+
+up_obj_mock2 = {
+    'srb_name': 'DBL-0904-2310D-24011462Z', 
+    'qty': '3', 
+    }
+
+@frappe.whitelist()
+def cancel_wo_retrieve_wip(**kwargs):
+    print_red("srb cancel_wo_retrieve_wip")
+    if not kwargs:
+        print_red("mock data 😁")
+        kwargs = up_obj_mock2 #置入假数据
+    print_blue(kwargs)
+    kwargs = frappe._dict(kwargs)
+    up_qty = cint(kwargs.qty)
+    # 获取doc
+    srb_doc = frappe.get_doc("Short Raw Bar", kwargs.srb_name)
+    # 获取srb中的 work_order 记录
+    wo_list = frappe.parse_json(srb_doc.voucher_no)
+    # _print_blue_pp(wo_list)
+    wo_no = wo_list[-1].get('voucher_no')
+    wo_qty = wo_list[-1].get('voucher_qty')
+    # print(wo_no, wo_qty, kwargs.qty)
+    if wo_qty != up_qty:
+        frappe.throw("后台获取数量不一致")
+        
+    wo_doc = frappe.get_doc("Work Order", wo_no)
+    close_work_order(wo_doc.name, 'Closed')
+
+    stock_entry = make_stock_return_entry(wo_doc.name)
+    stock_entry.submit()
+    # frappe.db.set_value("Work Order", wo_doc.name, "status", "Closed")
+    wo_doc.update_status("Closed")
+    # _print_blue_pp(stock_entry.as_dict())
+    return stock_entry.name
+
+
+
 
 # sb.pad_semi_name(filters, "None")
 
@@ -272,6 +420,8 @@ def create_stock_entry_for_wo_done(wo_name, sabb, qty):
 import bbl_app.semi_product.doctype.short_raw_bar.short_raw_bar as rsb
 rsb.product_out()
 rsb.work_order_done()
+rsb.change_srb_name()
+rsb.cancel_wo_retrieve_wip()
 docs = frappe.get_all("Short Raw Bar")
 sb.raw_name(item_name = 'sb-150', item_group = "原材料", uom='kg')
 sb.clear_db()

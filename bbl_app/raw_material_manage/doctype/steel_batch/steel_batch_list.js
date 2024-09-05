@@ -92,22 +92,6 @@ frappe.listview_settings["Steel Batch"] = {
         });
         page.change_inner_button_type('生产出库', null, 'info');
 
-        // let field = page.add_field({
-        //     label: '甜甜',
-        //     fieldtype: 'Select',
-        //     fieldname: 'status3',
-        //     options: [
-        //         'Open',
-        //         'Closed',
-        //         '天下无敌'
-        //     ],
-        //     change() {
-        //         console.log(field);
-        //         console.log(field.get_value());
-        //     }
-        // });
-
-
     },
     before_render(n) {
         console.log("before_render", n)
@@ -307,12 +291,14 @@ class Raw2BarDialog2 {
     default_bar_batch(serial, prod) {
         let heat_no = serial || this.sb_item_0.heat_no;
         let prod_name = prod || this.sb_item_0.semi_product || "";
-        prod_name = prod_name.replace(" ", "");
-        prod_name = prod_name.replace("-", "");
-        // log("default_bar_batch heat_no:", heat_no, this.semi_product);
-        // return "DBL-" + frappe.datetime.now_date().replaceAll("-", "") + "-"
-        //     + heat_no.substring(heat_no.length - 4) + "-" + prod_name.substring(prod_name.length - 3);
-        return "DBL-" + prod_name.substring(prod_name.length - 4)  + "-" + heat_no.substring(prod_name.length - 8); 
+        // prod_name = prod_name.replace(" ", "");
+        // prod_name = prod_name.replace("-", "");
+        // const md = frappe.datetime.now_date().replaceAll("-", "").substring(4); 
+        // log("default_bar_batch heat_no:", heat_no, prod_name);
+        // log("default_bar_batch md:", md);
+        const r = bbl.utils.makeSemiBatchNoName(prod_name, "DBL" , heat_no);
+        // r = "DBL-" + md + "-" + prod_name.substring(prod_name.length - 6)  + "-" + heat_no.substring(heat_no.length - 10); 
+        return r;
     }
 
     ratio_desc() {

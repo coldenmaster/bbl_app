@@ -136,7 +136,6 @@ def create_batch_no(batch_no, item_name):
         })
         batch_no_doc.insert(ignore_permissions=True)
         # frappe.db.commit()
-        # frappe.msgprint(f"新建物料批号 {batch_no}", indicator="green", alert=True)
 
 """
     这个自动创建功能现在是测试，

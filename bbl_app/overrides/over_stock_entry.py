@@ -5,13 +5,15 @@ from erpnext.stock.doctype.stock_entry.stock_entry import StockEntry
 import frappe
 from frappe import _
 from frappe.utils.data import cint, comma_or, cstr, flt, now, today
-from bbl_api.utils import _print_blue_pp, print_blue, print_cyan, print_green, print_green_pp, print_red
+from bbl_api.utils import _print_blue_pp, print_blue, print_cyan, print_green, print_green_pp, print_red, print_yellow
+from bbl_app.utils.uitls import bbl_obj
 
 
 class CustomStockEntry(StockEntry):
     # print_green('自定义 StockEntry 加载 1')
     def on_submit(self):
         print_green('CustomStockEntry: on_submit 运行自定义代码->')
+        print_green(self.stock_entry_type)
         # _print_green_pp(self.as_dict())
         # print('on_submit 传参 self 1  is:\n', self.as_dict())
         # print('on_submit 传参 self 2  is:\n', self.items)
@@ -20,7 +22,12 @@ class CustomStockEntry(StockEntry):
             process_steel_batch(self)
             create_raw_bar(self)
         if self.stock_entry_type == 'Manufacture' and '锻坯登记' in self.bom_no:
+        # if self.stock_entry_type == 'Material Transfer for Manufacture' and '锻坯登记' in self.bom_no:
             process_bar_to_forge(self)
+        if self.stock_entry_type == 'Repack':
+            process_srb_change_name(self)
+        if self.stock_entry_type == 'Wip Retrieve':
+            process_srb_wip_retrieve(self)
         super().on_submit()
 
     def on_update(self):
@@ -323,6 +330,131 @@ def create_raw_bar(self):
 
 
 
+
+def process_srb_change_name(self):
+    """ 将短棒料批次信息转化为锻造批次信息 """
+    print_red('进入 process_srb_change_name')
+    # 判断是不是短棒料名称转换
+    item_docs = self.get('items')
+    # print_red(item_docs)
+    if len(item_docs) != 2:
+        return
+    for item in item_docs:
+        if '_短棒料' not in item.get('item_code'):
+            return
+    
+    # 进行短棒料文档复制，并修改名称
+    bbl = bbl_obj
+    try:
+        srb_change_name_data = frappe._dict(bbl['srb_tmp1'])
+        # 1.通过sabb找到批次srb批次名称
+        from_doc = item_docs[0]
+        # sabb_doc = frappe.get_cache_doc('Serial and Batch Entry', from_doc.get('serial_and_batch_bundle'))
+        # srd_batch_no = sabb_doc.entries[0].batch_no
+        srd_batch_no = srb_change_name_data.from_srb_doc_id
+        from_qty = srb_change_name_data.target_qty
+        to_product_name = srb_change_name_data.target_product_name
+        target_item_name = srb_change_name_data.target_item_name
+        to_batch_no = srb_change_name_data.to_batch_no
+        from_srb_doc = frappe.get_doc('Short Raw Bar', srd_batch_no)
+        # 1.1.判断目标doc是否已经存在
+        if frappe.db.exists('Short Raw Bar', to_batch_no):
+            print_blue("目标短棒料已经存在")
+            to_srb_doc = frappe.get_doc('Short Raw Bar', to_batch_no)
+            # 3.设置目标短棒料信息
+            status2 = "未使用" if to_srb_doc.remaining_piece == 0 else to_srb_doc.status
+            to_srb_doc.update({
+                'in_piece': from_qty,
+                'remaining_piece': to_srb_doc.remaining_piece + from_qty,
+                'accu_piece': to_srb_doc.accu_piece + from_qty,
+                'link_doc_in': self.name,
+                'status': status2,
+            }).save(ignore_permissions=True)
+        else:
+            print_blue("目标短棒料不存在,新建")
+            # 2.复制文档
+            to_srb_doc = frappe.copy_doc(from_srb_doc, False)
+            # 3.设置目标短棒料信息
+            to_srb_doc.update({
+                # 'name': self.name,
+                'batch_no': to_batch_no,
+                'raw_bar_name': target_item_name,
+                'semi_product': to_product_name,
+                'in_piece': from_qty,
+                'remaining_piece': from_qty,
+                'accu_piece': from_qty,
+                # 'used_piece': 0,
+                # 'total_used_piece': 0,
+                'link_doc_in': self.name,
+                # 'voucher_no': None,
+                # 'for_date': today(),
+                # 'use_date': None,
+                'status': '未使用',
+            }).insert(ignore_permissions=True)
+
+        from_remaining = from_srb_doc.remaining_piece - from_qty
+        if ((not from_remaining) and from_srb_doc.wip_piece == 0) :
+            status1 = "用完"
+        # voucher_no = from_srb_doc.voucher_no.replace(cstr(from_qty), '0')
+        # voucher_no_list = safe_json_loads_from_str(from_srb_doc.get('voucher_no')) or []
+        # if voucher_no_list:
+        #     voucher_no_list[-1]['voucher_qty'] = 0
+        from_srb_doc.update({
+            'remaining_piece': from_remaining,
+            'voucher_no': _clear_voucher_no_qty(from_srb_doc),
+            'status': status1,
+        }).save()
+        
+    except Exception as e:
+        frappe.throw(f"短棒料名称转换失败 {e}")
+    finally:
+        bbl.pop('srb_tmp1')
+    # print_yellow(bbl)
+
+def _clear_voucher_no_qty(srb_doc) -> str: 
+    """ 清除voucher_no的voucher_qty """
+    voucher_no_list = safe_json_loads_from_str(srb_doc.get('voucher_no')) or []
+    if voucher_no_list:
+        voucher_no_list[-1]['voucher_qty'] = 0
+    return frappe.as_json(voucher_no_list)
+
+
+
+def process_srb_wip_retrieve(self):
+    """ 将短棒料wip数量,转回剩余数量 """
+    print_red('进入 process_srb_wip_retrieve')
+    item_docs = self.get('items')
+    # print_red(item_docs)
+    if len(item_docs) != 1:
+        return
+    for item in item_docs:
+        if '_短棒料' not in item.get('item_code'):
+            return
+    # 1.通过sabb找到批次srb批次名称
+    from_doc = item_docs[0]
+    sabb_doc = frappe.get_doc('Serial and Batch Bundle', from_doc.get('serial_and_batch_bundle'))
+    if len(sabb_doc.entries) != 1:
+        frappe.throw('短棒料wip, 转回剩余数量, 转回批次不等于1')
+    from_batch_no = sabb_doc.entries[0].batch_no
+    from_srb_doc = frappe.get_doc('Short Raw Bar', from_batch_no)
+    if (from_srb_doc.wip_piece == 0):
+        frappe.show_alert('短棒料wip 数量为 0')
+        return
+    # print_yellow(from_srb_doc.wip_piece)
+    # print_yellow(sabb_doc.entries[0].qty)
+    if (from_srb_doc.wip_piece != abs(sabb_doc.entries[0].qty)):
+        frappe.throw('短棒料wip != 批次qty')
+
+    from_srb_doc.update({
+        'remaining_piece': from_srb_doc.remaining_piece + from_srb_doc.wip_piece,
+        'wip_piece': 0,
+        'status': '未使用',
+        'warehouse': '短棒料仓 - 百兰',
+        # 'voucher_no': frappe.as_json(voucher_no_list),
+        'voucher_no': _clear_voucher_no_qty(from_srb_doc),
+    }).save()
+    
+
 # mock_bar_to_forge =  {'name': 'MAT-STE-2024-00332', 'owner': 'Administrator', 
 #                         'creation': '2024-07-17 10:22:44', 'modified': '2024-07-17 10:22:44', 'modified_by': 'Administrator', 'docstatus': 1, 'idx': 0,
 #                         'naming_series': 'MAT-STE-.YYYY.-', 'stock_entry_type': 'Manufacture', 'outgoing_stock_entry': None, 'purpose': 'Manufacture',
@@ -410,7 +542,7 @@ def create_forge_blank(bar_item, forge_item, voucher_no):
     print_red(f'{len(sabb_doc.entries) = }')
     print_red(bar_batch_no)
     bar_doc = frappe.get_doc('Short Raw Bar', bar_batch_no)
-    _print_blue_pp(bar_doc)
+    # _print_blue_pp(bar_doc)
 
     # forge_bathch_no = 'DP-' + today().replace('-', '') + '-' + forge_item.item_code.replace('_锻坯登记', '')[-4:] + '-' + frappe.utils.random_string(2)
     # blank_batch_no = _make_blank_batch_no(bar_batch_no)

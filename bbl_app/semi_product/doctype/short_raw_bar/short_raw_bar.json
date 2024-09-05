@@ -100,7 +100,8 @@
    "fieldname": "remaining_piece",
    "fieldtype": "Int",
    "in_list_view": 1,
-   "label": "Remaining Piece"
+   "label": "Remaining Piece",
+   "no_copy": 1
   },
   {
    "fieldname": "column_break_musm",
@@ -127,7 +128,7 @@
    "in_standard_filter": 1,
    "label": "Status",
    "no_copy": 1,
-   "options": "\u672a\u4f7f\u7528\n\u534a\u4f7f\u7528\n\u4f59\u6599\n\u953b\u9020\u8f66\u95f4wip\n\u90e8\u5206\u953b\u9020\n\u7528\u5b8c"
+   "options": "\u672a\u4f7f\u7528\n\u534a\u4f7f\u7528\n\u4f59\u6599\n\u953b\u9020wip\n\u90e8\u5206\u953b\u9020\n\u7528\u5b8c"
   },
   {
    "fieldname": "semi_product",
@@ -146,20 +147,23 @@
    "fieldname": "product_name",
    "fieldtype": "Data",
    "hidden": 1,
-   "label": "Product Name"
+   "label": "Product Name",
+   "no_copy": 1
   },
   {
-   "default": "Now",
+   "default": "Today",
    "fieldname": "for_date",
    "fieldtype": "Date",
    "in_list_view": 1,
-   "label": "For Date"
+   "label": "For Date",
+   "no_copy": 1
   },
   {
    "fieldname": "use_date",
    "fieldtype": "Date",
    "in_list_view": 1,
-   "label": "Use Date"
+   "label": "Use Date",
+   "no_copy": 1
   },
   {
    "fetch_from": "heat_no.raw_name",
@@ -185,6 +189,7 @@
    "fieldtype": "Int",
    "is_virtual": 1,
    "label": "Total Piece",
+   "no_copy": 1,
    "options": "doc.remaining_piece + doc.wip_piece"
   },
   {
@@ -198,6 +203,7 @@
    "fieldname": "link_doc_out",
    "fieldtype": "Link",
    "label": "Link Doc Out",
+   "no_copy": 1,
    "options": "Stock Entry",
    "read_only": 1
   },
@@ -206,21 +212,24 @@
    "fieldname": "wip_piece",
    "fieldtype": "Int",
    "in_list_view": 1,
-   "label": "Wip Piece"
+   "label": "Wip Piece",
+   "no_copy": 1
   },
   {
    "default": "0",
    "fieldname": "accu_piece",
    "fieldtype": "Int",
    "in_list_view": 1,
-   "label": "Accu Piece"
+   "label": "Accu Piece",
+   "no_copy": 1
   },
   {
    "default": "0",
    "fieldname": "in_piece",
    "fieldtype": "Int",
    "in_list_view": 1,
-   "label": "In Piece"
+   "label": "In Piece",
+   "no_copy": 1
   },
   {
    "fieldname": "voucher_no",
@@ -234,19 +243,21 @@
    "fieldname": "used_piece",
    "fieldtype": "Int",
    "in_list_view": 1,
-   "label": "Used Piece"
+   "label": "Used Piece",
+   "no_copy": 1
   },
   {
    "default": "0",
    "fieldname": "total_used_piece",
    "fieldtype": "Int",
    "in_list_view": 1,
-   "label": "Total Used Piece"
+   "label": "Total Used Piece",
+   "no_copy": 1
   }
  ],
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-08-26 17:21:51",
+ "modified": "2024-09-05 11:08:36",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Short Raw Bar",
