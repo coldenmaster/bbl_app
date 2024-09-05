@@ -396,11 +396,12 @@ def cancel_wo_retrieve_wip(**kwargs):
     # print(wo_no, wo_qty, kwargs.qty)
     if wo_qty != up_qty:
         frappe.throw("后台获取数量不一致")
-        
+
     wo_doc = frappe.get_doc("Work Order", wo_no)
     close_work_order(wo_doc.name, 'Closed')
 
     stock_entry = make_stock_return_entry(wo_doc.name)
+    stock_entry.stock_entry_type = 'Wip Retrieve'
     stock_entry.submit()
     # frappe.db.set_value("Work Order", wo_doc.name, "status", "Closed")
     wo_doc.update_status("Closed")
