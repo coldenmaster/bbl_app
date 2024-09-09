@@ -1,0 +1,23 @@
+[
+	{
+		"doctype": "Event",
+		"subject":"_Test Event 11",
+		"starts_on": "2014-01-01",
+		"event_type": "Public",
+		"creation": "2014-01-01"
+	},
+	{
+		"doctype": "Event",
+		"subject":"_Test Event 22",
+		"starts_on": "2014-01-01",
+		"event_type": "Private",
+		"creation": "2014-01-01"
+	},
+	{
+		"doctype": "Event",
+		"subject": "_Test Event 33",
+		"starts_on": "2014-02-01",
+		"event_type": "Private",
+		"creation": "2014-02-01"
+	}
+]

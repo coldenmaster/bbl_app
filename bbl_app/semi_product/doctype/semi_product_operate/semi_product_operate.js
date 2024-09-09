@@ -323,8 +323,12 @@ function judge_fields_display(frm) {
 function set_forge_batch_no_disp(frm) {
     if (!frm.is_new())  // 新建时，隐藏字段，对界面进行简化
         return;
-    const last_op = frm.doc.semi_op_source;
+    let last_op = frm.doc.semi_op_source || "";
     let fd = frm.get_field("forge_batch_no");
+    //  删除结尾的合批
+    // if (last_op.endsWith("合批"))
+    //    last_op = last_op.slice(0, -2);
+    last_op = last_op.replaceAll("合批", "")
     if (last_op != "锻坯登记") 
         set_frm_df_rend(fd, 0, 0);
     else {

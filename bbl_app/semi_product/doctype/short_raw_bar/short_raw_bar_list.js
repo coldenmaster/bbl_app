@@ -70,7 +70,7 @@ frappe.listview_settings["Short Raw Bar"] = {
 
         page.add_inner_button('工单列表', () => {
             frappe.set_route("List", "Work Order");
-        }, "More");
+        }, __("More"));
         page.change_inner_button_type('工单列表', null, 'warning');
 
         
@@ -88,7 +88,7 @@ frappe.listview_settings["Short Raw Bar"] = {
             // 名称转换,建物料转移单
             make_change_name_dialog(items);
 
-        }, "More");
+        }, __("More"));
         // page.change_inner_button_type('名称转换', null, 'info');
 
         
@@ -103,7 +103,7 @@ frappe.listview_settings["Short Raw Bar"] = {
                 return
             }
             cancel_wo_retrieve_wip(items[0]);
-        }, "More");
+        }, __("More"));
         
     },
     
