@@ -34,7 +34,8 @@
   "cu",
   "b",
   "nb",
-  "note"
+  "note",
+  "connections_tab"
  ],
  "fields": [
   {
@@ -206,10 +207,29 @@
    "fieldtype": "Percent",
    "label": "Ni",
    "precision": "2"
+  },
+  {
+   "fieldname": "connections_tab",
+   "fieldtype": "Tab Break",
+   "label": "Connections",
+   "show_dashboard": 1
   }
  ],
- "links": [],
- "modified": "2024-08-23 15:55:22",
+ "links": [
+  {
+   "link_doctype": "Steel Batch",
+   "link_fieldname": "heat_no"
+  },
+  {
+   "link_doctype": "Short Raw Bar",
+   "link_fieldname": "heat_no"
+  },
+  {
+   "link_doctype": "Semi Product Manage",
+   "link_fieldname": "raw_heat_no"
+  }
+ ],
+ "modified": "2024-09-14 11:09:43",
  "modified_by": "Administrator",
  "module": "Raw Material Manage",
  "name": "Heat No",

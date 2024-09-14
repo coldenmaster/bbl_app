@@ -65,8 +65,7 @@
    "in_standard_filter": 1,
    "label": "Heat No",
    "options": "Heat No",
-   "remember_last_selected_value": 1,
-   "set_only_once": 1
+   "remember_last_selected_value": 1
   },
   {
    "fetch_from": "heat_no.steel_grade",
@@ -348,7 +347,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-22 14:15:16",
+ "modified": "2024-09-12 07:34:13",
  "modified_by": "Administrator",
  "module": "Raw Material Manage",
  "name": "Steel Batch",

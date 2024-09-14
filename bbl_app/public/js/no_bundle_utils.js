@@ -1,5 +1,4 @@
 
-log(bbl.utils);
 Object.assign(bbl.utils, {
     
     is_ms560_680: function() {
@@ -27,3 +26,16 @@ Object.assign(bbl.utils, {
 
 });
 
+bbl.frappe = {
+    // 带ls本地缓存的用户名
+    get_employee_job_name() {
+        let employee_name = localStorage.getItem("prodct_scan_user_name");
+        if (!employee_name) {
+            employee_name = frappe.session.user_fullname;
+        }
+        return employee_name;
+    }
+
+}
+
+// log("bbl.utils", bbl.utils);

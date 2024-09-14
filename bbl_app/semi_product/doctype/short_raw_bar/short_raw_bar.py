@@ -4,15 +4,14 @@
 # import frappe
 import json
 from bbl_app.raw_material_manage.doctype.steel_batch.steel_batch import create_bar_item
-from bbl_app.utils.bbl_uitls import make_semi_batch_no_name, make_semi_stage_name
-from bbl_app.utils.uitls import safe_json_loads_from_str
+from bbl_app.utils.bbl_utils import make_semi_batch_no_name, make_semi_stage_name, semi_name_slug
+from bbl_app.utils.utils import safe_json_loads_from_str
 from erpnext.manufacturing.doctype.work_order.work_order import close_work_order, make_stock_return_entry, make_work_order, make_stock_entry
 import frappe
 from frappe.model.document import Document
 from frappe.utils.data import cint
 
 from bbl_api.utils import _print_blue_pp, _print_green_pp, print_blue, print_blue_pp, print_green, print_green_pp, print_red, print_yellow
-from bbl_app.utils.uitls import bbl_obj
 
 class ShortRawBar(Document):
     pass
@@ -28,7 +27,6 @@ class ShortRawBar(Document):
 
 
 up_obj_mock = {}
-# up_obj_mock = {'semi_product': '30BC', 'items': '[{"name":"DBL-30BC-24011462Z","owner":"xiezequan@hbbbl.top","creation":"2024-07-03 16:13:04","modified":"2024-07-03 16:13:04","modified_by":"xiezequan@hbbbl.top","_user_tags":null,"_comments":null,"_assign":null,"_liked_by":null,"docstatus":0,"idx":0,"raw_bar_name":"30BC_短棒料","heat_no":"V12403619","in_piece":160,"remaining_piece":160,"wip_piece":0,"accu_piece":160,"status":"未使用","_comment_count":0,"_idx":2}]', 'cmd': 'bbl_app.semi_product.doctype.short_raw_bar.short_raw_bar.product_out'}
 
 """ 短棒料 建生产工单部分 """
 # http://dev2.localhost:8000/api/method/bbl_app.semi_product.doctype.short_raw_bar.short_raw_bar.product_out?scan_barcode=123
@@ -211,7 +209,6 @@ def create_op_flow(batch_qtys, item, se_doc_name, s_item_name):
 """ 短棒料 根据生产工单 转换成锻坯部分
     主要完成为生产工单的物料转移设定正确的短棒料批次号
 """
-# up_obj_mock2 = {'work_order': 'MFG-WO-2024-00033', 'out_piece': '21', 'wo_qty': '21', 'name': 'DBL-20240703-462Z-4E', 'owner': 'gaoxuesong@hbbbl.top', 'creation': '2024-07-03 17:01:15', 'modified': '2024-07-16 11:15:58', 'modified_by': 'Administrator', '_user_tags': '', '_comments': '', '_assign': '', '_liked_by': '', 'docstatus': '0', 'idx': '0', 'raw_bar_name': '4E_短棒料', 'heat_no': '24011462Z', 'in_piece': '21', 'remaining_piece': '0', 'wip_piece': '32', 'accu_piece': '63', 'status': '锻造wip', 'semi_product': '4E', '_comment_count': '0', '_idx': '0', 'cmd': 'bbl_app.semi_product.doctype.short_raw_bar.short_raw_bar.work_order_done'}
 up_obj_mock2 = {}
 
 # http://dev2.localhost:8000/api/method/bbl_app.semi_product.doctype.short_raw_bar.short_raw_bar.product_out?scan_barcode=123
@@ -274,6 +271,8 @@ up_obj_mock2 = {
 @frappe.whitelist()
 def change_srb_name(**kwargs):
     print_red("srb change_srb_name")
+    from bbl_app.utils.utils import bbl_dict
+
     # print_blue(kwargs)
     if not kwargs:
         print_red("mock data 😁")
@@ -282,7 +281,7 @@ def change_srb_name(**kwargs):
     # 获取doc
     from_srb_doc_id = kwargs.old_sbr_doc_id
     srb_doc = frappe.get_cached_doc("Short Raw Bar", from_srb_doc_id)
-    target_product_name = kwargs.new_product_name
+    target_product_name = semi_name_slug(kwargs.new_product_name)
     # target_item_name = target_product_name.replace(" ", "").replace("-", "")  + "_短棒料"
     target_item_name = make_semi_stage_name(target_product_name, 6, "短棒料")
 
@@ -291,7 +290,9 @@ def change_srb_name(**kwargs):
     # 根据源doc内短棒料批次，新建目标短棒料批次
     # md = frappe.utils.today().replace("-", "")[-4:]
     # to_batch_no = "DBL-" + md + "-" + target_product_name[-6:] + "-" + srb_doc.heat_no[-10:]
-    to_batch_no = make_semi_batch_no_name(target_product_name, "DBL", srb_doc.heat_no)
+    # to_batch_no = make_semi_batch_no_name(target_product_name, "DBL", srb_doc.heat_no)
+    # 短棒料到底需要根据日期 分批吗？
+    to_batch_no = "DBL-" + target_product_name + "-" + srb_doc.heat_no
     print_red(to_batch_no)
 
     # create_item(target_item_name)
@@ -357,7 +358,8 @@ def change_srb_name(**kwargs):
                 ]
     })
     # _print_blue_pp(se_doc.as_dict())
-    bbl = bbl_obj
+    bbl = bbl_dict
+    bbl['srb_change_name_flag'] = 1
     bbl['srb_tmp1'] = {
         'from_srb_doc_id': from_srb_doc_id,
         'target_product_name': target_product_name,

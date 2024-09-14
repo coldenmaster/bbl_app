@@ -1,0 +1,163 @@
+{
+ "actions": [],
+ "autoname": "format:FPO-{YYYY}{MM}{DD}-{####}",
+ "creation": "2024-09-12 14:56:55",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "bbl_code",
+  "product_name",
+  "op_from",
+  "employee",
+  "for_date",
+  "op_mark",
+  "column_break_pely",
+  "op_to",
+  "production_line",
+  "product_grade",
+  "section_break_ybqn",
+  "semi_product",
+  "section_break_tm31",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_tm31",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Finished Product Operate",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "bbl_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Bbl Code",
+   "reqd": 1
+  },
+  {
+   "fieldname": "product_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Product Name",
+   "options": "Product Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "op_from",
+   "fieldtype": "Link",
+   "label": "Op From",
+   "options": "Operation Tree"
+  },
+  {
+   "fieldname": "op_to",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Op To",
+   "options": "Operation Tree",
+   "reqd": 1
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee",
+   "options": "Operation Tree",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "for_date",
+   "fieldtype": "Date",
+   "label": "For Date"
+  },
+  {
+   "fieldname": "op_mark",
+   "fieldtype": "Data",
+   "label": "Op Mark"
+  },
+  {
+   "fieldname": "column_break_pely",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "production_line",
+   "fieldtype": "Select",
+   "label": "Production Line"
+  },
+  {
+   "fieldname": "product_grade",
+   "fieldtype": "Select",
+   "label": "Product Grade",
+   "options": "\nA\nB\nC\n\u5e9f\u54c1"
+  },
+  {
+   "fieldname": "section_break_ybqn",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "semi_product",
+   "fieldtype": "Link",
+   "label": "Semi Product",
+   "options": "Operation Tree"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-09-12 15:20:25",
+ "modified_by": "Administrator",
+ "module": "Finished Product",
+ "name": "Finished Product Operate",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

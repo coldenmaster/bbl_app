@@ -40,6 +40,10 @@ frappe.listview_settings["Short Raw Bar"] = {
                 frappe.msgprint({ "title": "错误", message: "剩余数量为零", indicator: "red" });
                 return
             }
+            if (items[0].name.startsWith("CLT")) {
+                frappe.msgprint({ "title": "错误", message: "长料头需要先转为对应产品的短棒料", indicator: "red" });
+                return
+            }
             // items = items.filter(item => !["用完", "锻造wip"].includes(item.status));
             make_dialog_promise(items).then(
                 (r) => {

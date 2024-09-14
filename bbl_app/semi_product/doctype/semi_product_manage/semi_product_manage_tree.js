@@ -93,6 +93,14 @@ frappe.treeview_settings["Semi Product Manage"] = {
             },
             // hidden: true,
 		},
+        {
+            fieldname: "sum_qty",
+			fieldtype: "Data",
+			label: "总数量",
+			disable_onchange: true,
+            bold: 1,
+            readonly: 1,
+		},
     ],
     // ignore_fields: ["parent_semi_product_manage"],
 
@@ -123,10 +131,15 @@ frappe.treeview_settings["Semi Product Manage"] = {
 			"add"
 		);
 
+        // cur_treeview.page.fields_dict.sum_qty.set_value("合计1234根")
 	},
     
     on_get_node: function (nodes, deep = false) {
         // log("on_get_node", nodes);
+        cur_treeview.page.fields_dict.sum_qty.set_value("合计: " + sum_qty(nodes) + "根");
+        // 删除重复的父节点，放在计算累计数量之后，避免不能计算第一个node的数量
+        delete_repeated_parent_node(nodes);
+
         function add_tail(val) {
             // log("tree_node 3", tree_node);
             const tree_node = cur_tree.nodes && cur_tree.nodes[val];
@@ -201,6 +214,7 @@ frappe.treeview_settings["Semi Product Manage"] = {
                 $item.trigger("click");
             }
         }, 0);
+
     },
 
     on_render_node: function (node) {
@@ -287,4 +301,32 @@ function find_root_item(item_name) {
     })
 }
 
+function sum_qty(nodes) {
+    // log(nodes);
+    let sum = 0;
+    nodes.forEach(node => {
+        if (node.data) {
+            sum += sum_qty(node.data);
+        } else {
+            sum += node.remaining_piece;
+        }
+    });
+    return sum;
+    // if (nodes.length == 1 && nodes[0].data) {
+    //     return sum_qty(nodes[0].data);
+    // } else {
+    //     if nodes[0].
+    //     return nodes.reduce((acc, node) => acc + node.remaining_piece, 0);
+    // }
+}
+
+function delete_repeated_parent_node(nodes) {
+    if (Array.isArray(nodes) && nodes.length > 0) {
+        parent_nodes = nodes[0];
+        if (!parent_nodes.parent)
+            return
+        if (parent_nodes.parent == parent_nodes?.data[0].value)
+            nodes.shift(0);
+    }
+}
 // log(find_root_item("LXZ/LXHP-240816-4E-01"));

@@ -178,12 +178,12 @@ function make_batch_merge(listview) {
     for (let element of items) {
         if (element.semi_product_name != semi_product_name)
             items_ok = false;
-        if (element.remaining_piece < 1)
-            items_ok = false;
         if (element.forge_batch_no != forge_batch_no)
             items_ok = false;
-        if (element.is_group)
+        if (element.remaining_piece < 1)
             items_ok = false;
+        // if (element.is_group)
+            // items_ok = false;
         if (!items_ok) {
             const msg = "请选择" + "相同名称".bold() + ",相同批次".bold()   + ",未使用".bold()  + "的记录" ;
             frappe.msgprint({ "title": "错误", message: msg, indicator: "red" });

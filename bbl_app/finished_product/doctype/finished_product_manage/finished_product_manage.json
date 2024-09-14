@@ -1,0 +1,309 @@
+{
+ "actions": [],
+ "autoname": "field:bbl_code",
+ "creation": "2024-09-09 18:01:37",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "bbl_code",
+  "product_name",
+  "operation",
+  "employee",
+  "for_date",
+  "last_op_voucher",
+  "column_break_uvhd",
+  "status",
+  "product_stage",
+  "product_grade",
+  "stock_area",
+  "semi_product",
+  "forge_batch_no",
+  "section_break_uhvb",
+  "employee_last",
+  "package_no",
+  "package_qty",
+  "customer_abbr",
+  "column_break_gqlp",
+  "semi_product_batch",
+  "batch_qty",
+  "raw_name",
+  "raw_heat_no",
+  "bbl_heat_no",
+  "product_type",
+  "product_line",
+  "weight",
+  "section_break_xrhk",
+  "customer_code",
+  "other_code",
+  "op_list",
+  "is_over",
+  "column_break_gzis",
+  "op_json"
+ ],
+ "fields": [
+  {
+   "fieldname": "bbl_code",
+   "fieldtype": "Data",
+   "label": "Bbl Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "column_break_uvhd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "\n\u5165\u6cb9\u6f06\n\u5165\u673a\u52a0\u5de5\n\u5df2\u6253\u5305\n\u5165\u4ed3\u5e93\n\u4ee3\u50a8\n\u5df2\u4f7f\u7528\n\u5df2\u5f00\u7968"
+  },
+  {
+   "fieldname": "section_break_xrhk",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "customer_code",
+   "fieldtype": "Data",
+   "label": "Customer Code"
+  },
+  {
+   "description": "\u5176\u5b83\u5173\u8054\u7801\uff0c\u9017\u53f7\u5206\u5272",
+   "fieldname": "other_code",
+   "fieldtype": "Data",
+   "label": "Other Code"
+  },
+  {
+   "fieldname": "operation",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Operation",
+   "link_filters": "[[\"Operation Tree\",\"is_not_semi\",\"=\",1]]",
+   "options": "Operation Tree",
+   "reqd": 1
+  },
+  {
+   "fieldname": "product_stage",
+   "fieldtype": "Select",
+   "label": "Product Stage",
+   "options": "\n\u5165\u6cb9\u6f06\n\u5165\u673a\u52a0\u5de5\n\u5df2\u6253\u5305\n\u5165\u4ed3\u5e93\n\u4ee3\u50a8\n\u5df2\u4f7f\u7528\n\u5df2\u5f00\u7968"
+  },
+  {
+   "fieldname": "product_grade",
+   "fieldtype": "Select",
+   "label": "Product Grade",
+   "options": "\nA\nB\nC"
+  },
+  {
+   "fieldname": "stock_area",
+   "fieldtype": "Select",
+   "label": "Stock Area",
+   "options": "\n\u673a\u52a0\u5de5\u8f66\u95f4\n\u6cb9\u6f06\u8f66\u95f4\n\u6210\u54c1\u5e93\n\u534a\u6210\u54c1\u5e93\n\u51fa\u5382\n\u4ee3\u50a8\n\u88c5\u8f66"
+  },
+  {
+   "fieldname": "section_break_uhvb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "package_no",
+   "fieldtype": "Data",
+   "label": "Package No"
+  },
+  {
+   "fieldname": "column_break_gqlp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "semi_product_batch",
+   "fieldtype": "Link",
+   "label": "Semi Product Batch",
+   "options": "Semi Product Manage"
+  },
+  {
+   "fieldname": "product_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Product Name",
+   "options": "Product Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "package_qty",
+   "fieldtype": "Int",
+   "label": "Package Qty"
+  },
+  {
+   "fetch_from": "semi_product_batch.semi_product",
+   "fetch_if_empty": 1,
+   "fieldname": "semi_product",
+   "fieldtype": "Link",
+   "label": "Semi Product",
+   "options": "Semi Product",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "semi_product_batch.remaining_piece",
+   "fetch_if_empty": 1,
+   "fieldname": "batch_qty",
+   "fieldtype": "Int",
+   "label": "Batch Qty",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "semi_product_batch.raw_name",
+   "fetch_if_empty": 1,
+   "fieldname": "raw_name",
+   "fieldtype": "Data",
+   "label": "Raw Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "semi_product_batch.raw_heat_no",
+   "fetch_if_empty": 1,
+   "fieldname": "raw_heat_no",
+   "fieldtype": "Link",
+   "label": "Raw Heat No",
+   "options": "Heat No",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "semi_product_batch.forge_batch_no",
+   "fetch_if_empty": 1,
+   "fieldname": "forge_batch_no",
+   "fieldtype": "Link",
+   "label": "Forge Batch No",
+   "options": "Forge Batch No",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "semi_product_batch.bbl_heat_no",
+   "fetch_if_empty": 1,
+   "fieldname": "bbl_heat_no",
+   "fieldtype": "Link",
+   "label": "Bbl Heat No",
+   "options": "Bbl Heat No",
+   "read_only": 1
+  },
+  {
+   "fieldname": "product_type",
+   "fieldtype": "Data",
+   "label": "Product Type"
+  },
+  {
+   "default": "__user",
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Employee",
+   "options": "Employee Jobs",
+   "reqd": 1
+  },
+  {
+   "fieldname": "employee_last",
+   "fieldtype": "Link",
+   "label": "Employee Last",
+   "options": "Employee Jobs"
+  },
+  {
+   "fieldname": "customer_abbr",
+   "fieldtype": "Data",
+   "label": "Customer Abbr"
+  },
+  {
+   "fieldname": "product_line",
+   "fieldtype": "Data",
+   "label": "Product Line"
+  },
+  {
+   "fieldname": "weight",
+   "fieldtype": "Int",
+   "label": "Weight"
+  },
+  {
+   "fieldname": "column_break_gzis",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "\u8bb0\u5f55\u5de5\u4f5c\u6d41\uff1a{\u65f6\u95f4\uff0c\u5de5\u5e8f\uff0c\u4eba\u5458\uff0c\u5907\u6ce8}\n",
+   "fieldname": "op_json",
+   "fieldtype": "JSON",
+   "label": "Op Json"
+  },
+  {
+   "default": "Today",
+   "fieldname": "for_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "For Date"
+  },
+  {
+   "fieldname": "last_op_voucher",
+   "fieldtype": "Data",
+   "label": "Last Op Voucher"
+  },
+  {
+   "fieldname": "op_list",
+   "fieldtype": "Small Text",
+   "label": "Op List",
+   "max_height": "3rem"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_over",
+   "fieldtype": "Check",
+   "label": "Is Over"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-09-12 15:30:53",
+ "modified_by": "Administrator",
+ "module": "Finished Product",
+ "name": "Finished Product Manage",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -443,7 +443,17 @@ From Employee,员工(发送人),
 Product Flow,成品流转,
 Wip Retrieve,在制品退回,
 
-
+Finished Product Manage,成品信息管理
+Finished Product Operate,成品加工单,
+Stock Area,存放区域,
+Employee Last,上一员工
+Package No,打包号
+Package Qty,打包数量
+Customer Abbr,客户简称
+Other Code,其他代码
+Op Json,操作单列表,
+Op From,上一工序,
+Op To,加工工序,
 
 
 

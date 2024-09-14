@@ -7,7 +7,6 @@
  "engine": "InnoDB",
  "field_order": [
   "section_break_vxde",
-  "amended_from",
   "semi_product",
   "semi_op_source",
   "spm_source",
@@ -37,9 +36,11 @@
   "yield_operation",
   "is_yield",
   "\u8865\u5145\u5c5e\u6027_section",
-  "property_name",
   "column_break_fmiv",
+  "property_name",
   "property_value",
+  "column_break_mwtb",
+  "amended_from",
   "hidden_section",
   "op_flow"
  ],
@@ -254,7 +255,7 @@
   },
   {
    "fieldname": "merge_batch",
-   "fieldtype": "Small Text",
+   "fieldtype": "JSON",
    "label": "Merge Batch",
    "max_height": "3rem",
    "no_copy": 1,
@@ -298,13 +299,17 @@
    "label": "Production Line",
    "no_copy": 1,
    "options": "\n\u4e00\u7ebf\n\u4e8c\u7ebf\n\u4e09\u7ebf\n\u56db\u7ebf\n\u4e94\u7ebf"
+  },
+  {
+   "fieldname": "column_break_mwtb",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-08-21 15:10:04",
+ "modified": "2024-09-12 14:58:51",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Semi Product Operate",

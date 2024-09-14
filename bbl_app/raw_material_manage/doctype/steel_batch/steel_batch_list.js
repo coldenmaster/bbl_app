@@ -293,11 +293,11 @@ class Raw2BarDialog2 {
         let prod_name = prod || this.sb_item_0.semi_product || "";
         // prod_name = prod_name.replace(" ", "");
         // prod_name = prod_name.replace("-", "");
-        // const md = frappe.datetime.now_date().replaceAll("-", "").substring(4); 
-        // log("default_bar_batch heat_no:", heat_no, prod_name);
-        // log("default_bar_batch md:", md);
-        const r = bbl.utils.makeSemiBatchNoName(prod_name, "DBL" , heat_no);
-        // r = "DBL-" + md + "-" + prod_name.substring(prod_name.length - 6)  + "-" + heat_no.substring(heat_no.length - 10); 
+        prod_name =  bbl.utils.semiNameSlug(prod_name);
+
+        // const r = bbl.utils.makeSemiBatchNoName(prod_name, "DBL" , heat_no); // 这个会每日分批
+        // const r = "DBL-" + "-" + prod_name.substring(prod_name.length - 6)  + "-" + heat_no.substring(heat_no.length - 10); 
+        const r = "DBL-" + prod_name + "-" + heat_no; 
         return r;
     }
 

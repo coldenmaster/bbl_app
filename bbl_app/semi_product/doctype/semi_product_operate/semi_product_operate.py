@@ -304,19 +304,32 @@ def _semi_product_batch_convert(opts):
             print_red(f'{batch_name=}: {batch_qty=}')
             is_group = 1 if (batch_name == opts.spm_source) else 0
             print_yellow(f'{is_group=}')
-            # semi_doc_source = frappe.get_doc('Semi Product Manage', opts.spm_source)
-            frappe.db.set_value('Semi Product Manage', batch_name,
-                                {
-                                    'last_in_piece': 0,
-                                    'last_out_piece': batch_qty,
-                                    'remaining_piece': 0,
-                                    'use_date': today(),
-                                    'status': "合批",
-                                    'last_op_voucher': opts.name,
-                                    'basket_no': '',
-                                    'basket_in': '',
-                                    'is_group': is_group,
-                                })
+            semi_doc = frappe.get_doc('Semi Product Manage', batch_name)
+            semi_doc.update({
+                'last_in_piece': 0,
+                'last_out_piece': batch_qty,
+                'remaining_piece': 0,
+                'use_date': today(),
+                'status': "合批",
+                'last_op_voucher': opts.name,
+                'basket_no': '',
+                'basket_in': '',
+                'is_group': semi_doc.is_group or is_group,
+            })
+            semi_doc.save()
+            
+            # frappe.db.set_value('Semi Product Manage', batch_name,
+            #                     {
+            #                         'last_in_piece': 0,
+            #                         'last_out_piece': batch_qty,
+            #                         'remaining_piece': 0,
+            #                         'use_date': today(),
+            #                         'status': "合批",
+            #                         'last_op_voucher': opts.name,
+            #                         'basket_no': '',
+            #                         'basket_in': '',
+            #                         'is_group': is_group,
+            #                     })
 
     # frappe.db.commit()
     # return (new_spm_name, is_yield, yield_operation)

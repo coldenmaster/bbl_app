@@ -255,7 +255,10 @@ class ScanProductDialog {
     }
 
     accu_counter() {
-        const first_5 = this.customer_code.substring(0, 5);
+        // const first_5 = this.customer_code.substring(0, 5);
+        //  todo 这里应该解析出产品名称进行计数
+        const bbl_prouduct_code = cpQrcode.get_bbl_product_code(this.bbl_code);
+        const first_5 = bbl_prouduct_code || this.customer_code.substring(0, 5);
         if (first_5 != this.last_product_first_5) {
             this.last_product_first_5 = first_5;
             this.counter = 1;
@@ -391,7 +394,14 @@ var cpQrcode = {
         return false;
     },
 
+    get_bbl_product_code: function (qrcodeStr) {
+        if (this.isBbl(qrcodeStr)) {
+            return qrcodeStr.split("*")[1];
+            // return qrcodeStr.substring(0, 5).toUpperCase();
+        }
+        return null;
+    }
 
 }
 
-window.t1 = cpQrcode;
+// window.t1 = cpQrcode;

@@ -5,7 +5,7 @@
 import json
 from bbl_app.utils.admin import clear_db_for_dev
 from bbl_app.utils.func import raw_leng_to_weight
-from bbl_app.utils.uitls import load_pr_items, load_pr_items_0, load_sb_out_items
+from bbl_app.utils.utils import load_pr_items, load_pr_items_0, load_sb_out_items
 import frappe
 from frappe.model.create_new import get_new_doc
 from frappe.model.document import Document
@@ -244,6 +244,7 @@ sb_out_items1 = {'semi_product': '06240',
     'scrap_weight': '214.9',
     'stock_entry': 'MAT-STE-2024-00185',
     'bar_batch': 'DBL-20240614-1925-240',
+    'bar_batch': 'DBL-CD1057-23812592',
     'check_zhxl': '1',
     'zh_semi_product': '30BC',
     'zh_raw_bar_name': '30BC_短棒料',
@@ -263,7 +264,7 @@ sb_out_items1 = {'semi_product': '06240',
 
 # sb_out_items = {'semi_product': '06240', 'raw_bar_name': '06240_短棒料', 'bar_ratio': '780', 'bar_piece': '27', 'bar_weight': '3172', 'scrap_length': '1539', 'scrap_weight': '214.9', 'stock_entry': 'MAT-STE-2024-00187', 'bar_batch': 'DBL-20240617-1925-240', 'check_zhxl': '1', 'zh_semi_product': 'EQ145', 'zh_raw_bar_name': 'EQ145_短棒料', 'zh_bar_ratio': '820', 'zh_bar_piece': '10', 'zh_bar_weight': '1151', 'zh_bar_batch': 'DBL-20240617-1925-145', 'raw_name': '50H-150', 'raw_weight': '3172', 'batchs': '[{"batch_no":"B22421204/0225","weight":3172}]', 'diameter': '150', 'crap_weight': '214.9', 'cmd': 'bbl_app.raw_material_manage.doctype.steel_batch.steel_batch.make_out_entry'}
 sb_out_items = {}
-# # http://dev2.localhost:8000/api/method/bbl_app.raw_material_manage.doctype.steel_batch.steel_batch.make_out_entry?scan_barcode=123
+# http://dev2.localhost:8000/api/method/bbl_app.raw_material_manage.doctype.steel_batch.steel_batch.make_out_entry?scan_barcode=123
 @frappe.whitelist()
 def make_out_entry(**kwargs):
     """ 
@@ -370,10 +371,14 @@ def make_out_entry(**kwargs):
 
     is_cbl = sbool(kwargs.check_cbl)
     if is_cbl:
+        # 长料头建立物料转移item，物料批次使用CLT-heatno-lengthx
         cbl_bar_name = kwargs.cbl_bar_name
         create_bar_item(cbl_bar_name, '长料头')
-        li = bar_batch.split('-')[1:-1]
-        cbl_bar_batch = '-'.join(["CLT", *li, kwargs.cbl_bar_length])
+        length_x = cbl_bar_name.split('_')[-1]
+        raw_heat_no = bar_batch.split('-')[-1]
+        # li = bar_batch.split('-')[1:-1]
+        # cbl_bar_batch = '-'.join(["CLT", *li, kwargs.cbl_bar_length])
+        cbl_bar_batch = '-'.join(["CLT",length_x, raw_heat_no])
         cbl_bar_piece = cint(kwargs.cbl_bar_piece)
         create_bar_batch(cbl_bar_batch, cbl_bar_name)
         sabb_bar_opts_cbl = frappe._dict({
@@ -479,7 +484,8 @@ def make_out_entry(**kwargs):
         'doc_status': manufacture_out_doc.docstatus,
         'data_1': bar_ratio, # 记录实际下料长度
         'data_2': flt(raw_leng_to_weight(diameter, bar_ratio), 2), # 记录实际下料重量
-        'data_3': cint(kwargs.get('out_piece')), # 记录实际下料长度
+        'data_3': cint(kwargs.get('out_piece')), # 记录实际下料根数
+        'data_4': cint(kwargs.get('cbl_bar_length', 0)), # 记录综合下料的长度
     })
     temp_doc.data_json = json.dumps(kwargs)
     temp_doc.insert(ignore_permissions=True)
@@ -714,5 +720,11 @@ sb.make_out_entry(**sb.k3)
 docs = frappe.get_all("Steel Batch")
 sb.raw_name(item_name = 'sb-150', item_group = "原材料", uom='kg')
 sb.clear_db()
+
+
+import erpnext.stock.doctype.batch.batch as bt
+bt.get_batch_qty(batch_no='DBL-0913-4E-V22401504')
+bt.get_batch_qty(batch_no='CLT--30BC-886')
+bt.get_batch_qty(warehouse='短棒料仓 - 百兰')
 """
 

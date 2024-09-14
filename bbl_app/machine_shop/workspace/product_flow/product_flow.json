@@ -1,0 +1,162 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"RQx-i2dPp8\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>\u6210\u54c1\u7ba1\u7406</b></span>\",\"col\":12}},{\"id\":\"_Id1kT7V_F\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Finished Product Manage\",\"col\":3}},{\"id\":\"Mho5Htb-iQ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"<strong>\u65b0\u5efa\u52a0\u5de5\u5355</strong>\u624b\u673a\u7248\",\"col\":3}},{\"id\":\"v6S_dfvR7K\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Entry\",\"col\":3}},{\"id\":\"81oOLmPWCo\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"2DKC1UjXVr\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Finished Product Operate\",\"col\":3}},{\"id\":\"y9Vb_cnWxS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Semi Handover\",\"col\":3}},{\"id\":\"tJ4hlPfvsh\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"YIANqLdBZ_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u57fa\u7840\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"HUvPwSnDXp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"afXbNpFUHz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Batch\",\"col\":3}},{\"id\":\"oSjMRCkb3g\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Serial No\",\"col\":3}},{\"id\":\"nxg3EzDRis\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u5e8f\u5217\u53f7\u4e0e\u6279\u53f7\u7ec4\",\"col\":3}},{\"id\":\"fhmah6AWsM\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Product Form\",\"col\":3}},{\"id\":\"YTdyjcZCFc\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"iRI_wzdLdG\",\"type\":\"card\",\"data\":{\"card_name\":\"\u534a\u6210\u54c1\u7ba1\u7406\u62a5\u8868\",\"col\":4}}]",
+ "creation": "2024-09-02 17:22:59",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "customer",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Product Flow",
+ "links": [
+  {
+   "description": "\u6211\u4eec\u4e00\u8d77<b>\u6447\u554a\u6447\u554a\u6447</b>",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "\u534a\u6210\u54c1\u7ba1\u7406\u62a5\u8868",
+   "link_count": 3,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "\u534a\u6210\u54c1\u5e93\u5b58",
+   "link_count": 0,
+   "link_to": "\u534a\u6210\u54c1\u7ba1\u7406\u5e93\u5b58",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "\u534a\u6210\u54c1\u5de5\u5e8f\u5e93\u5b58",
+   "link_count": 0,
+   "link_to": "\u534a\u6210\u54c1\u5206\u7c7b\u5e93\u5b58",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "\u534a\u6210\u54c1\u7ba1\u7406\u65e5\u4ea7\u91cf",
+   "link_count": 0,
+   "link_to": "\u534a\u6210\u54c1\u7ba1\u7406\u65e5\u4ea7\u91cf",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2024-09-12 16:28:22",
+ "modified_by": "Administrator",
+ "module": "Machine Shop",
+ "name": "Product Flow",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "Personal Workspace",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "Manufacturing User"
+  },
+  {
+   "role": "Stock Manager"
+  },
+  {
+   "role": "Manufacturing Manager"
+  }
+ ],
+ "sequence_id": 3.2,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Stock Entry",
+   "link_to": "Stock Entry",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "<strong>\u65b0\u5efa\u52a0\u5de5\u5355</strong>\u624b\u673a\u7248",
+   "link_to": "Semi Product Operate",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Batch",
+   "link_to": "Batch",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Semi Handover",
+   "link_to": "Semi Handover",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "\u5e8f\u5217\u53f7\u4e0e\u6279\u53f7\u7ec4",
+   "link_to": "Serial and Batch Bundle",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "format": "{}\u6839",
+   "label": "Finished Product Manage",
+   "link_to": "Finished Product Manage",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Product Form",
+   "link_to": "Product Form",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Item",
+   "link_to": "Item",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Serial No",
+   "link_to": "Serial No",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Finished Product Operate",
+   "link_to": "Finished Product Operate",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "Product Flow"
+}

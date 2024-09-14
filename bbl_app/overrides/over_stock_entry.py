@@ -1,12 +1,12 @@
 import json
 from bbl_app.utils.frappe_func import make_simi_product_batch_no
-from bbl_app.utils.uitls import safe_json_loads_from_str
+from bbl_app.utils.utils import safe_json_loads_from_str
 from erpnext.stock.doctype.stock_entry.stock_entry import StockEntry
 import frappe
 from frappe import _
 from frappe.utils.data import cint, comma_or, cstr, flt, now, today
 from bbl_api.utils import _print_blue_pp, print_blue, print_cyan, print_green, print_green_pp, print_red, print_yellow
-from bbl_app.utils.uitls import bbl_obj
+
 
 
 class CustomStockEntry(StockEntry):
@@ -241,14 +241,16 @@ def create_raw_bar(self):
                                 'batch_no')
                 piece = item.get('qty')
                 cost = flt(item.get('valuation_rate'), 2)
-                temp_doc_length, temp_doc_weight = frappe.db.get_value('Temp Doc Value', 
+                temp_doc_length, temp_doc_weight, temp_cbl_length = frappe.db.get_value('Temp Doc Value', 
                                                         {
                                                             'doc_type': 'Stock Entry',
                                                             # 'doc_name': self.get('name'),
                                                             'doc_table_item': last_raw_item.name,
                                                         },
-                                                        ["data_1", "data_2"]) or (0, 0)
+                                                        ["data_1", "data_2", "data_4"]) or (0, 0, 0)
                 # op_ratio = temp_doc_length
+                if item.get('item_group') == '长料头':
+                    temp_doc_length = temp_cbl_length
                 # 寻找这个批次，如果存在直接更新数量
                 if frappe.db.exists('Short Raw Bar', batch_no):
                     print_red('create_raw_bar, 短棒料已存在')
@@ -334,19 +336,22 @@ def create_raw_bar(self):
 def process_srb_change_name(self):
     """ 将短棒料批次信息转化为锻造批次信息 """
     print_red('进入 process_srb_change_name')
+    from bbl_app.utils.utils import bbl_dict
+
+    if not bbl_dict.pop('srb_change_name_flag', None):
+        return
     # 判断是不是短棒料名称转换
     item_docs = self.get('items')
     # print_red(item_docs)
-    if len(item_docs) != 2:
-        return
-    for item in item_docs:
-        if '_短棒料' not in item.get('item_code'):
-            return
+    # if len(item_docs) != 2:
+    #     return
+    # for item in item_docs:
+    #     if '_短棒料' not in item.get('item_code'):
+    #         return
     
     # 进行短棒料文档复制，并修改名称
-    bbl = bbl_obj
     try:
-        srb_change_name_data = frappe._dict(bbl['srb_tmp1'])
+        srb_change_name_data = frappe._dict(bbl_dict.pop('srb_tmp1'))
         # 1.通过sabb找到批次srb批次名称
         from_doc = item_docs[0]
         # sabb_doc = frappe.get_cache_doc('Serial and Batch Entry', from_doc.get('serial_and_batch_bundle'))
@@ -407,8 +412,8 @@ def process_srb_change_name(self):
         
     except Exception as e:
         frappe.throw(f"短棒料名称转换失败 {e}")
-    finally:
-        bbl.pop('srb_tmp1')
+    # finally:
+    #     bbl.pop('srb_tmp1')
     # print_yellow(bbl)
 
 def _clear_voucher_no_qty(srb_doc) -> str: 

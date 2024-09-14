@@ -34,7 +34,8 @@
   "link_doc_out",
   "for_date",
   "use_date",
-  "voucher_no"
+  "voucher_no",
+  "connections_tab"
  ],
  "fields": [
   {
@@ -166,8 +167,6 @@
    "no_copy": 1
   },
   {
-   "fetch_from": "heat_no.raw_name",
-   "fetch_if_empty": 1,
    "fieldname": "raw_bar_name",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -253,11 +252,36 @@
    "in_list_view": 1,
    "label": "Total Used Piece",
    "no_copy": 1
+  },
+  {
+   "fieldname": "connections_tab",
+   "fieldtype": "Tab Break",
+   "label": "Connections",
+   "show_dashboard": 1
   }
  ],
  "is_calendar_and_gantt": 1,
- "links": [],
- "modified": "2024-09-05 11:08:36",
+ "links": [
+  {
+   "link_doctype": "Batch",
+   "link_fieldname": "name"
+  },
+  {
+   "link_doctype": "Serial and Batch Bundle",
+   "link_fieldname": "batch_no"
+  },
+  {
+   "group": "heat_no",
+   "link_doctype": "Steel Batch",
+   "link_fieldname": "heat_no"
+  },
+  {
+   "link_doctype": "Stock Entry",
+   "link_fieldname": "batch_no",
+   "parent_doctype": "Stock Entry"
+  }
+ ],
+ "modified": "2024-09-14 10:39:07",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Short Raw Bar",

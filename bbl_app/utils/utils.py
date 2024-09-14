@@ -5,7 +5,7 @@ from bbl_api.utils import *
 sb_items = {}
 sb_out_items = {}
 
-bbl_obj = {
+bbl_dict = {
     'name': 'bbl_dict',
     'desp': 'backend 全局数据记录, 用于传递信息, 对标 frappe',
     # 't1': 't1',
