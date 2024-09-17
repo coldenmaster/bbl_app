@@ -453,7 +453,7 @@ def process_srb_wip_retrieve(self):
     from_srb_doc.update({
         'remaining_piece': from_srb_doc.remaining_piece + from_srb_doc.wip_piece,
         'wip_piece': 0,
-        'status': '未使用',
+        'status': '余料',
         'warehouse': '短棒料仓 - 百兰',
         # 'voucher_no': frappe.as_json(voucher_no_list),
         'voucher_no': _clear_voucher_no_qty(from_srb_doc),
