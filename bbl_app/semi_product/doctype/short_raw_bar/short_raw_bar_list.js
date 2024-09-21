@@ -1,7 +1,7 @@
 frappe.listview_settings["Short Raw Bar"] = {
 
-    hide_name_column: true, // hide the last column which shows the `name`
-    hide_name_filter: true, // hide the default filter field for the name column
+    // hide_name_column: true, // hide the last column which shows the `name`
+    // hide_name_filter: true, // hide the default filter field for the name column
 
     add_fields: ['remaining_piece', 'total_piece', 'semi_product'],  // 重要从后端需获取的字段（除了显示的以外的）
 
@@ -298,23 +298,23 @@ function make_change_name_dialog(items) {
                 "default": "06240",
             }],
             function (values) {
-                let opts = { 
-                    stock_entry_type: "Repack",
-                    items: [
-                        {
-                            "item_code": s_name,
-                            "qty": s_piece,
-                            "s_warehouse": "短棒料仓 - 百兰",
-                            "uom": "根",
-                        },
-                        {
-                            "item_code": values.semi_product + "_短棒料",
-                            "qty": s_piece,
-                            "t_warehouse": "短棒料仓 - 百兰",
-                            "uom": "根",
-                        }
-                    ]
-                };
+                // let opts = { 
+                //     stock_entry_type: "Repack",
+                //     items: [
+                //         {
+                //             "item_code": s_name,
+                //             "qty": s_piece,
+                //             "s_warehouse": "短棒料仓 - 百兰",
+                //             "uom": "根",
+                //         },
+                //         {
+                //             "item_code": values.semi_product + "_短棒料",
+                //             "qty": s_piece,
+                //             "t_warehouse": "短棒料仓 - 百兰",
+                //             "uom": "根",
+                //         }
+                //     ]
+                // };
                 change_srb_name(items[0].name, values.semi_product, s_piece)
                 resolve("values ok");
             },

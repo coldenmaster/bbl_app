@@ -4,7 +4,7 @@ from datetime import date
 def date_slug(date, digit=4):
     return date.strftime("%Y%m%d")[-digit:]
 
-def semi_name_slug(semi, digit=16):
+def semi_name_slug(semi='', digit=16):
     return semi.replace(" ", "").replace("-", "").upper()[-digit:]
 
 def make_semi_stage_name(semi, digit, stage_name):

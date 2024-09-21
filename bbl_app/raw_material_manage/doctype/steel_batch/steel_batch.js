@@ -68,10 +68,13 @@ frappe.ui.form.on("Steel Batch", {
                     status: "未入库",
                     semi_product: "06240",
                 }
+                
+                // todo 注意增加默认仓库和库区。
                 const sbs = `
                 湖南华菱湘潭钢铁有限公司（XISC） 产品名称：保淬透性用钢 牌号:40CrH 技术标准:XYXB2020-021 材料号:B22420506E021/0212 规格(Φ):145mm 定尺长度(L):6925mm 支数:3，重量:2714Kg 炉号:24701313 许可证: 合同号: 制造厂:棒材厂 生产日期:2024-02-09
-
-            `
+         
+           
+                `
                 let sbl = sbs.trim().split("\n");
                 for (let i = 0; i < sbl.length; i++) {
                     let sb = sbl[i].trim();

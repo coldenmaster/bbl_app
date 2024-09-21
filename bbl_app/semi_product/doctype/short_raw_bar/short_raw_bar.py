@@ -17,8 +17,8 @@ class ShortRawBar(Document):
     pass
 
     def on_trash(self):
-        print_red("srb on_trash")
-        print_red(frappe.session.user)
+        # print_red("srb on_trash")
+        # print_red(frappe.session.user)
         if ("Administrator" != frappe.session.user ):
             frappe.throw("只有管理员才能删除此文档")
 
@@ -175,8 +175,8 @@ def adjust_short_bar_status(batch_qtys, se_doc_name):
         }
         vn_obj = safe_json_loads_from_str(srb_doc.voucher_no ) or []
         vn_obj.append(voucher_add)
-        print_red(srb_doc.name)
-        print_red(vn_obj)
+        # print_red(srb_doc.name)
+        # print_red(vn_obj)
         srb_doc.update({
             "status": "锻造wip",
             "warehouse": "锻造车间仓库 - 百兰",
@@ -262,9 +262,9 @@ def create_stock_entry_for_wo_done(wo_name, sabb, qty):
 
 
 up_obj_mock2 = {
-    'old_sbr_doc_id': 'DBL-0903-4E-24011462Z', 
-    'new_product_name': '06240', 
-    'qty': '3', 
+    'old_sbr_doc_id': 'DBL-0905-4E-24011462Z', 
+    'new_product_name': 'D-30N-B', 
+    'qty': '5', 
     'cmd': 'bbl_app.semi_product.doctype.short_raw_bar.short_raw_bar.change_srb_name'
     }
 
@@ -280,10 +280,13 @@ def change_srb_name(**kwargs):
     kwargs = frappe._dict(kwargs)
     # 获取doc
     from_srb_doc_id = kwargs.old_sbr_doc_id
-    srb_doc = frappe.get_cached_doc("Short Raw Bar", from_srb_doc_id)
-    target_product_name = semi_name_slug(kwargs.new_product_name)
+    srb_doc = frappe.get_doc("Short Raw Bar", from_srb_doc_id)
+    # print_red(kwargs)
+    # print_red(srb_doc)
+    target_product_name = kwargs.new_product_name
+    target_product_name_slug = semi_name_slug(kwargs.new_product_name)
     # target_item_name = target_product_name.replace(" ", "").replace("-", "")  + "_短棒料"
-    target_item_name = make_semi_stage_name(target_product_name, 6, "短棒料")
+    target_item_name = make_semi_stage_name(target_product_name, 16, "短棒料")
 
     target_qty = cint(kwargs.qty)
     # print(srb_doc.as_dict())
@@ -292,8 +295,8 @@ def change_srb_name(**kwargs):
     # to_batch_no = "DBL-" + md + "-" + target_product_name[-6:] + "-" + srb_doc.heat_no[-10:]
     # to_batch_no = make_semi_batch_no_name(target_product_name, "DBL", srb_doc.heat_no)
     # 短棒料到底需要根据日期 分批吗？
-    to_batch_no = "DBL-" + target_product_name + "-" + srb_doc.heat_no
-    print_red(to_batch_no)
+    to_batch_no = "DBL-" + target_product_name_slug + "-" + srb_doc.heat_no
+    # print_red(to_batch_no)
 
     # create_item(target_item_name)
     create_bar_item(target_item_name)
@@ -374,10 +377,10 @@ def change_srb_name(**kwargs):
     return se_doc.name
 
 
-up_obj_mock2 = {
-    'srb_name': 'DBL-0904-2310D-24011462Z', 
-    'qty': '3', 
-    }
+# up_obj_mock2 = {
+#     'srb_name': 'DBL-0904-2310D-24011462Z', 
+#     'qty': '3', 
+#     }
 
 @frappe.whitelist()
 def cancel_wo_retrieve_wip(**kwargs):
@@ -385,7 +388,7 @@ def cancel_wo_retrieve_wip(**kwargs):
     if not kwargs:
         print_red("mock data 😁")
         kwargs = up_obj_mock2 #置入假数据
-    print_blue(kwargs)
+    # print_blue(kwargs)
     kwargs = frappe._dict(kwargs)
     up_qty = cint(kwargs.qty)
     # 获取doc

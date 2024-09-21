@@ -23,6 +23,8 @@
   "total_used_piece",
   "total_piece",
   "accu_piece",
+  "in_list",
+  "out_list",
   "column_break_musm",
   "warehouse",
   "warehouse_area",
@@ -54,6 +56,7 @@
    "label": "Heat No",
    "options": "Heat No",
    "reqd": 1,
+   "search_index": 1,
    "set_only_once": 1
   },
   {
@@ -195,6 +198,7 @@
    "fieldname": "link_doc_in",
    "fieldtype": "Link",
    "label": "Link Doc In",
+   "no_copy": 1,
    "options": "Stock Entry",
    "read_only": 1
   },
@@ -258,6 +262,24 @@
    "fieldtype": "Tab Break",
    "label": "Connections",
    "show_dashboard": 1
+  },
+  {
+   "fieldname": "in_list",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "In List",
+   "max_height": "2rem",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "out_list",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Out List",
+   "max_height": "2rem",
+   "no_copy": 1,
+   "read_only": 1
   }
  ],
  "is_calendar_and_gantt": 1,
@@ -281,7 +303,7 @@
    "parent_doctype": "Stock Entry"
   }
  ],
- "modified": "2024-09-14 10:39:07",
+ "modified": "2024-09-19 09:54:10",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Short Raw Bar",

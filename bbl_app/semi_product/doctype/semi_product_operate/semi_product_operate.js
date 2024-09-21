@@ -85,6 +85,7 @@ frappe.ui.form.on("Semi Product Operate", {
     semi_product(frm) {
         if (!bbl.flag_spm_merge) {
             op_source = cat_op_source(frm);
+            // op_source = bbl.utils.semiNameSlug(op_source);
             set_spm_filter(frm, op_source);
         }
 
@@ -185,14 +186,16 @@ function cat_op_source(frm) {
 }
 function cat_finish_name(frm) {
     // 挑选产品 + 选择目标形态 = 自动进行设置
-    // const spm_source = frm.doc.product_name || "";
-    const spm_source = frm.doc.semi_product || "";
+    const spm_source = frm.doc.product_name || "";
+    // const spm_source = frm.doc.semi_product || "";
+    const semi_product = frm.doc.semi_product || "";
     const semi_op_target = frm.doc.semi_op_target || "";
     let val = ""
     // log("显示名称", spm_source, semi_op_target)
 
     if (spm_source && semi_op_target) {
-        const spm_0 = spm_source.split(/_[^_]+$/, 2)[0];
+        // const spm_0 = spm_source.split(/_[^_]+$/, 2)[0];
+        const spm_0 = bbl.utils.semiNameSlug(semi_product);
         val = spm_0 + "_" + semi_op_target
     }
     frm.set_value("finish_name", val);
@@ -252,6 +255,8 @@ function query_product_form_data(frm) {
 function set_spm_filter(frm, op_source) {
     if (frm.is_new() && !bbl.flag_has_spm_opts)
         frm.set_value("spm_source", "");
+
+    op_source = bbl.utils.semiNameSlug(op_source);
     frm.set_query("spm_source", function () {
         return {
             filters: {
@@ -263,7 +268,6 @@ function set_spm_filter(frm, op_source) {
 }
 
 function set_target_form_filter(frm, value) {
-
     frm.set_query("semi_op_target", function () {
         return {
             filters: {

@@ -248,6 +248,8 @@ Browse Apps,可安装应用
 {0} has been submitted successfully,{0} 提交成功
 Filter,过滤,
 Filters {0},过滤器{0},
+Item rate has been updated to zero as Allow Zero Valuation Rate is checked for item {0},物料{0}的单价已根据设置更新为零,
+
 
 
 d,天,Days (Field: Duration)
@@ -455,13 +457,11 @@ Op Json,操作单列表,
 Op From,上一工序,
 Op To,加工工序,
 
+In List,入列表,
+Out List,出列表,
 
 
 
 
 
 
-
-
-Item rate has been updated to zero as Allow Zero Valuation Rate is checked for item {0},物料{0}的单价已根据设置更新为零,
-"Items rate has been updated to zero as Allow Zero Valuation Rate is checked for the following items: {0}",物料{0}的单价已根据设置更新为零,

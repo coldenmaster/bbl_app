@@ -1,9 +1,10 @@
 import json
+from bbl_app.utils.bbl_utils import semi_name_slug
 from bbl_app.utils.frappe_func import make_simi_product_batch_no
 from bbl_app.utils.utils import safe_json_loads_from_str
 from erpnext.stock.doctype.stock_entry.stock_entry import StockEntry
 import frappe
-from frappe import _
+from frappe import _, _dict
 from frappe.utils.data import cint, comma_or, cstr, flt, now, today
 from bbl_api.utils import _print_blue_pp, print_blue, print_cyan, print_green, print_green_pp, print_red, print_yellow
 
@@ -209,16 +210,25 @@ def process_steel_batch(self):
     #     traceback.print_exc()
 
 
-# mock_opts = {'name': 'MAT-STE-2024-00197', 'owner': 'Administrator', 'creation': '2024-06-18 09:16:13', 'modified': '2024-06-18 09:16:22', 'modified_by': 'Administrator', 'docstatus': 1, 'idx': 0, 'naming_series': 'MAT-STE-.YYYY.-', 'stock_entry_type': '原材料下料出库', 'outgoing_stock_entry': None, 'purpose': 'Bbl Not Op', 'add_to_transit': 0, 'work_order': None, 'purchase_order': None, 'subcontracting_order': None, 'delivery_note_no': None, 'sales_invoice_no': None, 'pick_list': None, 'purchase_receipt_no': None, 'company': '百兰车轴', 'posting_date': '2024-06-18', 'posting_time': '09:16:22.423613', 'set_posting_time': 0, 'inspection_required': 0, 'apply_putaway_rule': 0, 'from_bom': 0, 'use_multi_level_bom': 1, 'bom_no': None, 'fg_completed_qty': 0.0, 'process_loss_percentage': 0.0, 'process_loss_qty': 0.0, 'from_warehouse': None, 'source_warehouse_address': None, 'source_address_display': None, 'to_warehouse': None, 'target_warehouse_address': None, 'target_address_display': None, 'scan_barcode': None, 'total_outgoing_value': 11238.0, 'total_incoming_value': 11238.0, 'value_difference': 0.0, 'total_additional_costs': 0.0, 'supplier': None, 'supplier_name': None, 'supplier_address': None, 'address_display': None, 'project': None, 'select_print_heading': None, 'letter_head': None, 'is_opening': 'No', 'remarks': None, 'per_transferred': 0.0, 'total_amount': 22476.0, 'job_card': None, 'amended_from': None, 'credit_note': None, 'is_return': 0, 'doctype': 'Stock Entry', 'additional_costs': [], 'items': [{'name': 'hfl6t6n5tb', 'owner': 'Administrator', 'creation': '2024-06-18 09:16:13', 'modified': '2024-06-18 09:16:22', 'modified_by': 'Administrator', 'docstatus': 1, 'idx': 1, 'barcode': None, 'has_item_scanned': 0, 's_warehouse': '原钢堆场 - 百兰', 't_warehouse': None, 'item_code': 'C50-130', 'item_name': 'C50-130', 'is_finished_item': 0, 'is_scrap_item': 0, 'quality_inspection': None, 'subcontracted_item': None, 'description': 'C50-130', 'item_group': '原材料', 'image': None, 'qty': 3746.0, 'transfer_qty': 3746.0, 'retain_sample': 0, 'uom': 'Kg', 'stock_uom': 'Kg', 'conversion_factor': 1.0, 'sample_quantity': 0, 'basic_rate': 3.0, 'additional_cost': 0.0, 'valuation_rate': 3.0, 'allow_zero_valuation_rate': 0, 'set_basic_rate_manually': 0, 'basic_amount': 11238.0, 'amount': 11238.0, 'use_serial_batch_fields': 0, 'serial_and_batch_bundle': 'SABB-00000608', 'serial_no': None, 'batch_no': None, 'expense_account': '库存调整 - 百兰', 'cost_center': '主 - 百兰', 'project': None, 'actual_qty': 18724.0, 'transferred_qty': 0.0, 'bom_no': None, 'allow_alternative_item': 0, 'material_request': None, 'material_request_item': None, 'original_item': None, 'against_stock_entry': None, 'ste_detail': None, 'po_detail': None, 'sco_rm_detail': None, 'putaway_rule': None, 'reference_purchase_receipt': None, 'job_card_item': None, 'parent': 'MAT-STE-2024-00197', 'parentfield': 'items', 'parenttype': 'Stock Entry', 'doctype': 'Stock Entry Detail'}, {'name': 'hfl6lhs2pm', 'owner': 'Administrator', 'creation': '2024-06-18 09:16:13', 'modified': '2024-06-18 09:16:22', 'modified_by': 'Administrator', 'docstatus': 1, 'idx': 2, 'barcode': None, 'has_item_scanned': 0, 's_warehouse': None, 't_warehouse': '短棒料仓 - 百兰', 'item_code': '4E_短棒料', 'item_name': '4E_短棒料', 'is_finished_item': 1, 'is_scrap_item': 0, 'quality_inspection': None, 'subcontracted_item': None, 'description': '4E_短棒料', 'item_group': '短棒料', 'image': None, 'qty': 35.0, 'transfer_qty': 35.0, 'retain_sample': 0, 'uom': '根', 'stock_uom': '根', 'conversion_factor': 1.0, 'sample_quantity': 0, 'basic_rate': 321.085714286, 'additional_cost': 0.0, 'valuation_rate': 321.085714286, 'allow_zero_valuation_rate': 0, 'set_basic_rate_manually': 0, 'basic_amount': 11238.0, 'amount': 11238.0, 'use_serial_batch_fields': 0, 'serial_and_batch_bundle': 'SABB-00000609', 'serial_no': None, 'batch_no': None, 'expense_account': '库存调整 - 百兰', 'cost_center': '主 - 百兰', 'project': None, 'actual_qty': 0.0, 'transferred_qty': 0.0, 'bom_no': None, 'allow_alternative_item': 0, 'material_request': None, 'material_request_item': None, 'original_item': None, 'against_stock_entry': None, 'ste_detail': None, 'po_detail': None, 'sco_rm_detail': None, 'putaway_rule': None, 'reference_purchase_receipt': None, 'job_card_item': None, 'parent': 'MAT-STE-2024-00197', 'parentfield': 'items', 'parenttype': 'Stock Entry', 'doctype': 'Stock Entry Detail'}, {'name': 'hfl6hbqci3', 'owner': 'Administrator', 'creation': '2024-06-18 09:16:13', 'modified': '2024-06-18 09:16:22', 'modified_by': 'Administrator', 'docstatus': 1, 'idx': 3, 'barcode': None, 'has_item_scanned': 0, 's_warehouse': None, 't_warehouse': '废料堆场 - 百兰', 'item_code': '原材料头', 'item_name': '原材料头', 'is_finished_item': 0, 'is_scrap_item': 1, 'quality_inspection': None, 'subcontracted_item': None, 'description': '原材料头', 'item_group': '钢材废料', 'image': None, 'qty': 272.0, 'transfer_qty': 272.0, 'retain_sample': 0, 'uom': 'Kg', 'stock_uom': 'Kg', 'conversion_factor': 1.0, 'sample_quantity': 0, 'basic_rate': 0.0, 'additional_cost': 0.0, 'valuation_rate': 0.0, 'allow_zero_valuation_rate': 1, 'set_basic_rate_manually': 0, 'basic_amount': 0.0, 'amount': 0.0, 'use_serial_batch_fields': 0, 'serial_and_batch_bundle': None, 'serial_no': None, 'batch_no': None, 'expense_account': '库存调整 - 百兰', 'cost_center': '主 - 百兰', 'project': None, 'actual_qty': 0.0, 'transferred_qty': 0.0, 'bom_no': None, 'allow_alternative_item': 0, 'material_request': None, 'material_request_item': None, 'original_item': None, 'against_stock_entry': None, 'ste_detail': None, 'po_detail': None, 'sco_rm_detail': None, 'putaway_rule': None, 'reference_purchase_receipt': None, 'job_card_item': None, 'parent': 'MAT-STE-2024-00197', 'parentfield': 'items', 'parenttype': 'Stock Entry', 'doctype': 'Stock Entry Detail'}]}
+# mock_opts = {'name': 'MAT-STE-2024-00197', 'owner': 'Administrator', 'creation': '2024-06-18 09:16:13', 
+# 'modified': '2024-06-18 09:16:22', 'modified_by': 'Administrator', 'docstatus': 1, 'idx': 0, 
+# 'naming_series': 'MAT-STE-.YYYY.-', 'stock_entry_type': '原材料下料出库', 'outgoing_stock_entry': None, 
+# 'purpose': 'Bbl Not Op', 'add_to_transit': 0, 'work_order': None, 'purchase_order': None, 
+# 'subcontracting_order': None, 'delivery_note_no': None, 'sales_invoice_no': None, 'pick_list': None, 
+# 'purchase_receipt_no': None, 'company': '百兰车轴', 'posting_date': '2024-06-18', 
+# 'posting_time': '09:16:22.423613', 'set_posting_time': 0, 'inspection_required': 0, 
+# 'apply_putaway_rule': 0, 'from_bom': 0, 'use_multi_level_bom': 1, 'bom_no': None, 
+# 'fg_completed_qty': 0.0, 'process_loss_percentage': 0.0, 'process_loss_qty': 0.0, 
+# 'from_warehouse': None, 'source_warehouse_address': None, 'source_address_display': None, 
+# 'to_warehouse': None, 'target_warehouse_address': None, 'target_address_display': None, 
+# 'scan_barcode': None, 'total_outgoing_value': 11238.0, 'total_incoming_value': 11238.0, 
+# 'value_difference': 0.0, 'total_additional_costs': 0.0, 'supplier': None, 'supplier_name': None, 
+# 'supplier_address': None, 'address_display': None, 'project': None, 'select_print_heading': None, 
+# 'letter_head': None, 'is_opening': 'No', 'remarks': None, 'per_transferred': 0.0, 'total_amount': 22476.0, 'job_card': None, 'amended_from': None, 'credit_note': None, 'is_return': 0, 'doctype': 'Stock Entry', 'additional_costs': [], 'items': [{'name': 'hfl6t6n5tb', 'owner': 'Administrator', 'creation': '2024-06-18 09:16:13', 'modified': '2024-06-18 09:16:22', 'modified_by': 'Administrator', 'docstatus': 1, 'idx': 1, 'barcode': None, 'has_item_scanned': 0, 's_warehouse': '原钢堆场 - 百兰', 't_warehouse': None, 'item_code': 'C50-130', 'item_name': 'C50-130', 'is_finished_item': 0, 'is_scrap_item': 0, 'quality_inspection': None, 'subcontracted_item': None, 'description': 'C50-130', 'item_group': '原材料', 'image': None, 'qty': 3746.0, 'transfer_qty': 3746.0, 'retain_sample': 0, 'uom': 'Kg', 'stock_uom': 'Kg', 'conversion_factor': 1.0, 'sample_quantity': 0, 'basic_rate': 3.0, 'additional_cost': 0.0, 'valuation_rate': 3.0, 'allow_zero_valuation_rate': 0, 'set_basic_rate_manually': 0, 'basic_amount': 11238.0, 'amount': 11238.0, 'use_serial_batch_fields': 0, 'serial_and_batch_bundle': 'SABB-00000608', 'serial_no': None, 'batch_no': None, 'expense_account': '库存调整 - 百兰', 'cost_center': '主 - 百兰', 'project': None, 'actual_qty': 18724.0, 'transferred_qty': 0.0, 'bom_no': None, 'allow_alternative_item': 0, 'material_request': None, 'material_request_item': None, 'original_item': None, 'against_stock_entry': None, 'ste_detail': None, 'po_detail': None, 'sco_rm_detail': None, 'putaway_rule': None, 'reference_purchase_receipt': None, 'job_card_item': None, 'parent': 'MAT-STE-2024-00197', 'parentfield': 'items', 'parenttype': 'Stock Entry', 'doctype': 'Stock Entry Detail'}, {'name': 'hfl6lhs2pm', 'owner': 'Administrator', 'creation': '2024-06-18 09:16:13', 'modified': '2024-06-18 09:16:22', 'modified_by': 'Administrator', 'docstatus': 1, 'idx': 2, 'barcode': None, 'has_item_scanned': 0, 's_warehouse': None, 't_warehouse': '短棒料仓 - 百兰', 'item_code': '4E_短棒料', 'item_name': '4E_短棒料', 'is_finished_item': 1, 'is_scrap_item': 0, 'quality_inspection': None, 'subcontracted_item': None, 'description': '4E_短棒料', 'item_group': '短棒料', 'image': None, 'qty': 35.0, 'transfer_qty': 35.0, 'retain_sample': 0, 'uom': '根', 'stock_uom': '根', 'conversion_factor': 1.0, 'sample_quantity': 0, 'basic_rate': 321.085714286, 'additional_cost': 0.0, 'valuation_rate': 321.085714286, 'allow_zero_valuation_rate': 0, 'set_basic_rate_manually': 0, 'basic_amount': 11238.0, 'amount': 11238.0, 'use_serial_batch_fields': 0, 'serial_and_batch_bundle': 'SABB-00000609', 'serial_no': None, 'batch_no': None, 'expense_account': '库存调整 - 百兰', 'cost_center': '主 - 百兰', 'project': None, 'actual_qty': 0.0, 'transferred_qty': 0.0, 'bom_no': None, 'allow_alternative_item': 0, 'material_request': None, 'material_request_item': None, 'original_item': None, 'against_stock_entry': None, 'ste_detail': None, 'po_detail': None, 'sco_rm_detail': None, 'putaway_rule': None, 'reference_purchase_receipt': None, 'job_card_item': None, 'parent': 'MAT-STE-2024-00197', 'parentfield': 'items', 'parenttype': 'Stock Entry', 'doctype': 'Stock Entry Detail'}, {'name': 'hfl6hbqci3', 'owner': 'Administrator', 'creation': '2024-06-18 09:16:13', 'modified': '2024-06-18 09:16:22', 'modified_by': 'Administrator', 'docstatus': 1, 'idx': 3, 'barcode': None, 'has_item_scanned': 0, 's_warehouse': None, 't_warehouse': '废料堆场 - 百兰', 'item_code': '原材料头', 'item_name': '原材料头', 'is_finished_item': 0, 'is_scrap_item': 1, 'quality_inspection': None, 'subcontracted_item': None, 'description': '原材料头', 'item_group': '钢材废料', 'image': None, 'qty': 272.0, 'transfer_qty': 272.0, 'retain_sample': 0, 'uom': 'Kg', 'stock_uom': 'Kg', 'conversion_factor': 1.0, 'sample_quantity': 0, 'basic_rate': 0.0, 'additional_cost': 0.0, 'valuation_rate': 0.0, 'allow_zero_valuation_rate': 1, 'set_basic_rate_manually': 0, 'basic_amount': 0.0, 'amount': 0.0, 'use_serial_batch_fields': 0, 'serial_and_batch_bundle': None, 'serial_no': None, 'batch_no': None, 'expense_account': '库存调整 - 百兰', 'cost_center': '主 - 百兰', 'project': None, 'actual_qty': 0.0, 'transferred_qty': 0.0, 'bom_no': None, 'allow_alternative_item': 0, 'material_request': None, 'material_request_item': None, 'original_item': None, 'against_stock_entry': None, 'ste_detail': None, 'po_detail': None, 'sco_rm_detail': None, 'putaway_rule': None, 'reference_purchase_receipt': None, 'job_card_item': None, 'parent': 'MAT-STE-2024-00197', 'parentfield': 'items', 'parenttype': 'Stock Entry', 'doctype': 'Stock Entry Detail'}]}
 mock_opts = {}
 def create_raw_bar(self):
     print_blue('进入 创建短棒料')
     # print(f'{self and self.as_dict() = }')
-    # todo 这注入调试数据
-    # if frappe.flags.wt_test:
-    #     print_red('create_raw_bar, wt_test 测试模式')
-    # if frappe.cache.set_value('cache_wt_test', 1)
-    # if frappe.cache.get_value('cache_wt_test') or not self :
     if not self :
         print_red('create_raw_bar, cache_wt_test 测试模式 😜')
         self = mock_opts
@@ -248,9 +258,18 @@ def create_raw_bar(self):
                                                             'doc_table_item': last_raw_item.name,
                                                         },
                                                         ["data_1", "data_2", "data_4"]) or (0, 0, 0)
+                
+                from_sb_product_out = _dict(frappe.parse_json(frappe.db.get_value('Temp Doc Value',
+                                                        {
+                                                            'doc_type': 'Stock Entry',
+                                                            'doc_table_item': last_raw_item.name,
+                                                        },
+                                                        'data_json') or '{}'))
+                
                 # op_ratio = temp_doc_length
                 if item.get('item_group') == '长料头':
-                    temp_doc_length = temp_cbl_length
+                    temp_doc_length = from_sb_product_out.get('cbl_bar_length', 0)
+                    temp_doc_weight = from_sb_product_out.get('cbl_bar_weight', 0)
                 # 寻找这个批次，如果存在直接更新数量
                 if frappe.db.exists('Short Raw Bar', batch_no):
                     print_red('create_raw_bar, 短棒料已存在')
@@ -263,10 +282,11 @@ def create_raw_bar(self):
                         'remaining_piece': bar_doc.remaining_piece + piece,
                         'accu_piece': bar_doc.accu_piece + piece,
                         'link_doc_in': self.name,
-                        'length': temp_doc_length,
-                        'weight': temp_doc_weight,
+                        # 'length': temp_doc_length,
+                        # 'weight': temp_doc_weight,
                         'for_date': now(),
                         'status': '未使用',
+                        'in_list': (bar_doc.in_list or '') + '+' + str(piece),
                     })
                 # 如果不存在，创建新的短棒料批次记录
                 else :
@@ -278,11 +298,25 @@ def create_raw_bar(self):
                         'link_doc_in': self.name,
                         'for_date': now(),
                         'status': '未使用',
+                        'in_list':  '+' + str(piece),
                     })
                     temp_dict.raw_bar_name = item.get('item_code')
-                    temp_dict.semi_product = item.get('item_code').split('_')[0] #避免sb上没有半成品信息
-                    temp_dict.cost = cost
+                    # 判断是否是综合下料(check_zhxl, piece!=bar_piece, 物料名称以半成品名称开始)
+                    if cint(from_sb_product_out.get('check_zhxl')) and \
+                        item.get('item_code').startswith(semi_name_slug(from_sb_product_out.get('zh_semi_product', ''))):
+                            print_yellow('create_raw_bar, 综合下料')
+                            temp_dict.semi_product = from_sb_product_out.zh_semi_product
+                            # temp_dict.in_piece = temp_dict.accu_piece = temp_dict.remaining_piece = from_sb_product_out.get('zh_bar_piece', 0)
+                            temp_dict.length = from_sb_product_out.get('zh_bar_ratio', 0)
+                            temp_dict.weight = from_sb_product_out.get('zh_bar_piece', 0)
+                    else: # 正常下料
+                        temp_dict.semi_product = from_sb_product_out.semi_product
+                        temp_dict.length = temp_doc_length
+                        temp_dict.weight = temp_doc_weight
+
+
                     temp_dict.in_piece = temp_dict.accu_piece = temp_dict.remaining_piece = piece
+                    temp_dict.cost = cost
                     temp_dict.batch_no = batch_no
                     # 新建短棒料，查询steel batch上的原材料数据
                     raw_sabb_no = last_raw_item.get('serial_and_batch_bundle')
@@ -295,8 +329,6 @@ def create_raw_bar(self):
                     temp_dict.diameter = sb_doc.diameter
                     temp_dict.product_name = '产品名称_备用'
                     # 查询Temp Doc Value上存储的临时数据
-                    temp_dict.length = temp_doc_length
-                    temp_dict.weight = temp_doc_weight
                     # _print_blue_pp(f'{temp_dict=}')
                     bar_doc = frappe.new_doc(**temp_dict)
                     bar_doc.insert(ignore_permissions=True)
@@ -338,17 +370,11 @@ def process_srb_change_name(self):
     print_red('进入 process_srb_change_name')
     from bbl_app.utils.utils import bbl_dict
 
+    # 判断是不是短棒料名称转换
     if not bbl_dict.pop('srb_change_name_flag', None):
         return
-    # 判断是不是短棒料名称转换
     item_docs = self.get('items')
-    # print_red(item_docs)
-    # if len(item_docs) != 2:
-    #     return
-    # for item in item_docs:
-    #     if '_短棒料' not in item.get('item_code'):
-    #         return
-    
+
     # 进行短棒料文档复制，并修改名称
     try:
         srb_change_name_data = frappe._dict(bbl_dict.pop('srb_tmp1'))
@@ -374,6 +400,7 @@ def process_srb_change_name(self):
                 'accu_piece': to_srb_doc.accu_piece + from_qty,
                 'link_doc_in': self.name,
                 'status': status2,
+                'in_list': (to_srb_doc.in_list or '') + '+' + str(from_qty),
             }).save(ignore_permissions=True)
         else:
             print_blue("目标短棒料不存在,新建")
@@ -395,9 +422,11 @@ def process_srb_change_name(self):
                 # 'for_date': today(),
                 # 'use_date': None,
                 'status': '未使用',
+                'in_list': '+' + str(from_qty),
             }).insert(ignore_permissions=True)
 
         from_remaining = from_srb_doc.remaining_piece - from_qty
+        status1 = from_srb_doc.status
         if ((not from_remaining) and from_srb_doc.wip_piece == 0) :
             status1 = "用完"
         # voucher_no = from_srb_doc.voucher_no.replace(cstr(from_qty), '0')
@@ -408,6 +437,7 @@ def process_srb_change_name(self):
             'remaining_piece': from_remaining,
             'voucher_no': _clear_voucher_no_qty(from_srb_doc),
             'status': status1,
+            'out_list':(from_srb_doc.out_list or '') + '-' + str(cint(from_qty)),
         }).save()
         
     except Exception as e:
@@ -510,9 +540,9 @@ def adjust_short_bar_status(sabb_no, voucher_no):
         print_red(f'{vn_obj = }')
         for vn in vn_obj:
             if isinstance(vn, dict):
-                print_red(f'{voucher_no = }')
+                # print_red(f'{voucher_no = }')
                 if vn.get('voucher_no') == voucher_no:
-                    vn['voucher_qty'] = vn.get('voucher_qty', 0) - abs(batch.qty)
+                    vn['voucher_qty'] = cint(vn.get('voucher_qty', 0) - abs(batch.qty))
                     print(f'{vn = }')
                     break
 
@@ -527,7 +557,8 @@ def adjust_short_bar_status(sabb_no, voucher_no):
             "use_date": today(),
             "used_piece": used_qty,
             "total_used_piece": srb_doc.total_used_piece + used_qty,
-            "voucher_no": frappe.as_json(vn_obj)
+            "voucher_no": frappe.as_json(vn_obj),
+            "out_list": (srb_doc.out_list or '') + '-' + str(cint(used_qty))
         }).save()
 
 def create_forge_blank(bar_item, forge_item, voucher_no):
@@ -569,7 +600,8 @@ def create_forge_blank(bar_item, forge_item, voucher_no):
             'total_piece': forge_item.qty,
             'warehouse': forge_item.t_warehouse,
             'status': '未使用',
-            'semi_product': forge_item.item_code.replace('_锻坯登记', ''),
+            # 'semi_product': forge_item.item_code.replace('_锻坯登记', ''),
+            'semi_product': bar_doc.semi_product,
             'product_form': '锻坯登记',
             'link_doc': forge_item.parent,
             "short_bar_doc": bar_doc.name,

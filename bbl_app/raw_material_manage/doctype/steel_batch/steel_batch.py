@@ -4,6 +4,7 @@
 # import frappe
 import json
 from bbl_app.utils.admin import clear_db_for_dev
+from bbl_app.utils.bbl_utils import semi_name_slug
 from bbl_app.utils.func import raw_leng_to_weight
 from bbl_app.utils.utils import load_pr_items, load_pr_items_0, load_sb_out_items
 import frappe
@@ -280,7 +281,7 @@ def make_out_entry(**kwargs):
     raw_name = kwargs.raw_name
     raw_weight = cint(kwargs.raw_weight)
     out_weight = cint(kwargs.bar_weight)
-    raw_bar_name = kwargs.raw_bar_name
+    raw_bar_name = semi_name_slug(kwargs.raw_bar_name)
     bar_piece = cint(kwargs.bar_piece)
     bar_ratio = cint(kwargs.bar_ratio)
     diameter = cint(kwargs.diameter)
@@ -349,16 +350,17 @@ def make_out_entry(**kwargs):
     # todo 综合下料处理部分
     if kwargs.check_zhxl == '1':
     # 短棒料2/综合下料sabb
-        create_bar_item(kwargs.zh_raw_bar_name)
-        create_bar_batch(kwargs.zh_bar_batch, kwargs.zh_raw_bar_name)
+        zh_raw_bar_name = semi_name_slug(kwargs.zh_raw_bar_name)
+        create_bar_item(zh_raw_bar_name)
+        create_bar_batch(kwargs.zh_bar_batch, zh_raw_bar_name)
         sabb_bar_opts_zh = frappe._dict({
-            "name": kwargs.zh_raw_bar_name,
+            "name": zh_raw_bar_name,
             "piece": zh_bar_piece,
             "batchs": [(kwargs.zh_bar_batch, zh_bar_piece),],        
         })
         sabb_bar_name_zh = create_bar_sabb(sabb_bar_opts_zh)
         item = {
-                "item_code": kwargs.zh_raw_bar_name,
+                "item_code": zh_raw_bar_name,
                 "qty":  zh_bar_piece,
                 "t_warehouse": "短棒料仓 - 百兰",
                 "uom": "根",
