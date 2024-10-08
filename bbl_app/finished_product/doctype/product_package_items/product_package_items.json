@@ -1,0 +1,61 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-09-23 17:28:52.877532",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "customer_barcode",
+  "bbl_code",
+  "forge_batch_no",
+  "semi_product_batch",
+  "qty"
+ ],
+ "fields": [
+  {
+   "fieldname": "bbl_code",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Bbl Code",
+   "options": "Finished Product Manage"
+  },
+  {
+   "fieldname": "forge_batch_no",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Forge Batch No",
+   "options": "Forge Batch No"
+  },
+  {
+   "fieldname": "semi_product_batch",
+   "fieldtype": "Link",
+   "label": "Semi Product Batch",
+   "options": "Semi Product Manage"
+  },
+  {
+   "default": "1",
+   "fieldname": "qty",
+   "fieldtype": "Int",
+   "label": "Qty"
+  },
+  {
+   "fieldname": "customer_barcode",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customer Barcode"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-09-23 17:53:49.657898",
+ "modified_by": "Administrator",
+ "module": "Finished Product",
+ "name": "Product Package Items",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

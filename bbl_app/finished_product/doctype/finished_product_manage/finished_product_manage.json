@@ -6,6 +6,7 @@
  "engine": "InnoDB",
  "field_order": [
   "bbl_code",
+  "customer_barcode",
   "product_name",
   "operation",
   "employee",
@@ -22,6 +23,7 @@
   "employee_last",
   "package_no",
   "package_qty",
+  "customer",
   "customer_abbr",
   "column_break_gqlp",
   "semi_product_batch",
@@ -33,10 +35,10 @@
   "product_line",
   "weight",
   "section_break_xrhk",
-  "customer_code",
   "other_code",
   "op_list",
   "is_over",
+  "is_padding",
   "column_break_gzis",
   "op_json"
  ],
@@ -63,15 +65,11 @@
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "customer_code",
-   "fieldtype": "Data",
-   "label": "Customer Code"
-  },
-  {
    "description": "\u5176\u5b83\u5173\u8054\u7801\uff0c\u9017\u53f7\u5206\u5272",
    "fieldname": "other_code",
    "fieldtype": "Data",
-   "label": "Other Code"
+   "label": "Other Code",
+   "read_only": 1
   },
   {
    "fieldname": "operation",
@@ -87,19 +85,22 @@
    "fieldname": "product_stage",
    "fieldtype": "Select",
    "label": "Product Stage",
-   "options": "\n\u5165\u6cb9\u6f06\n\u5165\u673a\u52a0\u5de5\n\u5df2\u6253\u5305\n\u5165\u4ed3\u5e93\n\u4ee3\u50a8\n\u5df2\u4f7f\u7528\n\u5df2\u5f00\u7968"
+   "options": "\n\u5165\u6cb9\u6f06\n\u5165\u673a\u52a0\u5de5\n\u5df2\u6253\u5305\n\u5165\u4ed3\u5e93\n\u4ee3\u50a8\n\u5df2\u4f7f\u7528\n\u5df2\u5f00\u7968",
+   "read_only": 1
   },
   {
    "fieldname": "product_grade",
    "fieldtype": "Select",
    "label": "Product Grade",
-   "options": "\nA\nB\nC"
+   "options": "\nA\nB\nC",
+   "read_only": 1
   },
   {
    "fieldname": "stock_area",
    "fieldtype": "Select",
    "label": "Stock Area",
-   "options": "\n\u673a\u52a0\u5de5\u8f66\u95f4\n\u6cb9\u6f06\u8f66\u95f4\n\u6210\u54c1\u5e93\n\u534a\u6210\u54c1\u5e93\n\u51fa\u5382\n\u4ee3\u50a8\n\u88c5\u8f66"
+   "options": "\n\u673a\u52a0\u5de5\u8f66\u95f4\n\u6cb9\u6f06\u8f66\u95f4\n\u6210\u54c1\u5e93\n\u534a\u6210\u54c1\u5e93\n\u51fa\u5382\n\u4ee3\u50a8\n\u88c5\u8f66",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_uhvb",
@@ -108,7 +109,8 @@
   {
    "fieldname": "package_no",
    "fieldtype": "Data",
-   "label": "Package No"
+   "label": "Package No",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_gqlp",
@@ -118,7 +120,8 @@
    "fieldname": "semi_product_batch",
    "fieldtype": "Link",
    "label": "Semi Product Batch",
-   "options": "Semi Product Manage"
+   "options": "Semi Product Manage",
+   "read_only": 1
   },
   {
    "fieldname": "product_name",
@@ -131,13 +134,15 @@
   {
    "fieldname": "package_qty",
    "fieldtype": "Int",
-   "label": "Package Qty"
+   "label": "Package Qty",
+   "read_only": 1
   },
   {
    "fetch_from": "semi_product_batch.semi_product",
    "fetch_if_empty": 1,
    "fieldname": "semi_product",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Semi Product",
    "options": "Semi Product",
    "read_only": 1
@@ -188,7 +193,8 @@
   {
    "fieldname": "product_type",
    "fieldtype": "Data",
-   "label": "Product Type"
+   "label": "Product Type",
+   "read_only": 1
   },
   {
    "default": "__user",
@@ -204,17 +210,20 @@
    "fieldname": "employee_last",
    "fieldtype": "Link",
    "label": "Employee Last",
-   "options": "Employee Jobs"
+   "options": "Employee Jobs",
+   "read_only": 1
   },
   {
    "fieldname": "customer_abbr",
    "fieldtype": "Data",
-   "label": "Customer Abbr"
+   "label": "Customer Abbr",
+   "read_only": 1
   },
   {
    "fieldname": "product_line",
    "fieldtype": "Data",
-   "label": "Product Line"
+   "label": "Product Line",
+   "read_only": 1
   },
   {
    "fieldname": "weight",
@@ -255,11 +264,30 @@
    "fieldname": "is_over",
    "fieldtype": "Check",
    "label": "Is Over"
+  },
+  {
+   "fieldname": "customer_barcode",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Customer Barcode"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Data",
+   "label": "Customer",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_padding",
+   "fieldtype": "Check",
+   "label": "Is Padding"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-09-12 15:30:53",
+ "modified": "2024-10-08 11:28:46.637917",
  "modified_by": "Administrator",
  "module": "Finished Product",
  "name": "Finished Product Manage",
@@ -305,5 +333,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "customer_barcode"
 }

@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"RQx-i2dPp8\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>\u6210\u54c1\u7ba1\u7406</b></span>\",\"col\":12}},{\"id\":\"_Id1kT7V_F\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Finished Product Manage\",\"col\":3}},{\"id\":\"Mho5Htb-iQ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"<strong>\u65b0\u5efa\u52a0\u5de5\u5355</strong>\u624b\u673a\u7248\",\"col\":3}},{\"id\":\"v6S_dfvR7K\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Entry\",\"col\":3}},{\"id\":\"81oOLmPWCo\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"2DKC1UjXVr\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Finished Product Operate\",\"col\":3}},{\"id\":\"y9Vb_cnWxS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Semi Handover\",\"col\":3}},{\"id\":\"tJ4hlPfvsh\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"YIANqLdBZ_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u57fa\u7840\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"HUvPwSnDXp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"afXbNpFUHz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Batch\",\"col\":3}},{\"id\":\"oSjMRCkb3g\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Serial No\",\"col\":3}},{\"id\":\"nxg3EzDRis\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u5e8f\u5217\u53f7\u4e0e\u6279\u53f7\u7ec4\",\"col\":3}},{\"id\":\"fhmah6AWsM\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Product Form\",\"col\":3}},{\"id\":\"YTdyjcZCFc\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"iRI_wzdLdG\",\"type\":\"card\",\"data\":{\"card_name\":\"\u534a\u6210\u54c1\u7ba1\u7406\u62a5\u8868\",\"col\":4}}]",
+ "content": "[{\"id\":\"RQx-i2dPp8\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>\u6210\u54c1\u7ba1\u7406</b></span>\",\"col\":12}},{\"id\":\"_Id1kT7V_F\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Finished Product Manage\",\"col\":3}},{\"id\":\"Mho5Htb-iQ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"<strong>\u65b0\u5efa\u52a0\u5de5\u5355</strong>\u624b\u673a\u7248\",\"col\":3}},{\"id\":\"v6S_dfvR7K\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Entry\",\"col\":3}},{\"id\":\"81oOLmPWCo\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"2DKC1UjXVr\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Finished Product Operate\",\"col\":3}},{\"id\":\"y9Vb_cnWxS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Semi Handover\",\"col\":3}},{\"id\":\"tJ4hlPfvsh\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"1ZtauU3Cn1\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u6253\u5305\u7ba1\u7406</b></span>\",\"col\":12}},{\"id\":\"e_FsoSDXAo\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u4ea7\u54c1\u6253\u5305\u4fe1\u606f\",\"col\":3}},{\"id\":\"wdEmXaEvDA\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u4ea7\u54c1\u6253\u5305\",\"col\":3}},{\"id\":\"XvOCzbF8Q8\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"YIANqLdBZ_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u57fa\u7840\u6570\u636e</b></span>\",\"col\":12}},{\"id\":\"HUvPwSnDXp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"afXbNpFUHz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Batch\",\"col\":3}},{\"id\":\"oSjMRCkb3g\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Serial No\",\"col\":3}},{\"id\":\"nxg3EzDRis\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u5e8f\u5217\u53f7\u4e0e\u6279\u53f7\u7ec4\",\"col\":3}},{\"id\":\"fhmah6AWsM\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Product Form\",\"col\":3}},{\"id\":\"YTdyjcZCFc\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"iRI_wzdLdG\",\"type\":\"card\",\"data\":{\"card_name\":\"\u534a\u6210\u54c1\u7ba1\u7406\u62a5\u8868\",\"col\":4}}]",
  "creation": "2024-09-02 17:22:59",
  "custom_blocks": [],
  "docstatus": 0,
@@ -54,7 +54,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-09-12 16:28:22",
+ "modified": "2024-09-25 17:44:47.994550",
  "modified_by": "Administrator",
  "module": "Machine Shop",
  "name": "Product Flow",
@@ -76,6 +76,24 @@
  ],
  "sequence_id": 3.2,
  "shortcuts": [
+  {
+   "color": "Green",
+   "doc_view": "New",
+   "format": "\u65b0\u5efa",
+   "label": "\u4ea7\u54c1\u6253\u5305",
+   "link_to": "Product Package Info",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "format": "{}\u6761",
+   "label": "\u4ea7\u54c1\u6253\u5305\u4fe1\u606f",
+   "link_to": "Product Package Info",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
   {
    "color": "Grey",
    "doc_view": "List",

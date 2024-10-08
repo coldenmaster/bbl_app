@@ -143,6 +143,8 @@ class ScanProductDialog {
                     const v = this.dialog.get_value("employee")
                     if (v)
                         localStorage.setItem("prodct_scan_user_name", v); 
+                        const is_admin = v == "Administrator";
+                        this.dialog.get_field("single_code_check").toggle(is_admin);
                 },
             },
             {"fieldtype": "Column Break",},
@@ -165,6 +167,7 @@ class ScanProductDialog {
                 "fieldname": "single_code_check",
                 "label": "单次上传",
                 "fieldtype": "Check",
+                "hidden": 1,
                 "default": this.single_code_check,
                 onchange: () => { 
                     const v = this.dialog.get_value("single_code_check")
@@ -209,7 +212,7 @@ class ScanProductDialog {
         });
         // window.me= this;
         // window.dg = this.dialog;
-        // window.df = this.scan_input_df;
+        window.df = this.dialog.get_field("single_code_check");
         // window.bt = dg.get_primary_btn()
     }
 

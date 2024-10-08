@@ -16,7 +16,8 @@
   "material_weight",
   "forge_weight",
   "diameter",
-  "material_ratio"
+  "material_ratio",
+  "disabled"
  ],
  "fields": [
   {
@@ -87,11 +88,17 @@
    "fieldtype": "Int",
    "in_list_view": 1,
    "label": "Material Ratio"
+  },
+  {
+   "default": "0",
+   "fieldname": "disabled",
+   "fieldtype": "Check",
+   "label": "Disabled"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-04 16:44:10.005294",
+ "modified": "2024-09-27 14:04:20.717031",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Semi Product",

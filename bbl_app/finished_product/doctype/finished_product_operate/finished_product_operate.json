@@ -7,12 +7,12 @@
  "field_order": [
   "bbl_code",
   "product_name",
-  "op_from",
+  "op_to",
   "employee",
   "for_date",
   "op_mark",
   "column_break_pely",
-  "op_to",
+  "op_from",
   "production_line",
   "product_grade",
   "section_break_ybqn",
@@ -69,8 +69,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Employee",
-   "options": "Operation Tree",
-   "reqd": 1
+   "options": "Employee Jobs"
   },
   {
    "default": "Today",
@@ -106,13 +105,13 @@
    "fieldname": "semi_product",
    "fieldtype": "Link",
    "label": "Semi Product",
-   "options": "Operation Tree"
+   "options": "Semi Product"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-09-12 15:20:25",
+ "modified": "2024-09-22 19:05:32.589210",
  "modified_by": "Administrator",
  "module": "Finished Product",
  "name": "Finished Product Operate",

@@ -13,7 +13,7 @@ customers = {
     'liuzhou_fangsheng': {"name": "柳州/苏州方盛", "prefix": "1710"},
     'hefei_fangsheng': {"name": "合肥方盛", "prefix": "7027"},
     'qingdao_haitong': {"name": "青岛海通", "prefix": "S0383"},
-            # 'liuzhou_fangsheng': {"name": "方盛", "prefix": "171"}, # 条码上不能分出是柳州还是柳州方盛
+    # 'liuzhou_fangsheng': {"name": "方盛", "prefix": "171"}, # 条码上不能分出是柳州还是柳州方盛
     'bbl': {"name": "百兰车轴", "prefix": "BBL"},
 
     'other': {"name": "", "prefix": ""},
@@ -42,7 +42,9 @@ class CpQrcode:
 
 
     def get_company(self):
-        if self.is_dena():
+        if self.is_bbl():
+            return customers.get("bbl")['name']
+        elif self.is_dena():
             return customers.get("dena")["name"]
         elif self.is_hande():
             return customers.get("hande")['name']
@@ -56,11 +58,22 @@ class CpQrcode:
             return customers.get("hefei_fangsheng")['name']
         elif self.is_qingdao_haitong():
             return customers.get("qingdao_haitong")['name']
-        elif self.is_bbl():
-            return customers.get("bbl")['name']
         else:
             return '未知客户'
-        
+
+
+    def is_valid(self):
+        return (
+                self.is_bbl()
+                or self.is_dena()
+                or self.is_hande()
+                or self.is_zhongqi()
+                or self.is_sanyi()
+                or self.is_liuzhou_fangsheng()
+                or self.is_hefei_fangsheng()
+                or self.is_qingdao_haitong()
+                )
+    
 
     def validate_hande(self):
         if len(self.qrcode_str) != 18:

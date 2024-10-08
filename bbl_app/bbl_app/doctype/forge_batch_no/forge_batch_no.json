@@ -10,7 +10,8 @@
   "drawing_id",
   "customer",
   "designer",
-  "for_date"
+  "for_date",
+  "is_padding"
  ],
  "fields": [
   {
@@ -43,11 +44,17 @@
    "fieldtype": "Date",
    "in_list_view": 1,
    "label": "For Date"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_padding",
+   "fieldtype": "Check",
+   "label": "Is Padding"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-09 10:37:24",
+ "modified": "2024-09-25 15:36:35.766297",
  "modified_by": "Administrator",
  "module": "Bbl App",
  "name": "Forge Batch No",

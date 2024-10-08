@@ -4,8 +4,19 @@ frappe.provide("bbl");
 window.log = console.log;
 
 
+frappe.throw = function (msg) {
+	if (typeof msg === "string") {
+		msg = { message: msg, title: __("Error") };
+	}
+	if (!msg.indicator) msg.indicator = "red";
+	frappe.msgprint(msg);
+    frappe.utils.play_sound("error");
+	throw new Error(msg.message);
+};
+
+
 bbl.utils = {
-    test_str: "abcd",
+    test_str: "ab",
 
     // 计算下料根数
     calc_bar_piece: function(per_length, piece, ratio, gap) {
@@ -61,7 +72,8 @@ bbl.utils = {
     makeSemiBatchNoName(semi, prefix, heatNo) {
         return prefix + '-' + dateSlug(new Date()) + '-' + semiNameSlug(semi, 6) + '-' + heatNo.slice(-10);
     },
-    
+
+    // new no_bundle 
 
 }
 

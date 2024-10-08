@@ -1,0 +1,218 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:package_no",
+ "creation": "2024-09-23 17:05:57.652166",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "package_no",
+  "qty",
+  "column_break_vlmf",
+  "product_name",
+  "semi_product",
+  "product_items_section",
+  "product_package_items",
+  "product_package_info_section",
+  "for_date",
+  "employee",
+  "status",
+  "package_status",
+  "stock_area",
+  "column_break_atbp",
+  "forge_batch_no",
+  "customer",
+  "customer_package_no",
+  "note",
+  "section_break_tscq",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_tscq",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Product Package Info",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "product_package_info_section",
+   "fieldtype": "Section Break",
+   "label": "Product Package Info"
+  },
+  {
+   "fieldname": "package_no",
+   "fieldtype": "Data",
+   "label": "Package No",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "product_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Product Name",
+   "options": "Product Name"
+  },
+  {
+   "default": "0",
+   "fieldname": "qty",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Qty",
+   "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "for_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "For Date"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Data",
+   "label": "Employee"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "\n\u5165\u5e93\n\u88c5\u8f66\n\u4ee3\u50a8\n\u534a\u4f7f\u7528\n\u7528\u5b8c"
+  },
+  {
+   "fieldname": "column_break_atbp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "semi_product",
+   "fieldtype": "Link",
+   "label": "Semi Product",
+   "options": "Semi Product"
+  },
+  {
+   "description": "\uff08\u5217\u8868\uff09",
+   "fieldname": "forge_batch_no",
+   "fieldtype": "Data",
+   "label": "Forge Batch No"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Customer"
+  },
+  {
+   "fieldname": "note",
+   "fieldtype": "Data",
+   "label": "Note"
+  },
+  {
+   "fieldname": "stock_area",
+   "fieldtype": "Data",
+   "label": "Stock Area"
+  },
+  {
+   "fieldname": "product_items_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "product_package_items",
+   "fieldtype": "Table",
+   "label": "Product Package Items",
+   "options": "Product Package Items"
+  },
+  {
+   "fieldname": "customer_package_no",
+   "fieldtype": "Data",
+   "label": "Customer Package No"
+  },
+  {
+   "fieldname": "package_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Package Status",
+   "options": "\n\u5165\u5e93\n\u88c5\u8f66\n\u4ee3\u50a8\n\u534a\u4f7f\u7528\n\u7528\u5b8c"
+  },
+  {
+   "fieldname": "column_break_vlmf",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "hide_toolbar": 1,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-09-27 15:01:37.955875",
+ "modified_by": "Administrator",
+ "module": "Finished Product",
+ "name": "Product Package Info",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Stock Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

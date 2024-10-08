@@ -406,7 +406,8 @@ Op Note,操作备注,
 Main Form,主形态
 Sub Workshop,子车间,
 Product Scan,产品扫码,
-Bbl Code,百兰代码,
+Bbl Code,百兰二维码,
+Customer Barcode,客户二维码,
 
 Cus Code Date,代码日期,
 Cus Batch No,批次号,
@@ -452,7 +453,7 @@ Employee Last,上一员工
 Package No,打包号
 Package Qty,打包数量
 Customer Abbr,客户简称
-Other Code,其他代码
+Other Code,其他编码,
 Op Json,操作单列表,
 Op From,上一工序,
 Op To,加工工序,
@@ -460,6 +461,11 @@ Op To,加工工序,
 In List,入列表,
 Out List,出列表,
 
+Product Package Info,产品打包信息,
+Product Package Items,产品打包明细,
+Customer Package No,客户打包号,
+Package Status,包状态,
+Is Padding,是补录,
 
 
 
