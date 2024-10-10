@@ -199,7 +199,8 @@ class ScanPackageDialog {
         if (!upper_code.startsWith("BBL")) {
             this.code_type = "CUSTOMER"
             if (this.first_cp_item) {
-                let cnt_limit = customer_package_num_limit[this.first_cp_item.customer];
+                let customer = this.first_cp_item.customer;
+                let cnt_limit = customer_package_num_limit[customer];
                 if (cnt_limit && this.counter >= cnt_limit) {
                     this.show_error("客户<" + customer + ">的包装数已经达到上限！");
                     return false;
