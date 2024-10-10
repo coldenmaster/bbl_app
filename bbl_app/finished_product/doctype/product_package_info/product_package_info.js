@@ -8,18 +8,16 @@ frappe.require("/assets/bbl_app/js/product_code_parse.js", () => {
 frappe.ui.form.on("Product Package Info", {
 
     onload(frm) {
-        frm.set_value("employee", frappe.session.user_fullname);
-        frm.doc.package_status = "入库";
-
+        if (!frm.doc.employee) {
+            frm.set_value("employee", frappe.session.user_fullname);
+        }
     },
 
 	refresh(frm) {
         // 判断是否是新建
-        log("refresh cur_dialog", cur_dialog)
         if (frm.is_new() && !cur_dialog) {
             make_scan_package_dialog(frm);
         }
-
         // 如果文档状态不是已提交，不显示按钮
         if (frm.doc.docstatus == 0) {
             frm.add_custom_button("扫码打包", () => {
@@ -41,8 +39,6 @@ frappe.ui.form.on("Product Package Info", {
     on_submit(frm) {
     },
 
-
-
 });
 
 
@@ -55,11 +51,24 @@ frappe.ui.form.on("Product Package Items", {
         log("cnt", cnt)
         frm.set_value("qty", cnt);
     },
-    product_package_items(frm, cdt, cdn) {
-        log("product_package_items")
+    product_package_items(frm, cdt, cdn) {  // 没有这个函数，不会触发
+        log("product_package_items");
+    },
+    product_package_items_add(frm, cdt, cdn) {  // 没有这个函数，不会触发
+        log("product_package_items_add");
+        frappe.show_alert("不能手动添加产品！");
+        frm.doc.product_package_items.pop();
+        frm.refresh_field("product_package_items");
     }
 });
 
+// todo : 优化, 存放到localStorage中，利用对框进行设值
+const customer_package_num_limit = {
+    "东风德纳": 15,
+    "陕汽汉德": 15,
+    "三一重工": 15,
+    "方盛": 15,
+}
 
 function make_scan_package_dialog(frm) {
     let dialog = new ScanPackageDialog({
@@ -94,10 +103,9 @@ class ScanPackageDialog {
     }
     get_first_cp_item() {
         if ( this.frm.doc.product_package_items.length > 0) {
-            // let first_cp_doc_type = this.frm.doc.product_package_items[0].doctype;
             let first_cp_doc_name = this.frm.doc.product_package_items[0].bbl_code;
             frappe.model.with_doc("Finished Product Manage", first_cp_doc_name).then((doc) => {
-                log("get first cp item", doc)
+                // log("get first cp item", doc)
                 this.first_cp_item = doc;
             });
         }
@@ -168,7 +176,6 @@ class ScanPackageDialog {
         this.frm.doc.product_package_items.forEach((item) => {
             this.customer_code_list.push(item.customer_barcode);
         })
-        // return customer_code_list;
     }
 
     show_alert(msg) {
@@ -191,6 +198,13 @@ class ScanPackageDialog {
 
         if (!upper_code.startsWith("BBL")) {
             this.code_type = "CUSTOMER"
+            if (this.first_cp_item) {
+                let cnt_limit = customer_package_num_limit[this.first_cp_item.customer];
+                if (cnt_limit && this.counter >= cnt_limit) {
+                    this.show_error("客户<" + customer + ">的包装数已经达到上限！");
+                    return false;
+                }
+            }
         } else {
             // bbl产品二维码
             if (upper_code.startsWith("BBL*BM")) {
@@ -224,7 +238,7 @@ class ScanPackageDialog {
                     this.package_no = code;
                     this.disp_package_no();
                     this.frm.set_value("package_no", code);
-                    frappe.utils.play_sound("success");
+                    frappe.utils.play_sound("alert");
                 },
                 () => {
                     // log("总是执行")
@@ -320,6 +334,8 @@ class ScanPackageDialog {
             }
         }
         // if (!rt_obj.semi_product || rt_obj.semi_product != this.first_cp_item.semi_product) // 带字段判空
+        // log("this.first_cp_item", this.first_cp_item)
+        // log("rt_obj", rt_obj)
         if (rt_obj.semi_product != this.first_cp_item.semi_product) {
             this.show_error("扫入产品的半成品名称 " + "不同".fontcolor("red"));
             return false;

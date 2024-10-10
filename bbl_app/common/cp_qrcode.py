@@ -133,11 +133,11 @@ class CpQrcode:
     def parse_dena(self):
         company = customers.get("dena")["name"]
         if not self.is_dena():
-            self.upload_bean.err_msg = f"{company}:识别厂家失败"
+            self.err_msg = f"{company}:识别厂家失败"
             return self.upload_bean
 
         if not self.validate_dena():
-            self.upload_bean.err_msg = f"{company}:二维码验证错误"
+            self.err_msg = f"{company}:二维码验证错误"
             return self.upload_bean
         
         strs = self.qrcode_str.split("*")

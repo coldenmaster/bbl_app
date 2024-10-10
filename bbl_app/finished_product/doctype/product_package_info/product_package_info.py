@@ -64,6 +64,7 @@ def fetch_code_info(**kwargs):
         product_doc_name = name_list[0] if name_list else None
         if (not product_doc_name):
             fpm_padding_doc = make_ppm_from_barcode(kwargs.code)
+            fpm_padding_doc.employee = kwargs.employee
             # fpm_padding_doc.insert(ignore_links=True)
             fpm_padding_doc.insert()
             # print_red(fpm_padding_doc.as_dict())
