@@ -1,8 +1,9 @@
-frappe.require("/assets/bbl_app/js/dialog/raw2bar_dialog.js", () => {
-    console.log("raw2bar_dialog.js 加载完成");
-});
+// frappe.require("/assets/bbl_app/js/dialog/raw2bar_dialog.js", () => {
+//     console.log("raw2bar_dialog.js 加载完成");
+// });
 // frappe.require("/assets/bbl_app/js/dialog/bbl_dialog.js", () => {
 //     console.log("加载完成");
+// });
 // });
 
 frappe.listview_settings["Steel Batch"] = {

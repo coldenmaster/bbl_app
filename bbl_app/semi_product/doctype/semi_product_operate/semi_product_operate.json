@@ -295,10 +295,11 @@
   },
   {
    "fieldname": "production_line",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "label": "Production Line",
    "no_copy": 1,
-   "options": "\n\u4e00\u7ebf\n\u4e8c\u7ebf\n\u4e09\u7ebf\n\u56db\u7ebf\n\u4e94\u7ebf"
+   "options": "Production Line",
+   "remember_last_selected_value": 1
   },
   {
    "fieldname": "column_break_mwtb",
@@ -309,7 +310,7 @@
  "is_calendar_and_gantt": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-09-12 14:58:51",
+ "modified": "2024-10-14 09:58:13.378961",
  "modified_by": "Administrator",
  "module": "Semi Product",
  "name": "Semi Product Operate",

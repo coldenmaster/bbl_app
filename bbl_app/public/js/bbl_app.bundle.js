@@ -4,6 +4,7 @@ import './utils.js';
 
 // ui
 import './ui/form/attach';
+import './ui/desk/toolbar.js';
 
 // controller
 import './doc_ext/stock_entry.js';

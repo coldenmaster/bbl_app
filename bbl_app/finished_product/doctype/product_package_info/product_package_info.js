@@ -65,9 +65,9 @@ frappe.ui.form.on("Product Package Items", {
 // todo : 优化, 存放到localStorage中，利用对框进行设值
 const customer_package_num_limit = {
     "东风德纳": 15,
-    "陕汽汉德": 15,
-    "三一重工": 15,
-    "方盛": 15,
+    // "陕汽汉德": 15,
+    // "三一重工": 15,
+    // "方盛": 15,
 }
 
 function make_scan_package_dialog(frm) {
@@ -201,9 +201,9 @@ class ScanPackageDialog {
             if (this.first_cp_item) {
                 let customer = this.first_cp_item.customer;
                 let cnt_limit = customer_package_num_limit[customer];
-                if (cnt_limit && this.counter >= cnt_limit) {
-                    this.show_error("客户<" + customer + ">的包装数已经达到上限！");
-                    return false;
+                if (cnt_limit && this.counter == cnt_limit + 1) {
+                    let msg = "客户<" + customer + ">的包装数已经超过：" + cnt_limit + "根";
+                    frappe.show_alert({ title: "警告", message: msg, indicator: "red" });
                 }
             }
         } else {

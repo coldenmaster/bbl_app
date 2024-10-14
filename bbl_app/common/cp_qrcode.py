@@ -74,6 +74,17 @@ class CpQrcode:
                 or self.is_qingdao_haitong()
                 )
     
+        
+    def is_customer(self):
+        return (
+                self.is_dena()
+                or self.is_hande()
+                or self.is_zhongqi()
+                or self.is_sanyi()
+                or self.is_liuzhou_fangsheng()
+                or self.is_hefei_fangsheng()
+                or self.is_qingdao_haitong()
+                )
 
     def validate_hande(self):
         if len(self.qrcode_str) != 18:
@@ -359,13 +370,18 @@ class CpQrcode:
             self.upload_bean["company"] = customers.get("other")["name"]
 
         return self.upload_bean
-    
+
 
     def check(self):
         self.qrcode_str = self.qrcode_str.strip()
         if self.is_dena() or self.is_hande() or self.is_zhongqi():
             return True
         return False
+    
+
+
+def code_is_customer(code):
+    return CpQrcode(code).is_customer()
 
 
 def parse_bbl_forge_batch_no(forge_batch_no):

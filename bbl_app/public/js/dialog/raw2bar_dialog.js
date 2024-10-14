@@ -1,3 +1,4 @@
+// todo 这个好像没有用，使用了raw2bar_dialog2.js（直接在docktype js文件内）
 // frappe.require("/assets/bbl_app/js/dialog/raw2bar_dialog.js", () => {
 //     console.log("raw2bar_dialog.js 加载完成");
 // });

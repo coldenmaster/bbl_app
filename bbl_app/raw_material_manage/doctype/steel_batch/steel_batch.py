@@ -6,11 +6,11 @@ import json
 from bbl_app.utils.admin import clear_db_for_dev
 from bbl_app.utils.bbl_utils import semi_name_slug
 from bbl_app.utils.func import raw_leng_to_weight
-from bbl_app.utils.utils import load_pr_items, load_pr_items_0, load_sb_out_items
+from bbl_app.utils.utils import load_pr_items_0
 import frappe
 from frappe.model.create_new import get_new_doc
 from frappe.model.document import Document
-from frappe.utils.data import cint, cstr, flt, nowdate, sbool
+from frappe.utils.data import cint, cstr, flt, sbool
 
 from bbl_api.utils import print_blue, print_green, print_green_pp, print_red, print_yellow, timer
 
