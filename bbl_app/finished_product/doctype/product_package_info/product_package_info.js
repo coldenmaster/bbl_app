@@ -1,7 +1,5 @@
-// Copyright (c) 2024, bbl and contributors
-// For license information, please see license.txt
 frappe.require("/assets/bbl_app/js/product_code_parse.js", () => {
-    console.log("product_code_parse.js is loaded");
+    // console.log("product_code_parse.js is loaded");
 });
 
 
@@ -29,6 +27,7 @@ frappe.ui.form.on("Product Package Info", {
 
     validate(frm) {
     },
+
     before_submit(frm) {
         product_items = frm.get_field("product_package_items").get_value()
         if (!product_items.length){
@@ -36,6 +35,7 @@ frappe.ui.form.on("Product Package Info", {
             frappe.throw("打包产品列表不能为空！")
         }
     },
+
     on_submit(frm) {
     },
 
@@ -44,18 +44,15 @@ frappe.ui.form.on("Product Package Info", {
 
 frappe.ui.form.on("Product Package Items", {
     product_package_items_remove(frm, cdt, cdn) {
-        log("product_package_items_remove", frm, cdt, cdn)
+        // log("product_package_items_remove", frm, cdt, cdn)
         let items = frm.get_field("product_package_items").get_value()
-        log("product_package_items_remove", frm.get_field("product_package_items").get_value())
-        let cnt = items.length;
-        log("cnt", cnt)
-        frm.set_value("qty", cnt);
+        frm.set_value("qty", items.length);
     },
     product_package_items(frm, cdt, cdn) {  // 没有这个函数，不会触发
         log("product_package_items");
     },
-    product_package_items_add(frm, cdt, cdn) {  // 没有这个函数，不会触发
-        log("product_package_items_add");
+    product_package_items_add(frm, cdt, cdn) {
+        // log("product_package_items_add");
         frappe.show_alert("不能手动添加产品！");
         frm.doc.product_package_items.pop();
         frm.refresh_field("product_package_items");
@@ -64,7 +61,7 @@ frappe.ui.form.on("Product Package Items", {
 
 // todo : 优化, 存放到localStorage中，利用对框进行设值
 const customer_package_num_limit = {
-    "东风德纳": 15,
+    "东风德纳": 3,
     // "陕汽汉德": 15,
     // "三一重工": 15,
     // "方盛": 15,
@@ -87,6 +84,8 @@ class ScanPackageDialog {
         this.callback = callback;
         this.counter = 0;
         this.package_no = "";
+        this.semi_product = "";
+        this.product_name = "";
         this.last_code = "";
         this.frm = opts.frm;
         this.customer_code_list = [];
@@ -150,6 +149,10 @@ class ScanPackageDialog {
         // 从frm中获取值
         this.counter = this.frm.doc.qty || 0;
         this.package_no = this.frm.doc.package_no || "";
+        this.semi_product = this.frm.doc.semi_product || "";
+        this.product_name = this.frm.doc.product_name || "";
+        this.customer = this.frm.doc.customer || "";
+
     }
    
     disp_counter() {
@@ -157,6 +160,9 @@ class ScanPackageDialog {
     }
     disp_package_no() {
         this.dialog.get_field("package_no").set_value("打包码：" + cstr(this.package_no).bold());
+        this.dialog.get_field("semi_product").set_value("半成品名：" + cstr(this.semi_product).bold());
+        this.dialog.get_field("product_name").set_value("成品名称：" + cstr(this.product_name).bold());
+        this.dialog.get_field("customer").set_value("客户名称：" + cstr(this.customer).bold());
     }
     frm_add_product_item(fpm_doc) {
         if (this.code_type != "BBL*BM") {
@@ -190,7 +196,7 @@ class ScanPackageDialog {
         const upper_code = code.toUpperCase();
 
         // 二维码不能识别
-        log("二维码"+ upper_code)
+        // log("二维码"+ upper_code)
         if (!(new bbl.CpQrcode(code).isValid())) {
             this.show_error("二维码不能识别");
             return false;
@@ -201,9 +207,9 @@ class ScanPackageDialog {
             if (this.first_cp_item) {
                 let customer = this.first_cp_item.customer;
                 let cnt_limit = customer_package_num_limit[customer];
-                if (cnt_limit && this.counter == cnt_limit + 1) {
-                    let msg = "客户<" + customer + ">的包装数已经超过：" + cnt_limit + "根";
-                    frappe.show_alert({ title: "警告", message: msg, indicator: "red" });
+                if (cnt_limit && this.counter == (cnt_limit-1)) {
+                    let msg = "客户<" + customer + ">的包装数已经达设定：" + cnt_limit + "根";
+                    frappe.show_alert({ message: msg, indicator: "red" }, 10);
                 }
             }
         } else {
@@ -319,34 +325,41 @@ class ScanPackageDialog {
             return false;
         }
 
-        if (!this.first_cp_item) {
-            this.show_error("未获取到第一根产品信息，请检查网络");
-            return false;
-        }
+        if (this.dialog.get_value("disable_check")) {
+            return true;
+        } else {
+            if (!this.first_cp_item) {
+                this.show_error("未获取到第一根产品信息，请检查网络");
+                return false;
+            }
 
-        if (!rt_obj.semi_product) {
-            // todo 判断code的前n位，需相同
-            const len = 10;
-            const code_first_20 = rt_obj.customer_barcode.substring(0, len);
-            const last_code_first_20 = this.first_cp_item.customer_barcode.substring(0, len);
-            if (code_first_20 != last_code_first_20) {
-                this.show_error("扫入产品的半成品名称 ".fontcolor("black") + "不同".fontcolor("red"));
+            if (!rt_obj.semi_product) {
+                // todo 判断code的前n位，需相同
+                const len = 10;
+                const code_first_20 = rt_obj.customer_barcode.substring(0, len);
+                const last_code_first_20 = this.first_cp_item.customer_barcode.substring(0, len);
+                if (code_first_20 != last_code_first_20) {
+                    this.show_error("扫入产品的半成品名称不同" + `(${rt_obj.semi_product})`.fontcolor("black"));
+                this.last_code = "";
+                return false;
+                }
+            }
+            // if (!rt_obj.semi_product || rt_obj.semi_product != this.first_cp_item.semi_product) // 带字段判空
+            // log("this.first_cp_item", this.first_cp_item)
+            // log("rt_obj", rt_obj)
+            if (rt_obj.semi_product != this.first_cp_item.semi_product) {
+                this.show_error("扫入产品的半成品名称不同" + `(${rt_obj.semi_product})`.fontcolor("black"));
+                this.last_code = "";
+                return false;
+            }
+            if (rt_obj.customer != this.first_cp_item.customer) {
+                this.show_error("扫入产品的客户名称不同");
+                this.last_code = "";
                 return false;
             }
         }
-        // if (!rt_obj.semi_product || rt_obj.semi_product != this.first_cp_item.semi_product) // 带字段判空
-        // log("this.first_cp_item", this.first_cp_item)
-        // log("rt_obj", rt_obj)
-        if (rt_obj.semi_product != this.first_cp_item.semi_product) {
-            this.show_error("扫入产品的半成品名称 " + "不同".fontcolor("red"));
-            return false;
-        }
-        if (rt_obj.customer != this.first_cp_item.customer) {
-            this.show_error("扫入产品的客户名称 " + "不同".fontcolor("red"));
-            return false;
-        }
-        return true;
 
+        return true;
 
         // todo 后端校验产品已经打包/准备提交时再进行校验
         
@@ -359,6 +372,12 @@ class ScanPackageDialog {
         this.frm.set_value("semi_product", rt_obj.semi_product);
         this.frm.set_value("forge_batch_no", rt_obj.forge_batch_no);
         this.frm.set_value("customer", rt_obj.customer);
+
+        // 设置对话框内数据
+        this.dialog.get_field("semi_product").set_value("半成品名：" + cstr(rt_obj.semi_product).bold());
+        this.dialog.get_field("product_name").set_value("成品名称：" + cstr(rt_obj.product_name).bold());
+        this.dialog.get_field("customer").set_value("客户名称：" + cstr(rt_obj.customer).bold());
+
         // this.frm.refresh(); 不能刷新，利用了刷新开对话框
     }
     make() {
@@ -401,30 +420,47 @@ class ScanPackageDialog {
                 },
             },
 
-            {"fieldtype": "Section Break",},
+            // {"fieldtype": "Section Break",},
             {
                 "fieldname": "package_no",
                 "fieldtype": "Heading",
                 "label": "package_no",
             },
-            {"fieldtype": "Section Break",},
-            {"fieldtype": "Column Break",},
-
             {
                 "fieldname": "counter",
                 "fieldtype": "Heading",
                 "label": "计数",
             },
-            {"fieldtype": "Column Break",},
-            // {"fieldtype": "Heading", "label": "&nbsp;"},
+
+            {"fieldtype": "Section Break",},
+            {
+                "fieldname": "semi_product",
+                "fieldtype": "Heading",
+                "label": "semi_product",
+            },
+            {
+                "fieldname": "product_name",
+                "fieldtype": "Heading",
+                "label": "product_name",
+            },
+            {
+                "fieldname": "customer",
+                "fieldtype": "Heading",
+                "label": "customer",
+            },
+            {"fieldtype": "Section Break",},
             {
                 "fieldname": "enable_bbl_code",
                 "label": "可扫本厂码",
                 "fieldtype": "Check",
-
+            },
+            {"fieldtype": "Column Break",},
+            {
+                "fieldname": "disable_check",
+                "label": "取消校验",
+                "fieldtype": "Check",
             },
                 
-
         ];
 
         this.dialog = new frappe.ui.Dialog({
@@ -439,18 +475,13 @@ class ScanPackageDialog {
                 this.dialog.hide();
             },
         })
-        const spm_name_default = this.spm_name || localStorage.getItem("fpmd_spm_name") || "";
+        // const spm_name_default = this.spm_name || localStorage.getItem("fpmd_spm_name") || "";
         this.disp_counter();
         this.disp_package_no();
-        // this.dialog.set_value("semi_product_manage", spm_name_default);
-        // this.dialog.get_primary_btn().toggleClass("hidden")
         this.dialog.show();
 
         this.config_scan_code_input();
-        // this.dialog.get_primary_btn().off("click").on("click", () => {
-        //     frappe.show_alert("自动上传，不需要点击确认按钮");
-        // });
-        window.d = this.dialog;
+        // window.d = this.dialog;
         // window.df1 = d.get_field("scan_result")
         // window.df = this.scan_code_fd;
         // window.bt = dg.get_primary_btn()

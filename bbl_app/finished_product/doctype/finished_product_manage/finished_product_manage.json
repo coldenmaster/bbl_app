@@ -19,12 +19,16 @@
   "stock_area",
   "semi_product",
   "forge_batch_no",
+  "section_break_rwdl",
+  "op_list",
   "section_break_uhvb",
   "employee_last",
   "package_no",
-  "package_qty",
   "customer",
   "customer_abbr",
+  "other_code",
+  "is_over",
+  "is_padding",
   "column_break_gqlp",
   "semi_product_batch",
   "batch_qty",
@@ -33,14 +37,7 @@
   "bbl_heat_no",
   "product_type",
   "product_line",
-  "weight",
-  "section_break_xrhk",
-  "other_code",
-  "op_list",
-  "is_over",
-  "is_padding",
-  "column_break_gzis",
-  "op_json"
+  "weight"
  ],
  "fields": [
   {
@@ -59,10 +56,6 @@
    "fieldtype": "Select",
    "label": "Status",
    "options": "\n\u5165\u6cb9\u6f06\n\u5165\u673a\u52a0\u5de5\n\u5df2\u6253\u5305\n\u5165\u4ed3\u5e93\n\u4ee3\u50a8\n\u5df2\u4f7f\u7528\n\u5df2\u5f00\u7968"
-  },
-  {
-   "fieldname": "section_break_xrhk",
-   "fieldtype": "Section Break"
   },
   {
    "description": "\u5176\u5b83\u5173\u8054\u7801\uff0c\u9017\u53f7\u5206\u5272",
@@ -130,12 +123,6 @@
    "label": "Product Name",
    "options": "Product Name",
    "reqd": 1
-  },
-  {
-   "fieldname": "package_qty",
-   "fieldtype": "Int",
-   "label": "Package Qty",
-   "read_only": 1
   },
   {
    "fetch_from": "semi_product_batch.semi_product",
@@ -228,16 +215,6 @@
    "label": "Weight"
   },
   {
-   "fieldname": "column_break_gzis",
-   "fieldtype": "Column Break"
-  },
-  {
-   "description": "\u8bb0\u5f55\u5de5\u4f5c\u6d41\uff1a{\u65f6\u95f4\uff0c\u5de5\u5e8f\uff0c\u4eba\u5458\uff0c\u5907\u6ce8}\n",
-   "fieldname": "op_json",
-   "fieldtype": "JSON",
-   "label": "Op Json"
-  },
-  {
    "default": "Today",
    "fieldname": "for_date",
    "fieldtype": "Date",
@@ -249,12 +226,6 @@
    "fieldname": "last_op_voucher",
    "fieldtype": "Data",
    "label": "Last Op Voucher"
-  },
-  {
-   "fieldname": "op_list",
-   "fieldtype": "Small Text",
-   "label": "Op List",
-   "max_height": "3rem"
   },
   {
    "default": "0",
@@ -280,11 +251,21 @@
    "fieldname": "is_padding",
    "fieldtype": "Check",
    "label": "Is Padding"
+  },
+  {
+   "fieldname": "section_break_rwdl",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "op_list",
+   "fieldtype": "Table",
+   "label": "Op List",
+   "options": "Finished Product Manage Item"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-10 13:29:49.980723",
+ "modified": "2024-10-22 14:15:37.216100",
  "modified_by": "Administrator",
  "module": "Finished Product",
  "name": "Finished Product Manage",
@@ -330,6 +311,5 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": [],
- "title_field": "customer_barcode"
+ "states": []
 }

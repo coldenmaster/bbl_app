@@ -17,7 +17,7 @@ frappe.ui.toolbar.Toolbar = class Toolbar extends frappe.ui.toolbar.Toolbar {
         this.scanner.tooltip({ delay: { show: 600, hide: 100 }, trigger: "hover" });
 
         this.scanner.on("click", () => {
-            console.log("scanner click")
+            // console.log("scanner click")
             let msg_type = localStorage.getItem("barcode_msg_type") || "测试二维码";
             let d = new frappe.ui.Dialog({
                 title: '上传二维码',
@@ -40,7 +40,7 @@ frappe.ui.toolbar.Toolbar = class Toolbar extends frappe.ui.toolbar.Toolbar {
                 primary_action_label: '上传',
                 primary_action(values) {
                     d.hide();
-                    console.log("values", values);
+                    // console.log("values", values);
                     localStorage.setItem("barcode_msg_type", values.message_type);
                     me.sendup_barcode(values);
                 },
@@ -74,7 +74,7 @@ frappe.ui.toolbar.Toolbar = class Toolbar extends frappe.ui.toolbar.Toolbar {
             method: "bbl_app.bbl_app.doctype.temp_barcode.temp_barcode.sendup_barcode",
             args: values
         }).then(r => {
-            console.log("sendup_barcode r", r)
+            // console.log("sendup_barcode r", r)
             let rt = r.message;
             if (rt) {
                 if ( typeof rt === "string" ) {

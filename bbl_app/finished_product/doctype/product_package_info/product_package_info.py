@@ -2,7 +2,7 @@
 # For license information, please see license.txt
 
 from bbl_app.common.cp_qrcode import CpQrcode
-from bbl_app.finished_product.doctype.finished_product_manage.finished_product_manage import make_ppm_from_barcode
+from bbl_app.finished_product.doctype.finished_product_manage.finished_product_manage import make_fpm_from_barcode
 import frappe
 from frappe.model.document import Document
 from frappe.model.naming import make_autoname
@@ -63,7 +63,7 @@ def fetch_code_info(**kwargs):
         # print_red(name_list) 是否取第一个合理？需要进一步判断选择吗？
         product_doc_name = name_list[0] if name_list else None
         if (not product_doc_name):
-            fpm_padding_doc = make_ppm_from_barcode(kwargs.code)
+            fpm_padding_doc = make_fpm_from_barcode(kwargs.code)
             fpm_padding_doc.employee = kwargs.employee
             # fpm_padding_doc.insert(ignore_links=True)
             fpm_padding_doc.insert()

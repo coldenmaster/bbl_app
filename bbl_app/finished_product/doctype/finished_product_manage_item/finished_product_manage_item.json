@@ -1,0 +1,97 @@
+{
+ "actions": [],
+ "autoname": "format:FPO-{YYYY}{MM}{DD}-{####}",
+ "creation": "2024-10-22 13:44:11.929279",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "op_from",
+  "op_to",
+  "employee",
+  "for_date",
+  "op_mark",
+  "column_break_pely",
+  "production_line",
+  "product_grade",
+  "note",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "op_to",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Op To",
+   "options": "Operation Tree",
+   "reqd": 1
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee",
+   "options": "Employee Jobs"
+  },
+  {
+   "fieldname": "for_date",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "For Date"
+  },
+  {
+   "fieldname": "op_mark",
+   "fieldtype": "Data",
+   "label": "Op Mark"
+  },
+  {
+   "fieldname": "column_break_pely",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "op_from",
+   "fieldtype": "Link",
+   "label": "Op From",
+   "options": "Operation Tree"
+  },
+  {
+   "fieldname": "production_line",
+   "fieldtype": "Select",
+   "label": "Production Line"
+  },
+  {
+   "fieldname": "product_grade",
+   "fieldtype": "Select",
+   "label": "Product Grade",
+   "options": "\nA\nB\nC\n\u5e9f\u54c1"
+  },
+  {
+   "fieldname": "note",
+   "fieldtype": "Small Text",
+   "label": "Note"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Finished Product Manage Item",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-10-22 14:20:32.613390",
+ "modified_by": "Administrator",
+ "module": "Finished Product",
+ "name": "Finished Product Manage Item",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

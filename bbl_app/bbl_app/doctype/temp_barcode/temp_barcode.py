@@ -44,6 +44,9 @@ def parse_qrcode(qrcode):
     
     if(qrcode_no_seq.startswith('BBL') and frappe.db.exists('Finished Product Manage', qrcode)):
         return frappe.get_doc('Finished Product Manage', qrcode)
+    # todo 任意条码，尝试查询百兰产品信息，（测试使用，以后删除）
+    if(frappe.db.exists('Finished Product Manage', qrcode)):
+        return frappe.get_doc('Finished Product Manage', qrcode)
 
     if (code_is_customer(qrcode)): 
         docs = frappe.get_all('Finished Product Manage', 
@@ -65,11 +68,6 @@ def parse_qrcode(qrcode):
         else:
             return '原材料信息不存在'
 
-    # raw_docs = frappe.get_all('Steel Batch', 
-    #                         filters={'raw_code': qrcode})
-    # if(len(raw_docs) > 0):
-    #     return frappe.get_doc('Steel Batch', raw_docs[0].name)
-    
     # 半成品流转卡查询
          
     return '数据库中未找到此条码信息'
