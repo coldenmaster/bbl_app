@@ -2,7 +2,7 @@
 # For license information, please see license.txt
 
 from bbl_app.common.cp_qrcode import CpQrcode
-from bbl_app.finished_product.doctype.finished_product_manage.finished_product_manage import make_ppm_from_barcode
+from bbl_app.finished_product.doctype.finished_product_manage.finished_product_manage import make_fpm_from_barcode
 import frappe
 from frappe.model.document import Document
 from frappe.utils.data import add_to_date, now_datetime
@@ -70,7 +70,7 @@ def send_back_data(**kwargs):
         new_doc = frappe.get_doc(kwargs)
         new_doc.insert(ignore_permissions=True)
         # todo  产品扫描后，补充产品信息，原因同上。以后改版。
-        fpm_padding_doc = make_ppm_from_barcode(kwargs.customer_code, kwargs.bbl_code)
+        fpm_padding_doc = make_fpm_from_barcode(kwargs.customer_code, kwargs.bbl_code)
         fpm_padding_doc.insert(ignore_links=True)
         frappe.db.commit()
         

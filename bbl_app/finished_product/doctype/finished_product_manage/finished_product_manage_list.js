@@ -174,7 +174,8 @@ class ScanBblCodeDialog {
 
     show_select_spm_section(show) {
         this.dialog.get_field("section_break_1").on_section_toggle(show);
-        this.dialog.get_field("section_break_2").on_section_toggle(show);
+        // this.dialog.get_field("section_break_2").on_section_toggle(show);
+        this.dialog.get_field("section_break_3").on_section_toggle(!show);
     }
 
     show_alert(msg) {
@@ -426,11 +427,11 @@ class ScanBblCodeDialog {
         // this.dialog.get_primary_btn().off("click").on("click", () => {
         //     frappe.show_alert("自动上传，不需要点击确认按钮");
         // });
-        window.d = this.dialog;
-        window.df1 = d.get_field("scan_result")
-        window.c = d.get_field("scan_code")
-        window.s = d.get_field("semi_product_manage")
-        window.sc = d.get_field("section_break_2")
+        // window.d = this.dialog;
+        // window.df1 = d.get_field("scan_result")
+        // window.c = d.get_field("scan_code")
+        // window.s = d.get_field("semi_product_manage")
+        // window.sc = d.get_field("section_break_2")
 
         // window.me= this;
         // window.df = this.scan_input_df;
